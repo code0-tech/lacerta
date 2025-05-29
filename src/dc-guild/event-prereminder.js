@@ -20,7 +20,7 @@ const setupTimer = (channelId, title, time, client, eventConfig) => {
 
         if (timeNew > 0 && timeNew < MAX_TIMER_WINDOW_MS) {
             if (eventTimers.length >= MAX_TIMERS) {
-                console.warn(`[PREREMINDER-EVENTS] Too many active timers (${eventTimers.length}), skipping timer for "${title}" at ${timeInMinutes} minutes`);
+                console.log(`[PREREMINDER-EVENTS] Too many active timers (${eventTimers.length}), skipping timer for "${title}" at ${timeInMinutes} minutes`);
                 return;
             }
 
