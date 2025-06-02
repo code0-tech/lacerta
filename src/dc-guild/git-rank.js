@@ -129,7 +129,7 @@ const sendGitRankMessage = async (client) => {
 
 const setup = (client) => {
     const job = schedule.scheduleJob(Constants.GIT.GRAPH.SCHEDULE, function () {
-        // sendGitRankMessage(client);
+        sendGitRankMessage(client);
     });
 }
 
