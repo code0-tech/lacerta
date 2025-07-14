@@ -1,0 +1,8 @@
+{
+    "port": 7581,
+    "oauth": {
+        "basepath": "/oauth/callback/",
+        "github": "http://127.0.0.1:7581/oauth/callback/github",
+        "githubconnected": "https://github.com/code0-tech"
+    }
+}
