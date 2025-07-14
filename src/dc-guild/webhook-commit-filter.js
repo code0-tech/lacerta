@@ -16,7 +16,7 @@ const handleGitHubCommitMessage = async (client, msg) => {
         const matches = embedData.title.match(regexCommitCount);
         if (!matches) return;
 
-        if (config.commands.gitrank.users.blacklist.includes(embedData.author.name)) {
+        if (config.commands.gitrank.users.blacklist.includes(embedData.author.name) || embedData.author.name.endsWith(config.commands.gitrank.users.blacklisttag)) {
             console.log(`[Webhook Commit Filter] wont save commits for blacklist user: ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
             return;
         }
