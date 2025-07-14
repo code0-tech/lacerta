@@ -1,0 +1,173 @@
+{
+    "embeds": {
+        "colors": {
+            "background": "#030014",
+            "primary": "#030014",
+            "secondary": "#ffffff",
+            "info": "#70ffb2",
+            "success": "#29BF12",
+            "warning": "#FFBE0B",
+            "inprogress": "#FFBE0B",
+            "danger": "#D90429",
+            "black": "#000000",
+            "white": "#ffffff"
+        },
+        "footer": {
+            "default": "Code0"
+        },
+        "avatarurl": "https://cdn.discordapp.com/avatars/915292654709923840/f3fd2f409d569417dc1d9f1094a790d4.webp?size=512"
+    },
+    "serverid": "1173625923724124200",
+    "parents": {
+        "support": "1192259091679170720",
+        "application": "1191668473596739685",
+        "nicuschtest": "1213226670522105967",
+        "applications": "1246912722487218268"
+    },
+    "channels": {
+        "internalcommunicationchat": "1173728043223765132",
+        "auditlog": "1232028247982608384",
+        "welcome": "1173625924395221014",
+        "application": "1242116368170745857",
+        "rankupdates": "1255923654664126464",
+        "gitranks": "1262813262660108348",
+        "test": "1338603231730991125"
+    },
+    "languageroles": {
+        "1225861340686450799": "german",
+        "1230517451482202192": "english",
+        "1263281513076752476": "lolcat"
+    },
+    "roles": {
+        "opencontributor": "1173713516222480394",
+        "team": "1173713224387014696",
+        "test": "1337781515525816350"
+    },
+    "status": {
+        "interval": 10000,
+        "indevelopment": [
+            {
+                "name": "debugging",
+                "status": "online"
+            },
+            {
+                "name": "removing errors",
+                "status": "online"
+            }
+        ],
+        "messages": [
+            {
+                "name": "with JS",
+                "status": "online"
+            },
+            {
+                "name": "with LLM's",
+                "status": "online"
+            },
+            {
+                "name": "with flows",
+                "status": "online"
+            },
+            {
+                "name": "with Code0 pipelines",
+                "status": "online"
+            }
+        ]
+    },
+    "github": {
+        "orgaid": "O_kgDOCPpWOA",
+        "dcwebhookid": "1187288818840240128"
+    },
+    "urls": {
+        "code0": "https://code0.tech"
+    },
+    "commands": {
+        "eventprereminder": [
+            {
+                "title": "Sprint Review",
+                "reminderbeforeinminutes": [
+                    5,
+                    60
+                ],
+                "embed": {
+                    "title": "{title} - in {minutesRemaining} minutes",
+                    "description": "Jungs, bereitet euch vor - ich als Bot muss ja nicht teilnehmen.",
+                    "mention": "team"
+                },
+                "remindchannelname": "internalcommunicationchat"
+            },
+            {
+                "title": "Backlog refinement and issue management",
+                "reminderbeforeinminutes": [
+                    5,
+                    60
+                ],
+                "embed": {
+                    "title": "{title} - in {minutesRemaining} minutes",
+                    "description": "Jungs, bereitet euch vor - ich als Bot muss ja nicht teilnehmen.",
+                    "mention": "team"
+                },
+                "remindchannelname": "internalcommunicationchat"
+            }
+        ],
+        "opencontributor": {
+            "pr": 10,
+            "commits": 10,
+            "authtimeout": 120000
+        },
+        "ticket": {
+            "timeout": 300000
+        },
+        "rank": {
+            "maxlength": 100,
+            "maxxp": 10,
+            "xpperchar": 0.5,
+            "uptodate15m": true,
+            "updatemessage": 2000
+        },
+        "logs": {
+            "maxlist": 10
+        },
+        "stats": {
+            "uptodate15m": true,
+            "updatemessage": 5000
+        },
+        "leaderboard": {
+            "baselistlimit": 10,
+            "maxnamelength": 20
+        },
+        "gitrank": {
+            "users": {
+                "blacklist": [
+                    "renovate[bot]",
+                    "Taucher2003-Bot",
+                    "dependabot[bot]",
+                    "code0-release-tools[bot]"
+                ],
+                "blacklisttag": "[bot]"
+            }
+        },
+        "git": {
+            "autocomplete": {
+                "daysbefore": [
+                    {
+                        "days": 30,
+                        "name": "30 Days before"
+                    },
+                    {
+                        "days": 20,
+                        "name": "20 Days before"
+                    },
+                    {
+                        "days": 10,
+                        "name": "10 Days before"
+                    },
+                    {
+                        "days": 1,
+                        "name": "1 Day before"
+                    }
+                ]
+            }
+        }
+    }
+}
