@@ -60,8 +60,13 @@ class GITCOMMITSTOTAL {
             cumulativeCommits[name].push({ date, commits: dailyCommits });
         });
 
+        let userCommitsTotal = {};
+
         for (const name in cumulativeCommits) {
             const userData = cumulativeCommits[name];
+
+            userCommitsTotal[name] = { count: 0 };
+
             const allDates = userData.map(entry => entry.date);
 
             const filledData = [];
@@ -76,6 +81,7 @@ class GITCOMMITSTOTAL {
             ) {
                 if (currentIndex < userData.length && allDates[currentIndex] === date) {
                     currentCumulative += userData[currentIndex].commits;
+                    userCommitsTotal[name].count += userData[currentIndex].commits;
                     filledData.push({ date, commits: currentCumulative });
                     currentIndex++;
                 } else {
@@ -91,7 +97,7 @@ class GITCOMMITSTOTAL {
 
         for (const [name, data] of Object.entries(cumulativeCommits)) {
 
-            const totalCommits = data.reduce((sum, entry) => sum + entry.commits, 0);
+            const totalCommits = userCommitsTotal[name].count;
             const label = name + ` [${totalCommits}]`;
 
             datasets.push({
