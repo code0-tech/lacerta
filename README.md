@@ -9,9 +9,12 @@ Code0 is a Discord bot developed in JavaScript, utilizing the discord.js client 
 
 ### Requirements:
 
-- HTTP Port: Required for GitHub OAuth, configured via `http-config.port` in `http-config.json`.
+- HTTP Port: Required for GitHub OAuth, configured via `http-config.port` in `./http-config.json`.
 
-- MongoDB: Used for storing user and bot-related data.
+- **MongoDB:** Used for storing user and bot-related data, including:
+  - XP statistics
+  - Message count statistics
+  - Command usage data
 #
 
 ## Main Interactions
@@ -20,7 +23,7 @@ Code0 is a Discord bot developed in JavaScript, utilizing the discord.js client 
 | --- | ---------------------------------------------| ------------ | --------- |
 | 1   | `/open-contributer`                          | Finished     |      None |
 | 2   | `/ticket`                                    | Finished     |      None |
-| 3   | `/links`                                     | In Design    |      None |
+| 3   | `/links`                                     | Finished     |      None |
 | 4   | `/contributor`                               | Finished     |      None |
 | 5   | `/rank` or `/rank @user` +uptodate15         | Finished     |      None |
 | 6   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |      None |
@@ -50,67 +53,69 @@ Entrie Example:
     "$oid": "6644f92497346d3e063052fe"
   },
   "id": "380808844093292555",
-  "rawxp": 984,
+  "rawxp": 1332,
   "stats": {
     "messages": {
-      "words": 4002,
-      "chars": 20522,
-      "count": 676
+      "words": 4440,
+      "chars": 23598,
+      "count": 721
     },
     "voice": {
-      "joins": 116,
-      "switchs": 18,
-      "time": 98093
+      "joins": 127,
+      "switchs": 21,
+      "time": 158818
     }
   },
   "commandstats": {
     "debug": {
-      "command": 15
+      "command": 61,
+      "button": 19,
+      "selectmenu": 14
     },
     "leaderboard": {
-      "command": 8
+      "command": 16
     },
     "stats": {
-      "command": 19
+      "command": 48
     },
     "logs": {
-      "command": 10,
-      "button": 13
+      "command": 22,
+      "button": 45
     },
     "logs list": {
-      "selectmenu": 5
+      "selectmenu": 16
     },
     "links": {
       "command": 1
     },
     "open-contributor": {
-      "command": 2
+      "command": 10
     },
     "mydata": {
-      "command": 3
+      "command": 12
     },
     "git": {
-      "autocomplete": 8,
-      "command": 5
+      "autocomplete": 188,
+      "command": 111
     },
     "logs show": {
-      "button": 3
+      "button": 6
     },
     "ticket": {
-      "command": 1,
-      "button": 3
+      "command": 2,
+      "button": 5
     },
     "_application": {
       "button": 2
     },
     "rank": {
-      "command": 4
+      "command": 23
     }
   }
 }
 ```
 
-Last MongoDB structure update: 13.02.2025
+Last MongoDB structure update: 14.07.2025
 
  Tip: You can mention a Discord user by their ID using `<@user_id>`.
 
@@ -119,7 +124,6 @@ This repository mirrors the live bot but excludes sensitive or unnecessary files
 
 - `node_modules/` – Not included (use npm install to generate).
 - `server.env / .env` – Contains private configuration and tokens.
-- `config.json / http-config.json` – Holds role/channel settings and server configurations.
 - `unused-temp.js` – Unused code snippets, kept for reference.
 - `a-workon/` – Work-in-progress features.
 - `.gitignore` – Specifies ignored files.
@@ -180,6 +184,4 @@ Since Code0 is actively in development, expect ongoing improvements and changes.
 💡 This system has been in use since 10.07.2024, but earlier commits may not follow it consistently.
 ## Know issues
 
-- 📱 Mobile UI Bug: Tables and charts do not display correctly on mobile devices (Reported: 01.01.2025).
-
-- FATAL ERROR: Reached heap limit Allocation failed (Reported: 8.04.2025).
+- 📱 Mobile UI Bug: Tables and charts do not display correctly on mobile devices, but there are currently no plans to fix it soon, and it may remain unresolved indefinitely  (Reported: 01.01.2025).
