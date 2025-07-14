@@ -69,32 +69,19 @@ class GITCOMMITSTOTAL {
             let currentIndex = 0;
             let currentCumulative = 0;
 
-            /* while (currentDate <= lastDate) {
-                if (currentIndex < userData.length && allDates[currentIndex] === currentDate) {
-                    currentCumulative += userData[currentIndex].commits;
-                    filledData.push({ date: currentDate, commits: currentCumulative });
-                    currentIndex++;
-                } else {
-                    filledData.push({ date: currentDate, commits: currentCumulative });
-                }
-
-                currentDate = getNextDayByDateString(currentDate);
-            } */
-
             for (
                 let date = currentDate;
                 date <= lastDate;
                 date = getNextDayByDateString(date)
-              ) {
+            ) {
                 if (currentIndex < userData.length && allDates[currentIndex] === date) {
-                  currentCumulative += userData[currentIndex].commits;
-                  filledData.push({ date, commits: currentCumulative });
-                  currentIndex++;
+                    currentCumulative += userData[currentIndex].commits;
+                    filledData.push({ date, commits: currentCumulative });
+                    currentIndex++;
                 } else {
-                  filledData.push({ date, commits: currentCumulative });
+                    filledData.push({ date, commits: currentCumulative });
                 }
-              }
-              
+            }
 
             cumulativeCommits[name] = filledData;
         }
@@ -103,11 +90,16 @@ class GITCOMMITSTOTAL {
         const datasets = [];
 
         for (const [name, data] of Object.entries(cumulativeCommits)) {
+
+            const totalCommits = data.reduce((sum, entry) => sum + entry.commits, 0);
+            const label = name + ` [${totalCommits}]`;
+
             datasets.push({
-                label: name,
+                label,
                 data: data.map(entry => entry.commits),
                 borderColor: getColorByString(name, Constants.SEEDS.GITCHART),
-                fill: false
+                fill: false,
+                _totalCommits: totalCommits
             });
         }
 
@@ -118,6 +110,8 @@ class GITCOMMITSTOTAL {
         const chart = new Chart(Constants.GIT.GRAPH.SIZEX, Constants.GIT.GRAPH.SIZEY)
             .setType('line')
             .setLabels(labels);
+
+        datasets.sort((a, b) => b._totalCommits - a._totalCommits);
 
         datasets.forEach(dataset => {
             chart.addDataset(dataset.label, dataset.data, dataset.borderColor);
