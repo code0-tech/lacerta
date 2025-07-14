@@ -2,7 +2,5 @@ node_modules/
 a-workon/
 server.env
 .env
-config.json
-http-config.json
 unused-temp.js
 .gitignore
