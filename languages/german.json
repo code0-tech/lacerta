@@ -108,7 +108,7 @@
             "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nAktuell ist <@{rankuserid}> auf dem {position} Platz."
         },
         "this-bot-rank": {
-            "description": "### Nun, ich habe es nicht so mit dem sammeln von Xp.\nVersuchs mal mit einem `benutzer` statt wie mit mir, einem Bot c:"
+            "description": "### Nun, ich habe es nicht so mit dem sammeln von Xp.\nVersuchs mal mit einem echten `benutzer`"
         }
     },
     "stats": {
@@ -125,7 +125,7 @@
             "description": "### Nachrichten:\nAnzahl: `{count}`\nWörter: `{words}`\nZeichen: `{chars}`\n### Sprache:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nInsgesamt: `{voicedays}` Tage, `{voicehours}` Stunden, `{voiceminutes}` Minuten, `{voiceseconds}` Sekunden.\nIn Kanal: {channelmention}\n\n### Command Statistiken\n\n{commandstatsstring}\n\nNote:\nXP entspricht niemals seiner/ihrer Anzahl an Nachrichten.\nVoice Statistik \"Join\" wird erst aktualisiert, nachdem er/sie einen Kanal verlassen hat."
         },
         "this-bot-stats": {
-            "description": "### Nun, ich habe es nicht so mit dem sammeln von Stats.\nVersuchs mal mit einem `benutzer` statt wie mit mir, einem Bot c:"
+            "description": "### Nun, ich habe es nicht so mit dem sammeln von Stats.\nVersuchs mal mit einem echten `benutzer`"
         }
     },
     "leaderboard": {

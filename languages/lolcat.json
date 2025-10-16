@@ -2,7 +2,7 @@
     "debug": {
         "channels": "Channelz",
         "roles": "Rolas",
-        "langroles": "Languagagererols",
+        "langroles": "Langererols",
         "mongo-left-users": {
             "title": "KongoDb Left Usr",
             "description": "Found:\n{userstring}\n\nFake Usrz:\n{progressbar}"
@@ -43,7 +43,7 @@
             "description": "Hai <@{userid}>,\nplz taek a moment 2 describe teh issue ur facin.\nTeh moar details u provid, teh better we can assist u.\nIf applicabul, include error messages, stepz 2 reproduc teh problm, an any othr relevant info."
         },
         "no-team-member": {
-            "title": "Sowwy",
+            "title": "Sor",
             "description": "Only Teeaam memburz can cloz a tikkit."
         },
         "close-info": {
@@ -64,7 +64,7 @@
             "description": "Dis codr is expirat. Use /open-contributor toz geat a new onee."
         },
         "error-similar-inquiry": {
-            "title": "Request cancelld",
+            "title": "Reqt cancelld",
             "description": "It appearz dat a similer inquiry or request has alrdy been submitd elswhere, as a ressult, teh current request has been cancelld."
         },
         "error-already-has-role": {
@@ -76,15 +76,15 @@
             "description": "For becumin an Open Contributor an its roles u must fulfill teh following thingz:\n\n1. Hav {neededcommits} or moar commitz\n2. Hav {neededpr} or moar pull requests\n\nClick teh link button an check if u can becum an Open Contributor."
         },
         "results-complete": {
-            "title": "Github Resulsts",
+            "title": "Gifthub Resul",
             "description": "Account: `{githubname}`\n\n{pbpr}\nU got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nU got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nWe haz added u 2 our Open Contributor"
         },
         "results-not-complete": {
-            "title": "Github Resssults",
+            "title": "Gifthub Resul",
             "description": "Account: `{githubname}`\n\n{pbpr}\nU got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nU got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nFulfill all requiremints to becum an Open Contributor."
         },
         "results-no-data": {
-            "title": "Github Ressults for {githubname}",
+            "title": "Gifthub Resul for {githubname}",
             "description": "U got no commitz nor pull request's."
         }
     },
@@ -108,7 +108,7 @@
             "description": "### Livel: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nCurrently <@{rankuserid}> is on teh {position} place."
         },
         "this-bot-rank": {
-            "description": "### Well, Ima not rly into collectin XP.\nMaybe try a `user` an not a Bot like me c:"
+            "description": "### Well, Ima not rly into collectin XP.\nMaybe try a real `user`"
         }
     },
     "stats": {
@@ -125,7 +125,7 @@
             "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n\n### Commanz Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to his/her message stats.\nVoice stat \"Join\" is only updated after he/she left an channel."
         },
         "this-bot-stats": {
-            "description": "### Well, I'm not really into collecting stats.\nMaybe try a `user` and not a Bot like me c:"
+            "description": "### Well, I'm not really into collecting stats.\nMaybe try a real `user`"
         }
     },
     "leaderboard": {
