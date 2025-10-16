@@ -6,7 +6,6 @@
 
 Code0 is a Discord bot developed in JavaScript, utilizing the discord.js client library along with a lightweight web server for GitHub OAuth authentication. This enables certain commands, such as retrieving commit and pull request data.
 
-
 ### Requirements:
 
 - HTTP Port: Required for GitHub OAuth, configured via `http-config.port` in `./http-config.json`.
@@ -34,6 +33,20 @@ Code0 is a Discord bot developed in JavaScript, utilizing the discord.js client 
 | 11  | `Git rank message every 24 hours`            | Finished     |      None |
 | 12  | `/git` display charts of Git activity        | In Progress  |      None |
 
+## Language
+
+We currently provide `3` languages
+
+- german.json
+- english.json
+- lolcat.json (custom version)
+
+Made by using the inbuild web editor...
+
+Run it via `node .\language-editor.js` then go to `http://localhost:3000`
+
+Note: If german key translation does not exist for a command, the fallback is always english
+
 ## Tracking
 
 The bot collects and processes certain statistics, as visible in the source code:
@@ -46,37 +59,37 @@ For /open-contributer, OAuth URLs are not stored. This means authentication is r
 
 ## Command Tracking
 
-Entrie Example:
+Real Example:
 ```json
 {
   "_id": {
     "$oid": "6644f92497346d3e063052fe"
   },
   "id": "380808844093292555",
-  "rawxp": 1332,
+  "rawxp": 1396,
   "stats": {
     "messages": {
-      "words": 4440,
-      "chars": 23598,
-      "count": 721
+      "words": 4499,
+      "chars": 23902,
+      "count": 731
     },
     "voice": {
-      "joins": 127,
+      "joins": 128,
       "switchs": 21,
-      "time": 158818
+      "time": 159600
     }
   },
   "commandstats": {
     "debug": {
-      "command": 61,
-      "button": 19,
-      "selectmenu": 14
+      "command": 69,
+      "button": 20,
+      "selectmenu": 15
     },
     "leaderboard": {
-      "command": 16
+      "command": 19
     },
     "stats": {
-      "command": 48
+      "command": 54
     },
     "logs": {
       "command": 22,
@@ -86,7 +99,7 @@ Entrie Example:
       "selectmenu": 16
     },
     "links": {
-      "command": 1
+      "command": 2
     },
     "open-contributor": {
       "command": 10
@@ -95,27 +108,27 @@ Entrie Example:
       "command": 12
     },
     "git": {
-      "autocomplete": 188,
-      "command": 111
+      "autocomplete": 226,
+      "command": 116
     },
     "logs show": {
       "button": 6
     },
     "ticket": {
-      "command": 2,
-      "button": 5
+      "command": 4,
+      "button": 7
     },
     "_application": {
       "button": 2
     },
     "rank": {
-      "command": 23
+      "command": 28
     }
   }
 }
 ```
 
-Last MongoDB structure update: 14.07.2025
+Last MongoDB structure update: 16.10.2025
 
  Tip: You can mention a Discord user by their ID using `<@user_id>`.
 
