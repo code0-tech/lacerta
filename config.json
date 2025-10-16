@@ -91,7 +91,7 @@
                 ],
                 "embed": {
                     "title": "{title} - in {minutesRemaining} minutes",
-                    "description": "Jungs, bereitet euch vor - ich als Bot muss ja nicht teilnehmen.",
+                    "description": "Leider wieder ein Meeting - Laut Kalendar...",
                     "mention": "team"
                 },
                 "remindchannelname": "internalcommunicationchat"
@@ -104,7 +104,7 @@
                 ],
                 "embed": {
                     "title": "{title} - in {minutesRemaining} minutes",
-                    "description": "Jungs, bereitet euch vor - ich als Bot muss ja nicht teilnehmen.",
+                    "description": "Leider wieder ein Meeting - Laut Kalendar...",
                     "mention": "team"
                 },
                 "remindchannelname": "internalcommunicationchat"
@@ -151,20 +151,28 @@
             "autocomplete": {
                 "daysbefore": [
                     {
+                        "days": 356,
+                        "name": "1 Year ago"
+                    },
+                    {
+                        "days": 60,
+                        "name": "Last 2 Months"
+                    },
+                    {
                         "days": 30,
-                        "name": "30 Days before"
+                        "name": "Last 30 Days"
                     },
                     {
                         "days": 20,
-                        "name": "20 Days before"
+                        "name": "Last 20 Days"
                     },
                     {
                         "days": 10,
-                        "name": "10 Days before"
+                        "name": "Last 10 Days"
                     },
                     {
                         "days": 1,
-                        "name": "1 Day before"
+                        "name": "One Day ago"
                     }
                 ]
             }
