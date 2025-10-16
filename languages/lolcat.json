@@ -4,7 +4,7 @@
         "roles": "Rolas",
         "langroles": "Languagagererols",
         "mongo-left-users": {
-            "title": "Kongo Left Usr",
+            "title": "KongoDb Left Usr",
             "description": "Found:\n{userstring}\n\nFake Usrz:\n{progressbar}"
         },
         "mongo-left-users-loading": {

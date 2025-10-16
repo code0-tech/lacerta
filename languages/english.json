@@ -1,236 +1,236 @@
 {
-    "debug": {
-        "channels": "Channels",
-        "roles": "Roles",
-        "langroles": "Languageroles",
-        "mongo-left-users": {
-            "title": "MongoDB Left User",
-            "description": "Found:\n{userstring}\n\nFake Users:\n{progressbar}"
-        },
-        "mongo-left-users-loading": {
-            "title": "MongoDB Left User",
-            "description": "Checked: [{checked}|{totaluser}], found: {found}."
-        },
-        "mongo-removed-user": {
-            "title": "Removed {userid}."
-        },
-        "left-user-reload": "Reload",
-        "left-user-remove": "Remove from MongoDB",
-        "found-none": "None",
-        "remove": "Remove",
-        "client-session-time": {
-            "title": "Client Session Time",
-            "description": "Up Since: {upsince}\n\n`{days}` days, `{hours}` hours, `{minutes}` minutes, `{seconds}` seconds."
-        }
+  "debug": {
+    "channels": "Channels",
+    "roles": "Roles",
+    "langroles": "Languageroles",
+    "mongo-left-users": {
+      "title": "MongoDB Left User",
+      "description": "Found:\n{userstring}\n\nFake Users:\n{progressbar}"
     },
-    "ticket": {
-        "btn-close": "Close",
-        "btn-remove-ticket": "Remove Ticket",
-        "timeout": {
-            "title": "Timeout",
-            "description": "Your last ticket was created `{m} minutes` and `{s} seconds` ago.\nPlease wait before creating your next Ticket."
-        },
-        "create": {
-            "title": "Ticket",
-            "description": "Creating a new ticket."
-        },
-        "created": {
-            "title": "We got your Ticket",
-            "description": "You will find your ticket <#{channelid}> under the `Support` category."
-        },
-        "info-message": {
-            "title": "Support Ticket",
-            "description": "Hi <@{userid}>,\nplease take a moment to describe the issue you're facing.\nThe more details you provide, the better we can assist you.\nIf applicable, include error messages, steps to reproduce the problem, and any other relevant information."
-        },
-        "no-team-member": {
-            "title": "Sorry",
-            "description": "Only Team members can close a ticket."
-        },
-        "close-info": {
-            "title": "Closing Ticket"
-        },
-        "closed": {
-            "title": "Closed",
-            "description": "`This Ticket was for `<@{ticketuserid}>`.`\n\n`The ticket was Closed by `<@{closeduserid}>`.`\n`Time open: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.`"
-        }
+    "mongo-left-users-loading": {
+      "title": "MongoDB Left User",
+      "description": "Checked: [{checked}|{totaluser}], found: {found}."
     },
-    "open-contributor": {
-        "repo": "Repo",
-        "commits": "Commits",
-        "prs": "PRs",
-        "button-link": "Github OAuth Link",
-        "error-timeout": {
-            "title": "Code expired",
-            "description": "This code is expired. Use /open-contributor to get a new one."
-        },
-        "error-similar-inquiry": {
-            "title": "Request canceled",
-            "description": "It appears that a similar inquiry or request has already been submitted elsewhere, as a result, the current request has been canceled."
-        },
-        "error-already-has-role": {
-            "title": "Well... you are an Open Contributor",
-            "description": "There is no need to use this command."
-        },
-        "initial-message": {
-            "title": "How to become an Open Contributor",
-            "description": "For becoming an Open Contributor and its roles you must fulfill the following things:\n\n1. Have {neededcommits} or more commits\n2. Have {neededpr} or more pull requests\n\nClick the link button and check if you can become an Open Contributor."
-        },
-        "results-complete": {
-            "title": "Github Results",
-            "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nWe have added you to our Open Contributor"
-        },
-        "results-not-complete": {
-            "title": "Github Results",
-            "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nFulfill all requirements to become an Open Contributor."
-        },
-        "results-no-data": {
-            "title": "Github Results for {githubname}",
-            "description": "You got no commits nor pull request's."
-        }
+    "mongo-removed-user": {
+      "title": "Removed {userid}."
     },
-    "links": {
-        "list": {
-            "title": "These links might interest you!",
-            "description": "Our Github: [Code0 Github](https://github.com/code0-tech)\n\nOur Website: [Code0 Website](https://code0.tech)"
-        }
-    },
-    "contributor": {
-        "info": {
-            "title": "How to become an Open Contributor",
-            "description": "To be an Open Contributor, meet these criteria:\n\n1. Have {neededcommits} or more commits.\n2. Have {neededpr} or more pull requests.\n\nYou can check or get the role by using `/open-contributer` command."
-        }
-    },
-    "rank": {
-        "own-rank-response": {
-            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nYou <@{rankuserid}> are currently on the {position} place.\nEarn XP by interacting on this server with others."
-        },
-        "other-rank-response": {
-            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nCurrently <@{rankuserid}> is on the {position} place."
-        },
-        "this-bot-rank": {
-            "description": "### Well, I'm not really into collecting XP.\nMaybe try a `user` and not a Bot like me c:"
-        }
-    },
-    "stats": {
-        "command": "Command",
-        "executed": "Executed",
-        "button": "btn",
-        "autocomplete": "ac",
-        "selectmenu": "sm",
-        "no-command-executed": "No Commands were executed.",
-        "own-stats-response": {
-            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to your message stats.\nVoice stat \"Join\" is only updated after you left an channel."
-        },
-        "other-stats-response": {
-            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to his/her message stats.\nVoice stat \"Join\" is only updated after he/she left an channel."
-        },
-        "this-bot-stats": {
-            "description": "### Well, I'm not really into collecting stats.\nMaybe try a `user` and not a Bot like me c:"
-        }
-    },
-    "leaderboard": {
-        "username": "Username",
-        "level": "Lvl.",
-        "xp": "Xp",
-        "board": {
-            "title": "Leaderboard",
-            "description": "{stringlist}"
-        },
-        "left-server": "Left the Server"
-    },
-    "_application": {
-        "#btn-closed-team": "Apply as Closed Team",
-        "#btn-open-contributer": "Apply as Open Contributor",
-        "#init-message": {
-            "title": "Application Channel",
-            "description": "This is where you can start your application process.\n\nYou have now the opportunity to become a part of our <@&{teamid}>.\nClick the button below to create a new application channel.\nWe're excited to have you join Code0.\n\nIf you already have an active application channel, please use that to continue your application. "
-        },
-        "btn-remove": "Remove Application",
-        "btn-close": "Close Application",
-        "new-application": {
-            "title": "Application Channel Created",
-            "description": "A new application channel has been created for you: <#{channelid}>."
-        },
-        "has-application": {
-            "title": "Existing Application Channel Found",
-            "description": "Sorry, but you can only have one application channel at a time."
-        },
-        "application-message": {
-            "title": "Apply Here",
-            "description": "Here you can apply and communicate with our staff to get involved with Code0."
-        },
-        "no-team-member": {
-            "title": "Sorry",
-            "description": "Only Team members can close an Application."
-        },
-        "confirm-remove-application": {
-            "title": "Closed",
-            "description": "`This Application was for `<@{ticketuserid}>`.`\n\n`The Application was Closed by `<@{closeduserid}>`.`\n`Time open: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.`"
-        },
-        "close-info": {
-            "title": "Closing Application"
-        }
-    },
-    "logs": {
-        "select-menu-placholder": "Logs",
-        "btn-back": "Previous",
-        "btn-next": "Next",
-        "btn-skip": "Go to last",
-        "btn-print": "Print",
-        "text-old-logs": "Old Logs",
-        "run-id": "run_id",
-        "development": {
-            "description": "In development mode `/logs show` is not available"
-        },
-        "session-logs": {
-            "title": "Current logs [{totallogscount}]",
-            "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})"
-        },
-        "old-session-logs": {
-            "title": "{runid} [{totallogscount}]",
-            "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})"
-        },
-        "text-createdat": "Created at",
-        "text-size": "Size",
-        "text-time": "Time",
-        "list-logs": {
-            "title": "Log files",
-            "description": "{list}"
-        },
-        "list-logs-empty": {
-            "title": "No logs available"
-        },
-        "not-found": {
-            "title": "Cannot find any logs for runId: {runid}."
-        },
-        "print-out": {
-            "title": "Print Out",
-            "description": "Here is an .txt which contains the full log."
-        }
-    },
-    "#_rankupdate": {
-        "#update-msg": {
-            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\n<@{rankuserid}> is now level {level} and in {position} place."
-        }
-    },
-    "mydata": {
-        "your-data": {
-            "title": "We got your Data",
-            "description": "This json file contains all the information we have saved about you in our DB."
-        }
-    },
-    "git": {
-        "repo": "Repo",
-        "name": "Name",
-        "commits": "Commits",
-        "percentage": "Percentage",
-        "usercommitssum": {
-            "title": "Commits Count for {gituser}",
-            "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`"
-        },
-        "repocommitssum": {
-            "title": "Commits Count for {repo}",
-            "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`"
-        }
+    "left-user-reload": "Reload",
+    "left-user-remove": "Remove from MongoDB",
+    "found-none": "None",
+    "remove": "Remove",
+    "client-session-time": {
+      "title": "Client Session Time",
+      "description": "Up Since: {upsince}\n\n`{days}` days, `{hours}` hours, `{minutes}` minutes, `{seconds}` seconds."
     }
+  },
+  "ticket": {
+    "btn-close": "Close",
+    "btn-remove-ticket": "Remove Ticket",
+    "timeout": {
+      "title": "Timeout",
+      "description": "Your last ticket was created `{m} minutes` and `{s} seconds` ago.\nPlease wait before creating your next Ticket."
+    },
+    "create": {
+      "title": "Ticket",
+      "description": "Creating a new ticket."
+    },
+    "created": {
+      "title": "We got your Ticket",
+      "description": "You will find your ticket <#{channelid}> under the `Support` category."
+    },
+    "info-message": {
+      "title": "Support Ticket",
+      "description": "Hi <@{userid}>,\nplease take a moment to describe the issue you're facing.\nThe more details you provide, the better we can assist you.\nIf applicable, include error messages, steps to reproduce the problem, and any other relevant information."
+    },
+    "no-team-member": {
+      "title": "Sorry",
+      "description": "Only Team members can close a ticket."
+    },
+    "close-info": {
+      "title": "Closing Ticket"
+    },
+    "closed": {
+      "title": "Closed",
+      "description": "`This Ticket was for `<@{ticketuserid}>`.`\n\n`The ticket was Closed by `<@{closeduserid}>`.`\n`Time open: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.`"
+    }
+  },
+  "open-contributor": {
+    "repo": "Repo",
+    "commits": "Commits",
+    "prs": "PRs",
+    "button-link": "Github OAuth Link",
+    "error-timeout": {
+      "title": "Code expired",
+      "description": "This code is expired. Use /open-contributor to get a new one."
+    },
+    "error-similar-inquiry": {
+      "title": "Request canceled",
+      "description": "It appears that a similar inquiry or request has already been submitted elsewhere, as a result, the current request has been canceled."
+    },
+    "error-already-has-role": {
+      "title": "Well... you are an Open Contributor",
+      "description": "There is no need to use this command."
+    },
+    "initial-message": {
+      "title": "How to become an Open Contributor",
+      "description": "For becoming an Open Contributor and its roles you must fulfill the following things:\n\n1. Have {neededcommits} or more commits\n2. Have {neededpr} or more pull requests\n\nClick the link button and check if you can become an Open Contributor."
+    },
+    "results-complete": {
+      "title": "Github Results",
+      "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nWe have added you to our Open Contributor"
+    },
+    "results-not-complete": {
+      "title": "Github Results",
+      "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nFulfill all requirements to become an Open Contributor."
+    },
+    "results-no-data": {
+      "title": "Github Results for {githubname}",
+      "description": "You got no commits nor pull request's."
+    }
+  },
+  "links": {
+    "list": {
+      "title": "These links might interest you!",
+      "description": "Our Github: [Code0 Github](https://github.com/code0-tech)\n\nOur Website: [Code0 Website](https://code0.tech)"
+    }
+  },
+  "contributor": {
+    "info": {
+      "title": "How to become an Open Contributor",
+      "description": "To be an Open Contributor, meet these criteria:\n\n1. Have {neededcommits} or more commits.\n2. Have {neededpr} or more pull requests.\n\nYou can check or get the role by using `/open-contributer` command."
+    }
+  },
+  "rank": {
+    "own-rank-response": {
+      "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nYou <@{rankuserid}> are currently on the {position} place.\nEarn XP by interacting on this server with others."
+    },
+    "other-rank-response": {
+      "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nCurrently <@{rankuserid}> is on the {position} place."
+    },
+    "this-bot-rank": {
+      "description": "### Well, I'm not really into collecting XP.\nMaybe try a `user` and not a Bot like me c:"
+    }
+  },
+  "stats": {
+    "command": "Command",
+    "executed": "Executed",
+    "button": "btn",
+    "autocomplete": "ac",
+    "selectmenu": "sm",
+    "no-command-executed": "No Commands were executed.",
+    "own-stats-response": {
+      "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to your message stats.\nVoice stat \"Join\" is only updated after you left an channel."
+    },
+    "other-stats-response": {
+      "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to his/her message stats.\nVoice stat \"Join\" is only updated after he/she left an channel."
+    },
+    "this-bot-stats": {
+      "description": "### Well, I'm not really into collecting stats.\nMaybe try a `user` and not a Bot like me c:"
+    }
+  },
+  "leaderboard": {
+    "username": "Username",
+    "level": "Lvl.",
+    "xp": "Xp",
+    "board": {
+      "title": "Leaderboard",
+      "description": "{stringlist}"
+    },
+    "left-server": "Left the Server"
+  },
+  "_application": {
+    "#btn-closed-team": "Apply as Closed Team",
+    "#btn-open-contributer": "Apply as Open Contributor",
+    "#init-message": {
+      "title": "Application Channel",
+      "description": "This is where you can start your application process.\n\nYou have now the opportunity to become a part of our <@&{teamid}>.\nClick the button below to create a new application channel.\nWe're excited to have you join Code0.\n\nIf you already have an active application channel, please use that to continue your application. "
+    },
+    "btn-remove": "Remove Application",
+    "btn-close": "Close Application",
+    "new-application": {
+      "title": "Application Channel Created",
+      "description": "A new application channel has been created for you: <#{channelid}>."
+    },
+    "has-application": {
+      "title": "Existing Application Channel Found",
+      "description": "Sorry, but you can only have one application channel at a time."
+    },
+    "application-message": {
+      "title": "Apply Here",
+      "description": "Here you can apply and communicate with our staff to get involved with Code0."
+    },
+    "no-team-member": {
+      "title": "Sorry",
+      "description": "Only Team members can close an Application."
+    },
+    "confirm-remove-application": {
+      "title": "Closed",
+      "description": "`This Application was for `<@{ticketuserid}>`.`\n\n`The Application was Closed by `<@{closeduserid}>`.`\n`Time open: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.`"
+    },
+    "close-info": {
+      "title": "Closing Application"
+    }
+  },
+  "logs": {
+    "select-menu-placholder": "Logs",
+    "btn-back": "Previous",
+    "btn-next": "Next",
+    "btn-skip": "Go to last",
+    "btn-print": "Print",
+    "text-old-logs": "Old Logs",
+    "run-id": "run_id",
+    "development": {
+      "description": "In development mode `/logs show` is not available"
+    },
+    "session-logs": {
+      "title": "Current logs [{totallogscount}]",
+      "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})"
+    },
+    "old-session-logs": {
+      "title": "{runid} [{totallogscount}]",
+      "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})"
+    },
+    "text-createdat": "Created at",
+    "text-size": "Size",
+    "text-time": "Time",
+    "list-logs": {
+      "title": "Log files",
+      "description": "{list}"
+    },
+    "list-logs-empty": {
+      "title": "No logs available"
+    },
+    "not-found": {
+      "title": "Cannot find any logs for runId: {runid}."
+    },
+    "print-out": {
+      "title": "Print Out",
+      "description": "Here is an .txt which contains the full log."
+    }
+  },
+  "#_rankupdate": {
+    "#update-msg": {
+      "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\n<@{rankuserid}> is now level {level} and in {position} place."
+    }
+  },
+  "mydata": {
+    "your-data": {
+      "title": "We got your Data",
+      "description": "This json file contains all the information we have saved about you in our DB."
+    }
+  },
+  "git": {
+    "repo": "Repo",
+    "name": "Name",
+    "commits": "Commits",
+    "percentage": "Percentage",
+    "usercommitssum": {
+      "title": "Commits Count for {gituser}",
+      "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`"
+    },
+    "repocommitssum": {
+      "title": "Commits Count for {repo}",
+      "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`"
+    }
+  }
 }

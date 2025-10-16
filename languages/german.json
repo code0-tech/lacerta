@@ -163,6 +163,12 @@
         },
         "close-info": {
             "title": "Bewerbung wird geschlossen"
+        },
+        "#btn-closed-team": "KEY NOT FOUND",
+        "#btn-open-contributer": "KEY NOT FOUND",
+        "#init-message": {
+            "title": "KEY NOT FOUND",
+            "description": "KEY NOT FOUND"
         }
     },
     "logs": {
@@ -220,6 +226,11 @@
         "repocommitssum": {
             "title": "Commits Count für {repo}",
             "description": "{table}\n\n`Insgesamte commits: {total}`\n`Timespan: {timestart} bis {timeend}`"
+        }
+    },
+    "#_rankupdate": {
+        "#update-msg": {
+            "description": "KEY NOT FOUND"
         }
     }
 }
