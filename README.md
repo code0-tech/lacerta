@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Code0 Discord Bot</h1>
+<h1>Lacerta our Code0 Discord Bot</h1>
 </div>
 
 ### Basic Overview:
