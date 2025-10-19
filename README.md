@@ -155,17 +155,22 @@ Files located in `./_app/*` are for Discord server setup (e.g., images).
 
 The bot is fully functional with the following package versions:
 ```json
-"@discordjs/voice": "^0.18.0"     // [04.01.2025]
-"chartjs-node-canvas": "^4.1.6"   // [04.01.2025]
-"discord-simpletable": "^1.1.6"   // [08.02.2025]
-"discord.js": "^14.17.3"          // [08.02.2025]
-"dotenv": "^16.4.7"               // [04.01.2025]
-"libsodium-wrappers": "^0.7.15"   // [04.01.2025]
-"mongo": "^0.1.0"                 // [04.01.2025]
-"node-fetch": "^2.6.12"           // [04.01.2025]
-"node-schedule": "^2.1.1"         // [04.01.2025]
-"puppeteer": "^23.11.1"           // [04.01.2025]
+"@discordjs/voice": "^0.18.0"     // [19.10.2025]
+"chartjs-node-canvas": "^5.0.0"   // [19.10.2025]
+"discord-simpletable": "^1.1.6"   // [19.10.2025]
+"discord.js": "^14.17.3"          // [19.10.2025]
+"dotenv": "^17.2.3"               // [19.10.2025]
+"libsodium-wrappers": "^0.7.15"   // [19.10.2025]
+"mongo": "^0.1.0"                 // [19.10.2025]
+"node-fetch": "^2.6.12"           // [19.10.2025]
+"node-schedule": "^2.1.1"         // [19.10.2025]
+"puppeteer": "^23.11.1"           // [19.10.2025]
 ```
+
+Tips:
+
+- Run `npm outdated` to check which packages can be updated
+- Run `npm update <package-name>` to update a single package
 
 ## Commit Naming Conventions
 

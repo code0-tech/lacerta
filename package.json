@@ -10,11 +10,11 @@
   "author": "Nicusch | Nicolas Morawietz",
   "dependencies": {
     "@discordjs/voice": "^0.18.0",
-    "chartjs-node-canvas": "^4.1.6",
+    "chartjs-node-canvas": "^5.0.0",
     "chrome-remote-interface": "^0.33.3",
     "discord-simpletable": "^1.1.6",
     "discord.js": "^14.17.3",
-    "dotenv": "^16.4.7",
+    "dotenv": "^17.2.3",
     "libsodium-wrappers": "^0.7.15",
     "mongo": "^0.1.0",
     "node-fetch": "^2.6.12",
