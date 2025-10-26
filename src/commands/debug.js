@@ -25,8 +25,8 @@ const data = new SlashCommandBuilder()
             .setRequired(true)
             .addChoices(
                 { name: '[Client] => This session time', value: 'clientSessionTime' },
-                { name: '[Mongo] => Check left users', value: 'mongoLeftUsers' },
-                { name: '[Mongo] => githubcommits -> new Chart', value: 'chartFromGithubTotalCommits' },
+                { name: '[MongoDB] => Check left users', value: 'mongoLeftUsers' },
+                { name: '[MongoDB] => githubcommits -> new Chart', value: 'chartFromGithubTotalCommits' },
                 { name: '[DC.Server] => ping all discord server configs', value: 'pingAllDiscordServerConfigs' }
             ))
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
