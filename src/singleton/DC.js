@@ -147,7 +147,7 @@ class DC {
     /**
     * Get all messages by Channel (hard limit to 100)
     */
-    static async messageByChannel(channel, fetchLimit = 100) {
+    static async messagesByChannel(channel, fetchLimit = 100) {
         return await channel.messages.fetch({ limit: fetchLimit });
     }
 
@@ -157,7 +157,7 @@ class DC {
     static async messagesFromChannel(client, serverid, channelid, fetchLimit = 100) {
         const guild = await this.guildById(serverid, client);
         const channel = await this.channelById(channelid, guild);
-        const messages = await this.messageByChannel(channel, fetchLimit);
+        const messages = await this.messagesByChannel(channel, fetchLimit);
 
         return messages;
     }
