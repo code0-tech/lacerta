@@ -14,14 +14,14 @@ class AsyncManager {
     }
 
     /**
-     * Adds a new async action.
+     * Adds a new async action and returns when the action has been executed.
      * @param {string} id - The unique ID for the action.
      * @param {number|null} timeout - Timeout in milliseconds (null for no timeout).
      * @param {string|null} reference - Optional reference to group actions.
      * @param {boolean} referenceKill - Whether to kill actions with the same reference.
      * @returns {Promise} A promise that resolves based on the action's outcome.
      */
-    static addAction(id, timeout = null, reference = null, referenceKill = false) {
+    static awaitAsyncAction(id, timeout = null, reference = null, referenceKill = false) {
         if (this.#actions[id]) {
             console.log(`[AsyncManager] Action with ID "${id}" already exists`, Constants.CONSOLE.ERROR);
             throw new Error(`Action with ID "${id}" already exists.`);
