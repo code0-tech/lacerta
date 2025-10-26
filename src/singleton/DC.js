@@ -134,12 +134,14 @@ class DC {
 
         let removedIds = [];
 
+        console.log(`[DC.channelPerms] User Perms removing from "${channel.name}"`, Constants.CONSOLE.WORKING);
+
         [...type1Overwrites.keys()].forEach(userId => {
             removedIds.push(userId);
             channel.permissionOverwrites.delete(userId);
         });
 
-        console.log(`[DC.channelPerms] User Perms removed from "${channel.name}"`, Constants.CONSOLE.WORKING);
+        console.log(`[DC.channelPerms] User Perms removed from "${channel.name}"`, Constants.CONSOLE.GOOD);
         return { removedIds };
     }
 
