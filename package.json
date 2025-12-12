@@ -5,7 +5,10 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "update": "node ./slash-command-updater.js"
+    "update": "node ./slash-command-updater.js",
+    "start": "node ./index.js",
+    "editor": "node ./language-editor.js",
+    "outdated": "npm outdated"
   },
   "author": "Nicusch | Nicolas Morawietz",
   "dependencies": {
@@ -13,7 +16,7 @@
     "chartjs-node-canvas": "^5.0.0",
     "chrome-remote-interface": "^0.33.3",
     "discord-simpletable": "^1.1.6",
-    "discord.js": "^14.17.3",
+    "discord.js": "^14.25.1",
     "dotenv": "^17.2.3",
     "libsodium-wrappers": "^0.7.15",
     "mongo": "^0.1.0",
