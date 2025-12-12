@@ -22,7 +22,7 @@ const processNextLog = async () => {
             "logs": [],
             "created_at": Date.now()
         };
-        const result = await MongoDb.insertOne(ENUMS.DCB.LOGS, initialLogDocument);
+        await MongoDb.insertOne(ENUMS.DCB.LOGS, initialLogDocument);
     }
 
     if (logDocument && logBuffer.length > 0) {
