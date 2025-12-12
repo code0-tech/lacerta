@@ -2,7 +2,6 @@ const { Embed, COLOR } = require('./../models/Embed');
 const Constants = require('./../../data/constants');
 const { MongoUser } = require('../mongo/MongoUser');
 const { language } = require('./language-check');
-const config = require('./../../config.json');
 const { Events } = require('discord.js');
 const DC = require('./../singleton/DC');
 
