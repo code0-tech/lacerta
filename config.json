@@ -90,10 +90,10 @@
                 ],
                 "embed": {
                     "title": "{title} - in {minutesRemaining} minutes",
-                    "description": "Leider wieder ein Meeting - Laut Kalendar...",
+                    "description": "Sry, leider wieder ein Meeting - Laut Kalendar...",
                     "mention": "team"
                 },
-                "remindchannelname": "internalcommunicationchat"
+                "channelname": "internalcommunicationchat"
             },
             {
                 "title": "Backlog refinement and issue management",
@@ -103,10 +103,10 @@
                 ],
                 "embed": {
                     "title": "{title} - in {minutesRemaining} minutes",
-                    "description": "Leider wieder ein Meeting - Laut Kalendar...",
+                    "description": "Sry, leider wieder ein Meeting - Laut Kalendar...",
                     "mention": "team"
                 },
-                "remindchannelname": "internalcommunicationchat"
+                "channelname": "internalcommunicationchat"
             }
         ],
         "opencontributor": {
