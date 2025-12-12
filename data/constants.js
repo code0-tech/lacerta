@@ -274,6 +274,32 @@ class Constants {
             }
         }
     }
+
+    static get REGEX() {
+        return {
+            get GIT_WEBHOOK() {
+                return {
+                    get COMMITS_COUNT() {
+                        return /\d+(?= new commit| new commits)/;
+                    },
+                    get REPO_INFORMATION() {
+                        return /\[(.*?):(.*?)\]/;
+                    }
+                }
+            },
+            get DEBUG(){
+                return {
+                    get SESSION_LIMIT_INFORMATION() {
+                        return /^\[WS => Manager\] Session Limit Information\s+Total: (\d+)\s+Remaining: (\d+)$/;
+                    },
+                    get API_LATENCY() {
+                        return /latency of (\d+)ms/;
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 
