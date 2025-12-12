@@ -62,75 +62,72 @@ For /open-contributer, OAuth URLs are not stored. This means authentication is r
 Real Example:
 ```json
 {
-  "_id": {
-    "$oid": "6644f92497346d3e063052fe"
-  },
   "id": "380808844093292555",
-  "rawxp": 1396,
+  "rawxp": 1444,
   "stats": {
     "messages": {
-      "words": 4499,
-      "chars": 23902,
-      "count": 731
+      "words": 4555,
+      "chars": 24207,
+      "count": 737
     },
     "voice": {
-      "joins": 128,
+      "joins": 130,
       "switchs": 21,
-      "time": 159600
+      "time": 164817
     }
   },
   "commandstats": {
     "debug": {
-      "command": 69,
-      "button": 20,
+      "command": 80,
+      "button": 22,
       "selectmenu": 15
     },
     "leaderboard": {
-      "command": 19
+      "command": 21
     },
     "stats": {
-      "command": 54
+      "command": 65
     },
     "logs": {
-      "command": 22,
-      "button": 45
+      "command": 29,
+      "button": 82
     },
     "logs list": {
-      "selectmenu": 16
+      "selectmenu": 20
     },
     "links": {
       "command": 2
     },
     "open-contributor": {
-      "command": 10
+      "command": 11
     },
     "mydata": {
       "command": 12
     },
     "git": {
-      "autocomplete": 226,
-      "command": 116
+      "autocomplete": 248,
+      "command": 124
     },
     "logs show": {
-      "button": 6
+      "button": 7
     },
     "ticket": {
-      "command": 4,
+      "command": 5,
       "button": 7
     },
     "_application": {
       "button": 2
     },
     "rank": {
-      "command": 28
+      "command": 80
     }
   }
 }
 ```
 
-Last MongoDB structure update: 16.10.2025
+Last MongoDB structure update: 12.12.2025
 
- Tip: You can mention a Discord user by their ID using `<@user_id>`.
+Tip: You can mention a Discord user by their ID using `<@user_id>`.
 
 ## Missing Files
 This repository mirrors the live bot but excludes sensitive or unnecessary files:
@@ -155,22 +152,26 @@ Files located in `./_app/*` are for Discord server setup (e.g., images).
 
 The bot is fully functional with the following package versions:
 ```json
-"@discordjs/voice": "^0.18.0"     // [19.10.2025]
-"chartjs-node-canvas": "^5.0.0"   // [19.10.2025]
-"discord-simpletable": "^1.1.6"   // [19.10.2025]
-"discord.js": "^14.17.3"          // [19.10.2025]
-"dotenv": "^17.2.3"               // [19.10.2025]
-"libsodium-wrappers": "^0.7.15"   // [19.10.2025]
-"mongo": "^0.1.0"                 // [19.10.2025]
-"node-fetch": "^2.6.12"           // [19.10.2025]
-"node-schedule": "^2.1.1"         // [19.10.2025]
-"puppeteer": "^23.11.1"           // [19.10.2025]
+"@discordjs/voice": "^0.18.0"     // [12.12.2025]
+"chartjs-node-canvas": "^5.0.0"   // [12.12.2025]
+"discord-simpletable": "^1.1.6"   // [12.12.2025]
+"discord.js": "^14.25.1"          // [12.12.2025]
+"dotenv": "^17.2.3"               // [12.12.2025]
+"libsodium-wrappers": "^0.7.15"   // [12.12.2025]
+"mongo": "^0.1.0"                 // [12.12.2025]
+"node-fetch": "^2.6.12"           // [12.12.2025]
+"node-schedule": "^2.1.1"         // [12.12.2025]
+"puppeteer": "^23.11.1"           // [12.12.2025]
 ```
 
 Tips:
 
 - Run `npm outdated` to check which packages can be updated
 - Run `npm update <package-name>` to update a single package
+
+or use the build in script
+
+- npm run outdated
 
 ## Commit Naming Conventions
 
@@ -202,4 +203,4 @@ Since Code0 is actively in development, expect ongoing improvements and changes.
 💡 This system has been in use since 10.07.2024, but earlier commits may not follow it consistently.
 ## Know issues
 
-- 📱 Mobile UI Bug: Tables and charts do not display correctly on mobile devices, but there are currently no plans to fix it soon, and it may remain unresolved indefinitely  (Reported: 01.01.2025).
+- 📱 Mobile UI Bug: Tables, charts and Progress Bar's do not display correctly on mobile devices, but there are currently no plans to fix it soon, and it may remain unresolved indefinitely  (Reported: 01.01.2025).
