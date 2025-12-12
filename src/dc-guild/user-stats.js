@@ -7,7 +7,6 @@ const saveMessageStats = async (msg, count, words, chars) => {
 }
 
 const start = (client) => {
-
     client.on('messageCreate', async msg => {
 
         if (msg.author.bot == true) return;
