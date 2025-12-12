@@ -76,9 +76,3 @@ const start = async (args) => {
 
 
 start();
-
-/* TODO
-
--> pie chart for repos (WIP) [since 11.08.2024]
-
-*/
