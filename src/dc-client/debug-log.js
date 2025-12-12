@@ -1,14 +1,13 @@
 const Constants = require('../../data/constants');
 
 const setup = (client) => {
-    
+
     if (!global.isDevelopment) return;
 
     client.on('debug', (message) => {
         if (message.includes('Remaining')) {
-            const regex = /^\[WS => Manager\] Session Limit Information\s+Total: (\d+)\s+Remaining: (\d+)$/;
 
-            const match = message.match(regex);
+            const match = message.match(Constants.REGEX.DEBUG.SESSION_LIMIT_INFORMATION);
 
             if (match) {
                 const total = match[1];
@@ -19,9 +18,8 @@ const setup = (client) => {
         }
 
         if (message.includes('Heartbeat acknowledged')) {
-            const regex = /latency of (\d+)ms/;
 
-            const match = message.match(regex);
+            const match = message.match(Constants.REGEX.DEBUG.API_LATENCY);
 
             if (match) {
                 const latency = match[1];
