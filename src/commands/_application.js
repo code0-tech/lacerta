@@ -1,13 +1,12 @@
 const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
+const { Embed, COLOR } = require('./../models/Embed');
 const Constants = require('./../../data/constants');
 const { Channel } = require('./../models/Channel');
 const { keyArray } = require('./../utils/helper');
-const { Embed, COLOR } = require('./../models/Embed');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
-const data = null;
 
 const autoRun = async (client, lang) => {
     const messages = await DC.messagesFromChannel(client, config.serverid, config.channels.application);
@@ -169,4 +168,4 @@ const componentIds = [
     'application-remove'
 ];
 
-module.exports = { executeComponent, componentIds, data, autoRun };
+module.exports = { executeComponent, componentIds, autoRun };
