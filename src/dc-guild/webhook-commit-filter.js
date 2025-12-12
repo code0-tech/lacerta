@@ -12,16 +12,15 @@ const handleGitHubCommitMessage = async (client, msg) => {
         const embedData = msg.embeds[0]?.data;
         if (!embedData) return;
 
-        const regexCommitCount = /\d+(?= new commit| new commits)/;
-        const matches = embedData.title.match(regexCommitCount);
+        const matches = embedData.title.match(Constants.REGEX.GIT_WEBHOOK.COMMITS_COUNT);
         if (!matches) return;
 
         if (config.commands.gitrank.users.blacklist.includes(embedData.author.name) || embedData.author.name.endsWith(config.commands.gitrank.users.blacklisttag)) {
-            console.log(`[Webhook Commit Filter] wont save commits for blacklist user: ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
+            console.log(`[Webhook Commit Filter] cant save commits for blacklist user: ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
             return;
         }
 
-        const regexRepoInfo = /\[(.*?):(.*?)\]/;
+        const regexRepoInfo = Constants.REGEX.GIT_WEBHOOK.REPO_INFORMATION;
         const githubInfo = regexRepoInfo.exec(embedData.title);
         if (!githubInfo || githubInfo.length < 3) return;
 
@@ -41,7 +40,7 @@ const handleGitHubCommitMessage = async (client, msg) => {
 
         await MongoDb.insertOne(ENUMS.DCB.GITHUB_COMMITS, doc);
 
-        console.log(`[Webhook Commit Filter] got ${commitCount} commits for ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
+        console.log(`[Webhook Commit Filter] ${commitCount} commits for ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
     } catch (error) {
         console.error('Error handling GitHub commit message:', error);
     }
