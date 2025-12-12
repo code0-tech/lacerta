@@ -1,18 +1,23 @@
 const Constants = require('./../../data/constants');
 const config = require('./../../config.json');
 
-const language = async (commandNameLong, interaction, guild, client) => {
+const languageRoles = config.languageroles;
+
+const language = async (fullCommandName, interaction, guild, client) => {
     const { languages } = client;
     const member = await guild.members.fetch(interaction.user.id);
     let baseLanguage = 'english';
 
-    for (const languageRoleId of Object.keys(config.languageroles)) {
+    let userLanguageRoleId = null;
+
+    for (const languageRoleId of Object.keys(languageRoles)) {
         if (member.roles.cache.has(languageRoleId)) {
-            baseLanguage = config.languageroles[languageRoleId];
+            baseLanguage = languageRoles[languageRoleId];
+            userLanguageRoleId = languageRoleId;
         }
     }
 
-    const commandName = commandNameLong.split(" ")[0];
+    const commandName = fullCommandName.split(" ")[0];
 
     let commandText = languages[baseLanguage]?.[commandName] || '';
 
@@ -48,6 +53,9 @@ const language = async (commandNameLong, interaction, guild, client) => {
 
             const finalText = this._replacePlaceholders(text[key], replaceOptions);
             return finalText;
+        },
+        getLanguageRoleId() {
+            return userLanguageRoleId;
         }
     };
 }
