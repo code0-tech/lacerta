@@ -138,19 +138,19 @@ const debugs = {
         let description = `${lang.getText('channels')}\n\n`;
 
         for (const key in config.channels) {
-            description += `<#${config.channels[key]}>\n`;
+            description += `${DC.mentionChannel(config.channels[key])}\n`;
         }
 
         description += `\n${lang.getText('roles')}\n\n`;
 
         for (const key in config.roles) {
-            description += `<@&${config.roles[key]}>\n`;
+            description += `${DC.mentionRole(config.roles[key])}\n`;
         }
 
         description += `\n${lang.getText('langroles')}\n\n`;
 
         for (const key in config.languageroles) {
-            description += `<@&${key}>\n`;
+            description += `${DC.mentionRole(key)}`;
         }
 
         new Embed()

@@ -89,7 +89,7 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
             .setColor(COLOR.INFO)
             .setPbThumbnail(rankMember)
             .addInputs({
-                channelmention: (userChannel == null ? '---' : `<#${userChannel.id}>`),
+                channelmention: (userChannel == null ? '---' : `${DC.mentionChannel(userChannel.id)}`),
                 count: humanizeNumber(normalizedStats.messages.count),
                 words: humanizeNumber(normalizedStats.messages.words),
                 chars: humanizeNumber(normalizedStats.messages.chars),
