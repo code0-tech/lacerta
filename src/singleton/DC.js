@@ -172,6 +172,26 @@ class DC {
         return await client.guilds.fetch(guildId);
     }
 
+    /**
+    * Mention a User by id
+    */
+    static mentionUser(userId) {
+        return `<@${userId}>`;
+    }
+
+    /**
+    * Mention a Role by id
+    */
+    static mentionRole(roleId) {
+        return `<@&${roleId}>`;
+    }
+
+    /**
+    * Mention a Channel by id
+    */
+    static mentionChannel(channelId) {
+        return `<#${channelId}>`;
+    }
 }
 
 
