@@ -264,12 +264,12 @@ class Card {
         return this._addCard('progressBar', options, fn);
     }
 
-}
+};
 
 
 const calculatePercentage = (total, whole) => {
     return (total / whole) * 100;
-}
+};
 
 
 // Info

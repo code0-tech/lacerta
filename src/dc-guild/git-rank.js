@@ -39,7 +39,7 @@ const totalDays = async () => {
     const differenceInMillis = now - time;
     const days = Math.floor(differenceInMillis / Constants.TIME_MULTIPLIER_MS.DAY);
     return `${days + 1}`;
-}
+};
 
 const fetchGitCommits = async (spanStartDate, spanEndDate) => {
     const query = {
@@ -50,7 +50,7 @@ const fetchGitCommits = async (spanStartDate, spanEndDate) => {
     };
 
     return await MongoDb.find(ENUMS.DCB.GITHUB_COMMITS, query);
-}
+};
 
 const calculateUserStats = (documents) => {
     return documents.reduce((acc, doc) => {
@@ -65,7 +65,7 @@ const calculateUserStats = (documents) => {
         acc[name].repos[repo].add(branchname);
         return acc;
     }, {});
-}
+};
 
 const formatUserStats = (userStats) => {
     return Object.entries(userStats).map(([name, { total, repos }]) => ({
@@ -76,7 +76,7 @@ const formatUserStats = (userStats) => {
             branches: Array.from(branches)
         }))
     })).sort((a, b) => b.total - a.total);
-}
+};
 
 const buildLeaderboardDescription = async (formattedUserStats) => {
 
@@ -96,7 +96,7 @@ The winner made ${formattedUserStats[0].total} commits in the past 24 hours.
     });
 
     return description;
-}
+};
 
 const createEmbedMessage = async (description) => {
     return new Embed()
@@ -105,7 +105,7 @@ const createEmbedMessage = async (description) => {
         .setAttachment(await GITCOMMITSTOTAL.getAttachment())
         .setFooter(`Stats over the last ${await totalDays()} days.`)
         .setImage(Constants.DISCORD.EMBED_IMAGE_NAME.EMBED.DEFAULT_PNG_01);
-}
+};
 
 const sendGitRankMessage = async (client) => {
     const spanEndDate = Date.now();
@@ -125,13 +125,12 @@ const sendGitRankMessage = async (client) => {
     embed.responseToChannel(config.channels.gitranks, client);
 
     console.log(`[Git-ranks] sent message to channel.`, Constants.CONSOLE.WORKING);
-}
+};
 
 const setup = (client) => {
     const job = schedule.scheduleJob(Constants.GIT.GRAPH.SCHEDULE, function () {
         sendGitRankMessage(client);
     });
-}
-
+};
 
 module.exports = { setup, sendGitRankMessage };

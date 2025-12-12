@@ -133,11 +133,11 @@ const sendChart = async (description, attachment) => {
         .setAttachment(attachment)
         .setFooter(`Stats over the last ${await totalDays()} days.`)
         .setImage(Constants.DISCORD.EMBED_IMAGE_NAME.EMBED.DEFAULT_PNG_01);
-}
+};
 
 const parseInteractionOptionInput = (input) => {
     return input ? input.split(',').map(user => user.trim()).filter(Boolean) : null;
-}
+};
 
 const getFilters = async (interaction) => {
     const usersArray = parseInteractionOptionInput(interaction.options.getString('users'))
@@ -153,14 +153,14 @@ const getFilters = async (interaction) => {
     const timeEnd = interaction.options.getString('time-end')?.split(".").join("-") || (await GIT.timeStartAndEnd()).endDate;
 
     return { usersArray, reposArray, timeStart, timeEnd };
-}
+};
 
 const calculateCommitPercentages = (dataArray, totalCommits) => {
     return dataArray.map(entry => ({
         ...entry,
         percentage: ((entry.commitscount / totalCommits) * 100).toFixed(2) + Constants.SYMBOLS.PERCENTAGE
     }));
-}
+};
 
 const commands = {
     async graph(interaction, client, guild, member, lang) {
@@ -275,7 +275,7 @@ const commands = {
             .setColor(COLOR.INFO)
             .interactionResponse(interaction);
     }
-}
+};
 
 const autoCompleteUsers = async (focusedValue, single = false) => {
     const usersList = await GIT.getAllUniqueNames();
@@ -300,7 +300,7 @@ const autoCompleteUsers = async (focusedValue, single = false) => {
         const newValue = existingUsers ? `${existingUsers}, ${user}` : user;
         return { name: newValue, value: newValue };
     });
-}
+};
 
 const daysBeforeTimeAutoCompleteArray = () => {
     return config.commands.git.autocomplete.daysbefore.map(obj => {
@@ -370,7 +370,7 @@ const autoCompleteDates = async (focusedValue) => {
 
     const result = suggestions.slice(0, 20).map(date => ({ name: date, value: date }));
     return result;
-}
+};
 
 const autoComplete = async (interaction, client, guild, member, lang) => {
     const optionName = interaction.options.getFocused(true).name;
@@ -390,7 +390,7 @@ const autoComplete = async (interaction, client, guild, member, lang) => {
     }
 
     await interaction.respond(choices);
-}
+};
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
@@ -400,7 +400,6 @@ const execute = async (interaction, client, guild, member, lang) => {
     if (commands[subCommand]) {
         commands[subCommand](interaction, client, guild, member, lang);
     }
-}
-
+};
 
 module.exports = { execute, autoComplete, data };

@@ -36,7 +36,7 @@ const listUser = async (limit) => {
     ])
 
     return list;
-}
+};
 
 const sendMessage = async (interaction, member, lang, data) => {
     const columns = [
@@ -57,7 +57,7 @@ const sendMessage = async (interaction, member, lang, data) => {
         .addInputs({ stringlist: buildTable })
         .addContext(lang, member, 'board')
         .interactionResponse(interaction);
-}
+};
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
@@ -98,6 +98,5 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     sendMessage(interaction, member, lang, data);
 };
-
 
 module.exports = { execute, data };

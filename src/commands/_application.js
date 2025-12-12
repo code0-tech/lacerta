@@ -41,7 +41,7 @@ const autoRun = async (client, lang) => {
         .addContext({ text: lang.english['_application'] }, null, '#init-message')
         .setComponents([row])
         .responseToChannel(config.channels.application, client)
-}
+};
 
 const checkLastCreatedTicket = async (guild, member) => {
     const channelsInCategory = await DC.channelsByParentId(config.parents.applications, guild);
@@ -52,7 +52,7 @@ const checkLastCreatedTicket = async (guild, member) => {
     });
 
     return hasChannel;
-}
+};
 
 const sendEmbedResponse = async (interaction, lang, member, color, contextKey) => {
     await new Embed()
@@ -168,6 +168,5 @@ const componentIds = [
     'application-close',
     'application-remove'
 ];
-
 
 module.exports = { executeComponent, componentIds, data, autoRun };

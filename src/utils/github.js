@@ -25,7 +25,7 @@ const getToken = (code) => {
       })
       .catch(error => console.error('Error:', error));
   })
-}
+};
 
 const getGithubUserInfo = async (token) => {
   const query = `
@@ -70,7 +70,7 @@ const getGithubUserInfo = async (token) => {
   })
     .then(response => response.json())
     .catch(error => console.error('Error:', error));
-}
+};
 
 const calculateTotalCounts = (contributions) => {
   const totalCounts = {};
@@ -113,7 +113,7 @@ const filterCommits = (data) => {
     totalPullRequests,
     totalCommitContributions
   };
-}
+};
 
 const checkOpenContributor = async (data, code, client) => {
 
@@ -127,7 +127,6 @@ const checkOpenContributor = async (data, code, client) => {
   }
 
   AsyncManager.resolveAction(data.awaitCodeId, resolvePacket);
-}
-
+};
 
 module.exports = { checkOpenContributor };

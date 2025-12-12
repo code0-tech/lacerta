@@ -10,7 +10,6 @@ const load = (client) => {
         .catch(error => {
             console.error('Error:', error);
         });
-}
-
+};
 
 module.exports = { load };

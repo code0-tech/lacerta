@@ -158,7 +158,7 @@ const debugs = {
             .setDescription(description)
             .interactionResponse(interaction)
     }
-}
+};
 
 const removeFromDB = async (interaction, client, guild, member, lang, componentData) => {
     const userId = componentData.selected;
@@ -178,7 +178,7 @@ const removeFromDB = async (interaction, client, guild, member, lang, componentD
         .addContext(lang, member, 'mongo-removed-user')
         .setComponents([row])
         .interactionResponse(interaction);
-}
+};
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
@@ -186,7 +186,7 @@ const execute = async (interaction, client, guild, member, lang) => {
     const type = interaction.options.getString('action');
 
     debugs[type](interaction, client, guild, member, lang);
-}
+};
 
 const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
     await DC.defer(interaction);
@@ -199,11 +199,10 @@ const executeComponent = async (interaction, client, guild, member, lang, compon
     if (debugs[componentData.type]) {
         debugs[componentData.type](interaction, client, guild, member, lang, componentData);
     }
-}
+};
 
 const componentIds = [
     'debug'
 ];
-
 
 module.exports = { execute, executeComponent, componentIds, data };

@@ -118,5 +118,4 @@ const setup = (client) => {
     });
 };
 
-
 module.exports = { setup };

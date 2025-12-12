@@ -37,7 +37,7 @@ const normalizeData = (data) => {
     data.voice.time = data.voice.time || 0;
 
     return data;
-}
+};
 
 const buildCommandStatsString = (commandstats, lang) => {
     if (Object.keys(commandstats).length == 0) return lang.getText('no-command-executed');
@@ -70,7 +70,7 @@ const buildCommandStatsString = (commandstats, lang) => {
         .build();
 
     return buildTable;
-}
+};
 
 const loop = async (client, interaction, member, lang, embedMessage, rankMember, user, previousStats = null) => {
     const stats = await user.getStats();
@@ -111,7 +111,7 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
         await waitMs(config.commands.stats.updatemessage);
         loop(client, interaction, member, lang, embedMessage, rankMember, user, normalizedStats);
     }
-}
+};
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
@@ -128,6 +128,5 @@ const execute = async (interaction, client, guild, member, lang) => {
 
     loop(client, interaction, member, lang, embedMessage, rankMember, user);
 };
-
 
 module.exports = { execute, data };

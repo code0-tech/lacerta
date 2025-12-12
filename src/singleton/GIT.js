@@ -26,7 +26,7 @@ class GIT_SETTINGS {
     static BRANCHES(branchnameArray) {
         return { branchnameArray }
     }
-}
+};
 
 class GIT_AFTER_SORT {
     static longPacketsToCommitSumPerRepo = (data) => {
@@ -45,7 +45,7 @@ class GIT_AFTER_SORT {
             }, {})
         );
     }
-}
+};
 
 class GIT {
     static _transformArrayToObject(arr) {
@@ -226,7 +226,7 @@ class GIT {
 
         return await this._requestMongoDb(pipeline);
     }
-}
+};
 
 const run = async () => {
     const res = await GIT.simpleSort([
@@ -242,9 +242,8 @@ const run = async () => {
     console.dir(res2);
     console.dir(res3);
 
-}
+};
 
 // run();
-
 
 module.exports = { GIT, GIT_SETTINGS, GIT_AFTER_SORT };

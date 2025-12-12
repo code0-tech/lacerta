@@ -16,7 +16,7 @@ const updateDb = async (client, userId, packet) => {
     user.updateVoiceStats(Math.floor(timeInVoice / 1000), (packet.join == true ? 1 : 0), packet.switchs);
 
     return;
-}
+};
 
 const updateAllUsers = async (client) => {
     const userIds = Object.keys(voiceChatUser);
@@ -25,7 +25,7 @@ const updateAllUsers = async (client) => {
         voiceChatUser[userId].since = Date.now();
         voiceChatUser[userId].switchs = 0;
     }
-}
+};
 
 setInterval(() => updateAllUsers(), 5000);
 
@@ -34,7 +34,7 @@ const joinVoice = (client, userId) => {
         since: Date.now(),
         switchs: 0
     }
-}
+};
 
 const switchVoice = (client, userId) => {
     if (!voiceChatUser[userId]) {
@@ -45,7 +45,7 @@ const switchVoice = (client, userId) => {
     }
 
     voiceChatUser[userId].switchs++;
-}
+};
 
 const leaveVoice = async (client, userId) => {
     if (!voiceChatUser[userId]) {
@@ -60,7 +60,7 @@ const leaveVoice = async (client, userId) => {
     await updateDb(client, userId, voiceChatUser[userId]);
 
     delete voiceChatUser[userId];
-}
+};
 
 const start = async (client) => {
     const guild = await DC.guildById(process.env.GUILD_ID, client);
@@ -94,7 +94,6 @@ const start = async (client) => {
                 break;
         }
     });
-}
-
+};
 
 module.exports = { start };

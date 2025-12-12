@@ -6,7 +6,6 @@ const fetch = async (client) => {
 
     const channels = await guild.channels.fetch();
     console.log(`[Pre-Fetch] Fetched ${channels.size} channels in guild ${guild.name}.`, Constants.CONSOLE.FOUND);
-}
-
+};
 
 module.exports = { fetch };

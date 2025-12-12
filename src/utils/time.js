@@ -2,12 +2,12 @@ const Constants = require('../../data/constants');
 
 const waitMs = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
-}
+};
 
 const snowflakeToDate = (id) => {
     const timestamp = (id / Constants.DISCORD.SNOWFLAKE_DIVIDER) + Constants.DISCORD.EPOCH_OFFSET;
     return timestamp;
-}
+};
 
 const msToHumanReadableTime = (ms) => {
     const secondsAgo = Math.floor(ms / 1000);
@@ -16,7 +16,7 @@ const msToHumanReadableTime = (ms) => {
     const daysAgo = Math.floor(hoursAgo / 24);
 
     return { s: (secondsAgo % 60), m: (minutesAgo % 60), h: (hoursAgo % 24), d: daysAgo };
-}
+};
 
 const convertUnixToTimestamp = (unixTimestamp, includeSeconds = true) => {
     const date = new Date(unixTimestamp);
@@ -39,7 +39,7 @@ const getNextDayByDateString = (dateString) => {
     const date = new Date(dateString);
     date.setDate(date.getDate() + 1);
     return date.toISOString().slice(0, 10);
-}
+};
 
 const convertDDMMYYToUnix = (dateString, isEndOfDay = false) => {
     if (!dateString) return null;
@@ -55,7 +55,5 @@ const convertDDMMYYToUnix = (dateString, isEndOfDay = false) => {
 
     return Math.floor(date.getTime());
 };
-
-
 
 module.exports = { waitMs, snowflakeToDate, msToHumanReadableTime, convertUnixToTimestamp, getNextDayByDateString, convertDDMMYYToUnix };

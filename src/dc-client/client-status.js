@@ -11,7 +11,6 @@ const start = (client) => {
 
         client.user.setPresence({ activities: [{ name }], status });
     }, config.status.interval);
-}
-
+};
 
 module.exports = { start };

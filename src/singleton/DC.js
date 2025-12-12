@@ -192,7 +192,6 @@ class DC {
     static mentionChannel(channelId) {
         return `<#${channelId}>`;
     }
-}
-
+};
 
 module.exports = DC;

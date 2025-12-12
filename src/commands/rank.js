@@ -67,5 +67,4 @@ const execute = async (interaction, client, guild, member, lang) => {
     loop(interaction, member, lang, embedMessage, rankMember, user);
 };
 
-
 module.exports = { execute, data };

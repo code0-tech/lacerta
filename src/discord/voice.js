@@ -37,11 +37,10 @@ const checkState = async (oldState, newState) => {
 
         };
     }
-}
+};
 
 const userVoiceState = async (userId, guild) => {
     return guild.voiceStates.cache.get(userId);
-}
-
+};
 
 module.exports = { checkState, userVoiceState };

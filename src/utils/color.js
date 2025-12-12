@@ -29,5 +29,4 @@ const getColorByString = (string, seed) => {
     return rgbToHex(r, g, b);
 };
 
-
 module.exports = { stringToHash, intToRGB, toHex, rgbToHex, getColorByString };

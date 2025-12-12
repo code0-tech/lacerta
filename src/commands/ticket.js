@@ -100,7 +100,7 @@ const execute = async (interaction, client, guild, member, lang) => {
         .setPin(true)
         .setComponents([row])
         .responseToChannel(ticketChannel.id, client);
-}
+};
 
 const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
     await DC.defer(interaction);
@@ -157,12 +157,11 @@ const executeComponent = async (interaction, client, guild, member, lang, compon
         const ticketChannel = await DC.channelByInteraction(interaction, guild);
         ticketChannel.delete({ reason: "none" });
     }
-}
+};
 
 const componentIds = [
     'close-ticket',
     'delete-ticket'
 ];
-
 
 module.exports = { execute, executeComponent, componentIds, data };

@@ -9,7 +9,7 @@ const fillPlaceholders = (inputString, options) => {
     });
 
     return resultString;
-}
+};
 
 const traverseObject = (obj) => {
     let extraHtml = ``;
@@ -29,7 +29,7 @@ const traverseObject = (obj) => {
     htmlText += extraHtml + fillPlaceholders(htmlItems[obj.type][1], obj.options);
 
     return htmlText;
-}
+};
 
 const convertJsonToHtml = async (json) => {
     let htmlText = ``;
@@ -40,7 +40,7 @@ const convertJsonToHtml = async (json) => {
     const XHTMLText = `${htmlItems.xHtml[0]}${htmlText}${htmlItems.xHtml[1]}`;
 
     return XHTMLText;
-}
+};
 
 // Info
 // This code is from the early days of our bot's development and is now considered outdated. 

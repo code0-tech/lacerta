@@ -25,5 +25,4 @@ const execute = async (interaction, client, guild, member, lang) => {
         .interactionResponse(interaction);
 };
 
-
 module.exports = { execute, data };

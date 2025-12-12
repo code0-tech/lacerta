@@ -134,7 +134,6 @@ class Chart {
             throw error;
         }
     }
-}
-
+};
 
 module.exports = Chart;

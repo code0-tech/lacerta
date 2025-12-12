@@ -72,7 +72,6 @@ const start = async (args) => {
     require('./src/dc-client/debug-log').setup(client);
 
     client.login(process.env.TOKEN);
-}
-
+};
 
 start();

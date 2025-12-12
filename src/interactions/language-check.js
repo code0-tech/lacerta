@@ -58,7 +58,7 @@ const language = async (fullCommandName, interaction, guild, client) => {
             return userLanguageRoleId;
         }
     };
-}
+};
 
 /* 
 Language Pack

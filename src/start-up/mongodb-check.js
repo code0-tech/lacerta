@@ -27,7 +27,6 @@ const checkDuplicate = async () => {
             console.log(`[MongoDb Check] removed _${packet._id} with Dc id: ${packet.id}`, Constants.CONSOLE.FOUND);
         });
     });
-}
-
+};
 
 checkDuplicate();

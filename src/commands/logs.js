@@ -36,14 +36,14 @@ const data = new SlashCommandBuilder()
 const getLogs = async (runId) => {
     const results = await MongoDb.find(ENUMS.DCB.LOGS, { run_id: runId });
     return results[0];
-}
+};
 
 const getCurrentSessionRunId = () => process['dclogger'].runid;
 
 const formatLog = (log) => {
     const timestamp = convertUnixToTimestamp(log.time);
     return `${timestamp}\n\`\`\`${log.msg}\`\`\`${log.error ? `\n\`\`\`Error:\n${log.error}\`\`\`` : ''}\n`;
-}
+};
 
 const printSessionToTxt = async (interaction, member, lang, componentData) => {
     const runId = componentData.s;
@@ -64,7 +64,7 @@ const printSessionToTxt = async (interaction, member, lang, componentData) => {
         .addContext(lang, member, 'print-out')
         .setAttachment(attachment)
         .interactionResponse(interaction);
-}
+};
 
 const getLogsWithRange = async (runId, action, currentStart, currentEnd) => {
     const logFile = await getLogs(runId);
@@ -92,7 +92,7 @@ const getLogsWithRange = async (runId, action, currentStart, currentEnd) => {
     const logString = logsInRange.map(formatLog).join('');
 
     return { createdAt, logString, totalLength, rangeStart, rangeEnd };
-}
+};
 
 const sendLog = async (interaction, member, lang, componentData, runId = null, type) => {
     const sessionId = runId || componentData.s;
@@ -147,7 +147,7 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
         .addContext(lang, member, type === 'show' ? 'session-logs' : 'old-session-logs')
         .setComponents([row])
         .interactionResponse(interaction);
-}
+};
 
 const showCurrentSessionLogs = async (interaction, member, lang, componentData) => {
     if (global.isDevelopment) {
@@ -157,12 +157,12 @@ const showCurrentSessionLogs = async (interaction, member, lang, componentData) 
             .interactionResponse(interaction);
     }
     sendLog(interaction, member, lang, componentData, getCurrentSessionRunId(), 'show');
-}
+};
 
 const viewDbLogs = (interaction, member, lang, componentData) => {
     const runId = componentData.selected || null;
     sendLog(interaction, member, lang, componentData, runId, 'view');
-}
+};
 
 const listDbLogs = async (interaction, member, lang, componentData) => {
     const results = await MongoDb.aggregate(ENUMS.DCB.LOGS, [
@@ -209,20 +209,20 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
         .addContext(lang, member, 'list-logs')
         .setComponents([row])
         .interactionResponse(interaction);
-}
+};
 
 const subCommandHandlers = {
     show: showCurrentSessionLogs,
     view: viewDbLogs,
     list: listDbLogs,
     print: printSessionToTxt
-}
+};
 
 const findAndExecuteSubCommand = (subCommand, ...args) => {
     if (subCommandHandlers[subCommand]) {
         subCommandHandlers[subCommand](...args);
     }
-}
+};
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
@@ -249,14 +249,13 @@ const execute = async (interaction, client, guild, member, lang) => {
     const subCommand = interaction.options.getSubcommand();
     const componentData = null;
     findAndExecuteSubCommand(subCommand, interaction, member, lang, componentData);
-}
+};
 
 const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
     await DC.defer(interaction);
     findAndExecuteSubCommand(componentData.type, interaction, member, lang, componentData);
-}
+};
 
 const componentIds = ['logs'];
-
 
 module.exports = { execute, data, componentIds, executeComponent };

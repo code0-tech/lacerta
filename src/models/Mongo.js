@@ -85,7 +85,7 @@ class Mongo {
             throw error;
         }
     }
-}
+};
 
 const ENUMS = {
     DCB: {
@@ -94,6 +94,5 @@ const ENUMS = {
         GITHUB_COMMITS: { "db": "Code0", "t": "githubcommits" },
     }
 };
-
 
 module.exports = { Mongo, ENUMS };

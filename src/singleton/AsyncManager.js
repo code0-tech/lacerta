@@ -99,7 +99,6 @@ class AsyncManager {
     static getActions() {
         return { ...this.#actions };
     }
-}
-
+};
 
 module.exports = AsyncManager;

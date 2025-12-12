@@ -133,7 +133,6 @@ class GITCOMMITSTOTAL {
 
         return await chart.getAttachment();
     }
-}
-
+};
 
 module.exports = GITCOMMITSTOTAL;

@@ -1,7 +1,7 @@
 const keyArray = (input) => {
     const keysIterator = input.keys();
     return Array.from(keysIterator);
-}
+};
 
 const levenshteinDistance = (a, b) => {
     const matrix = [];
@@ -28,7 +28,7 @@ const levenshteinDistance = (a, b) => {
         }
     }
     return matrix[b.length][a.length];
-}
+};
 
 // Format numbers for human readability with thousands separators (not included).
 // Consider international conventions where commas (,) and periods (.) 
@@ -56,6 +56,5 @@ const humanizeNumber = (number) => {
 
     return formattedNumber;
 };
-
 
 module.exports = { keyArray, levenshteinDistance, humanizeNumber };

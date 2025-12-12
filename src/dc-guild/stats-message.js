@@ -17,7 +17,7 @@ const newPacket = (msg) => {
             messagePartsCount: msg.content.split(" ").length
         }
     }
-}
+};
 
 const checkIfValid = async (msg) => {
     let inValid = false;
@@ -57,7 +57,7 @@ const checkIfValid = async (msg) => {
     userList[userId] = newPacket(msg);
 
     return { inValid, info: info };
-}
+};
 
 const channelRankUpdateMessage = async (client, user) => {
     const guild = await DC.guildById(config.serverid, client);
@@ -81,7 +81,7 @@ const channelRankUpdateMessage = async (client, user) => {
         })
         .addContext({ text: client.languages.english['#_rankupdate'] }, null, '#update-msg')
         .responseToChannel(config.channels.rankupdates, client)
-}
+};
 
 const start = (client) => {
     const maxLength = config.commands.rank.maxlength;
@@ -119,7 +119,6 @@ const start = (client) => {
             channelRankUpdateMessage(client, user);
         }
     })
-}
-
+};
 
 module.exports = { start };

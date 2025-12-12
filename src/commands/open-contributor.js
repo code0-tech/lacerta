@@ -34,7 +34,7 @@ const createButtonRow = (data, lang) => {
         .setStyle(ButtonStyle.Link);
 
     return new ActionRowBuilder().addComponents(oAuthLinkButton);
-}
+};
 
 const execute = async (interaction, client, guild, member, lang) => {
     await DC.defer(interaction);
@@ -114,6 +114,5 @@ const execute = async (interaction, client, guild, member, lang) => {
         .setComponents([])
         .interactionResponse(interaction);
 };
-
 
 module.exports = { execute, data };

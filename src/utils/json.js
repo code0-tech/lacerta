@@ -24,5 +24,4 @@ const loadJSONFilesFromFolder = async (folderPath) => {
     }
 };
 
-
 module.exports = { loadJSONFilesFromFolder };

@@ -74,7 +74,6 @@ const progressBar = [`<div class="card__progress-bar" style="position: relative"
 style="font-size: .75rem; border-radius: .5rem; position: absolute; top: 0; left: calc(PLACEHOLDER_value*% + .5rem); z-index: 3;">PLACEHOLDER_value*%</span>` }];
 
 
-
 const htmlItems = {
   xHtml,
   header,

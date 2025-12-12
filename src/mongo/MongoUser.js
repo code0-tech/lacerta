@@ -205,7 +205,6 @@ class MongoUser {
             }
         );
     }
-}
-
+};
 
 module.exports = { MongoUser };

@@ -44,7 +44,6 @@ const load = (client) => {
 
     // Setup the emitter
     require('./emit-interactions').setup(client);
-}
-
+};
 
 module.exports = { load };

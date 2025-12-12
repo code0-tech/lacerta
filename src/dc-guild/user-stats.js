@@ -4,7 +4,7 @@ const saveMessageStats = async (msg, count, words, chars) => {
     const user = await new MongoUser(msg.author.id).init();
 
     user.updateMessageStats(count, words, chars);
-}
+};
 
 const start = (client) => {
     client.on('messageCreate', async msg => {
@@ -18,7 +18,6 @@ const start = (client) => {
 
         saveMessageStats(msg, count, words, chars);
     })
-}
-
+};
 
 module.exports = { start };

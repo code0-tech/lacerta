@@ -33,7 +33,7 @@ function flattenJson(obj, prefix = '') {
         }
     }
     return result;
-}
+};
 
 /**
  * Recursively updates a nested object based on a flattened key (e.g., "debug.title").
@@ -55,7 +55,7 @@ function unflattenAndSet(obj, fullKey, value) {
             current = current[key];
         }
     }
-}
+};
 
 
 /**
@@ -78,7 +78,7 @@ function loadLanguageData() {
         console.error(`Error loading language data from ${LANGUAGE_DIR}:`, error.message);
         return {};
     }
-}
+};
 
 // --- HTML Generation ---
 
@@ -254,7 +254,7 @@ function generateHtml(data) {
         </body>
         </html>
     `;
-}
+};
 
 // --- Server Logic ---
 

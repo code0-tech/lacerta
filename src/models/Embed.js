@@ -399,7 +399,6 @@ const progressBar = (total, whole, info = true, segments = 10) => {
     }
 
     return string + end;
-}
-
+};
 
 module.exports = { Embed, COLOR, progressBar, replacePlaceHolders };

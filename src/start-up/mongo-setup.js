@@ -13,9 +13,8 @@ const connect = async () => {
             console.error('[MongoDb] Error connecting to MongoDB:', err);
             process.exit(1);
         });
-}
+};
 
 global.mongoClient = mongoClient;
-
 
 module.exports = { connect };

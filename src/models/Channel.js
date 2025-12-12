@@ -67,7 +67,6 @@ class Channel {
         console.log(`[Channel] Created new channel "${channel.name}"`, Constants.CONSOLE.WORKING);
         return channel;
     }
-}
-
+};
 
 module.exports = { Channel };
