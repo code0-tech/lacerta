@@ -142,7 +142,7 @@ class MongoUser {
     }
 
     /**
-     * return all stats
+     * returns all stats
      */
     async getStats() {
         const user = await this._getUser();
@@ -150,7 +150,7 @@ class MongoUser {
     }
 
     /**
-     * return all command stats
+     * returns all command stats
      */
     async getCommandStats() {
         const user = await this._getUser();
