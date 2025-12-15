@@ -81,34 +81,6 @@
         "code0": "https://code0.tech"
     },
     "commands": {
-        "eventprereminder": [
-            {
-                "title": "Sprint Review",
-                "reminderbeforeinminutes": [
-                    5,
-                    60
-                ],
-                "embed": {
-                    "title": "{title} - in {minutesRemaining} minutes",
-                    "description": "Sry, leider wieder ein Meeting - Laut Kalendar...",
-                    "mention": "team"
-                },
-                "channelname": "internalcommunicationchat"
-            },
-            {
-                "title": "Backlog refinement and issue management",
-                "reminderbeforeinminutes": [
-                    5,
-                    60
-                ],
-                "embed": {
-                    "title": "{title} - in {minutesRemaining} minutes",
-                    "description": "Sry, leider wieder ein Meeting - Laut Kalendar...",
-                    "mention": "team"
-                },
-                "channelname": "internalcommunicationchat"
-            }
-        ],
         "opencontributor": {
             "pr": 10,
             "commits": 10,
@@ -118,9 +90,6 @@
             "timeout": 300000
         },
         "rank": {
-            "maxlength": 100,
-            "maxxp": 10,
-            "xpperchar": 0.5,
             "uptodate15m": true,
             "updatemessage": 2000
         },
@@ -134,17 +103,6 @@
         "leaderboard": {
             "baselistlimit": 10,
             "maxnamelength": 20
-        },
-        "gitrank": {
-            "users": {
-                "blacklist": [
-                    "renovate[bot]",
-                    "Taucher2003-Bot",
-                    "dependabot[bot]",
-                    "code0-release-tools[bot]"
-                ],
-                "blacklisttag": "[bot]"
-            }
         },
         "git": {
             "autocomplete": {
@@ -175,6 +133,62 @@
                     }
                 ]
             }
+        }
+    },
+    "functions": {
+        "channelautoslowmo": {
+            "divslip": -2.4,
+            "msgslip": 2,
+            "participantsmultiplier": 1.5,
+            "minparticipants": 0,
+            "isactiveparticipants": 10000,
+            "slowmoatslip": 100,
+            "slowmodeinseconds": 5,
+            "slowmodetime": 900000
+        },
+        "gitrank": {
+            "users": {
+                "blacklist": [
+                    "renovate[bot]",
+                    "Taucher2003-Bot",
+                    "dependabot[bot]",
+                    "code0-release-tools[bot]"
+                ],
+                "blacklisttag": "[bot]"
+            }
+        },
+        "eventprereminder": [
+            {
+                "title": "Sprint Review",
+                "reminderbeforeinminutes": [
+                    5,
+                    60
+                ],
+                "embed": {
+                    "title": "{title} - in {minutesRemaining} minutes",
+                    "description": "Sry, leider wieder ein Meeting - Laut Kalendar...",
+                    "mention": "team"
+                },
+                "channelname": "internalcommunicationchat"
+            },
+            {
+                "title": "Backlog refinement and issue management",
+                "reminderbeforeinminutes": [
+                    5,
+                    60
+                ],
+                "embed": {
+                    "title": "{title} - in {minutesRemaining} minutes",
+                    "description": "Sry, leider wieder ein Meeting - Laut Kalendar...",
+                    "mention": "team"
+                },
+                "channelname": "internalcommunicationchat"
+            }
+        ],
+        "rank": {
+            "maxlength": 100,
+            "maxxp": 10,
+            "xpperchar": 0.5
         }
     }
 }
