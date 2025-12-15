@@ -74,6 +74,20 @@ class DC {
     }
 
     /**
+    * Check if a Member has a role by roleId
+    */
+    static memberHasRoleId(member, roleId) {
+        return member.roles.cache.has(roleId);
+    }
+
+    /**
+    * Remove a Members role by roleId
+    */
+    static async memberRemoveRoleId(member, roleId) {
+        return member.roles.remove(roleId);
+    }
+
+    /**
     * Get channel by id only
     */
     static async channelByIdOnly(channelId, client) {
