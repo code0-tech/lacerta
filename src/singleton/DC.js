@@ -223,6 +223,26 @@ class DC {
     static mentionChannel(channelId) {
         return `<#${channelId}>`;
     }
+
+    /**
+    * Can @everyone send messages in this channel
+    */
+    static canEveryoneWriteInChannel(channel) {
+        try {
+            if (!channel || !channel.guild) return false;
+
+            const everyoneRole = channel.guild.roles.everyone;
+            const permissions = channel.permissionsFor(everyoneRole);
+            if (!permissions) return false;
+
+            return (
+                permissions.has('ViewChannel') &&
+                permissions.has('SendMessages')
+            );
+        } catch (err) {
+            return false;
+        }
+    }
 };
 
 module.exports = DC;
