@@ -73,6 +73,37 @@ class DC {
         return member.roles.add(roleId);
     }
 
+    /**
+    * Get channel by id only
+    */
+    static async channelByIdOnly(channelId, client) {
+        try {
+            let channel = client.channels.cache.get(channelId);
+
+            if (channel) {
+                console.log(
+                    `[DC.channelByIdOnly] ChannelId ${channelId} found in cache`,
+                    Constants.CONSOLE.FOUND
+                );
+                return channel;
+            }
+
+            channel = await client.channels.fetch(channelId);
+            console.log(
+                `[DC.channelByIdOnly] ChannelId ${channelId} fetched from API`,
+                Constants.CONSOLE.FOUND
+            );
+
+            return channel;
+        } catch (err) {
+            console.log(
+                `[DC.channelByIdOnly] Cannot find channel ${channelId}`,
+                Constants.CONSOLE.ERROR
+            );
+            return undefined;
+        }
+    }
+
     // Channel
     /**
     * Get all channels inside a guild
