@@ -61,7 +61,7 @@ const start = async (args) => {
 
         require('./src/dc-guild/webhook-commit-filter').start(client);
 
-        require('./src/dc-guild/auto-slowmo').start(client);
+        require('./src/dc-guild/channel-auto-slowmo').start(client);
 
         require('./src/dc-guild/user-stats').start(client);
 
