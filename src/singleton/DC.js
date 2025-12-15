@@ -41,6 +41,23 @@ class DC {
         }
     }
 
+    // User
+    /**
+     * Get User by UserId from the client.
+     */
+    static async userById(userId, client) {
+        try {
+            let user = client.users.cache.get(userId);
+            if (!user) {
+                user = await client.users.fetch(userId);
+            }
+            return user;
+        } catch (err) {
+            console.log(`[DC.userById] Cannot find userId ${userId}`, Constants.CONSOLE.ERROR);
+            return undefined;
+        }
+    }
+
     /**
     * Check if the Member has the Team role
     */
@@ -168,6 +185,20 @@ class DC {
     static channelByInteraction(interaction, guild) {
         const channel = guild.channels.cache.get(interaction.message.channelId);
         return channel;
+    }
+
+    /**
+     * Check if a channel is a Text Channel.
+     */
+    static isTextChannel(channel) {
+        return channel.type === ChannelType.GuildText;
+    }
+
+    /**
+     * Check if a channel is a Voice Channel.
+     */
+    static isVoiceChannel(channel) {
+        return channel.type === ChannelType.GuildVoice;
     }
 
     /**
