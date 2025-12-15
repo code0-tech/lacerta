@@ -59,12 +59,31 @@ const checkIfValid = async (msg) => {
     return { inValid, info: info };
 };
 
+const updateMemberLevelRole = async (member, level) => {
+    const rolePaket = config.functions.rank.roles.find(r => r.r === level);
+
+    if (!rolePaket) return;
+
+    const targetRoleId = rolePaket.roleId;
+    const allRankRoleIds = config.functions.rank.roles.map(r => r.roleId);
+
+    allRankRoleIds
+        .filter(rankRoleId => DC.memberHasRoleId(member, rankRoleId))
+        .map(roleIdToRemove => {
+            if (targetRoleId !== roleIdToRemove) return DC.memberRemoveRoleId(member, roleIdToRemove);
+        });
+
+    await DC.memberAddRoleId(member, targetRoleId);
+}
+
 const channelRankUpdateMessage = async (client, user) => {
     const guild = await DC.guildById(config.serverid, client);
-    const rankMember = await guild.members.fetch(await user.getId());
+    const rankMember = await DC.memberById(await user.getId(), guild);
 
     const { level, neededXp } = await user.getRank();
     const position = await user.getXpGlobalPosition();
+
+    updateMemberLevelRole(rankMember, level);
 
     const xp = 0;
 
