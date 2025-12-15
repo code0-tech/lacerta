@@ -69,7 +69,7 @@ const buildTimer = async (client, guild) => {
 
         const timeRemaining = nextDateUnix - Date.now();
 
-        const eventConfig = config.commands.eventprereminder.find(cfg => cfg.title === event.name);
+        const eventConfig = config.functions.eventprereminder.find(cfg => cfg.title === event.name);
 
         if (eventConfig) {
             const channelId = config.channels[eventConfig.channelname];
