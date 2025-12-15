@@ -92,6 +92,7 @@ const ENUMS = {
         USERS: { "db": "Code0", "t": "users" },
         LOGS: { "db": "Code0", "t": "logs" },
         GITHUB_COMMITS: { "db": "Code0", "t": "githubcommits" },
+        AUTO_SLOWMO_CHANNELS: { "db": "Code0", "t": "autoslowmochannels" }
     }
 };
 
