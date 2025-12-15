@@ -43,7 +43,7 @@
             "description": "Hai <@{userid}>,\nplz taek a moment 2 describe teh issue ur facin.\nTeh moar details u provid, teh better we can assist u.\nIf applicabul, include error messages, stepz 2 reproduc teh problm, an any othr relevant info."
         },
         "no-team-member": {
-            "title": "Sor",
+            "title": "Sore",
             "description": "Only Teeaam memburz can cloz a tikkit."
         },
         "close-info": {
@@ -119,13 +119,13 @@
         "selectmenu": "sms",
         "no-command-executed": "No Commadzz wer execated.",
         "own-stats-response": {
-            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n\n### Commanz Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to your message stats.\nVoice stat \"Join\" is only updated after you left an channel."
+            "description": "### Message:\nUnt: `{count}`\nWors: `{words}`\nHars: `{chars}`\n### Voixe:\nJins: `{joins}`\nSitchs: `{switchs}`\nTotala Timre: `{voicedays}` dayz, `{voicehours}` hous, `{voiceminutes}` minutes, `{voiceseconds}` secunds.\nInl Chazzel: {channelmention}\n\n### Commanz Stuts\n\n{commandstatsstring}\n\nNoteE:\nXP is never!!! equal to your messae stuts.\nVoice stuts \"Jin\" is only updated after you lefz an chzzel."
         },
         "other-stats-response": {
-            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n\n### Commanz Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to his/her message stats.\nVoice stat \"Join\" is only updated after he/she left an channel."
+            "description": "### Message:\nUnt: `{count}`\nWors: `{words}`\nHars: `{chars}`\n### Voixe:\nJins: `{joins}`\nSitchs: `{switchs}`\nTotala Timre: `{voicedays}` dayz, `{voicehours}` hous, `{voiceminutes}` minutes, `{voiceseconds}` secunds.\nInl Chazzel: {channelmention}\n\n### Commanz Stuts\n\n{commandstatsstring}\n\nNoteE:\nXP is never!!! equal to hi/he messe stuts.\nVoic stut \"Jin\" is only UUdated after hese/sese lefz an-some chazzel."
         },
         "this-bot-stats": {
-            "description": "### Well, I'm not really into collecting stats.\nMaybe try a real `user`"
+            "description": "### Well, no noti doi dise.\nMaybe try a real `user`"
         }
     },
     "leaderboard": {
@@ -139,12 +139,6 @@
         "left-server": "Left teh Servr"
     },
     "_application": {
-        "#btn-closed-team": "Applie as Clozd Teem",
-        "#btn-open-contributer": "Applie as Open Contributor",
-        "#init-message": {
-            "title": "Applikashun Channel",
-            "description": "Dis is wher u can start ur applikashun process.\n\nU haz now teh opportunitee to becum a part of our <@&{teamid}>.\nClick teh button below to create a nu applikashun channel.\nWe're excited to haz u join Code0.\n\nIf u already haz an active applikashun channel, plz use dat to continue ur applikashun. "
-        },
         "btn-remove": "Remove Applikashun",
         "btn-close": "Cloz Applikashun",
         "new-application": {
@@ -169,6 +163,12 @@
         },
         "close-info": {
             "title": "Clozin Applikashun"
+        },
+        "#btn-closed-team": "KEY NOT FOUND",
+        "#btn-open-contributer": "KEY NOT FOUND",
+        "#init-message": {
+            "title": "KEY NOT FOUND",
+            "description": "KEY NOT FOUND"
         }
     },
     "logs": {

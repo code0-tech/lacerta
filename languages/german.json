@@ -77,7 +77,7 @@
         },
         "results-complete": {
             "title": "Github Ergebnisse",
-            "description": "Benutzer: `{githubname}`\n\n{pbpr}\nDu hast {yourpr} von {neededpr} Pull Requests.\n\n{pbcm}\nDu hast {yourcommits} von {neededcommits} Commits.\n\n{tablestring}\n\nWir haben Dich zu unseren Open Contributor hinzugefügt."
+            "description": "Account: `{githubname}`\n\n{pbpr}\nDu hast {yourpr} von {neededpr} Pull Requests.\n\n{pbcm}\nDu hast {yourcommits} von {neededcommits} Commits.\n\n{tablestring}\n\nWir haben Dich zu unseren Open Contributor hinzugefügt."
         },
         "results-not-complete": {
             "title": "Github Ergebnisse",
@@ -85,7 +85,7 @@
         },
         "results-no-data": {
             "title": "Github Ergebnisse für {githubname}",
-            "description": "Du hast weder Pull Requests noch Commits."
+            "description": "Du hast weder Pull noch Commit request's."
         }
     },
     "links": {
