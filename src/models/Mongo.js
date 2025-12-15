@@ -26,7 +26,7 @@ class Mongo {
             const result = await col.findOne(query);
             return result;
         } catch (error) {
-            console.error('Error finding document:', error);
+            console.error('Error findingOne document:', error);
             throw error;
         }
     }
