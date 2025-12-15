@@ -6,9 +6,9 @@ const DC = require('./../singleton/DC');
 
 const data = new SlashCommandBuilder()
     .setName('links')
-    .setDescription('Get a list of Code0 links.')
+    .setDescription('Get a list of CodeZero links.')
     .setDescriptionLocalizations({
-        de: 'Liste wichtiger Code0 links.',
+        de: 'Liste wichtiger CodeZero links.',
     })
 
 

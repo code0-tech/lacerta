@@ -91,7 +91,7 @@
     "links": {
         "list": {
             "title": "These links might interest you!",
-            "description": "Our Github: [Code0 Github](https://github.com/code0-tech)\n\nOur Website: [Code0 Website](https://code0.tech)"
+            "description": "Our Github: [CodeZero Github](https://github.com/code0-tech)\n\nOur Website: [CodeZero Website](https://code0.tech)"
         }
     },
     "contributor": {
@@ -143,7 +143,7 @@
         "#btn-open-contributer": "Apply as Open Contributor",
         "#init-message": {
             "title": "Application Channel",
-            "description": "This is where you can start your application process.\n\nYou now have the opportunity to become a part of our <@&{teamid}>.\nClick the button below to create a new application channel.\nWe're excited to have you join Code0.\n\nIf you already have an active application channel, please use that to continue your application.\n\nCode0"
+            "description": "This is where you can start your application process.\n\nYou now have the opportunity to become a part of our <@&{teamid}>.\nClick the button below to create a new application channel.\nWe're excited to have you join CodeZero.\n\nIf you already have an active application channel, please use that to continue your application.\n\nCode0"
         },
         "btn-remove": "Remove Application",
         "btn-close": "Close Application",
@@ -157,7 +157,7 @@
         },
         "application-message": {
             "title": "Apply Here",
-            "description": "Here you can apply and communicate with our staff to get involved with Code0."
+            "description": "Here you can apply and communicate with our staff to get involved with CodeZero."
         },
         "no-team-member": {
             "title": "Sorry",

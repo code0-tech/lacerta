@@ -13,7 +13,7 @@
             "white": "#ffffff"
         },
         "footer": {
-            "default": "Code0"
+            "default": "CodeZero"
         }
     },
     "serverid": "1173625923724124200",
@@ -68,7 +68,7 @@
                 "status": "online"
             },
             {
-                "name": "with Code0 pipelines",
+                "name": "with CodeZero pipelines",
                 "status": "online"
             }
         ]

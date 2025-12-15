@@ -12,9 +12,9 @@ const MongoDb = new Mongo();
 
 const data = new SlashCommandBuilder()
     .setName('logs')
-    .setDescription('Code0 Bot logs.')
+    .setDescription('CodeZero Bot logs.')
     .setDescriptionLocalizations({
-        de: 'Code0 Bot logs.',
+        de: 'CodeZero Bot logs.',
     })
     .addSubcommand(subcommand => subcommand
         .setName('show')

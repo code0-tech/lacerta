@@ -54,7 +54,7 @@ const start = async (args) => {
 
         require('./src/dc-client/client-status').start(client);
 
-        console.log(`\nCode0 Discord Client ready => ${readyClient.user.tag}`, Constants.CONSOLE.GOOD);
+        console.log(`\nCodeZero Discord Client ready => ${readyClient.user.tag}`, Constants.CONSOLE.GOOD);
 
         require('./src/dc-guild/stats-message').start(client);
         require('./src/dc-guild/stats-voice-channel').start(client);

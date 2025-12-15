@@ -147,11 +147,11 @@ class Embed {
     }
 
     /**
-     * Set the Code0 footer information for the embed.
+     * Set the CodeZero footer information for the embed.
      * @param {string} text - Overwrite the text of the footer.
      * @param {string} [iconURL] - Overwrite the URL of the footer's icon.
      */
-    /* addCode0Footer(text = 'Code0', iconURL = config.embeds.avatarurl) {
+    /* addCodeZeroFooter(text = 'CodeZero', iconURL = config.embeds.avatarurl) {
         this._embed.setFooter({ text, iconURL });
         return this;
     } */

@@ -12,9 +12,9 @@ const MongoDb = new Mongo();
 
 const data = new SlashCommandBuilder()
     .setName('debug')
-    .setDescription('Code0 Debug commands.')
+    .setDescription('CodeZero Debug commands.')
     .setDescriptionLocalizations({
-        de: 'Code0 Debug Befehle.',
+        de: 'CodeZero Debug Befehle.',
     })
     .addStringOption(option =>
         option.setName('action')

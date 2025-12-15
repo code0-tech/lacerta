@@ -1,10 +1,10 @@
 <div align="center">
-<h1>Lacerta our Code0 Discord Bot</h1>
+<h1>Lacerta our CodeZero Discord Bot</h1>
 </div>
 
 ### Basic Overview:
 
-Code0 is a Discord bot developed in JavaScript, utilizing the discord.js client library along with a lightweight web server for GitHub OAuth authentication. This enables certain commands, such as retrieving commit and pull request data.
+CodeZero is a Discord bot developed in JavaScript, utilizing the discord.js client library along with a lightweight web server for GitHub OAuth authentication. This enables certain commands, such as retrieving commit and pull request data.
 
 ### Requirements:
 
@@ -26,7 +26,7 @@ Code0 is a Discord bot developed in JavaScript, utilizing the discord.js client 
 | 4   | `/contributor`                               | Finished     |      None |
 | 5   | `/rank` or `/rank @user` +uptodate15         | Finished     |      None |
 | 6   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |      None |
-| 7   | `Code0 Application Ticket`                   | Finished     |      None |
+| 7   | `CodeZero Application Ticket`                   | Finished     |      None |
 | 8   | `/stats` or `/stats @user` + uptodate15      | Finished     |      None |
 | 9   | `/logs show` or `/logs list`                 | Finished     |      None |
 | 10  | `/debug` for debugging                       | Finished     |      None |
@@ -186,7 +186,7 @@ or use the build in script
 - uptodate15: This means the message will be updated when changes occur up to 15 more minutes after the interaction execution.
 
 ## Code Quality & Development Philosophy
-Software is always evolving, and Code0 is no exception. Here’s why code may sometimes appear incomplete or unpolished:
+Software is always evolving, and CodeZero is no exception. Here’s why code may sometimes appear incomplete or unpolished:
 
 1. Rapid Development: The goal is to ensure functionality first.
 2. Changing Requirements: Features are frequently adjusted to meet new needs.
@@ -194,7 +194,7 @@ Software is always evolving, and Code0 is no exception. Here’s why code may so
 4. Organized Messiness: While some sections may seem unstructured, they function correctly. Any outstanding issues are documented in TODO (index.js).
 5. Fast-Paced Changes: In the early stages, speed often takes priority over perfection.
 
-Since Code0 is actively in development, expect ongoing improvements and changes.
+Since CodeZero is actively in development, expect ongoing improvements and changes.
 ## Nicusch Versioning System (NVS)
 - `0.0.1` – Minor bug fixes or small functional improvements.
 - `0.1.0` – Command modifications or updates that impact functionality.

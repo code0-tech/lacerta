@@ -12,7 +12,7 @@ const data = new SlashCommandBuilder()
     .setName('git')
     .setDescription('Display Git activity.')
     .setDescriptionLocalizations({
-        de: 'Git aktivität für Code0.',
+        de: 'Git aktivität für CodeZero.',
     })
     .addSubcommand(subcommand =>
         subcommand.setName('user_activity_table')
