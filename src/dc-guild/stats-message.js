@@ -84,9 +84,9 @@ const channelRankUpdateMessage = async (client, user) => {
 };
 
 const start = (client) => {
-    const maxLength = config.commands.rank.maxlength;
-    const maxXP = config.commands.rank.maxxp;
-    const xpPerChar = config.commands.rank.xpperchar;
+    const maxLength = config.functions.rank.maxlength;
+    const maxXP = config.functions.rank.maxxp;
+    const xpPerChar = config.functions.rank.xpperchar;
 
     client.on(Events.MessageCreate, async msg => {
 
