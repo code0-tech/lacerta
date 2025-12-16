@@ -52,6 +52,11 @@ class MongoUser {
                     time: 0, // in seconds
                     joins: 0,
                     switchs: 0
+                },
+                invites: {
+                    total: 0,
+                    real: 0,
+                    usersInvitedIds: []
                 }
             },
             commandstats: {}
@@ -205,6 +210,77 @@ class MongoUser {
             }
         );
     }
+
+    /**
+     * Get the current invite stats (total, real, and list of IDs)
+     */
+    async getInviteStats() {
+        const user = await this._getUser();
+        // Fallback to defaults if the fields were manually deleted or missing
+        return user.stats?.invites || { total: 0, real: 0, usersInvitedIds: [] };
+    }
+
+    /**
+     * Update total or real invites by X (can be positive or negative)
+     * Automatically creates fields if they don't exist.
+     */
+    async updateInvitesBy(type, amount = 'total') {
+        if (!['total', 'real'].includes(type)) throw new Error("Type must be 'total' or 'real'");
+
+        return await MongoDb.update(
+            ENUMS.DCB.USERS,
+            { id: this._userid },
+            { $inc: { [`stats.invites.${type}`]: amount } }
+        );
+    }
+
+    /**
+     * Save a memberId to the invited list (Unique only!!!)
+     */
+    async addInvitedMember(memberId) {
+        return await MongoDb.update(
+            ENUMS.DCB.USERS,
+            { id: this._userid },
+            { $addToSet: { 'stats.invites.usersInvitedIds': memberId } }
+        );
+    }
+
+    /**
+     * Remove a memberId from the invited list
+     */
+    async removeInvitedMember(memberId) {
+        return await MongoDb.update(
+            ENUMS.DCB.USERS,
+            { id: this._userid },
+            { $pull: { 'stats.invites.usersInvitedIds': memberId } }
+        );
+    }
+
+    /**
+     * Search the database for any user who has already invited a specific target member.
+     * Useful for preventing "invite farming" by checking if a joiner was already credited to someone.
+     */
+    async findOriginalInviter(targetMemberId) {
+        const results = await MongoDb.find(ENUMS.DCB.USERS, {
+            'stats.invites.usersInvitedIds': targetMemberId
+        });
+        return results[0] || null; // Returns the user document of the inviter
+    }
 };
 
-module.exports = { MongoUser };
+class MongoUserConsts {
+    static get INVITES() {
+        return {
+            TYPES: {
+                get REAL() {
+                    return 'real';
+                },
+                get TOTAL() {
+                    return 'total';
+                }
+            },
+        }
+    }
+}
+
+module.exports = { MongoUser, MongoUserConsts };
