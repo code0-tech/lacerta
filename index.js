@@ -20,14 +20,15 @@ const start = async (args) => {
     const client = new Client({
         intents: [
             GatewayIntentBits.Guilds,
+            GatewayIntentBits.GuildMembers,
+            GatewayIntentBits.GuildInvites,
             GatewayIntentBits.GuildVoiceStates,
             GatewayIntentBits.GuildMessageReactions,
-            GatewayIntentBits.GuildInvites,
             GatewayIntentBits.GuildModeration,
             GatewayIntentBits.GuildMessages,
             GatewayIntentBits.MessageContent,
             GatewayIntentBits.GuildMessageTyping,
-            GatewayIntentBits.GuildScheduledEvents
+            GatewayIntentBits.GuildScheduledEvents,
         ], partials: [
             Partials.Message,
             Partials.Channel,
@@ -60,6 +61,8 @@ const start = async (args) => {
         require('./src/dc-guild/stats-voice-channel').start(client);
 
         require('./src/dc-guild/webhook-commit-filter').start(client);
+
+        require('./src/dc-guild/invite-tracker').start(client);
 
         require('./src/dc-guild/channel-auto-slowmo').start(client);
 
