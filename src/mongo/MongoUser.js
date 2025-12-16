@@ -283,6 +283,6 @@ class MongoUserConsts {
             },
         }
     }
-}
+};
 
 module.exports = { MongoUser, MongoUserConsts };
