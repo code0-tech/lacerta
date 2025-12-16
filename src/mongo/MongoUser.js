@@ -56,7 +56,7 @@ class MongoUser {
                 invites: {
                     total: 0,
                     real: 0,
-                    usersInvitedIds: []
+                    usersInvited: []
                 }
             },
             commandstats: {}
@@ -216,17 +216,14 @@ class MongoUser {
      */
     async getInviteStats() {
         const user = await this._getUser();
-        // Fallback to defaults if the fields were manually deleted or missing
-        return user.stats?.invites || { total: 0, real: 0, usersInvitedIds: [] };
+        return user.stats?.invites || { total: 0, real: 0, usersInvited: [] };
     }
 
     /**
-     * Update total or real invites by X (can be positive or negative)
-     * Automatically creates fields if they don't exist.
+     * Update total or real invites by amount
      */
-    async updateInvitesBy(type, amount = 'total') {
+    async updateInvitesBy(type, amount = 1) {
         if (!['total', 'real'].includes(type)) throw new Error("Type must be 'total' or 'real'");
-
         return await MongoDb.update(
             ENUMS.DCB.USERS,
             { id: this._userid },
@@ -235,36 +232,41 @@ class MongoUser {
     }
 
     /**
-     * Save a memberId to the invited list (Unique only!!!)
+     * Save a member object to the invited list
      */
     async addInvitedMember(memberId) {
+        const inviteObject = {
+            id: memberId,
+            time: Date.now()
+        };
+
         return await MongoDb.update(
             ENUMS.DCB.USERS,
             { id: this._userid },
-            { $addToSet: { 'stats.invites.usersInvitedIds': memberId } }
+            { $push: { 'stats.invites.usersInvited': inviteObject } }
         );
     }
 
     /**
-     * Remove a memberId from the invited list
+     * Remove a member by ID from the object array
      */
     async removeInvitedMember(memberId) {
         return await MongoDb.update(
             ENUMS.DCB.USERS,
             { id: this._userid },
-            { $pull: { 'stats.invites.usersInvitedIds': memberId } }
+            { $pull: { 'stats.invites.usersInvited': { id: memberId } } }
         );
     }
 
     /**
-     * Search the database for any user who has already invited a specific target member.
-     * Useful for preventing "invite farming" by checking if a joiner was already credited to someone.
+     * Search for the original inviter by checking the 'id' field inside the objects
      */
     async findOriginalInviter(targetMemberId) {
+        // Dot notation 'array.field' allows searching inside an array of objects
         const results = await MongoDb.find(ENUMS.DCB.USERS, {
-            'stats.invites.usersInvitedIds': targetMemberId
+            'stats.invites.usersInvited.id': targetMemberId
         });
-        return results[0] || null; // Returns the user document of the inviter
+        return results[0] || null;
     }
 };
 
