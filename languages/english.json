@@ -143,32 +143,21 @@
         "#btn-open-contributer": "Apply as Open Contributor",
         "#init-message": {
             "title": "Application Channel",
-            "description": "This is where you can start your application process.\n\nYou now have the opportunity to become a part of our <@&{teamid}>.\nClick the button below to create a new application channel.\nWe're excited to have you join CodeZero.\n\nIf you already have an active application channel, please use that to continue your application.\n\nCode0"
+            "description": "This is where you can start your application process.\n\nYou now have the opportunity to become a part of our <@&{teamid}>.\nClick the button below to create a new threads channel.\nWe're excited to have you join CodeZero.\n\nIf you already have an active application thread for your Closed Team / Open Contributor, please use that to continue your application.\n\nCodeZero"
         },
-        "btn-remove": "Remove Application",
-        "btn-close": "Close Application",
-        "new-application": {
-            "title": "Application Channel Created",
-            "description": "A new application channel has been created for you: <#{channelid}>."
+        "#thread-title-open-contributor": "as Open Contributor?",
+        "#thread-title-closed-team": "as Closed Team?",
+        "#new-application-thread": {
+            "title": "Application Thread Created",
+            "description": "A new application Thread has been created for you!"
         },
-        "has-application": {
-            "title": "Existing Application Channel Found",
-            "description": "Sorry, but you can only have one application channel at a time."
+        "#apply-message-open-contributor": {
+            "title": "Apply as Open Contributor",
+            "description": "Go ahead and tells us why you want to become a Open Contributor"
         },
-        "application-message": {
-            "title": "Apply Here",
-            "description": "Here you can apply and communicate with our staff to get involved with CodeZero."
-        },
-        "no-team-member": {
-            "title": "Sorry",
-            "description": "Only Team members can close an Application."
-        },
-        "confirm-remove-application": {
-            "title": "Closed",
-            "description": "`This Application was for `<@{ticketuserid}>`.`\n\n`The Application was Closed by `<@{closeduserid}>`.`\n`Time open: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.`"
-        },
-        "close-info": {
-            "title": "Closing Application"
+        "#apply-message-closed-team": {
+            "title": "Apply as Closed Team",
+            "description": "Go ahead and tell us why you want to become a part of our Closed Team"
         }
     },
     "logs": {
