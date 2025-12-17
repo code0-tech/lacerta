@@ -228,8 +228,13 @@
                 }
             ]
         },
-        "invites":{
-            
+        "invites": {
+            "actions": {
+                "gift": {
+                    "realInvites": 10,
+                    "roleId": "1450828803826782340"
+                }
+            }
         }
     }
 }
