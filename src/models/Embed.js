@@ -292,7 +292,7 @@ class Embed {
 
     /**
      * Send a message to a specific channel with optional components and pin the message.
-    * @param {string} channelId - The ID of the channel to send the message to.
+    * @param {string} channelId - The ID of the channel (or Thread) to send the message to.
     * @param {Client} client - The client to send the message from.
     * @returns {Promise<void>} - A promise that resolves when the message is sent.
     */
