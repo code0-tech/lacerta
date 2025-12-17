@@ -4,7 +4,7 @@
         "roles": "Rolas",
         "langroles": "Langererols",
         "mongo-left-users": {
-            "title": "KongoDb Left Usr",
+            "title": "MongoDB Userrrr hosttiG",
             "description": "Found:\n{userstring}\n\nFake Usrz:\n{progressbar}"
         },
         "mongo-left-users-loading": {
@@ -175,11 +175,6 @@
             "description": "Her is yo printa in se format .txt fatt gott atrything."
         }
     },
-    "#_rankupdate": {
-        "#update-msg": {
-            "description": "### Livel: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\n<@{rankuserid}> is now levlo {level} an in {position} place."
-        }
-    },
     "mydata": {
         "your-data": {
             "title": "We gotaaa your Dat",
@@ -200,16 +195,5 @@
             "description": "{table}\n\n`Totalz commits: {total}`\n`Timespanda: {timestart} untal {timeend}`"
         }
     },
-    "_application": {
-        "#btn-closed-team": "KEY NOT FOUND",
-        "#btn-open-contributer": "KEY NOT FOUND",
-        "#init-message": {
-            "title": "KEY NOT FOUND",
-            "description": "KEY NOT FOUND"
-        },
-        "new-application-thread": {
-            "title": "KEY NOT FOUND",
-            "description": "KEY NOT FOUND"
-        }
-    }
+    "settings": {}
 }

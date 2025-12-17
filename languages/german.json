@@ -4,7 +4,7 @@
         "roles": "Rollen",
         "langroles": "Sprach-rollen",
         "mongo-left-users": {
-            "title": "MongoDB Left User",
+            "title": "MongoDB User Ghosts",
             "description": "Gefunden:\n{userstring}\n\nFake Benutzer:\n{progressbar}"
         },
         "mongo-left-users-loading": {
@@ -195,21 +195,5 @@
             "description": "{table}\n\n`Insgesamte commits: {total}`\n`Timespan: {timestart} bis {timeend}`"
         }
     },
-    "#_rankupdate": {
-        "#update-msg": {
-            "description": "KEY NOT FOUND"
-        }
-    },
-    "_application": {
-        "#btn-closed-team": "KEY NOT FOUND",
-        "#btn-open-contributer": "KEY NOT FOUND",
-        "#init-message": {
-            "title": "KEY NOT FOUND",
-            "description": "KEY NOT FOUND"
-        },
-        "new-application-thread": {
-            "title": "KEY NOT FOUND",
-            "description": "KEY NOT FOUND"
-        }
-    }
+    "settings": {}
 }
