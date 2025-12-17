@@ -100,7 +100,7 @@ class MongoUser {
     async _getLvlAndXpByRawXp(rawXp) {
 
         const levelToXp = (x) => {
-            return 100 * Math.pow(x, 2);
+            return 30 * Math.pow(x, 2);
         }
 
         let level = -1;
