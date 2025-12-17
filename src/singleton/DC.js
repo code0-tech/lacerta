@@ -311,6 +311,27 @@ class DC {
             return false;
         }
     }
+
+    /**
+     * Scans a channel and returns ALL threads a specific user belongs to.
+     * @returns {Promise<ThreadChannel[]>} - An array of thread objects.
+     */
+    static async findAllThreadsByUserMembershipInsideAParentChannel(parentChannel, userId) {
+        const fetched = await parentChannel.threads.fetchActive();
+        const activeThreads = fetched.threads;
+
+        const userThreads = [];
+
+        for (const [id, thread] of activeThreads) {
+            const members = await thread.members.fetch();
+
+            if (members.has(userId)) {
+                userThreads.push(thread);
+            }
+        }
+
+        return userThreads;
+    }
 };
 
 module.exports = DC;
