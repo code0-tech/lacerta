@@ -1,11 +1,12 @@
 const { msToHumanReadableTime, waitMs } = require('./../utils/time');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const DiscordSimpleTable = require('discord-simpletable');
 const { MongoUser } = require('./../mongo/MongoUser');
 const { humanizeNumber } = require('../utils/helper');
 const { Embed, COLOR } = require('./../models/Embed');
+const Constants = require('../../data/constants');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
-const DiscordSimpleTable = require('discord-simpletable');
 
 
 const data = new SlashCommandBuilder()
@@ -82,14 +83,14 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
     const statsChanged = !previousStats || JSON.stringify(normalizedStats) !== JSON.stringify(previousStats);
 
     if (statsChanged) {
-        const { s, m, h, d } = msToHumanReadableTime(normalizedStats.voice.time * 1000);
+        const { s, m, h, d } = msToHumanReadableTime(normalizedStats.voice.time * Constants.TIME_MULTIPLIER_MS.SECONDS);
         const userChannel = await DC.memberVoiceChannel(rankMember, client);
 
         const embed = new Embed()
             .setColor(COLOR.INFO)
             .setPbThumbnail(rankMember)
             .addInputs({
-                channelmention: (userChannel == null ? '---' : `${DC.mentionChannel(userChannel.id)}`),
+                channelmention: (userChannel == null ? Constants.SYMBOLS.UNKOWN_01 : `${DC.mentionChannel(userChannel.id)}`),
                 count: humanizeNumber(normalizedStats.messages.count),
                 words: humanizeNumber(normalizedStats.messages.words),
                 chars: humanizeNumber(normalizedStats.messages.chars),
