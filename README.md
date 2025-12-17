@@ -43,9 +43,9 @@ We currently provide `3` languages
 
 Made by using the inbuild web editor...
 
-Run it via `node .\language-editor.js` then go to `http://localhost:3000`
+Run it via `npm run editor` then visit `http://localhost:3000` via a browser
 
-Note: If german key translation does not exist for a command, the fallback is always english
+Note: If a german key for translation is missing, the bot will fallback to english
 
 ## Tracking
 
