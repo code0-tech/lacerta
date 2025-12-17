@@ -1,6 +1,7 @@
 const { Embed, COLOR, progressBar } = require('../models/Embed');
 const { levenshteinDistance } = require('../utils/helper');
 const { MongoUser } = require('../mongo/MongoUser');
+const Constants = require('../../data/constants');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
 const DC = require('../singleton/DC');
@@ -56,6 +57,8 @@ const checkIfValid = async (msg) => {
 
     userList[userId] = newPacket(msg);
 
+    console.log(`[LEVEL SYSTEM] user ${msg.author.id} got: ${info}`, Constants.CONSOLE.INFO)
+
     return { inValid, info: info };
 };
 
@@ -102,40 +105,54 @@ const channelRankUpdateMessage = async (client, user) => {
         .responseToChannel(config.channels.rankupdates, client)
 };
 
-const start = (client) => {
+const saveMessageStats = async (msg, mongoUser) => {
+    const count = 1;
+    const words = msg.content.split(" ").length;
+    const chars = msg.content.length;
+
+    mongoUser.updateMessageStats(count, words, chars);
+}
+
+const saveUserXp = async (msg, mongoUser) => {
     const maxLength = config.functions.rank.maxlength;
     const maxXP = config.functions.rank.maxxp;
     const xpPerChar = config.functions.rank.xpperchar;
 
+    const adjustedLength = Math.min(msg.content.length, maxLength);
+
+    let xp = Math.floor(adjustedLength * xpPerChar);
+
+    xp = Math.min(xp, maxXP);
+
+    if (xp == 0 && msg.content.length > 1) {
+        xp = 1;
+    }
+
+    console.log(`[LEVEL SYSTEM] added ${xp} xp for ${msg.author.id}`, Constants.CONSOLE.GOOD);
+
+    await mongoUser.updateXpBy(xp);
+}
+
+const start = (client) => {
     client.on(Events.MessageCreate, async msg => {
 
         if (msg.author.bot == true) return;
         if (msg.author.system == true) return;
 
-        const check = await checkIfValid(msg);
+        const mongoUser = await new MongoUser(msg.author.id).init();
 
-        if (check.inValid) return;
+        await saveMessageStats(msg, mongoUser);
 
-        const user = await new MongoUser(msg.author.id).init();
+        if ((await checkIfValid(msg)).inValid) return;
 
-        const previousLevel = (await user.getRank()).level;
+        const currentLevel = (await mongoUser.getRank()).level;
 
-        const adjustedLength = Math.min(msg.content.length, maxLength);
+        await saveUserXp(msg, mongoUser);
 
-        let xp = Math.floor(adjustedLength * xpPerChar);
+        const newLevel = (await mongoUser.getRank()).level;
 
-        xp = Math.min(xp, maxXP);
-
-        if (xp == 0 && msg.content.length > 1) {
-            xp = 1;
-        }
-
-        await user.updateXpBy(xp);
-
-        const lastLevel = (await user.getRank()).level;
-
-        if (lastLevel !== previousLevel) {
-            channelRankUpdateMessage(client, user);
+        if (newLevel !== currentLevel) {
+            channelRankUpdateMessage(client, mongoUser);
         }
     })
 };
