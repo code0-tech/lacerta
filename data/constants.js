@@ -122,6 +122,13 @@ class Constants {
         return {
             get PERCENTAGE() {
                 return '%';
+            },
+            get UNKOWN_01() {
+                return '---'
+
+            },
+            get UNKOWN_02() {
+                return '??'
             }
         }
     }
@@ -287,7 +294,7 @@ class Constants {
                     }
                 }
             },
-            get DEBUG(){
+            get DEBUG() {
                 return {
                     get SESSION_LIMIT_INFORMATION() {
                         return /^\[WS => Manager\] Session Limit Information\s+Total: (\d+)\s+Remaining: (\d+)$/;
