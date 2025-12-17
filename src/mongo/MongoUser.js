@@ -42,6 +42,7 @@ class MongoUser {
         const userDocument = {
             id: this._userid,
             rawxp: 0,
+            flags: {},
             stats: {
                 messages: {
                     words: 0,
@@ -268,9 +269,46 @@ class MongoUser {
         });
         return results[0] || null;
     }
+
+    /**
+     * Get a specific flag. 
+     * Fallback: returns false if flags object or the specific flag doesn't exist.
+     */
+    async getFlag(flagName) {
+        const user = await this._getUser();
+        // Optional chaining handles cases where .flags is missing
+        return user?.flags?.[flagName] ?? false;
+    }
+
+    /**
+     * Set a flag to a specific value (usually true/false)
+     */
+    async setFlag(flagName, value) {
+        return await MongoDb.update(
+            ENUMS.DCB.USERS,
+            { id: this._userid },
+            { $set: { [`flags.${flagName}`]: value } }
+        );
+    }
+
+    /**
+     * Completely remove a flag from the document
+     */
+    async removeFlag(flagName) {
+        return await MongoDb.update(
+            ENUMS.DCB.USERS,
+            { id: this._userid },
+            { $unset: { [`flags.${flagName}`]: "" } }
+        );
+    }
 };
 
 class MongoUserConsts {
+    static get FLAGS() {
+        return {
+            INVITE_GIFT_RECEIVED: 'invitesGiftRecived'
+        }
+    }
     static get INVITES() {
         return {
             TYPES: {
