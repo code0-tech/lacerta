@@ -36,27 +36,30 @@ function flattenJson(obj, prefix = '') {
 };
 
 /**
- * Recursively updates a nested object based on a flattened key (e.g., "debug.title").
- * @param {object} obj - The object to update.
- * @param {string} fullKey - The full key path.
- * @param {string} value - The new value.
+ * Strictly updates a nested object.
+ * If the path to the key doesn't exist, it does nothing (per your rule).
  */
 function unflattenAndSet(obj, fullKey, value) {
     const keys = fullKey.split('.');
     let current = obj;
+
     for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
+
         if (i === keys.length - 1) {
+            // We reached the final key. 
+            // We only set it if the user sent it via the form (which they did by clicking "Create")
             current[key] = value;
         } else {
+            // STALKER LOGIC: If the parent object doesn't exist, 
+            // STOP immediately. Do not create { debug: {} }
             if (!current[key] || typeof current[key] !== 'object') {
-                current[key] = {};
+                return; // Exit! This prevents creating root keys like .debug
             }
             current = current[key];
         }
     }
-};
-
+}
 
 /**
  * Loads all language files from the directory.
@@ -90,24 +93,39 @@ function generateHtml(data) {
 
     for (const item of firstLangData) {
         const fullKey = item.fullKey;
-        tableRows += `<tr><td>${fullKey}</td>`;
+
+        const isSpecial = fullKey.includes('_') || fullKey.includes('#');
+        const rowClass = isSpecial ? 'class="special-key"' : '';
+
+        tableRows += `<tr ${rowClass}><td>${fullKey}</td>`;
 
         for (const langName of languageNames) {
             const langItem = data[langName].find(d => d.fullKey === fullKey);
-            const value = langItem ? langItem.value : 'KEY NOT FOUND';
-
             const inputName = `${langName}__${fullKey}`;
 
-            tableRows += `
-                <td>
-                    <textarea 
-                        name="${inputName}" 
-                        rows="1" 
-                        data-lang="${langName}" 
-                        data-key="${fullKey}"
-                    >${value}</textarea>
-                </td>
-            `;
+            if (langItem) {
+                tableRows += `
+                    <td>
+                        <textarea 
+                            name="${inputName}" 
+                            rows="1" 
+                            data-lang="${langName}" 
+                            data-key="${fullKey}"
+                        >${langItem.value}</textarea>
+                    </td>`;
+            } else {
+                // Button for missing keys (from previous step)
+                tableRows += `
+                    <td>
+                        <button type="button" 
+                            style="background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 0.8em; padding: 5px 10px;"
+                            onclick="const t = document.createElement('textarea'); 
+                                     t.name='${inputName}'; t.rows=1; t.textContent=''; 
+                                     this.parentElement.appendChild(t); this.remove();">
+                            + Create Key
+                        </button>
+                    </td>`;
+            }
         }
         tableRows += '</tr>';
     }
@@ -197,6 +215,16 @@ function generateHtml(data) {
                     padding: 10px; 
                     border-radius: 5px; 
                     margin-bottom: 15px; 
+                }
+
+                tr.special-key {
+                   background-color: #4b0082 !important; /* Indigo/Purple background */
+                }
+                tr.special-key td {
+                    background-color: transparent !important; /* Let the row color show through */
+                }
+                tr.special-key td:first-child {
+                    color: #ffcc00; /* Optional: Make the key path text pop in purple rows */
                 }
             </style>
             <script>
