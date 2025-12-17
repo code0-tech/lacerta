@@ -18,11 +18,11 @@ const checkForInvitesGift = async (inviterMongo, inviterId, invitedId, client) =
     inviterMongo.setFlag(MongoUserConsts.FLAGS.INVITE_GIFT_RECEIVED, true);
 
     console.log(`[INVITE-TRACKER] Member ${inviterId} was gifted "INVITE_GIFT".`, Constants.CONSOLE.GOOD);
-}
+};
 
 const checkForAction = (inviterMongo, inviterId, invitedId, client) => {
     checkForInvitesGift(inviterMongo, inviterId, invitedId, client);
-}
+};
 
 const saveUserIfValidInvite = async (inviterId, invitedId, client) => {
     try {
