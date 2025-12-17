@@ -143,7 +143,7 @@
         "#btn-open-contributer": "Apply as Open Contributor",
         "#init-message": {
             "title": "Application Channel",
-            "description": "This is where you can start your application process.\n\nYou now have the opportunity to become a part of our <@&{teamid}>.\nClick the button below to create a new threads channel.\nWe're excited to have you join CodeZero.\n\nIf you already have an active application thread for your Closed Team / Open Contributor, please use that to continue your application.\n\nCodeZero"
+            "description": "This is where you can start your application process.\n\nYou now have the opportunity to become a part of our <@&{teamid}>.\nClick the button below to create a new thread.\nWe're excited to have you join CodeZero.\n\nIf you already have an active application thread for your Closed Team / Open Contributor, please use that to continue your application.\n\nCodeZero"
         },
         "#thread-title-open-contributor": "as Open Contributor?",
         "#thread-title-closed-team": "as Closed Team?",
