@@ -74,7 +74,7 @@ const updateMemberLevelRole = async (member, level) => {
         });
 
     await DC.memberAddRoleId(member, targetRoleId);
-}
+};
 
 const channelRankUpdateMessage = async (client, user) => {
     const guild = await DC.guildById(config.serverid, client);
