@@ -5,8 +5,6 @@ const fs = require('fs');
 const LANGUAGE_DIR = path.join(__dirname, 'languages');
 const PORT = 3000;
 
-// --- Utility Functions ---
-
 /**
  * Recursively flattens a nested JSON object into a list of key-value pairs
  * where the key is the full path (e.g., "debug.mongo-left-users.title").
@@ -35,10 +33,6 @@ function flattenJson(obj, prefix = '') {
     return result;
 };
 
-/**
- * Strictly updates a nested object.
- * If the path to the key doesn't exist, it does nothing (per your rule).
- */
 function unflattenAndSet(obj, fullKey, value) {
     const keys = fullKey.split('.');
     let current = obj;
@@ -47,19 +41,15 @@ function unflattenAndSet(obj, fullKey, value) {
         const key = keys[i];
 
         if (i === keys.length - 1) {
-            // We reached the final key. 
-            // We only set it if the user sent it via the form (which they did by clicking "Create")
             current[key] = value;
         } else {
-            // STALKER LOGIC: If the parent object doesn't exist, 
-            // STOP immediately. Do not create { debug: {} }
             if (!current[key] || typeof current[key] !== 'object') {
-                return; // Exit! This prevents creating root keys like .debug
+                current[key] = {};
             }
             current = current[key];
         }
     }
-}
+};
 
 /**
  * Loads all language files from the directory.
@@ -82,8 +72,6 @@ function loadLanguageData() {
         return {};
     }
 };
-
-// --- HTML Generation ---
 
 function generateHtml(data) {
     const languageNames = Object.keys(data);
@@ -114,7 +102,6 @@ function generateHtml(data) {
                         >${langItem.value}</textarea>
                     </td>`;
             } else {
-                // Button for missing keys (from previous step)
                 tableRows += `
                     <td>
                         <button type="button" 
@@ -283,8 +270,6 @@ function generateHtml(data) {
         </html>
     `;
 };
-
-// --- Server Logic ---
 
 const server = http.createServer((req, res) => {
     try {
