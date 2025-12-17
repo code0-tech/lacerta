@@ -1,9 +1,7 @@
-const { ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
-const { snowflakeToDate, msToHumanReadableTime } = require('./../utils/time');
+const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { Embed, COLOR } = require('./../models/Embed');
-const Constants = require('./../../data/constants');
-const { Channel } = require('./../models/Channel');
 const { keyArray } = require('./../utils/helper');
+const { Thread } = require("../models/Thread");
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
@@ -42,130 +40,43 @@ const autoRun = async (client, lang) => {
         .responseToChannel(config.channels.application, client)
 };
 
-const checkLastCreatedTicket = async (guild, member) => {
-    const channelsInCategory = await DC.channelsByParentId(config.parents.applications, guild);
-
-    let hasChannel = channelsInCategory.some(channel => {
-        const userOverWrite = channel.permissionOverwrites.cache.find(overwrite => overwrite.type === Constants.DISCORD.PERMS.USER_OVERRIDE && overwrite.id === member.id);
-        return userOverWrite !== undefined && channel.id !== null;
-    });
-
-    return hasChannel;
-};
-
-const sendEmbedResponse = async (interaction, lang, member, color, contextKey) => {
-    await new Embed()
-        .setColor(color)
-        .addContext(lang, member, contextKey)
-        .interactionResponse(interaction);
-};
-
 const handleApplicationApply = async (interaction, client, guild, member, lang, buttonData) => {
-    if (await checkLastCreatedTicket(guild, member)) {
-        await sendEmbedResponse(interaction, lang, member, COLOR.DANGER, 'has-application');
-        return;
+    let applicationTypeTextVar = '#apply-message-open-contributor';
+    let threadTitle = '#thread-title-open-contributor';
+
+    if (buttonData.id === 'application-apply-closed-team') {
+        applicationTypeTextVar = '#apply-message-closed-team';
+        threadTitle = '#thread-title-closed-team';
     }
 
-    const applicationChannel = await new Channel()
-        .setName(`${Constants.DISCORD.EMOJIS.COMMAND_APPLY}${Constants.DISCORD.EMOJIS.COMBINELINE}${member.user.username}`)
-        .setParent(config.parents.applications)
-        .setType(ChannelType.GuildText)
-        .setPermissionOverwrite(interaction.user.id, [
-            PermissionsBitField.Flags.ViewChannel,
-            PermissionsBitField.Flags.AttachFiles,
-            PermissionsBitField.Flags.SendMessages,
-            PermissionsBitField.Flags.EmbedLinks,
-            PermissionsBitField.Flags.AddReactions
-        ])
-        .setPermissionOverwrite(interaction.guild.id, [], [PermissionsBitField.Flags.ViewChannel])
-        .createChannel(guild);
-
-    const closeApplicationButton = new ButtonBuilder()
-        .setCustomId('application-close')
-        .setLabel(lang.getText('btn-close'))
-        .setStyle(ButtonStyle.Danger);
-
-    const row = new ActionRowBuilder().addComponents(closeApplicationButton);
+    const newThread = await new Thread()
+        .setName(`${member.user.username} ${lang.getText(threadTitle)}`)
+        .addMemberById(member.id)
+        .addRole(config.roles.test)
+        .createThread(interaction.channel)
 
     await new Embed()
         .setColor(COLOR.INFO)
-        .addContext(lang, member, 'application-message')
-        .setPin(true)
-        .setComponents([row])
-        .responseToChannel(applicationChannel.id, client);
+        .addContext(lang, member, applicationTypeTextVar)
+        .responseToChannel(newThread.id, client);
 
-    await new Embed()
+    new Embed()
         .setColor(COLOR.INFO)
-        .addInputs({ channelid: applicationChannel.id })
-        .addContext(lang, member, 'new-application')
+        .addContext(lang, member, '#new-application-thread')
         .interactionResponse(interaction);
-};
-
-const handleApplicationClose = async (interaction, client, guild, member, lang, isTeam) => {
-    if (!isTeam) {
-        await sendEmbedResponse(interaction, lang, member, COLOR.DANGER, 'no-team-member');
-        return;
-    }
-
-    await interaction.message.delete();
-    await sendEmbedResponse(interaction, lang, member, COLOR.DANGER, 'close-info');
-
-    const applicationChannel = await DC.channelByInteraction(interaction, guild);
-
-    const { removedIds } = await DC.removeChannelUserOverrides(applicationChannel);
-
-    const confirmDeleteButton = new ButtonBuilder()
-        .setCustomId('delete-ticket')
-        .setLabel(lang.getText('btn-remove'))
-        .setStyle(ButtonStyle.Danger);
-
-    const row = new ActionRowBuilder().addComponents(confirmDeleteButton);
-
-    const timeStamp = snowflakeToDate(interaction.channel.id);
-    const { d, h, m, s } = msToHumanReadableTime(Date.now() - timeStamp);
-
-    await new Embed()
-        .setColor(COLOR.DANGER)
-        .addInputs({
-            closeduserid: interaction.user.id,
-            ticketuserid: removedIds[0],
-            days: d,
-            hours: h,
-            minutes: m,
-            seconds: s
-        })
-        .addContext(lang, member, 'confirm-remove-application')
-        .setComponents([row])
-        .responseToChannel(applicationChannel.id, client);
-
-    applicationChannel.setName(`${Constants.DISCORD.EMOJIS.KEY_LOCKED}${applicationChannel.name}-closed`);
 };
 
 const executeComponent = async (interaction, client, guild, member, lang, buttonData) => {
     await DC.defer(interaction);
 
-    const isTeam = await DC.isTeamMember(member);
+    if (buttonData.id !== 'application-apply-closed-team' && buttonData.id !== 'application-apply-open-contributor') return;
 
-    if (buttonData.id === 'application-apply-closed-team' || buttonData.id === 'application-apply-open-contributor') {
-        await handleApplicationApply(interaction, client, guild, member, lang, buttonData);
-    } else if (buttonData.id === 'application-close') {
-        await handleApplicationClose(interaction, client, guild, member, lang, isTeam);
-    } else {
-        if (!isTeam) {
-            await sendEmbedResponse(interaction, lang, member, COLOR.DANGER, 'no-team-member');
-            return;
-        }
-
-        const applicationChannel = await DC.channelByInteraction(interaction, guild);
-        await applicationChannel.delete({ reason: "none" });
-    }
+    handleApplicationApply(interaction, client, guild, member, lang, buttonData);
 };
 
 const componentIds = [
     'application-apply-closed-team',
-    'application-apply-open-contributor',
-    'application-close',
-    'application-remove'
+    'application-apply-open-contributor'
 ];
 
 module.exports = { executeComponent, componentIds, autoRun };
