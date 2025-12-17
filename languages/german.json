@@ -138,39 +138,6 @@
         },
         "left-server": "Server verlassen"
     },
-    "_application": {
-        "btn-remove": "Lösche diese Bewerbung",
-        "btn-close": "Schließe diese Bewerbung",
-        "new-application": {
-            "title": "Bewerbungs Kanal erstellt",
-            "description": "Ein neuer Bewerbungs Kanal wurde für dich erstellt: <#{channelid}>."
-        },
-        "has-application": {
-            "title": "Ein bereits bestehender Bewerbungs Kanal wurde gefunden",
-            "description": "Es tut uns leid, aber du kannst jeweils nur einen Bewerbungs kanal haben."
-        },
-        "application-message": {
-            "title": "Bewirb dich hier",
-            "description": "Hier kannst du dich bewerben und mit unserem Team kommunizieren."
-        },
-        "no-team-member": {
-            "title": "Entschuldigung",
-            "description": "Nur Team Mitglieder können eine Bewerbung schliessen."
-        },
-        "confirm-remove-application": {
-            "title": "Bewerbung geschlossen",
-            "description": "`Die Bewerbung war für `<@{ticketuserid}>`.`\n\n`Die Bewerbung wurde durch `<@{closeduserid}>` geschlossen.`\n`Gesamte Bewerbungs Zeit: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.`"
-        },
-        "close-info": {
-            "title": "Bewerbung wird geschlossen"
-        },
-        "#btn-closed-team": "KEY NOT FOUND",
-        "#btn-open-contributer": "KEY NOT FOUND",
-        "#init-message": {
-            "title": "KEY NOT FOUND",
-            "description": "KEY NOT FOUND"
-        }
-    },
     "logs": {
         "select-menu-placholder": "Logs",
         "btn-back": "Vorherige",
@@ -230,6 +197,18 @@
     },
     "#_rankupdate": {
         "#update-msg": {
+            "description": "KEY NOT FOUND"
+        }
+    },
+    "_application": {
+        "#btn-closed-team": "KEY NOT FOUND",
+        "#btn-open-contributer": "KEY NOT FOUND",
+        "#init-message": {
+            "title": "KEY NOT FOUND",
+            "description": "KEY NOT FOUND"
+        },
+        "new-application-thread": {
+            "title": "KEY NOT FOUND",
             "description": "KEY NOT FOUND"
         }
     }

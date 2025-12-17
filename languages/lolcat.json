@@ -138,39 +138,6 @@
         },
         "left-server": "Left teh Servr"
     },
-    "_application": {
-        "btn-remove": "Remove Applikashun",
-        "btn-close": "Cloz Applikashun",
-        "new-application": {
-            "title": "Applikashun Channel Created",
-            "description": "A nu applikashun channel haz been creatd for u: <#{channelid}>."
-        },
-        "has-application": {
-            "title": "Existin Applikashun Channel Found",
-            "description": "Sowwy, but u can only haz one applikashun channel at a time."
-        },
-        "application-message": {
-            "title": "Applie Here",
-            "description": "Here u can applie an communicat with our staff to get involvd with Code[ZERO]."
-        },
-        "no-team-member": {
-            "title": "Sowwy",
-            "description": "Only Teem memburz can cloz an Applikashun."
-        },
-        "confirm-remove-application": {
-            "title": "Clozd",
-            "description": "`Thids Applikashun war fourr `<@{ticketuserid}>`.`\n\n`TThe Applikashun was Clozid by `<@{closeduserid}>`.`\n`Tim_e opens: {days} dayz, {hours} h0urs, {minutes} minutos, {seconds} secondus.`"
-        },
-        "close-info": {
-            "title": "Clozin Applikashun"
-        },
-        "#btn-closed-team": "KEY NOT FOUND",
-        "#btn-open-contributer": "KEY NOT FOUND",
-        "#init-message": {
-            "title": "KEY NOT FOUND",
-            "description": "KEY NOT FOUND"
-        }
-    },
     "logs": {
         "select-menu-placholder": "Loges",
         "btn-back": "Previs",
@@ -231,6 +198,18 @@
         "repocommitssum": {
             "title": "Coitss Cnt tor {repo}",
             "description": "{table}\n\n`Totalz commits: {total}`\n`Timespanda: {timestart} untal {timeend}`"
+        }
+    },
+    "_application": {
+        "#btn-closed-team": "KEY NOT FOUND",
+        "#btn-open-contributer": "KEY NOT FOUND",
+        "#init-message": {
+            "title": "KEY NOT FOUND",
+            "description": "KEY NOT FOUND"
+        },
+        "new-application-thread": {
+            "title": "KEY NOT FOUND",
+            "description": "KEY NOT FOUND"
         }
     }
 }
