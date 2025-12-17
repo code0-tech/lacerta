@@ -20,6 +20,29 @@ class DC {
     }
 
     // Member
+
+    /**
+    * Get Member only by UserId
+    */
+    static async codeZeroMemberById(userId, client) {
+        try {
+            const guild = await this.guildById(config.serverid, client);
+            let member = guild.members.cache.get(userId);
+
+            if (member) {
+                console.log(`[DC.memberById] UserId ${userId} found in cache`, Constants.CONSOLE.FOUND);
+            } else {
+                member = await guild.members.fetch(userId);
+                console.log(`[DC.memberById] UserId ${userId} fetched from API`, Constants.CONSOLE.FOUND);
+            }
+
+            return member;
+        } catch (err) {
+            console.log(`[DC.memberById] Cannot find userId ${userId}`, Constants.CONSOLE.ERROR);
+            return undefined;
+        }
+    }
+
     /**
     * Get Member by UserId
     */
