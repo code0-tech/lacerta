@@ -81,7 +81,7 @@ const data = new SlashCommandBuilder()
             .setDescriptionLocalizations({
                 de: 'Zeigt die Git Aktivität für ein Repo als Tabelle an',
             })
-    )
+    )/* 
     .addSubcommand(subcommand =>
         subcommand.setName('graph')
             .setDescription('Display Git activity as a graph.')
@@ -124,7 +124,7 @@ const data = new SlashCommandBuilder()
             .setDescriptionLocalizations({
                 de: 'Zeigt gesamte Git Aktivitäten für einen Nutzer als Graph an.',
             })
-    )
+    ) */
 
 const sendChart = async (description, attachment) => {
     return new Embed()
