@@ -21,17 +21,28 @@ CodeZero is a Discord bot developed in JavaScript, utilizing the discord.js clie
 |     | Command                                      | Status       | Known Bugs
 | --- | ---------------------------------------------| ------------ | --------- |
 | 1   | `/open-contributer`                          | Finished     |      None |
-| 2   | `/ticket`                                    | Finished     |      None |
-| 3   | `/links`                                     | Finished     |      None |
-| 4   | `/contributor`                               | Finished     |      None |
-| 5   | `/rank` or `/rank @user` +uptodate15         | Finished     |      None |
-| 6   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |      None |
-| 7   | `CodeZero Application Ticket`                   | Finished     |      None |
-| 8   | `/stats` or `/stats @user` + uptodate15      | Finished     |      None |
-| 9   | `/logs show` or `/logs list`                 | Finished     |      None |
-| 10  | `/debug` for debugging                       | Finished     |      None |
-| 11  | `Git rank message every 24 hours`            | Finished     |      None |
-| 12  | `/git` display charts of Git activity        | In Progress  |      None |
+| 2   | `/links`                                     | Finished     |      None |
+| 3   | `/contributor`                               | Finished     |      None |
+| 4   | `/rank` or `/rank @user` +uptodate15         | Finished     |      None |
+| 5   | `/leaderboard` or `/leaderboard limit: 1-20` | Finished     |      None |
+| 6   | `CodeZero Application Channel Threads`       | Finished     |      None |
+| 7   | `/stats` or `/stats @user` + uptodate15      | Finished     |      None |
+| 8   | `/logs show` or `/logs list`                 | Finished     |      None |
+| 9   | `/debug` for debugging                       | Finished     |      None |
+| 10  | `/git` display charts of Git activity        | 1/2 Finished |      None |
+| 11  | `/mydata` return your current MongoDb entry  | Finished     |      None |
+
+## Functions
+
+|     | Function                                     | Status       | Known Bugs
+| --- | ---------------------------------------------| ------------ | --------- |
+| 1   | Stats and Xp from sent messages              | Finished     |      None |
+| 2   | Voice Stats                                  | Finished     |      None |
+| 3   | Event prereminder                            | Finished     |      None |
+| 4   | Channel Auto Slowmo                          | Finished     |      None |
+| 5   | Git rank + Chart everyday                    | Finished     |      None |
+| 6   | Invite Tracker                               | Finished     |      None |
+
 
 ## Language
 
@@ -63,34 +74,44 @@ Real Example:
 ```json
 {
   "id": "380808844093292555",
-  "rawxp": 1444,
+  "rawxp": 1612,
   "stats": {
     "messages": {
-      "words": 4555,
-      "chars": 24207,
-      "count": 737
+      "words": 4932,
+      "chars": 25130,
+      "count": 1066
     },
     "voice": {
-      "joins": 130,
+      "joins": 131,
       "switchs": 21,
-      "time": 164817
+      "time": 169602
+    },
+    "invites": {
+      "total": 1,
+      "real": 1,
+      "usersInvited": [
+        {
+          "id": "703586032578199641",
+          "time": 1765912177218
+        }
+      ]
     }
   },
   "commandstats": {
     "debug": {
-      "command": 80,
+      "command": 83,
       "button": 22,
       "selectmenu": 15
     },
     "leaderboard": {
-      "command": 21
+      "command": 23
     },
     "stats": {
-      "command": 65
+      "command": 67
     },
     "logs": {
       "command": 29,
-      "button": 82
+      "button": 83
     },
     "logs list": {
       "selectmenu": 20
@@ -105,27 +126,30 @@ Real Example:
       "command": 12
     },
     "git": {
-      "autocomplete": 248,
-      "command": 124
+      "autocomplete": 255,
+      "command": 127
     },
     "logs show": {
       "button": 7
     },
     "ticket": {
-      "command": 5,
-      "button": 7
+      "command": 7,
+      "button": 13
     },
     "_application": {
-      "button": 2
+      "button": 12
     },
     "rank": {
-      "command": 80
+      "command": 84
     }
+  },
+  "flags": {
+    "invitesGiftReceived": false
   }
 }
 ```
 
-Last MongoDB structure update: 12.12.2025
+Last MongoDB structure update: 17.12.2025
 
 Tip: You can mention a Discord user by their ID using `<@user_id>`.
 
