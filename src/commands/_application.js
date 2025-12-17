@@ -52,8 +52,8 @@ const handleApplicationApply = async (interaction, client, guild, member, lang, 
     const newThread = await new Thread()
         .setName(`${member.user.username} ${lang.getText(threadTitle)}`)
         .addMemberById(member.id)
-        .addRole(config.roles.test)
-        .createThread(interaction.channel)
+        .addRole(config.roles.team)
+        .createThread(interaction.channel);
 
     await new Embed()
         .setColor(COLOR.INFO)
