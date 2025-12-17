@@ -66,8 +66,6 @@ const start = async (args) => {
 
         require('./src/dc-guild/channel-auto-slowmo').start(client);
 
-        require('./src/dc-guild/user-stats').start(client);
-
         require('./src/dc-guild/git-rank').setup(client);
 
         require('./src/dc-guild/event-prereminder').setupEventMessages(client);
