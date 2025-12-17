@@ -4,7 +4,7 @@
         "roles": "Roles",
         "langroles": "Languageroles",
         "mongo-left-users": {
-            "title": "MongoDB Left User",
+            "title": "MongoDB User Ghosts",
             "description": "Found:\n{userstring}\n\nFake Users:\n{progressbar}"
         },
         "mongo-left-users-loading": {
@@ -221,5 +221,6 @@
             "title": "Commits Count for {repo}",
             "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`"
         }
-    }
+    },
+    "settings": {}
 }
