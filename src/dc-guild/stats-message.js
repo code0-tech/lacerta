@@ -57,7 +57,7 @@ const checkIfValid = async (msg) => {
 
     userList[userId] = newPacket(msg);
 
-    console.log(`[LEVEL SYSTEM] user ${msg.author.id} got: ${info}`, Constants.CONSOLE.INFO)
+    console.log(`[LEVEL SYSTEM] user ${msg.author.id} got: ${info}`, Constants.CONSOLE.INFO); // remove in the future (spam)
 
     return { inValid, info: info };
 };
@@ -111,7 +111,7 @@ const saveMessageStats = async (msg, mongoUser) => {
     const chars = msg.content.length;
 
     mongoUser.updateMessageStats(count, words, chars);
-}
+};
 
 const saveUserXp = async (msg, mongoUser) => {
     const maxLength = config.functions.rank.maxlength;
@@ -128,10 +128,10 @@ const saveUserXp = async (msg, mongoUser) => {
         xp = 1;
     }
 
-    console.log(`[LEVEL SYSTEM] added ${xp} xp for ${msg.author.id}`, Constants.CONSOLE.GOOD);
+    console.log(`[LEVEL SYSTEM] added ${xp} xp for ${msg.author.id}`, Constants.CONSOLE.GOOD); // remove in the future (spam)
 
     await mongoUser.updateXpBy(xp);
-}
+};
 
 const start = (client) => {
     client.on(Events.MessageCreate, async msg => {
