@@ -166,7 +166,7 @@
                 ],
                 "embed": {
                     "title": "{title} - in {minutesRemaining} minutes",
-                    "description": "Sry, leider wieder ein Meeting - Laut Kalendar...",
+                    "description": "Sry, leider wieder ein Meeting - Trefft eure letzten vorbereitungen.",
                     "mention": "team"
                 },
                 "channelname": "internalcommunicationchat"
@@ -179,7 +179,7 @@
                 ],
                 "embed": {
                     "title": "{title} - in {minutesRemaining} minutes",
-                    "description": "Sry, leider wieder ein Meeting - Laut Kalendar...",
+                    "description": "Wir sehen uns bald im talk!",
                     "mention": "team"
                 },
                 "channelname": "internalcommunicationchat"
