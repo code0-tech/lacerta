@@ -29,6 +29,11 @@ const setupTimer = (channelId, title, time, client, eventConfig) => {
 
                 const placeholders = { title, minutesRemaining: timeInMinutes };
 
+                const descriptionArray = eventConfig.embed.descriptions[timeInMinutes] ?? eventConfig.embed.descriptions.default;
+
+
+                // const descriptionString = 
+
                 const embedMessage = new Embed()
                     .setTitle(replacePlaceHolders(eventConfig.embed.title, placeholders))
                     .setContent(`<@&${config.roles[eventConfig.embed.mention]}>`)
