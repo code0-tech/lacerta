@@ -166,7 +166,15 @@
                 ],
                 "embed": {
                     "title": "{title} - in {minutesRemaining} minutes",
-                    "description": "Sry, leider wieder ein Meeting - Trefft eure letzten vorbereitungen.",
+                    "descriptions": {
+                        "5": [
+                            "Sry, leider wieder ein Meeting - Trefft eure letzten vorbereitungen"
+                        ],
+                        "60": [
+                            "Sry, leider wieder ein Meeting, in so einer Stunde..."
+                        ],
+                        "default": []
+                    },
                     "mention": "team"
                 },
                 "channelname": "internalcommunicationchat"
@@ -179,7 +187,15 @@
                 ],
                 "embed": {
                     "title": "{title} - in {minutesRemaining} minutes",
-                    "description": "Wir sehen uns bald im talk!",
+                    "descriptions": {
+                        "5": [
+                            "Wir sehen uns gleich im Talk."
+                        ],
+                        "60": [
+                            "In einer Stunde im talk ok? Bisl issue management und so..."
+                        ],
+                        "default": []
+                    },
                     "mention": "team"
                 },
                 "channelname": "internalcommunicationchat"
