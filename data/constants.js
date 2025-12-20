@@ -287,6 +287,20 @@ class Constants {
 
     static get REGEX() {
         return {
+            get _SINGLE_STRING() {
+                return {
+                    get DEBUG() {
+                        return {
+                            get SESSION_LIMIT() {
+                                return 'Remaining'
+                            },
+                            get LATENCY() {
+                                return 'Heartbeat acknowledged'
+                            }
+                        }
+                    }
+                }
+            },
             get GIT_WEBHOOK() {
                 return {
                     get COMMITS_COUNT() {
