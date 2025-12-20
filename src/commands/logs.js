@@ -4,6 +4,7 @@ const { convertUnixToTimestamp } = require('../utils/time');
 const DiscordSimpleTable = require('discord-simpletable');
 const { Embed, COLOR } = require('./../models/Embed');
 const { Mongo, ENUMS } = require('../models/Mongo');
+const DcButtons = require("../singleton/DcButtons");
 const Constants = require("../../data/constants");
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
@@ -113,21 +114,30 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
             .interactionResponse(interaction);
     }
 
+    const commonData = {
+        currentstart: rangeStart,
+        currentendposition: rangeEnd,
+        s: sessionId
+    };
+
     const buttons = [
         new ButtonBuilder()
-            .setCustomId(`logs*type=${type}*action=back*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
+            .setCustomId(DcButtons.createString('logs', { type, action: 'back', ...commonData }))
             .setLabel(lang.getText('btn-back'))
             .setStyle(ButtonStyle.Primary),
+
         new ButtonBuilder()
-            .setCustomId(`logs*type=${type}*action=next*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
+            .setCustomId(DcButtons.createString('logs', { type, action: 'next', ...commonData }))
             .setLabel(lang.getText('btn-next'))
             .setStyle(ButtonStyle.Primary),
+
         new ButtonBuilder()
-            .setCustomId(`logs*type=${type}*action=last*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
+            .setCustomId(DcButtons.createString('logs', { type, action: 'last', ...commonData }))
             .setLabel(lang.getText('btn-skip'))
             .setStyle(ButtonStyle.Danger),
+
         new ButtonBuilder()
-            .setCustomId(`logs*type=print*action=print*currentstart=${rangeStart}*currentendposition=${rangeEnd}*s=${sessionId}`)
+            .setCustomId(DcButtons.createString('logs', { type: 'print', action: 'print', ...commonData }))
             .setLabel(lang.getText('btn-print'))
             .setStyle(ButtonStyle.Success),
     ];
@@ -197,7 +207,7 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
         .build();
 
     const selectMenu = new StringSelectMenuBuilder()
-        .setCustomId('logs*type=view')
+        .setCustomId(DcButtons.createString('logs', { type: 'view' }))
         .setPlaceholder(lang.getText('select-menu-placholder'))
         .addOptions(selectMenuOptions);
 
