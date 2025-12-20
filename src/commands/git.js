@@ -372,7 +372,9 @@ const autoCompleteDates = async (focusedValue) => {
     return result;
 };
 
-const autoComplete = async (interaction, client, guild, member, lang) => {
+const autoComplete = async (dcInteraction) => {
+    const { interaction, client, guild, member, lang, componentData } = dcInteraction;
+
     const optionName = interaction.options.getFocused(true).name;
     const focusedValue = interaction.options.getFocused();
 

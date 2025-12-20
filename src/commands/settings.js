@@ -103,7 +103,9 @@ const execute = async (dcInteraction) => {
     await renderMainMenu(interaction, member, lang);
 };
 
-const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
+const executeComponent = async (dcInteraction) => {
+    const { interaction, client, guild, member, lang, componentData } = dcInteraction;
+
     await DC.defer(interaction);
     const handler = componentHandlers[componentData.type];
     if (handler) await handler(interaction, member, lang);

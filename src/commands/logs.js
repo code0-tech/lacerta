@@ -263,7 +263,9 @@ const execute = async (dcInteraction) => {
     findAndExecuteSubCommand(subCommand, interaction, member, lang, componentData);
 };
 
-const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
+const executeComponent = async (dcInteraction) => {
+    const { interaction, client, guild, member, lang, componentData } = dcInteraction;
+
     await DC.defer(interaction);
     findAndExecuteSubCommand(componentData.type, interaction, member, lang, componentData);
 };

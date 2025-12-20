@@ -190,7 +190,9 @@ const execute = async (dcInteraction) => {
     debugs[type](interaction, client, guild, member, lang);
 };
 
-const executeComponent = async (interaction, client, guild, member, lang, componentData) => {
+const executeComponent = async (dcInteraction) => {
+    const { interaction, client, guild, member, lang, componentData } = dcInteraction;
+
     await DC.defer(interaction);
 
     if (componentData.type == 'removefromdb') {

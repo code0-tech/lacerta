@@ -66,12 +66,14 @@ const handleApplicationApply = async (interaction, client, guild, member, lang, 
         .interactionResponse(interaction);
 };
 
-const executeComponent = async (interaction, client, guild, member, lang, buttonData) => {
+const executeComponent = async (dcInteraction) => {
+    const { interaction, client, guild, member, lang, componentData } = dcInteraction;
+
     await DC.defer(interaction);
 
-    if (buttonData.id !== 'application-apply-closed-team' && buttonData.id !== 'application-apply-open-contributor') return;
+    if (componentData.id !== 'application-apply-closed-team' && componentData.id !== 'application-apply-open-contributor') return;
 
-    handleApplicationApply(interaction, client, guild, member, lang, buttonData);
+    handleApplicationApply(interaction, client, guild, member, lang, componentData);
 };
 
 const componentIds = [
