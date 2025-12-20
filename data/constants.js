@@ -65,10 +65,10 @@ class Constants {
                     return '🔐';
                 },
                 get FILE_CABINET() {
-                    return '🗄️'
+                    return '🗄️';
                 },
                 get GLOBE() {
-                    return '🌐'
+                    return '🌐';
                 }
             },
             get EPOCH_OFFSET() {
@@ -292,10 +292,10 @@ class Constants {
                     get DEBUG() {
                         return {
                             get SESSION_LIMIT() {
-                                return 'Remaining'
+                                return 'Remaining';
                             },
                             get LATENCY() {
-                                return 'Heartbeat acknowledged'
+                                return 'Heartbeat acknowledged';
                             }
                         }
                     }
@@ -323,8 +323,6 @@ class Constants {
             }
         }
     }
-
 }
-
 
 module.exports = Constants;
