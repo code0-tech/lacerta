@@ -168,12 +168,17 @@
                     "title": "{title} - in {minutesRemaining} minutes",
                     "descriptions": {
                         "5": [
-                            "Sry, leider wieder ein Meeting - Trefft eure letzten vorbereitungen"
+                            "Sry, leider wieder ein Meeting - Trefft eure letzten vorbereitungen",
+                            "Trefft eure letzten vorbereitungen fürs Sprint Review",
+                            "Meeting in kürze..."
                         ],
                         "60": [
-                            "Sry, leider wieder ein Meeting, in so einer Stunde..."
+                            "Sry, leider wieder ein Meeting, in so einer Stunde...",
+                            "Bereit in einer Stunde?"
                         ],
-                        "default": []
+                        "default": [
+                            "Es beginnt in kürze..."
+                        ]
                     },
                     "mention": "team"
                 },
@@ -194,7 +199,9 @@
                         "60": [
                             "In einer Stunde im talk ok? Bisl issue management und so..."
                         ],
-                        "default": []
+                        "default": [
+                            "Es beginnt in kürze..."
+                        ]
                     },
                     "mention": "team"
                 },
