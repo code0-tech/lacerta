@@ -263,7 +263,6 @@ class MongoUser {
      * Search for the original inviter by checking the 'id' field inside the objects
      */
     async findOriginalInviter(targetMemberId) {
-        // Dot notation 'array.field' allows searching inside an array of objects
         const results = await MongoDb.find(ENUMS.DCB.USERS, {
             'stats.invites.usersInvited.id': targetMemberId
         });
@@ -276,7 +275,6 @@ class MongoUser {
      */
     async getFlag(flagName) {
         const user = await this._getUser();
-        // Optional chaining handles cases where .flags is missing
         return user?.flags?.[flagName] ?? false;
     }
 

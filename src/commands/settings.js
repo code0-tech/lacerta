@@ -1,9 +1,9 @@
 const { SlashCommandBuilder, ActionRowBuilder, StringSelectMenuBuilder, RoleSelectMenuBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require('discord.js');
 const { Embed, COLOR } = require('./../models/Embed');
 const DcButtons = require("../singleton/DcButtons");
+const Constants = require('../../data/constants');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
-const Constants = require('../../data/constants');
 
 const data = new SlashCommandBuilder()
     .setName('settings')
