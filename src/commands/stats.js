@@ -76,6 +76,7 @@ const buildCommandStatsString = (commandstats, lang) => {
 const loop = async (client, interaction, member, lang, embedMessage, rankMember, user, previousStats = null) => {
     const stats = await user.getStats();
     const commandstats = await user.getCommandStats();
+    const inviteStats = await user.getInviteStats();
 
     const commandStatsString = buildCommandStatsString(commandstats, lang);
     const normalizedStats = normalizeData(stats);
@@ -100,7 +101,9 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
                 voicehours: h,
                 voiceminutes: m,
                 voiceseconds: s,
-                commandstatsstring: commandStatsString
+                commandstatsstring: commandStatsString,
+                invitesreal: inviteStats.real,
+                invitestotal: inviteStats.total
             })
             .addContext(lang, member, embedMessage);
 
