@@ -5,7 +5,6 @@ const mongoClient = new MongoClient(process.env.MONGO_URL, {
     maxPoolSize: 10,
     minPoolSize: 2,
     connectTimeoutMS: 10000,
-    // socketTimeoutMS: 45000,
     heartbeatFrequencyMS: 10000,
     serverApi: {
         version: ServerApiVersion.v1,

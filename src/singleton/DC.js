@@ -1,7 +1,7 @@
 const Constants = require('./../../data/constants');
+const { MessageFlags } = require('discord.js');
 const { ChannelType } = require('discord.js');
 const config = require('./../../config.json');
-const { MessageFlags } = require('discord.js')
 
 class DC {
     // Interactions options
