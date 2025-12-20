@@ -1,4 +1,4 @@
-const start = async (args) => {
+const start = async (args = {}) => {
 
     require('./src/start-up/update-console-log');
     require('./src/start-up/process-exit');
@@ -70,7 +70,6 @@ const start = async (args) => {
         require('./src/dc-guild/git-rank').setup(client);
 
         require('./src/dc-guild/event-prereminder').setupEventMessages(client);
-
     });
 
     require('./src/dc-client/debug-log').setup(client);
