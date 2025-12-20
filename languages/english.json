@@ -23,37 +23,6 @@
             "description": "Up Since: {upsince}\n\n`{days}` days, `{hours}` hours, `{minutes}` minutes, `{seconds}` seconds."
         }
     },
-    "ticket": {
-        "btn-close": "Close",
-        "btn-remove-ticket": "Remove Ticket",
-        "timeout": {
-            "title": "Timeout",
-            "description": "Your last ticket was created `{m} minutes` and `{s} seconds` ago.\nPlease wait before creating your next Ticket."
-        },
-        "create": {
-            "title": "Ticket",
-            "description": "Creating a new ticket."
-        },
-        "created": {
-            "title": "We got your Ticket",
-            "description": "You will find your ticket <#{channelid}> under the `Support` category."
-        },
-        "info-message": {
-            "title": "Support Ticket",
-            "description": "Hi <@{userid}>,\nplease take a moment to describe the issue you're facing.\nThe more details you provide, the better we can assist you.\nIf applicable, include error messages, steps to reproduce the problem, and any other relevant information."
-        },
-        "no-team-member": {
-            "title": "Sorry",
-            "description": "Only Team members can close a ticket."
-        },
-        "close-info": {
-            "title": "Closing Ticket"
-        },
-        "closed": {
-            "title": "Closed",
-            "description": "`This Ticket was for `<@{ticketuserid}>`.`\n\n`The ticket was Closed by `<@{closeduserid}>`.`\n`Time open: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.`"
-        }
-    },
     "open-contributor": {
         "repo": "Repo",
         "commits": "Commits",
@@ -205,7 +174,7 @@
     "mydata": {
         "your-data": {
             "title": "We got your Data",
-            "description": "This json file contains all the information we have saved about you in our DB."
+            "description": "This JSON file contains all the information we have saved about you in our DB."
         }
     },
     "git": {

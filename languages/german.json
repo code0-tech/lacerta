@@ -23,37 +23,6 @@
             "description": "Online seit: {upsince}\n\n`{days}` Tagen, `{hours}` Stunden, `{minutes}` Minuten, `{seconds}` Sekunden."
         }
     },
-    "ticket": {
-        "btn-close": "Schließen",
-        "btn-remove-ticket": "Ticket entfernen",
-        "timeout": {
-            "title": "Bitte warte",
-            "description": "Dein letztes Ticket wurde vor `{m} Minuten` und `{s} Sekunden` erstellt.\nBitte warten, bevor Du dein nächstes Ticket erstellst."
-        },
-        "create": {
-            "title": "Ticket",
-            "description": "Ticket wird erstellt"
-        },
-        "created": {
-            "title": "Wir haben dein Ticket erstellt",
-            "description": "Du kannst dein Ticket <#{channelid}> in der `Support` Kategorie finden."
-        },
-        "info-message": {
-            "title": "Support Ticket",
-            "description": "Hi <@{userid}>,\nlass dir ein wenig Zeit um dein Anliegen zu beschreiben.\nJe mehr Einzelheiten Du uns nennst, desto besser können wir Dir helfen.\nFalls zutreffend, füge auch Fehlermeldungen oder Schritte zur Reproduktion des Problems und andere relevante Informationen bei."
-        },
-        "no-team-member": {
-            "title": "Entschuldigung",
-            "description": "Nur Team Mitglieder können ein Ticket schliessen."
-        },
-        "close-info": {
-            "title": "Schließen des Tickets"
-        },
-        "closed": {
-            "title": "Geschlossen",
-            "description": "`Das Ticket war für `<@{ticketuserid}>`.`\n\n`Das Ticket wurde durch `<@{closeduserid}>` geschlossen.`\n`Gesamte Ticket Zeit: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds.`"
-        }
-    },
     "open-contributor": {
         "repo": "Repo",
         "commits": "Commits",
@@ -178,7 +147,7 @@
     "mydata": {
         "your-data": {
             "title": "Deine Daten sind bereit zum Download",
-            "description": "Diese json Datei beinhaltet alles was wir über dich in unseren Datenbank über dich gespeichert haben."
+            "description": "Diese JSON Datei beinhaltet alles was wir über dich gespeichert haben."
         }
     },
     "git": {

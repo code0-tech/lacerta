@@ -23,37 +23,6 @@
             "description": "Up Sinence: {upsince}\n\n`{days}` dayz, `{hours}` hourz, `{minutes}` minoots, `{seconds}` secundz."
         }
     },
-    "ticket": {
-        "btn-close": "Cloz",
-        "btn-remove-ticket": "Deleet Tikkit",
-        "timeout": {
-            "title": "Tiimeowt",
-            "description": "Ur last tikkit wuz creatd `{m} minoots` an `{s} secundz` ago.\nPlz wate be4 creatin ur next Tikkit."
-        },
-        "create": {
-            "title": "Tikkit",
-            "description": "Creatin a nu tikkit."
-        },
-        "created": {
-            "title": "We got ur Tikkit",
-            "description": "U will find ur tikkit <#{channelid}> undur teh `Support` category."
-        },
-        "info-message": {
-            "title": "Support Tikkit",
-            "description": "Hai <@{userid}>,\nplz taek a moment 2 describe teh issue ur facin.\nTeh moar details u provid, teh better we can assist u.\nIf applicabul, include error messages, stepz 2 reproduc teh problm, an any othr relevant info."
-        },
-        "no-team-member": {
-            "title": "Sore",
-            "description": "Only Teeaam memburz can cloz a tikkit."
-        },
-        "close-info": {
-            "title": "Clozin Tikkit"
-        },
-        "closed": {
-            "title": "Clozd",
-            "description": "`Thids Tickes war fourr `<@{ticketuserid}>`.`\n\n`TThe tacket was Clozid by `<@{closeduserid}>`.`\n`Tim_e opens: {days} dayz, {hours} h0urs, {minutes} minutos, {seconds} secondus.`"
-        }
-    },
     "open-contributor": {
         "repo": "Repo",
         "commits": "Commitz",
@@ -69,19 +38,19 @@
         },
         "error-already-has-role": {
             "title": "Well... u r an Open Contributor",
-            "description": "U alrdy r an Open Contributor. There is no need to use dis command."
+            "description": "U alrdy r an Open Contrib. There is no need to use dis command."
         },
         "initial-message": {
-            "title": "How 2 becum an Open Contributor",
+            "title": "How 2 becum an Open Contrib",
             "description": "For becumin an Open Contributor an its roles u must fulfill teh following thingz:\n\n1. Hav {neededcommits} or moar commitz\n2. Hav {neededpr} or moar pull requests\n\nClick teh link button an check if u can becum an Open Contributor."
         },
         "results-complete": {
             "title": "Gifthub Resul",
-            "description": "Account: `{githubname}`\n\n{pbpr}\nU got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nU got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nWe haz added u 2 our Open Contributor"
+            "description": "Acct: `{githubname}`\n\n{pbpr}\nU got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nU got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nWe haz added u 2 our Open Contrib"
         },
         "results-not-complete": {
             "title": "Gifthub Resul",
-            "description": "Account: `{githubname}`\n\n{pbpr}\nU got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nU got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nFulfill all requiremints to becum an Open Contributor."
+            "description": "Acct: `{githubname}`\n\n{pbpr}\nU got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nU got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nFulfill all requiremints to becum an Open Contrib."
         },
         "results-no-data": {
             "title": "Gifthub Resul for {githubname}",
@@ -108,40 +77,40 @@
             "description": "### Livel: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nCurrently <@{rankuserid}> is on teh {position} place."
         },
         "this-bot-rank": {
-            "description": "### Well, Ima not rly into collectin XP.\nMaybe try a real `user`"
+            "description": "### Well, Ima not rly into collec XP.\nSaybe tr-y a reaal `user`"
         }
     },
     "stats": {
-        "command": "Comma",
-        "executed": "Exeutd",
+        "command": "Commal",
+        "executed": "xeutd",
         "button": "batn",
         "autocomplete": "acccc",
-        "selectmenu": "sms",
+        "selectmenu": "smsss",
         "no-command-executed": "No Commadzz wer execated.",
         "own-stats-response": {
             "description": "### Message:\nUnt: `{count}`\nWors: `{words}`\nHars: `{chars}`\n### Voixe:\nJins: `{joins}`\nSitchs: `{switchs}`\nTotala Timre: `{voicedays}` dayz, `{voicehours}` hous, `{voiceminutes}` minutes, `{voiceseconds}` secunds.\nInl Chazzel: {channelmention}\n### Invi\nRe: {invitesreal}\nTo: {invitestotal}\n### Commanz Stuts\n\n{commandstatsstring}\n\nNoteE:\nXP is never!!! equal to your messae stuts.\nVoice stuts \"Jin\" is only updated after you lefz an chzzel."
         },
         "other-stats-response": {
-            "description": "### Message:\nUnt: `{count}`\nWors: `{words}`\nHars: `{chars}`\n### Voixe:\nJins: `{joins}`\nSitchs: `{switchs}`\nTotala Timre: `{voicedays}` dayz, `{voicehours}` hous, `{voiceminutes}` minutes, `{voiceseconds}` secunds.\nInl Chazzel: {channelmention}\n### Invi\nRe: {invitesreal}\nTo: {invitestotal}\n### Commanz Stuts\n\n{commandstatsstring}\n\nNoteE:\nXP is never!!! equal to hi/he messe stuts.\nVoic stut \"Jin\" is only UUdated after hese/sese lefz an-some chazzel."
+            "description": "### Mes:\nUnt: `{count}`\nWors: `{words}`\nHars: `{chars}`\n### Voixe:\nJins: `{joins}`\nSitchs: `{switchs}`\nTotala Timre: `{voicedays}` dayz, `{voicehours}` hous, `{voiceminutes}` minutes, `{voiceseconds}` secunds.\nInl Chazzel: {channelmention}\n### Invi\nRe: {invitesreal}\nTo: {invitestotal}\n### Commanz Stuts\n\n{commandstatsstring}\n\nNoteE:\nXP is never!!! equal to hi/hr messe stuts.\nVoic stut \"Jin\" is only UUdated after hese/sese lefz an-some chazzel."
         },
         "this-bot-stats": {
             "description": "### Well, no noti doi dise.\nMaybe try a real `user`"
         }
     },
     "leaderboard": {
-        "username": "Usarnaem",
+        "username": "Usar",
         "level": "Levolo.",
-        "xp": "Xp-eo",
+        "xp": "eXxp",
         "board": {
-            "title": "Leedurboard",
+            "title": "Leadurboarr",
             "description": "{stringlist}"
         },
-        "left-server": "Left teh Servr"
+        "left-server": "Left eh Serrvr"
     },
     "logs": {
         "select-menu-placholder": "Loges",
         "btn-back": "Previs",
-        "btn-next": "Nextus",
+        "btn-next": "Nex",
         "btn-skip": "Go 2 last",
         "btn-print": "Printa",
         "text-old-logs": "Old Logz",
@@ -165,20 +134,20 @@
             "description": "{list}"
         },
         "list-logs-empty": {
-            "title": "No logz availabul"
+            "title": "No logz availab"
         },
         "not-found": {
             "title": "Cannot find any logz for runId: {runid}."
         },
         "print-out": {
             "title": "Yo printa",
-            "description": "Her is yo printa in se format .txt fatt gott atrything."
+            "description": "Her is yo printa in se format .txt tht i everythk."
         }
     },
     "mydata": {
         "your-data": {
             "title": "We gotaaa your Dat",
-            "description": "dis jason filer containZ dall tfe infortation wes havve saveddd aout yor in DB."
+            "description": "Dis JAZZON filt containZ al thfe infortation wes havve safe."
         }
     },
     "git": {
