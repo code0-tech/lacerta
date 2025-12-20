@@ -96,7 +96,9 @@ const componentHandlers = {
     }
 };
 
-const execute = async (interaction, client, guild, member, lang) => {
+const execute = async (dcInteraction) => {
+    const { interaction, client, member, guild, lang } = dcInteraction;
+
     await DC.defer(interaction);
     await renderMainMenu(interaction, member, lang);
 };

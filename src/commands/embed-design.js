@@ -22,12 +22,15 @@ const data = new SlashCommandBuilder()
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
 
-const execute = async (interaction, client, guild, member, lang) => {
-  await DC.defer(interaction);
+const execute = async (dcInteraction) => {
+    const { interaction, client, member, guild, lang } = dcInteraction;
 
+  await DC.defer(interaction);
+  
 };
 
 const executeComponent = async (interaction, client, guild, buttonData, member, lang) => {
+  
   await DC.defer(interaction);
 
 

@@ -59,7 +59,9 @@ const sendMessage = async (interaction, member, lang, data) => {
         .interactionResponse(interaction);
 };
 
-const execute = async (interaction, client, guild, member, lang) => {
+const execute = async (dcInteraction) => {
+    const { interaction, client, member, guild, lang } = dcInteraction;
+
     await DC.defer(interaction);
 
     const limit = interaction.options.getInteger('limit') ?? config.commands.leaderboard.baselistlimit;

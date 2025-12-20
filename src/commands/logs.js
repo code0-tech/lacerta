@@ -234,7 +234,9 @@ const findAndExecuteSubCommand = (subCommand, ...args) => {
     }
 };
 
-const execute = async (interaction, client, guild, member, lang) => {
+const execute = async (dcInteraction) => {
+    const { interaction, client, member, guild, lang } = dcInteraction;
+
     await DC.defer(interaction);
 
     const results = await MongoDb.aggregate(ENUMS.DCB.LOGS, [

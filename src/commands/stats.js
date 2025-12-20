@@ -117,7 +117,9 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
     }
 };
 
-const execute = async (interaction, client, guild, member, lang) => {
+const execute = async (dcInteraction) => {
+    const { interaction, client, member, guild, lang } = dcInteraction;
+
     await DC.defer(interaction);
 
     const userIdToCheck = interaction.options.getMember('user')?.user?.id ?? member.user.id;
