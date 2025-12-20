@@ -29,15 +29,13 @@ const setupTimer = (channelId, title, time, client, eventConfig) => {
 
                 const placeholders = { title, minutesRemaining: timeInMinutes };
 
-                const descriptionArray = eventConfig.embed.descriptions[timeInMinutes] ?? eventConfig.embed.descriptions.default;
-
-
-                // const descriptionString = 
+                const descriptionArray = (eventConfig.embed.descriptions[timeInMinutes] ?? eventConfig.embed.descriptions.default);
+                const descriptionString = descriptionArray.at(Math.floor(Math.random() * descriptionArray.length));
 
                 const embedMessage = new Embed()
                     .setTitle(replacePlaceHolders(eventConfig.embed.title, placeholders))
                     .setContent(`<@&${config.roles[eventConfig.embed.mention]}>`)
-                    .setDescription(replacePlaceHolders(eventConfig.embed.description, placeholders))
+                    .setDescription(replacePlaceHolders(descriptionString, placeholders))
                     .setColor(COLOR.INFO);
 
                 embedMessage.responseToChannel(channelId, client);
