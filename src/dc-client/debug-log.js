@@ -5,7 +5,7 @@ const setup = (client) => {
     if (!global.isDevelopment) return;
 
     client.on('debug', (message) => {
-        if (message.includes('Remaining')) {
+        if (message.includes(Constants.REGEX._SINGLE_STRING.DEBUG.SESSION_LIMIT)) {
 
             const match = message.match(Constants.REGEX.DEBUG.SESSION_LIMIT_INFORMATION);
 
@@ -17,7 +17,7 @@ const setup = (client) => {
             }
         }
 
-        if (message.includes('Heartbeat acknowledged')) {
+        if (message.includes(Constants.REGEX._SINGLE_STRING.DEBUG.LATENCY)) {
 
             const match = message.match(Constants.REGEX.DEBUG.API_LATENCY);
 
