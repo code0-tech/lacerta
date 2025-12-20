@@ -47,7 +47,7 @@ const start = async (args) => {
 
     client.once(Events.ClientReady, readyClient => {
 
-        require('./src/dc-guild/discord-fetch').fetch(client);
+        require('./src/dc-guild/fetch-channels').fetch(client);
 
         require('./src/interactions/load-interactions').load(client);
 
