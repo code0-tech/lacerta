@@ -66,6 +66,9 @@ class Constants {
                 },
                 get FILE_CABINET() {
                     return '🗄️'
+                },
+                get GLOBE() {
+                    return '🌐'
                 }
             },
             get EPOCH_OFFSET() {
