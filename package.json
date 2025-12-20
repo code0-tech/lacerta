@@ -1,6 +1,6 @@
 {
   "name": "codezero",
-  "version": "5.6.4",
+  "version": "6.0.0",
   "description": "Lacerta our CodeZero Discord Bot, more information inside the README",
   "main": "index.js",
   "type": "commonjs",
