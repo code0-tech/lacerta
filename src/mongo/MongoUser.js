@@ -304,7 +304,9 @@ class MongoUser {
 class MongoUserConsts {
     static get FLAGS() {
         return {
-            INVITE_GIFT_RECEIVED: 'invitesGiftReceived'
+            INVITE_GIFT_RECEIVED: 'invitesGiftReceived',
+            PRIVACY_SHOW_GLOBAL_STATS: 'privacyShowGlobalStats',
+            REMOVED_DATA: 'removedData',
         }
     }
     static get INVITES() {
