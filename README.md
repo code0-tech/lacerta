@@ -14,6 +14,7 @@ CodeZero is a Discord bot developed in JavaScript, utilizing the discord.js clie
   - XP statistics
   - Message count statistics
   - Command usage data
+  - Flags
 #
 
 ## Main Interactions
@@ -74,12 +75,12 @@ Real Example:
 ```json
 {
   "id": "380808844093292555",
-  "rawxp": 1612,
+  "rawxp": 1921,
   "stats": {
     "messages": {
-      "words": 4932,
-      "chars": 25130,
-      "count": 1066
+      "words": 4939,
+      "chars": 25152,
+      "count": 1071
     },
     "voice": {
       "joins": 131,
@@ -87,60 +88,70 @@ Real Example:
       "time": 169602
     },
     "invites": {
-      "total": 1,
-      "real": 1,
+      "total": 0,
+      "real": 0,
       "usersInvited": [
         {
           "id": "703586032578199641",
-          "time": 1765912177218
+          "time": {
+            "$numberLong": "1765912177218"
+          }
         }
       ]
     }
   },
   "commandstats": {
     "debug": {
-      "command": 83,
+      "command": 85,
       "button": 22,
       "selectmenu": 15
     },
     "leaderboard": {
-      "command": 23
+      "command": 25
     },
     "stats": {
-      "command": 67
+      "command": 81
     },
     "logs": {
-      "command": 29,
-      "button": 83
+      "command": 35,
+      "button": 98
     },
     "logs list": {
-      "selectmenu": 20
+      "selectmenu": 25
     },
     "links": {
       "command": 2
     },
     "open-contributor": {
-      "command": 11
-    },
-    "mydata": {
       "command": 12
     },
+    "mydata": {
+      "command": 13
+    },
     "git": {
-      "autocomplete": 255,
-      "command": 127
+      "autocomplete": 257,
+      "command": 129
     },
     "logs show": {
-      "button": 7
+      "button": 8
     },
     "ticket": {
       "command": 7,
       "button": 13
     },
     "_application": {
-      "button": 12
+      "button": 19
     },
     "rank": {
-      "command": 84
+      "command": 92
+    },
+    "settings": {
+      "command": 35,
+      "selectmenu": 60,
+      "button": 16
+    },
+    "contributor": {
+      "command": 1
     }
   },
   "flags": {
@@ -149,7 +160,7 @@ Real Example:
 }
 ```
 
-Last MongoDB structure update: 17.12.2025
+Last MongoDB structure update: 20.12.2025
 
 Tip: You can mention a Discord user by their ID using `<@user_id>`.
 
@@ -176,16 +187,16 @@ Files located in `./_app/*` are for Discord server setup (e.g., images).
 
 The bot is fully functional with the following package versions:
 ```json
-"@discordjs/voice": "^0.18.0"     // [12.12.2025]
-"chartjs-node-canvas": "^5.0.0"   // [12.12.2025]
-"discord-simpletable": "^1.1.6"   // [12.12.2025]
-"discord.js": "^14.25.1"          // [12.12.2025]
-"dotenv": "^17.2.3"               // [12.12.2025]
-"libsodium-wrappers": "^0.7.15"   // [12.12.2025]
-"mongo": "^0.1.0"                 // [12.12.2025]
-"node-fetch": "^2.6.12"           // [12.12.2025]
-"node-schedule": "^2.1.1"         // [12.12.2025]
-"puppeteer": "^23.11.1"           // [12.12.2025]
+"@discordjs/voice": "^0.18.0"     // [20.12.2025]
+"chartjs-node-canvas": "^5.0.0"   // [20.12.2025]
+"discord-simpletable": "^1.1.6"   // [20.12.2025]
+"discord.js": "^14.25.1"          // [20.12.2025]
+"dotenv": "^17.2.3"               // [20.12.2025]
+"libsodium-wrappers": "^0.7.15"   // [20.12.2025]
+"mongo": "^0.1.0"                 // [20.12.2025]
+"node-fetch": "^2.6.12"           // [20.12.2025] (@latest 3.3.2)
+"node-schedule": "^2.1.1"         // [20.12.2025]
+"puppeteer": "^23.11.1"           // [20.12.2025] (@latest 24.34.0) - is currently not used and already outdated
 ```
 
 Tips:
