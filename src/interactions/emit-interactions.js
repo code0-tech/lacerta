@@ -67,7 +67,16 @@ const handleInteraction = async (interaction, client, handler, handlerType) => {
 const commandHandler = async (interaction, client, guild, member, lang) => {
     const command = client.commands.get(interaction.commandName);
     if (!command) return;
-    await command.execute(interaction, client, guild, member, lang);
+
+    const dcInteraction = {
+        interaction,
+        client,
+        guild,
+        member,
+        lang
+    }
+
+    await command.execute(dcInteraction);
 };
 
 const buttonHandler = async (interaction, client, guild, member, lang) => {
@@ -75,7 +84,17 @@ const buttonHandler = async (interaction, client, guild, member, lang) => {
     const buttonCommand = client.components.get(buttonData.id);
     if (!buttonCommand) return;
 
-    await buttonCommand.executeComponent(interaction, client, guild, member, lang, buttonData);
+    const dcInteraction = {
+        interaction,
+        client,
+        guild,
+        member,
+        lang,
+        buttonData,
+        componentData: buttonData
+    }
+
+    await buttonCommand.executeComponent(dcInteraction);
 };
 
 const selectMenuHandler = async (interaction, client, guild, member, lang) => {
@@ -83,13 +102,32 @@ const selectMenuHandler = async (interaction, client, guild, member, lang) => {
     selectMenuData.selected = interaction.values[0];
     const selectMenuCommand = client.components.get(selectMenuData.id);
     if (!selectMenuCommand) return;
-    await selectMenuCommand.executeComponent(interaction, client, guild, member, lang, selectMenuData);
+
+    const dcInteraction = {
+        interaction,
+        client,
+        guild,
+        member,
+        lang,
+        componentData: selectMenuData
+    }
+
+    await selectMenuCommand.executeComponent(dcInteraction);
 };
 
 const autoCompleteHandler = async (interaction, client, guild, member, lang) => {
     const command = interaction.client.commands.get(interaction.commandName);
     if (!command || !command.autoComplete) return;
-    await command.autoComplete(interaction, client, guild, member, lang);
+
+    const dcInteraction = {
+        interaction,
+        client,
+        guild,
+        member,
+        lang
+    }
+
+    await command.autoComplete(dcInteraction);
 };
 
 const setup = (client) => {
