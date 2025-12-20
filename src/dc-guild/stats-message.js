@@ -30,8 +30,7 @@ const checkIfValid = async (msg) => {
         return { inValid, info: info };
     }
 
-    const repeatedChars = /(.)\1{3,}/;
-    if (repeatedChars.test(msg.content)) {
+    if (Constants.REGEX.MESSAGE_CHECKS.REPEATED_CHARS.test(msg.content)) {
         info.push('Unusual character repetition');
         inValid = true;
     }

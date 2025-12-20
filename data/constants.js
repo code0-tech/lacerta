@@ -287,6 +287,13 @@ class Constants {
 
     static get REGEX() {
         return {
+            get MESSAGE_CHECKS() {
+                return {
+                    get REPEATED_CHARS() {
+                        return /(.)\1{3,}/;
+                    }
+                }
+            },
             get _SINGLE_STRING() {
                 return {
                     get DEBUG() {
