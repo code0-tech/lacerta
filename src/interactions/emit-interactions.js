@@ -1,23 +1,10 @@
 const { Embed, COLOR } = require('./../models/Embed');
 const Constants = require('./../../data/constants');
 const { MongoUser } = require('../mongo/MongoUser');
+const DcButtons = require('../singleton/DcButtons');
 const { language } = require('./language-check');
 const { Events } = require('discord.js');
 const DC = require('./../singleton/DC');
-
-
-const extractIdData = (inputString) => {
-    const parts = inputString.split('*');
-    const id = parts[0];
-    const result = { id };
-
-    for (let i = 1; i < parts.length; i++) {
-        const [key, value] = parts[i].split('=');
-        result[key] = isNaN(value) ? value : Number(value);
-    }
-
-    return result;
-};
 
 const executionError = (interaction, info) => {
     if (interaction.deferred || interaction.replied) {
@@ -84,7 +71,7 @@ const commandHandler = async (interaction, client, guild, member, lang) => {
 };
 
 const buttonHandler = async (interaction, client, guild, member, lang) => {
-    const buttonData = extractIdData(interaction.customId);
+    const buttonData = DcButtons.decodeString(interaction.customId);
     const buttonCommand = client.components.get(buttonData.id);
     if (!buttonCommand) return;
 
@@ -92,7 +79,7 @@ const buttonHandler = async (interaction, client, guild, member, lang) => {
 };
 
 const selectMenuHandler = async (interaction, client, guild, member, lang) => {
-    const selectMenuData = extractIdData(interaction.customId);
+    const selectMenuData = DcButtons.decodeString(interaction.customId);
     selectMenuData.selected = interaction.values[0];
     const selectMenuCommand = client.components.get(selectMenuData.id);
     if (!selectMenuCommand) return;
