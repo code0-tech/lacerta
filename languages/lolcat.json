@@ -119,10 +119,10 @@
         "selectmenu": "sms",
         "no-command-executed": "No Commadzz wer execated.",
         "own-stats-response": {
-            "description": "### Message:\nUnt: `{count}`\nWors: `{words}`\nHars: `{chars}`\n### Voixe:\nJins: `{joins}`\nSitchs: `{switchs}`\nTotala Timre: `{voicedays}` dayz, `{voicehours}` hous, `{voiceminutes}` minutes, `{voiceseconds}` secunds.\nInl Chazzel: {channelmention}\n\n### Commanz Stuts\n\n{commandstatsstring}\n\nNoteE:\nXP is never!!! equal to your messae stuts.\nVoice stuts \"Jin\" is only updated after you lefz an chzzel."
+            "description": "### Message:\nUnt: `{count}`\nWors: `{words}`\nHars: `{chars}`\n### Voixe:\nJins: `{joins}`\nSitchs: `{switchs}`\nTotala Timre: `{voicedays}` dayz, `{voicehours}` hous, `{voiceminutes}` minutes, `{voiceseconds}` secunds.\nInl Chazzel: {channelmention}\n### Invi\nRe: {invitesreal}\nTo: {invitestotal}\n### Commanz Stuts\n\n{commandstatsstring}\n\nNoteE:\nXP is never!!! equal to your messae stuts.\nVoice stuts \"Jin\" is only updated after you lefz an chzzel."
         },
         "other-stats-response": {
-            "description": "### Message:\nUnt: `{count}`\nWors: `{words}`\nHars: `{chars}`\n### Voixe:\nJins: `{joins}`\nSitchs: `{switchs}`\nTotala Timre: `{voicedays}` dayz, `{voicehours}` hous, `{voiceminutes}` minutes, `{voiceseconds}` secunds.\nInl Chazzel: {channelmention}\n\n### Commanz Stuts\n\n{commandstatsstring}\n\nNoteE:\nXP is never!!! equal to hi/he messe stuts.\nVoic stut \"Jin\" is only UUdated after hese/sese lefz an-some chazzel."
+            "description": "### Message:\nUnt: `{count}`\nWors: `{words}`\nHars: `{chars}`\n### Voixe:\nJins: `{joins}`\nSitchs: `{switchs}`\nTotala Timre: `{voicedays}` dayz, `{voicehours}` hous, `{voiceminutes}` minutes, `{voiceseconds}` secunds.\nInl Chazzel: {channelmention}\n### Invi\nRe: {invitesreal}\nTo: {invitestotal}\n### Commanz Stuts\n\n{commandstatsstring}\n\nNoteE:\nXP is never!!! equal to hi/he messe stuts.\nVoic stut \"Jin\" is only UUdated after hese/sese lefz an-some chazzel."
         },
         "this-bot-stats": {
             "description": "### Well, no noti doi dise.\nMaybe try a real `user`"
@@ -195,5 +195,24 @@
             "description": "{table}\n\n`Totalz commits: {total}`\n`Timespanda: {timestart} untal {timeend}`"
         }
     },
-    "settings": {}
+    "settings": {
+        "select-menu-placeholder": "Setter cates",
+        "btn-back": "Back 2 Main Men",
+        "text-current-language": "Your curr eent lang",
+        "text-current-language-none": "Nada",
+        "main-page": {
+            "title": "⚙️ CodeZero cord Serv System Insettings",
+            "description": "Seleter the setter you wana change."
+        },
+        "settings-language-setup": {
+            "title": "🌐 Lang Rol Configer",
+            "description": "Please sezer the lang tht shoul bed rcogniked as the priema lang.\n\n**Curr lang:** {currentRole}"
+        },
+        "settings-language-saved-success": {
+            "title": "✅ Sav",
+            "description": "You new lang {role}, new mesges in that lang, not all command have lang other thann english..."
+        },
+        "role-select-placeholder": "Selt en lang",
+        "menu-text-language": "Languuge"
+    }
 }

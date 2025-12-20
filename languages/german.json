@@ -119,10 +119,10 @@
         "selectmenu": "sm",
         "no-command-executed": "Keine Commands wurden ausgeführt.",
         "own-stats-response": {
-            "description": "### Nachrichten:\nAnzahl: `{count}`\nWörter: `{words}`\nZeichen: `{chars}`\n### Sprache:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nInsgesamt: `{voicedays}` Tage, `{voicehours}` Stunden, `{voiceminutes}` Minuten, `{voiceseconds}` Sekunden.\nIn Kanal: {channelmention}\n\n### Command Statistiken\n\n{commandstatsstring}\n\nNote:\nXP entspricht niemals deiner Anzahl an Nachrichten.\nVoice Statistik \"Join\" wird erst aktualisiert, nachdem du einen Kanal verlassen hast."
+            "description": "### Nachrichten:\nAnzahl: `{count}`\nWörter: `{words}`\nZeichen: `{chars}`\n### Sprache:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nInsgesamt: `{voicedays}` Tage, `{voicehours}` Stunden, `{voiceminutes}` Minuten, `{voiceseconds}` Sekunden.\nIn Kanal: {channelmention}\n### Einladungen\nReale: {invitesreal}\nInsgesamt: {invitestotal}\n\n### Command Statistiken\n\n{commandstatsstring}\n\nNote:\nXP entspricht niemals deiner Anzahl an Nachrichten.\nVoice Statistik \"Join\" wird erst aktualisiert, nachdem du einen Kanal verlassen hast."
         },
         "other-stats-response": {
-            "description": "### Nachrichten:\nAnzahl: `{count}`\nWörter: `{words}`\nZeichen: `{chars}`\n### Sprache:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nInsgesamt: `{voicedays}` Tage, `{voicehours}` Stunden, `{voiceminutes}` Minuten, `{voiceseconds}` Sekunden.\nIn Kanal: {channelmention}\n\n### Command Statistiken\n\n{commandstatsstring}\n\nNote:\nXP entspricht niemals seiner/ihrer Anzahl an Nachrichten.\nVoice Statistik \"Join\" wird erst aktualisiert, nachdem er/sie einen Kanal verlassen hat."
+            "description": "### Nachrichten:\nAnzahl: `{count}`\nWörter: `{words}`\nZeichen: `{chars}`\n### Sprache:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nInsgesamt: `{voicedays}` Tage, `{voicehours}` Stunden, `{voiceminutes}` Minuten, `{voiceseconds}` Sekunden.\nIn Kanal: {channelmention}\n### Einladungen\nReale: {invitesreal}\nInsgesamt: {invitestotal}\n\n### Command Statistiken\n\n{commandstatsstring}\n\nNote:\nXP entspricht niemals seiner/ihrer Anzahl an Nachrichten.\nVoice Statistik \"Join\" wird erst aktualisiert, nachdem er/sie einen Kanal verlassen hat."
         },
         "this-bot-stats": {
             "description": "### Nun, ich habe es nicht so mit dem sammeln von Stats.\nVersuchs mal mit einem echten `benutzer`"
@@ -195,5 +195,24 @@
             "description": "{table}\n\n`Insgesamte commits: {total}`\n`Timespan: {timestart} bis {timeend}`"
         }
     },
-    "settings": {}
+    "settings": {
+        "select-menu-placeholder": "Einstellungs Kategorien",
+        "btn-back": "Zurück zum Menu",
+        "text-current-language": "Deine aktuelle Sprache",
+        "text-current-language-none": "Keine",
+        "main-page": {
+            "title": "⚙️ CodeZero Discord Server System Einstellungen",
+            "description": "Wähle die Einstellung aus die du ändern möchtest."
+        },
+        "settings-language-setup": {
+            "title": "🌐 Sprachrollen Konfiguration",
+            "description": "Bitte wähle eine Sprache aus die du als primäre Sprache haben möchtest.\n\n**Aktuelle Sprache:** {currentRole}"
+        },
+        "settings-language-saved-success": {
+            "title": "✅ Einstellungen Gespeichert",
+            "description": "Die Sprach wurde zu {role} aktualisiert.\n\nZukünftige Nachrichten werden in der Sprache angezeigt.\n\nPS: Einige Befehle und Nachrichten sind derzeit nur auf Englisch verfügbar."
+        },
+        "role-select-placeholder": "Wähle eine Sprache aus",
+        "menu-text-language": "Sprache"
+    }
 }

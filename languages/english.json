@@ -119,10 +119,10 @@
         "selectmenu": "sm",
         "no-command-executed": "No Commands were executed.",
         "own-stats-response": {
-            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to your message stats.\nVoice stat \"Join\" is only updated after you left an channel."
+            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n### Invites\nReal: {invitesreal}\nTotal: {invitestotal}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to your message stats.\nVoice stat \"Join\" is only updated after you left an channel."
         },
         "other-stats-response": {
-            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to his/her message stats.\nVoice stat \"Join\" is only updated after he/she left an channel."
+            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n### Invites\nReal: {invitesreal}\nTotal: {invitestotal}\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to his/her message stats.\nVoice stat \"Join\" is only updated after he/she left an channel."
         },
         "this-bot-stats": {
             "description": "### Well, I'm not really into collecting stats.\nMaybe try a real `user`"
@@ -222,5 +222,24 @@
             "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`"
         }
     },
-    "settings": {}
+    "settings": {
+        "select-menu-placeholder": "Setting Categories",
+        "btn-back": "Back to Main Menu",
+        "text-current-language": "Your current Language",
+        "text-current-language-none": "None",
+        "menu-text-language": "Language",
+        "main-page": {
+            "title": "⚙️ CodeZero Discord Server System Settings",
+            "description": "Select the setting you want to change via the Dropdown menu."
+        },
+        "settings-language-setup": {
+            "title": "🌐 Language Role Configuration",
+            "description": "Please select the language that should be recognized as the primary language.\n\n**Current language:** {currentRole}"
+        },
+        "settings-language-saved-success": {
+            "title": "✅ Settings Saved",
+            "description": "The language role has been successfully updated to: {role}\n\nFuture messages will be shown in your new language.\n\nNotice: Not all commands support multiple languages yet; English is the default for missing translations."
+        },
+        "role-select-placeholder": "Select a language"
+    }
 }
