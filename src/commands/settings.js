@@ -19,7 +19,7 @@ const backButtonActionRow = (lang) => {
         .setStyle(ButtonStyle.Secondary);
 
     return new ActionRowBuilder().addComponents(backBtn)
-}
+};
 
 const renderMainMenu = async (interaction, member, lang) => {
     const selectMenu = new StringSelectMenuBuilder()
