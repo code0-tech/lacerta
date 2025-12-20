@@ -147,17 +147,6 @@ class Embed {
     }
 
     /**
-     * Set the CodeZero footer information for the embed.
-     * @param {string} text - Overwrite the text of the footer.
-     * @param {string} [iconURL] - Overwrite the URL of the footer's icon.
-     */
-    /* addCodeZeroFooter(text = 'CodeZero', iconURL = config.embeds.avatarurl) {
-        this._embed.setFooter({ text, iconURL });
-        return this;
-    } */
-    // unused function & config.embeds.avatarurl is invalid
-
-    /**
      * Used by .addContext().
      */
     _replacePlaceholders(template, data) {
@@ -283,7 +272,7 @@ class Embed {
     }
 
     /** 
-    * @param {boolean} [pin=true] - Whether to pin the sent message (default: false).
+    * @param {boolean} [pin=true] - Whether to pin the sent message (default: false), works with .responseToChannel only.
     */
     setPin(pin = true) {
         this._pin = pin;
