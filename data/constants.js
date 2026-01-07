@@ -98,6 +98,28 @@ class Constants {
         }
     }
 
+    static get NODE() {
+        return {
+            get PLATFROM() {
+                return {
+                    get WINDOWS() {
+                        return 'win32'
+                    }
+                }
+            },
+            get ENV() {
+                return {
+                    get PRODUCTION() {
+                        return 'server.env'
+                    },
+                    get DEVELOPMENT() {
+                        return '.env'
+                    }
+                }
+            }
+        }
+    }
+
     static get CONSOLE() {
         return {
             get GOOD() {

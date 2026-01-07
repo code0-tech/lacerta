@@ -9,10 +9,10 @@ const start = async (args = {}) => {
     const dotenv = require('dotenv');
     const os = require('os');
 
-    const isServer = os.platform() !== 'win32';
+    const isServer = os.platform() !== Constants.NODE.PLATFROM.WINDOWS;
     global.isDevelopment = !isServer;
 
-    dotenv.config({ path: global.isDevelopment ? '.env' : 'server.env' });
+    dotenv.config({ path: global.isDevelopment ? Constants.NODE.ENV.DEVELOPMENT : Constants.NODE.ENV.PRODUCTION });
 
     global.mainDir = __dirname;
     global.mongoClient = null;
@@ -56,8 +56,6 @@ const start = async (args = {}) => {
 
         require('./src/dc-client/client-status').start(client);
 
-        console.log(`\nCodeZero Discord Client ready => ${readyClient.user.tag}`, Constants.CONSOLE.GOOD);
-
         require('./src/dc-guild/stats-message').start(client);
         require('./src/dc-guild/stats-voice-channel').start(client);
 
@@ -70,6 +68,8 @@ const start = async (args = {}) => {
         require('./src/dc-guild/git-rank').setup(client);
 
         require('./src/dc-guild/event-prereminder').setupEventMessages(client);
+
+        console.log(`\nCodeZero Discord Client ready => ${readyClient.user.tag}`, Constants.CONSOLE.GOOD);
     });
 
     require('./src/dc-client/debug-log').setup(client);
@@ -77,4 +77,8 @@ const start = async (args = {}) => {
     client.login(process.env.TOKEN);
 };
 
-start();
+start(
+    {
+        // withPuppeteer: true
+    }
+);
