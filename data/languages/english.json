@@ -105,7 +105,17 @@
             "title": "Leaderboard",
             "description": "{stringlist}"
         },
-        "left-server": "Left the Server"
+        "loading": {
+            "title": "Leaderboard is loading"
+        },
+        "left-server": "Left the Server",
+        "messages": "Messages",
+        "voice_time": "Voice Time",
+        "invites": "Invites",
+        "days": "d",
+        "hours": "h",
+        "minutes": "m",
+        "seconds": "s"
     },
     "_application": {
         "#btn-closed-team": "Apply as Closed Team",

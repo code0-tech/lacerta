@@ -105,7 +105,17 @@
             "title": "Leadurboarr",
             "description": "{stringlist}"
         },
-        "left-server": "Left eh Serrvr"
+        "left-server": "Left eh Serrvr",
+        "loading": {
+            "title": "Leadurboarr loade"
+        },
+        "messages": "Messf",
+        "voice_time": "voic imet",
+        "invites": "invit",
+        "days": "ddddsay",
+        "hours": "hhrr",
+        "minutes": "mmio",
+        "seconds": "sop"
     },
     "logs": {
         "select-menu-placholder": "Loges",

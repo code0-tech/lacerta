@@ -105,7 +105,17 @@
             "title": "Leaderboard",
             "description": "{stringlist}"
         },
-        "left-server": "Server verlassen"
+        "left-server": "Server verlassen",
+        "loading": {
+            "title": "Leaderboard lädt"
+        },
+        "messages": "Nachrichten",
+        "voice_time": "Sprachzeit",
+        "invites": "Einladungen",
+        "days": "d",
+        "hours": "h",
+        "minutes": "m",
+        "seconds": "s"
     },
     "logs": {
         "select-menu-placholder": "Logs",
