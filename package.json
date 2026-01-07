@@ -1,13 +1,13 @@
 {
   "name": "codezero",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "Lacerta our CodeZero Discord Bot, more information inside the README",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "update": "node ./slash-command-updater.js",
+    "update": "node ./development/slash-command-updater.js",
     "start": "node ./index.js",
-    "editor": "node ./language-editor.js",
+    "editor": "node ./development/language-editor.js",
     "outdated": "npm outdated"
   },
   "author": "Nicusch | Nicolas Morawietz",
