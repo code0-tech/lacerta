@@ -2,7 +2,7 @@ const { loadJSONFilesFromFolder } = require('../utils/json');
 const path = require('path');
 
 const load = (client) => {
-    const folderPath = path.resolve(global.mainDir, 'languages');
+    const folderPath = path.resolve(global.mainDir, 'data', 'languages');
     loadJSONFilesFromFolder(folderPath)
         .then(jsonData => {
             client.languages = jsonData;

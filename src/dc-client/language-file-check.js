@@ -22,7 +22,7 @@ const checkLanguage = (exampleJson, langJson, langName) => {
 };
 
 const check = async () => {
-    const folderPath = path.resolve(global.mainDir, 'languages');
+    const folderPath = path.resolve(global.mainDir, 'data', 'languages');
 
     const files = await loadJSONFilesFromFolder(folderPath);
 
