@@ -5,10 +5,10 @@ const fs = require('fs');
 
 let commands = [];
 
-const commandFiles = fs.readdirSync(path.join(__dirname, 'src', 'commands')).filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync(path.join(__dirname, '..', 'src', 'commands')).filter(file => file.endsWith('.js'));
 
 commandFiles.forEach(file => {
-    const command = require(path.join(__dirname, 'src', 'commands', file));
+    const command = require(path.join(__dirname, '..', 'src', 'commands', file));
     if (command.data && command.data !== null) { // no command data aka "_"-command.
         commands.push(command.data.toJSON());
         console.log(`Register: ${command.data.name}`);

@@ -2,7 +2,7 @@ const http = require('http');
 const path = require('path');
 const fs = require('fs');
 
-const LANGUAGE_DIR = path.join(__dirname, 'languages');
+const LANGUAGE_DIR = path.join(__dirname, '..', 'data', 'languages');
 const PORT = 3000;
 
 /**
