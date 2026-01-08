@@ -1,6 +1,6 @@
 {
   "name": "codezero",
-  "version": "6.1.0",
+  "version": "6.2.3",
   "description": "Lacerta our CodeZero Discord Bot, more information inside the README",
   "main": "index.js",
   "type": "commonjs",
@@ -18,9 +18,9 @@
     "discord-simpletable": "^1.1.6",
     "discord.js": "^14.25.1",
     "dotenv": "^17.2.3",
-    "libsodium-wrappers": "^0.7.15",
+    "libsodium-wrappers": "^0.8.0",
     "mongo": "^0.1.0",
-    "node-fetch": "^2.6.12",
+    "node-fetch": "2.6.12",
     "node-schedule": "^2.1.1",
     "puppeteer": "^23.11.1"
   }
