@@ -307,6 +307,7 @@ class MongoUserConsts {
             INVITE_GIFT_RECEIVED: 'invitesGiftReceived',
             PRIVACY_SHOW_GLOBAL_STATS: 'privacyShowGlobalStats',
             REMOVED_DATA: 'removedData',
+            EMOJI_INFO_FOR_MESSAGE_XP: 'emojiInfoForMessageXp'
         }
     }
     static get INVITES() {
