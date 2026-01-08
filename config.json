@@ -212,6 +212,7 @@
             "maxlength": 100,
             "maxxp": 10,
             "xpperchar": 0.5,
+            "debugEmojiInfoTime": 5000,
             "roles": [
                 {
                     "r": 1,
