@@ -20,10 +20,10 @@ const LEADERBOARD_TYPES = {
 
 const data = new SlashCommandBuilder()
     .setName('leaderboard')
-    .setDescription('Display the leaderboard of top users.')
+    .setDescription('Display the leaderboard of top members.')
     .addStringOption(option =>
         option.setName('category')
-            .setDescription('The category to show the leaderboard for.')
+            .setDescription('Select the category the leaderboard should filter for.')
             .addChoices(
                 { name: 'XP', value: 'xp' },
                 { name: 'Messages', value: 'messages' },
@@ -31,13 +31,19 @@ const data = new SlashCommandBuilder()
                 { name: 'Invites', value: 'invites' }
             )
             .setRequired(false)
+            .setDescriptionLocalizations({
+                de: 'Suche eine Kategorie aus nach der gefiltert werden soll.',
+            })
     )
     .addIntegerOption(option =>
         option.setName('limit')
-            .setDescription('Number of users to display (1-20).')
+            .setDescription('Number of members to display (1-20).')
             .setMinValue(1)
             .setMaxValue(20)
             .setRequired(false)
+            .setDescriptionLocalizations({
+                de: 'Die Anzahl an Benutzern die Angezeigt werden soll.',
+            })
     );
 
 const listUser = async (limit, sortField) => {
