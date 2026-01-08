@@ -34,6 +34,21 @@ class Constants {
                         }
                     }
                 },
+                get NUMBERS() {
+                    return {
+                        get 0() { return '0️⃣'; },
+                        get 1() { return '1️⃣'; },
+                        get 2() { return '2️⃣'; },
+                        get 3() { return '3️⃣'; },
+                        get 4() { return '4️⃣'; },
+                        get 5() { return '5️⃣'; },
+                        get 6() { return '6️⃣'; },
+                        get 7() { return '7️⃣'; },
+                        get 8() { return '8️⃣'; },
+                        get 9() { return '9️⃣'; },
+                        get TOP10() { return '🔟'; }
+                    }
+                },
                 get COMMAND_APPLY() {
                     return '💌';
                 },
@@ -259,7 +274,6 @@ class Constants {
             }
         }
     }
-
 
     static get TIME_MULTIPLIER_MS() {
         return {
