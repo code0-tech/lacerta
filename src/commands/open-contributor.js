@@ -62,7 +62,7 @@ const execute = async (dcInteraction) => {
         .setComponents([row])
         .interactionResponse(interaction);
 
-    const resolvedAwait = await AsyncManager.awaitAsyncAction(awaitCodeId, config.commands.opencontributor.authtimeout, data.reference, true);
+    const resolvedAwait = await AsyncManager.awaitAsyncAction(awaitCodeId, config.commands.opencontributor.authTimeout, data.reference, true);
 
     if (!resolvedAwait) {
         failedMessage(interaction, client, member, lang, resolvedAwait === false ? 'error-timeout' : 'error-similar-inquiry');

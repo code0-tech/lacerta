@@ -1,7 +1,7 @@
 const Constants = require('./../../data/constants');
 const config = require('./../../config.json');
 
-const languageRoles = config.languageroles;
+const languageRoles = config.languageRoles;
 
 const language = async (fullCommandName, interaction, guild, client) => {
     const { languages } = client;

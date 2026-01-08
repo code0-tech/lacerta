@@ -149,7 +149,7 @@ const debugs = {
 
         description += `\n${lang.getText('langroles')}\n\n`;
 
-        for (const key in config.languageroles) {
+        for (const key in config.languageRoles) {
             description += `${DC.mentionRole(key)}`;
         }
 

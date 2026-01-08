@@ -5,7 +5,7 @@ const { Events } = require('discord.js');
 
 const MongoDb = new Mongo();
 
-const gitRankConfig = config.functions.gitrank;
+const gitRankConfig = config.modulesgitrank;
 
 const handleGitHubCommitMessage = async (client, msg) => {
     try {
@@ -17,8 +17,8 @@ const handleGitHubCommitMessage = async (client, msg) => {
         const matches = embedData.title.match(Constants.REGEX.GIT_WEBHOOK.COMMITS_COUNT);
         if (!matches) return;
 
-        if (gitRankConfig.users.blacklist.includes(embedData.author.name) || embedData.author.name.endsWith(gitRankConfig.users.blacklisttag)) {
-            console.log(`[Webhook Commit Filter] cant save commits for blacklist user: ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
+        if (gitRankConfig.users.blackList.includes(embedData.author.name) || embedData.author.name.endsWith(gitRankConfig.users.blackListTag)) {
+            console.log(`[Webhook Commit Filter] cant save commits for blackList user: ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
             return;
         }
 

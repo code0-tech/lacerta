@@ -111,8 +111,8 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
         if (response == null) return;
     }
 
-    if (embedMessage !== 'this-bot-stats' && config.commands.stats.uptodate15m) {
-        await waitMs(config.commands.stats.updatemessage);
+    if (embedMessage !== 'this-bot-stats' && config.commands.stats.upToDate15m) {
+        await waitMs(config.commands.stats.updateMessageDelay);
         loop(client, interaction, member, lang, embedMessage, rankMember, user, normalizedStats);
     }
 };

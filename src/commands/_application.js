@@ -7,7 +7,7 @@ const DC = require('./../singleton/DC');
 
 
 const autoRun = async (client, lang) => {
-    const messages = await DC.messagesFromChannel(client, config.serverid, config.channels.application);
+    const messages = await DC.messagesFromChannel(client, config.serverId, config.channels.application);
     const messagesIds = keyArray(messages);
 
     messagesIds.forEach(async (messageId) => {

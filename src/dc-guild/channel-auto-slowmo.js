@@ -5,7 +5,7 @@ const config = require('./../../config.json');
 
 const mongoDb = new Mongo();
 
-const channelSLIPConfig = config.functions.channelautoslowmo;
+const channelSLIPConfig = config.moduleschannelautoslowmo;
 
 let channelMessageStats = {};
 
@@ -53,7 +53,7 @@ const activateSlowmo = async (channelId, client) => {
     const channel = await DC.channelByIdOnly(channelId, client);
     DC.channelByChannelId
     if (channel) {
-        await channel.setRateLimitPerUser(channelSLIPConfig.slowmodeinseconds).catch(() => { });
+        await channel.setRateLimitPerUser(channelSLIPConfig.slowmodeInSeconds).catch(() => { });
     }
 };
 
@@ -76,7 +76,7 @@ const checkSlowmoDecay = async (client) => {
     const slowedChannels = await mongoDb.find(ENUMS.DCB.AUTO_SLOWMO_CHANNELS, { slowmode: true });
 
     for (const doc of slowedChannels) {
-        if (now - doc.lastSlipAt >= channelSLIPConfig.slowmodetime) {
+        if (now - doc.lastSlipAt >= channelSLIPConfig.slowmodeTime) {
             await disableSlowmo(doc.channelId, client);
         }
         console.log(now - doc.lastSlipAt)
@@ -89,7 +89,7 @@ const loadSlowedChannels = async (client) => {
     for (const doc of slowed) {
         const channel = await DC.channelByIdOnly(doc.channelId, client);
         if (channel) {
-            await channel.setRateLimitPerUser(channelSLIPConfig.slowmodeinseconds).catch(() => { });
+            await channel.setRateLimitPerUser(channelSLIPConfig.slowmodeInSeconds).catch(() => { });
         }
     }
 };
@@ -111,18 +111,18 @@ const updateSlip = (channelId, timeNow, client) => {
 
     let activeParticipants = 0;
     for (const userId in stats.participants) {
-        if (timeNow - stats.participants[userId].lastMessage <= channelSLIPConfig.isactiveparticipants) {
+        if (timeNow - stats.participants[userId].lastMessage <= channelSLIPConfig.isActiveParticipant) {
             activeParticipants++;
         }
     }
 
-    stats.SLIP += channelSLIPConfig.divslip * dt;
+    stats.SLIP += channelSLIPConfig.divSlip * dt;
 
-    if (activeParticipants >= channelSLIPConfig.minparticipants && stats.newMsg > 0) {
+    if (activeParticipants >= channelSLIPConfig.minParticipants && stats.newMsg > 0) {
         const msgPressure =
             stats.newMsg *
-            channelSLIPConfig.msgslip *
-            (activeParticipants * channelSLIPConfig.participantsmultiplier);
+            channelSLIPConfig.msgSlip *
+            (activeParticipants * channelSLIPConfig.participantsMultiplier);
 
         stats.SLIP += msgPressure;
     }
@@ -130,7 +130,7 @@ const updateSlip = (channelId, timeNow, client) => {
     if (stats.SLIP < 0) stats.SLIP = 0;
     stats.newMsg = 0;
 
-    if (stats.SLIP >= channelSLIPConfig.slowmoatslip) {
+    if (stats.SLIP >= channelSLIPConfig.slowmoAtSlip) {
         activateSlowmo(channelId, client);
         stats.SLIP = 0;
     }

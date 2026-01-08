@@ -37,9 +37,9 @@ const renderMainMenu = async (interaction, member, lang) => {
 };
 
 const renderLanguageRoleSettings = async (interaction, member, lang) => {
-    const currentRoleId = Object.keys(config.languageroles).find(id => DC.memberHasRoleId(member, id));
+    const currentRoleId = Object.keys(config.languageRoles).find(id => DC.memberHasRoleId(member, id));
 
-    const roleOptions = Object.entries(config.languageroles).map(([roleId, name]) => {
+    const roleOptions = Object.entries(config.languageRoles).map(([roleId, name]) => {
         const isCurrent = roleId === currentRoleId;
 
         return {
@@ -54,7 +54,7 @@ const renderLanguageRoleSettings = async (interaction, member, lang) => {
         .setPlaceholder(lang.getText('role-select-placeholder'))
         .addOptions(roleOptions);
 
-    const currentRoleName = currentRoleId ? config.languageroles[currentRoleId] : lang.getText('text-current-language-none');
+    const currentRoleName = currentRoleId ? config.languageRoles[currentRoleId] : lang.getText('text-current-language-none');
 
     await new Embed()
         .setColor(COLOR.IN_PROGRESS)
@@ -76,7 +76,7 @@ const componentHandlers = {
     language_saveRole: async (interaction, member, lang) => {
         const newRoleId = interaction.values[0];
 
-        const langRoleIds = Object.keys(config.languageroles);
+        const langRoleIds = Object.keys(config.languageRoles);
         for (const roleId of langRoleIds) {
             if (DC.memberHasRoleId(member, roleId)) {
                 await DC.memberRemoveRoleId(member, roleId);

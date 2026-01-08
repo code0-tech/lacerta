@@ -83,7 +83,7 @@ const execute = async (dcInteraction) => {
         .interactionResponse(interaction);
 
     const category = interaction.options.getString('category') ?? 'xp';
-    const limit = interaction.options.getInteger('limit') ?? config.commands.leaderboard.baselistlimit;
+    const limit = interaction.options.getInteger('limit') ?? config.commands.leaderboard.defaultListLimit;
 
     const sortField = LEADERBOARD_TYPES[category].field;
     const userList = await listUser(limit, sortField);
@@ -99,8 +99,8 @@ const execute = async (dcInteraction) => {
             ? (leadboardMember.nickname || leadboardMember.user.username)
             : `[${lang.getText('left-server')}]`;
 
-        if (username.length > config.commands.leaderboard.maxnamelength) {
-            username = username.substring(0, (config.commands.leaderboard.maxnamelength - 3)) + "...";
+        if (username.length > config.commands.leaderboard.maxNameLength) {
+            username = username.substring(0, (config.commands.leaderboard.maxNameLength - 3)) + "...";
         }
 
         let displayValue = "";

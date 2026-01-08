@@ -45,8 +45,8 @@ const loop = async (interaction, member, lang, embedMessage, rankMember, user, p
         if (response == null) return;
     }
 
-    if (embedMessage !== 'this-bot-rank' && config.commands.rank.uptodate15m) {
-        await waitMs(config.commands.rank.updatemessage);
+    if (embedMessage !== 'this-bot-rank' && config.commands.rank.upToDate15m) {
+        await waitMs(config.commands.rank.updateMessageDelay);
         loop(interaction, member, lang, embedMessage, rankMember, user, xp);
     }
 };

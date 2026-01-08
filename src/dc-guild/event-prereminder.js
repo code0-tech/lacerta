@@ -15,7 +15,7 @@ const fetchUpcomingEvents = async (guild) => {
 };
 
 const setupTimer = (channelId, title, time, client, eventConfig) => {
-    eventConfig.reminderbeforeinminutes.forEach(timeInMinutes => {
+    eventConfig.reminderBeforeInMinutes.forEach(timeInMinutes => {
         const timeNew = time - (timeInMinutes * 1000 * 60);
 
         if (timeNew > 0 && timeNew < MAX_TIMER_WINDOW_MS) {
@@ -72,7 +72,7 @@ const buildTimer = async (client, guild) => {
 
         const timeRemaining = nextDateUnix - Date.now();
 
-        const eventConfig = config.functions.eventprereminder.find(cfg => cfg.title === event.name);
+        const eventConfig = config.modules.eventprereminder.find(cfg => cfg.title === event.name);
 
         if (eventConfig) {
             const channelId = config.channels[eventConfig.channelname];
@@ -111,7 +111,7 @@ const setupChangeEventListener = (client, guild) => {
 };
 
 const setupEventMessages = async (client) => {
-    const guild = await guildById(config.serverid, client);
+    const guild = await guildById(config.serverId, client);
 
     await buildTimer(client, guild);
     setupChangeEventListener(client, guild);

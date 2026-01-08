@@ -303,7 +303,7 @@ const autoCompleteUsers = async (focusedValue, single = false) => {
 };
 
 const daysBeforeTimeAutoCompleteArray = () => {
-    return config.commands.git.autocomplete.daysbefore.map(obj => {
+    return config.commands.git.autocomplete.daysBefore.map(obj => {
         const date = new Date();
         date.setDate(date.getDate() - obj.days);
         date.setHours(0, 0, 0, 0);

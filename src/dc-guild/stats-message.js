@@ -62,12 +62,12 @@ const checkIfValid = async (msg) => {
 };
 
 const updateMemberLevelRole = async (member, level) => {
-    const rolePaket = config.functions.rank.roles.find(r => r.r === level);
+    const rolePaket = config.modulesrank.roles.find(r => r.r === level);
 
     if (!rolePaket) return;
 
     const targetRoleId = rolePaket.roleId;
-    const allRankRoleIds = config.functions.rank.roles.map(r => r.roleId);
+    const allRankRoleIds = config.modulesrank.roles.map(r => r.roleId);
 
     allRankRoleIds
         .filter(rankRoleId => DC.memberHasRoleId(member, rankRoleId))
@@ -79,7 +79,7 @@ const updateMemberLevelRole = async (member, level) => {
 };
 
 const channelRankUpdateMessage = async (client, user) => {
-    const guild = await DC.guildById(config.serverid, client);
+    const guild = await DC.guildById(config.serverId, client);
     const rankMember = await DC.memberById(await user.getId(), guild);
 
     const { level, neededXp } = await user.getRank();
@@ -113,15 +113,15 @@ const saveMessageStats = async (msg, mongoUser) => {
 };
 
 const saveUserXp = async (msg, mongoUser, client) => {
-    const maxLength = config.functions.rank.maxlength;
-    const maxXP = config.functions.rank.maxxp;
-    const xpPerChar = config.functions.rank.xpperchar;
+    const maxLength = config.modulesrank.maxLength;
+    const maxXp = config.modulesrank.maxXp;
+    const xpPerChar = config.modulesrank.xpPerChar;
 
     const adjustedLength = Math.min(msg.content.length, maxLength);
 
     let xp = Math.floor(adjustedLength * xpPerChar);
 
-    xp = Math.min(xp, maxXP);
+    xp = Math.min(xp, maxXp);
 
     if (xp == 0 && msg.content.length > 1) {
         xp = 1;
@@ -146,7 +146,7 @@ const saveUserXp = async (msg, mongoUser, client) => {
         await DC.reactAndAutoRemove(
             msg,
             sequence,
-            config.functions.rank.debugEmojiInfoTime
+            config.modulesrank.debugEmojiInfoTime
         );
     }
 };
