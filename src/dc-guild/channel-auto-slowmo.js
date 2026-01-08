@@ -5,7 +5,7 @@ const config = require('./../../config.json');
 
 const mongoDb = new Mongo();
 
-const channelSLIPConfig = config.moduleschannelautoslowmo;
+const channelSLIPConfig = config.modules.channelautoslowmo;
 
 let channelMessageStats = {};
 

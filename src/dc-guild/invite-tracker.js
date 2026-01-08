@@ -7,13 +7,13 @@ const DC = require('../singleton/DC');
 const inviteCache = new Collection();
 
 const checkForInvitesGift = async (inviterMongo, inviterId, invitedId, client) => {
-    if ((await inviterMongo.getInviteStats()).real < config.modulesinvites.actions.gift.realInvites) return;
+    if ((await inviterMongo.getInviteStats()).real < config.modules.invites.actions.gift.realInvites) return;
 
     if (await inviterMongo.getFlag(MongoUserConsts.FLAGS.INVITE_GIFT_RECEIVED) == true) return;
 
     const member = await DC.codeZeroMemberById(inviterId, client);
 
-    DC.memberAddRoleId(member, config.modulesinvites.actions.gift.roleId);
+    DC.memberAddRoleId(member, config.modules.invites.actions.gift.roleId);
 
     inviterMongo.setFlag(MongoUserConsts.FLAGS.INVITE_GIFT_RECEIVED, true);
 

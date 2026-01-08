@@ -113,9 +113,9 @@ const saveMessageStats = async (msg, mongoUser) => {
 };
 
 const saveUserXp = async (msg, mongoUser, client) => {
-    const maxLength = config.modulesrank.maxLength;
-    const maxXp = config.modulesrank.maxXp;
-    const xpPerChar = config.modulesrank.xpPerChar;
+    const maxLength = config.modules.rank.maxLength;
+    const maxXp = config.modules.rank.maxXp;
+    const xpPerChar = config.modules.rank.xpPerChar;
 
     const adjustedLength = Math.min(msg.content.length, maxLength);
 
@@ -146,7 +146,7 @@ const saveUserXp = async (msg, mongoUser, client) => {
         await DC.reactAndAutoRemove(
             msg,
             sequence,
-            config.modulesrank.debugEmojiInfoTime
+            config.modules.rank.debugEmojiInfoTime
         );
     }
 };
