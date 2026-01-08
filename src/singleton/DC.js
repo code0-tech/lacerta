@@ -332,6 +332,65 @@ class DC {
 
         return userThreads;
     }
+
+    // Emojis & Reactions
+    /**
+     * React to a message with a sequence of emojis (waits for each to maintain order)
+     */
+    static async addEmojiSequence(message, emojis) {
+        const applied = [];
+        try {
+            for (const emoji of emojis) {
+                await message.react(emoji);
+                applied.push(emoji);
+            }
+            console.log(`[DC] added emojis`, Constants.CONSOLE.GOOD);
+        } catch (err) {
+            console.log(`[DC.addEmojiSequence] Error adding: ${err.message}`, Constants.CONSOLE.ERROR);
+        }
+        return applied;
+    }
+
+    /**
+     * Remove the bot's specific reaction from a message
+     */
+    static async removeBotReaction(message, emoji) {
+        try {
+            const reaction = message.reactions.cache.get(emoji) ||
+                await message.reactions.resolve(emoji);
+
+            if (reaction) {
+                await reaction.users.remove(message.client.user.id);
+                console.log(`[DC] remove emoji from message`, Constants.CONSOLE.GOOD);
+                return true;
+            }
+        } catch (err) {
+            // Usually occurs if message was deleted
+            return false;
+        }
+        return false;
+    }
+
+    /**
+     * Check if a message has a specific emoji reaction
+     */
+    static hasReaction(message, emoji) {
+        console.log(`[DC] check emoji on message`, Constants.CONSOLE.GOOD);
+        return message.reactions.cache.has(emoji);
+    }
+
+    /**
+     * Combined logic: React and then auto-remove after XXXX ms
+     */
+    static async reactAndAutoRemove(message, emojis, delay = 5000) {
+        const applied = await this.addEmojiSequence(message, emojis);
+
+        setTimeout(async () => {
+            for (const emoji of applied) {
+                await this.removeBotReaction(message, emoji);
+            }
+        }, delay);
+    }
 };
 
 module.exports = DC;
