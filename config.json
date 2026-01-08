@@ -16,7 +16,7 @@
             "default": "CodeZero"
         }
     },
-    "serverid": "1173625923724124200",
+    "serverId": "1173625923724124200",
     "parents": {
         "support": "1192259091679170720",
         "application": "1191668473596739685",
@@ -32,7 +32,7 @@
         "gitranks": "1262813262660108348",
         "test": "1338603231730991125"
     },
-    "languageroles": {
+    "languageRoles": {
         "1225861340686450799": "german",
         "1230517451482202192": "english",
         "1263281513076752476": "lolcat"
@@ -44,7 +44,7 @@
     },
     "status": {
         "interval": 10000,
-        "indevelopment": [
+        "development": [
             {
                 "name": "debugging",
                 "status": "online"
@@ -54,7 +54,7 @@
                 "status": "online"
             }
         ],
-        "messages": [
+        "production": [
             {
                 "name": "with JS",
                 "status": "online"
@@ -84,29 +84,29 @@
         "opencontributor": {
             "pr": 10,
             "commits": 10,
-            "authtimeout": 120000
+            "authTimeout": 120000
         },
         "ticket": {
             "timeout": 300000
         },
         "rank": {
-            "uptodate15m": true,
-            "updatemessage": 2000
+            "upToDate15m": true,
+            "updateMessageDelay": 2000
         },
         "logs": {
             "maxlist": 10
         },
         "stats": {
-            "uptodate15m": true,
-            "updatemessage": 5000
+            "upToDate15m": true,
+            "updateMessageDelay": 5000
         },
         "leaderboard": {
-            "baselistlimit": 10,
-            "maxnamelength": 20
+            "defaultListLimit": 10,
+            "maxNameLength": 20
         },
         "git": {
             "autocomplete": {
-                "daysbefore": [
+                "daysBefore": [
                     {
                         "days": 356,
                         "name": "1 Year ago"
@@ -135,32 +135,32 @@
             }
         }
     },
-    "functions": {
+    "modules": {
         "channelautoslowmo": {
-            "divslip": -2.4,
-            "msgslip": 2,
-            "participantsmultiplier": 1.5,
-            "minparticipants": 0,
-            "isactiveparticipants": 10000,
-            "slowmoatslip": 100,
-            "slowmodeinseconds": 5,
-            "slowmodetime": 900000
+            "divSlip": -2.4,
+            "msgSlip": 2,
+            "participantsMultiplier": 1.5,
+            "minParticipants": 0,
+            "isActiveParticipant": 10000,
+            "slowmoAtSlip": 100,
+            "slowmodeInSeconds": 5,
+            "slowmodeTime": 900000
         },
         "gitrank": {
             "users": {
-                "blacklist": [
+                "blackList": [
                     "renovate[bot]",
                     "Taucher2003-Bot",
                     "dependabot[bot]",
                     "code0-release-tools[bot]"
                 ],
-                "blacklisttag": "[bot]"
+                "blackListTag": "[bot]"
             }
         },
         "eventprereminder": [
             {
                 "title": "Sprint Review",
-                "reminderbeforeinminutes": [
+                "reminderBeforeInMinutes": [
                     5,
                     60
                 ],
@@ -186,7 +186,7 @@
             },
             {
                 "title": "Backlog refinement and issue management",
-                "reminderbeforeinminutes": [
+                "reminderBeforeInMinutes": [
                     5,
                     60
                 ],
@@ -209,9 +209,9 @@
             }
         ],
         "rank": {
-            "maxlength": 100,
-            "maxxp": 10,
-            "xpperchar": 0.5,
+            "maxLength": 100,
+            "maxXp": 10,
+            "xpPerChar": 0.5,
             "debugEmojiInfoTime": 5000,
             "roles": [
                 {
