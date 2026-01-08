@@ -1,6 +1,6 @@
+const { MongoUser, MongoUserConsts } = require('../mongo/MongoUser');
 const { Embed, COLOR, progressBar } = require('../models/Embed');
 const { levenshteinDistance } = require('../utils/helper');
-const { MongoUser } = require('../mongo/MongoUser');
 const Constants = require('../../data/constants');
 const config = require('../../config.json');
 const { Events } = require('discord.js');
@@ -112,7 +112,7 @@ const saveMessageStats = async (msg, mongoUser) => {
     mongoUser.updateMessageStats(count, words, chars);
 };
 
-const saveUserXp = async (msg, mongoUser) => {
+const saveUserXp = async (msg, mongoUser, client) => {
     const maxLength = config.functions.rank.maxlength;
     const maxXP = config.functions.rank.maxxp;
     const xpPerChar = config.functions.rank.xpperchar;
@@ -127,9 +127,28 @@ const saveUserXp = async (msg, mongoUser) => {
         xp = 1;
     }
 
-    console.log(`[LEVEL SYSTEM] added ${xp} xp for ${msg.author.id}`, Constants.CONSOLE.GOOD); // remove in the future (spam)
+    console.log(`[LEVEL SYSTEM] added ${xp} xp for ${msg.author.id}`, Constants.CONSOLE.GOOD);
 
     await mongoUser.updateXpBy(xp);
+
+    if ((await mongoUser.getFlag(MongoUserConsts.FLAGS.EMOJI_INFO_FOR_MESSAGE_XP)) !== true) return;
+
+    console.log(`[LEVEL SYSTEM] show xp with emojis for ${msg.author.id}`, Constants.CONSOLE.GOOD);
+
+    if (xp > 0) {
+        const xpString = xp.toString();
+        const emojiMap = Constants.DISCORD.EMOJIS.NUMBERS;
+
+        const sequence = [...xpString]
+            .map(digit => emojiMap[digit])
+            .filter(emoji => emoji !== undefined);
+
+        await DC.reactAndAutoRemove(
+            msg,
+            sequence,
+            config.functions.rank.debugEmojiInfoTime
+        );
+    }
 };
 
 const start = (client) => {
@@ -146,7 +165,7 @@ const start = (client) => {
 
         const currentLevel = (await mongoUser.getRank()).level;
 
-        await saveUserXp(msg, mongoUser);
+        await saveUserXp(msg, mongoUser, client);
 
         const newLevel = (await mongoUser.getRank()).level;
 
