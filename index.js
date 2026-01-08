@@ -9,8 +9,8 @@ const start = async (args = {}) => {
     const dotenv = require('dotenv');
     const os = require('os');
 
-    const isServer = os.platform() !== Constants.NODE.PLATFROM.WINDOWS;
-    global.isDevelopment = !isServer;
+    const isProductionServer = os.platform() !== Constants.NODE.PLATFROM.WINDOWS;
+    global.isDevelopment = !isProductionServer;
 
     dotenv.config({ path: global.isDevelopment ? Constants.NODE.ENV.DEVELOPMENT : Constants.NODE.ENV.PRODUCTION });
 
