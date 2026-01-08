@@ -11,9 +11,9 @@ const DC = require('./../singleton/DC');
 
 const data = new SlashCommandBuilder()
     .setName('open-contributor')
-    .setDescription('Use oAuth with Github to check if you can be an Open-Contributor.')
+    .setDescription('Temporary link your Github account to check if you can be an Open-Contributor.')
     .setDescriptionLocalizations({
-        de: 'Verknüpfe deinen Github Account um nachzuschauen ob du bereits ein Open-Contributor bist.',
+        de: 'Verknüpfe temporär deinen Github Account um nachzuschauen ob du bereits ein Open-Contributor bist.',
     })
 
 

@@ -94,7 +94,7 @@
             "updateMessageDelay": 2000
         },
         "logs": {
-            "maxlist": 10
+            "maxList": 10
         },
         "stats": {
             "upToDate15m": true,

@@ -62,12 +62,12 @@ const checkIfValid = async (msg) => {
 };
 
 const updateMemberLevelRole = async (member, level) => {
-    const rolePaket = config.modulesrank.roles.find(r => r.r === level);
+    const rolePaket = config.modules.rank.roles.find(r => r.r === level);
 
     if (!rolePaket) return;
 
     const targetRoleId = rolePaket.roleId;
-    const allRankRoleIds = config.modulesrank.roles.map(r => r.roleId);
+    const allRankRoleIds = config.modules.rank.roles.map(r => r.roleId);
 
     allRankRoleIds
         .filter(rankRoleId => DC.memberHasRoleId(member, rankRoleId))

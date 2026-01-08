@@ -8,7 +8,7 @@ const data = new SlashCommandBuilder()
     .setName('links')
     .setDescription('Get a list of CodeZero links.')
     .setDescriptionLocalizations({
-        de: 'Liste wichtiger CodeZero links.',
+        de: 'Liste der CodeZero links.',
     })
 
 

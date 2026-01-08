@@ -9,9 +9,9 @@ const DC = require('./../singleton/DC');
 
 const data = new SlashCommandBuilder()
     .setName('mydata')
-    .setDescription('Retrieve your Data which we store in our DB.')
+    .setDescription('Retrieve your Data which we store in our DB for Discord.')
     .setDescriptionLocalizations({
-        de: 'Erhalte deine Daten die wir über Dich gespeichert haben.',
+        de: 'Erhalte deine Daten die wir über Dich in Discord gespeichert haben.',
     })
 
 

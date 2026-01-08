@@ -21,7 +21,7 @@ const data = new SlashCommandBuilder()
         .setName('show')
         .setDescription('Show current session.')
         .setDescriptionLocalizations({
-            de: 'Aktuelle Session.',
+            de: 'Zeige die aktuelle Session.',
         })
     )
     .addSubcommand(subcommand => subcommand
@@ -72,7 +72,7 @@ const getLogsWithRange = async (runId, action, currentStart, currentEnd) => {
     if (!logFile) return {};
 
     const createdAt = convertUnixToTimestamp(logFile.created_at);
-    const maxList = config.commands.logs.maxlist;
+    const maxList = config.commands.logs.maxList;
     const totalLength = logFile.logs.length;
 
     let rangeStart = 0;
@@ -99,7 +99,7 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
     const sessionId = runId || componentData.s;
     const action = componentData?.action || 'init';
     const currentStart = componentData?.currentstart || 0;
-    const currentEnd = componentData?.currentendposition || config.commands.logs.maxlist;
+    const currentEnd = componentData?.currentendposition || config.commands.logs.maxList;
 
     if (parseInt(sessionId) == getCurrentSessionRunId()) {
         type = 'show';

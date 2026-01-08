@@ -18,9 +18,9 @@ const data = new SlashCommandBuilder()
     .addUserOption(option =>
         option
             .setName('user')
-            .setDescription('View stats for another user.')
+            .setDescription('View stats for another member.')
             .setDescriptionLocalizations({
-                de: 'Zeigt die Statistiken eines anderen Nutzers.',
+                de: 'Zeigt die Statistiken eines anderen Benutzers.',
             })
             .setRequired(false)
     );
