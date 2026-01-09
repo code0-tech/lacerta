@@ -82,7 +82,7 @@ function generateHtml(data) {
     for (const item of firstLangData) {
         const fullKey = item.fullKey;
 
-        const isSpecial = fullKey.includes('_') || fullKey.includes('#');
+        const isSpecial = fullKey.startsWith('_') || fullKey.includes('#');
         const rowClass = isSpecial ? 'class="special-key"' : '';
 
         tableRows += `<tr ${rowClass}><td>${fullKey}</td>`;
@@ -127,6 +127,31 @@ function generateHtml(data) {
             <title>Language Editor</title>
             <style>
                 /* --- DARK MODE STYLES (Retained) --- */
+                .floating-actions {
+                    position: fixed;
+                    top: 10px;
+                    left: 20px;
+                    z-index: 1000;
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                }
+
+                .save-button { 
+                    padding: 12px 25px; 
+                    background-color: #28a745; 
+                    color: white; 
+                    border: none; 
+                    border-radius: 5px; 
+                    cursor: pointer; 
+                    font-size: 1.1em; 
+                    font-weight: bold;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+                    transition: transform 0.1s, background-color 0.2s;
+                }
+                .save-button:hover { background-color: #218838; transform: scale(1.02); }
+                .save-button:active { transform: scale(0.98); }
+
                 body { 
                     font-family: sans-serif; 
                     margin: 20px; 
@@ -230,29 +255,28 @@ function generateHtml(data) {
                     }
                 });
 
-                // Run on page load to set initial size for all textareas
                 window.addEventListener('load', () => {
                     document.querySelectorAll('textarea').forEach(autoResizeTextarea);
-
-                    // Display success message on save (from previous update)
                     const params = new URLSearchParams(window.location.search);
                     if (params.get('saved') === 'true') {
                         const message = document.createElement('div');
                         message.className = 'success';
                         message.textContent = 'Languages saved successfully! 🎉';
-                        document.body.insertBefore(message, document.body.firstChild.nextSibling);
-
+                        document.body.appendChild(message);
                         setTimeout(() => {
+                            message.remove();
                             window.history.replaceState({}, document.title, window.location.pathname);
-                        }, 2000);
+                        }, 2500);
                     }
                 });
             </script>
         </head>
         <body>
-            <h1>Language Translation Editor</h1>
             <form method="POST">
-                <button type="submit">Save All Changes</button>
+                <div class="floating-actions">
+                    <button type="submit" class="save-button">💾 Save All Changes</button>
+                </div>
+
                 <table>
                     <thead>
                         <tr>
@@ -264,7 +288,6 @@ function generateHtml(data) {
                         ${tableRows}
                     </tbody>
                 </table>
-                <button type="submit">Save All Changes</button>
             </form>
         </body>
         </html>
@@ -330,3 +353,12 @@ server.listen(PORT, () => {
     console.log(`\n✅ Language Editor running at http://localhost:${PORT}`);
     console.log(`Edit your language files in the browser and save!`);
 });
+
+const quit = () => {
+    console.log('Exiting Web Editor gracefully...');
+    process.exit(0);
+};
+
+process.on('SIGINT', quit);
+process.on('SIGQUIT', quit);
+process.on('SIGTERM', quit);
