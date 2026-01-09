@@ -106,7 +106,7 @@
             "description": "{stringlist}"
         },
         "loading": {
-            "title": "Leaderboard is loading"
+            "title": "Leaderboard is loading..."
         },
         "left-server": "Left the Server",
         "messages": "Messages",

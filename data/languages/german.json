@@ -102,12 +102,12 @@
         "level": "Lvl.",
         "xp": "Xp",
         "board": {
-            "title": "Leaderboard",
+            "title": "Bestenliste",
             "description": "{stringlist}"
         },
         "left-server": "Server verlassen",
         "loading": {
-            "title": "Leaderboard lädt"
+            "title": "Bestenliste lädt..."
         },
         "messages": "Nachrichten",
         "voice_time": "Sprachzeit",
