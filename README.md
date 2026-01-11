@@ -74,19 +74,22 @@ For /open-contributer, OAuth URLs are not stored. This means authentication is r
 
 Real Example:
 ```json
+/** 
+* Paste one or more documents here
+*/
 {
   "id": "380808844093292555",
-  "rawxp": 1921,
+  "rawxp": 2389,
   "stats": {
     "messages": {
-      "words": 4939,
-      "chars": 25152,
-      "count": 1071
+      "words": 6048,
+      "chars": 32338,
+      "count": 1180
     },
     "voice": {
-      "joins": 131,
+      "joins": 138,
       "switchs": 21,
-      "time": 169602
+      "time": 199578
     },
     "invites": {
       "total": 1,
@@ -101,67 +104,28 @@ Real Example:
       ]
     }
   },
-  "commandstats": {
+  "flags": {
+    "invitesGiftReceived": false,
+    "emojiInfoForMessageXp": true
+  },
+  "commandUsage": {
     "debug": {
-      "command": 85,
-      "button": 22,
-      "selectmenu": 15
+      "command": 90,
+      "button": 24,
+      "selectmenu": 17
     },
     "leaderboard": {
-      "command": 25
+      "command": 50
     },
     "stats": {
-      "command": 81
+      "command": 96
     },
-    "logs": {
-      "command": 35,
-      "button": 98
-    },
-    "logs list": {
-      "selectmenu": 25
-    },
-    "links": {
-      "command": 2
-    },
-    "open-contributor": {
-      "command": 12
-    },
-    "mydata": {
-      "command": 13
-    },
-    "git": {
-      "autocomplete": 257,
-      "command": 129
-    },
-    "logs show": {
-      "button": 8
-    },
-    "ticket": {
-      "command": 7,
-      "button": 13
-    },
-    "_application": {
-      "button": 19
-    },
-    "rank": {
-      "command": 92
-    },
-    "settings": {
-      "command": 35,
-      "selectmenu": 60,
-      "button": 16
-    },
-    "contributor": {
-      "command": 1
-    }
-  },
-  "flags": {
-    "invitesGiftReceived": false
+    // ...
   }
 }
 ```
 
-Last MongoDB structure update: 08.01.2026
+Last MongoDB structure update: 11.01.2026
 
 Tip: You can mention a Discord user by their ID using `<@user_id>`.
 
