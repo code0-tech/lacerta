@@ -1,6 +1,5 @@
 const { Events, ChannelType } = require('discord.js');
 const { MongoUser } = require('../mongo/MongoUser');
-const { checkState } = require('../discord/voice');
 const Constants = require('../../data/constants');
 const DC = require('../singleton/DC');
 
@@ -76,7 +75,7 @@ const start = async (client) => {
     });
 
     client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
-        const { state, userId } = await checkState(oldState, newState);
+        const { state, userId } = DC.checkVoiceStateChange(oldState, newState);
 
         switch (state) {
             case 'JOIN':
