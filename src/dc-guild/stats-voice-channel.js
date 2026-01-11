@@ -6,7 +6,7 @@ const DC = require('../singleton/DC');
 let voiceChatUser = {};
 
 const updateDb = async (client, userId, packet) => {
-    const user =await new MongoUser().userById(userId);
+    const user = await new MongoUser().userById(userId);
 
     const timeInVoice = Date.now() - voiceChatUser[userId].since;
 
@@ -89,7 +89,7 @@ const start = async (client) => {
                 break;
 
             default:
-                console.log(`[Voice Stats] unkown state "${state}"`, Constants.CONSOLE.ERROR);
+                console.log(`[Voice Stats] unhandled state "${state}"`, Constants.CONSOLE.ERROR);
                 break;
         }
     });
