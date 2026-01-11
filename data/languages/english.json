@@ -94,7 +94,7 @@
             "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n### Invites\nReal: {invitesreal}\nTotal: {invitestotal}\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to his/her message stats.\nVoice stat \"Join\" is only updated after he/she left an channel."
         },
         "this-bot-stats": {
-            "description": "### Well, I'm not really into collecting stats.\nMaybe try a real `user`"
+            "description": "### Well, I'm not really into collecting stats.\nMaybe try a real Codezero `Member`."
         }
     },
     "leaderboard": {
@@ -144,11 +144,11 @@
         "btn-back": "Previous",
         "btn-next": "Next",
         "btn-skip": "Go to last",
-        "btn-print": "Print",
+        "btn-print": "Print as .txt",
         "text-old-logs": "Old Logs",
         "run-id": "run_id",
         "development": {
-            "description": "In development mode `/logs show` is not available"
+            "description": "Bot is in development mode `/logs show` is not available"
         },
         "session-logs": {
             "title": "Current logs [{totallogscount}]",
@@ -184,7 +184,7 @@
     "mydata": {
         "your-data": {
             "title": "We got your Data",
-            "description": "This JSON file contains all the information we have saved about you in our DB."
+            "description": "This JSON file contains all the information we have saved about `you` in our DB."
         }
     },
     "git": {

@@ -94,7 +94,7 @@
             "description": "### Mes:\nUnt: `{count}`\nWors: `{words}`\nHars: `{chars}`\n### Voixe:\nJins: `{joins}`\nSitchs: `{switchs}`\nTotala Timre: `{voicedays}` dayz, `{voicehours}` hous, `{voiceminutes}` minutes, `{voiceseconds}` secunds.\nInl Chazzel: {channelmention}\n### Invi\nRe: {invitesreal}\nTo: {invitestotal}\n### Commanz Stuts\n\n{commandstatsstring}\n\nNoteE:\nXP is never!!! equal to hi/hr messe stuts.\nVoic stut \"Jin\" is only UUdated after hese/sese lefz an-some chazzel."
         },
         "this-bot-stats": {
-            "description": "### Well, no noti doi dise.\nMaybe try a real `user`"
+            "description": "### Well, no noti doi dise.\ntr a CodeZero `user`."
         }
     },
     "leaderboard": {
@@ -122,7 +122,7 @@
         "btn-back": "Previs",
         "btn-next": "Nex",
         "btn-skip": "Go 2 last",
-        "btn-print": "Printa",
+        "btn-print": "Printa #txxxxt",
         "text-old-logs": "Old Logz",
         "run-id": "krun_id",
         "development": {
@@ -157,13 +157,13 @@
     "mydata": {
         "your-data": {
             "title": "We gotaaa your Dat",
-            "description": "Dis JAZZON filt containZ al thfe infortation wes havve safe."
+            "description": "Tis JAZZON .json filt containZ al thfe infortation wes havve ab ut `you`."
         }
     },
     "git": {
         "repo": "Reptor",
-        "name": "Naemx",
-        "commits": "Coitss",
+        "name": "Nam",
+        "commits": "Cots",
         "percentage": "Parcant",
         "usercommitssum": {
             "title": "Coitss Cnt tor {gituser}",

@@ -27,7 +27,7 @@
         "repo": "Repo",
         "commits": "Commits",
         "prs": "PRs",
-        "button-link": "Github authentifizierungs Link",
+        "button-link": "Github Authentifizierungs Link",
         "error-timeout": {
             "title": "Der Code ist abgelaufen",
             "description": "Der Code ist abgelaufen. Nutze /open-contributor um einen neuen Code zu generieren."
@@ -94,11 +94,11 @@
             "description": "### Nachrichten:\nAnzahl: `{count}`\nWörter: `{words}`\nZeichen: `{chars}`\n### Sprache:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nInsgesamt: `{voicedays}` Tage, `{voicehours}` Stunden, `{voiceminutes}` Minuten, `{voiceseconds}` Sekunden.\nIn Kanal: {channelmention}\n### Einladungen\nReale: {invitesreal}\nInsgesamt: {invitestotal}\n\n### Command Statistiken\n\n{commandstatsstring}\n\nNote:\nXP entspricht niemals seiner/ihrer Anzahl an Nachrichten.\nVoice Statistik \"Join\" wird erst aktualisiert, nachdem er/sie einen Kanal verlassen hat."
         },
         "this-bot-stats": {
-            "description": "### Nun, ich habe es nicht so mit dem sammeln von Stats.\nVersuchs mal mit einem echten `benutzer`"
+            "description": "### Sorry ich sammel keine Statistiken.\nVersuchs mal mit einem echten `Mitglied` von CodeZero."
         }
     },
     "leaderboard": {
-        "username": "Nutzer",
+        "username": "Benutzername",
         "level": "Lvl.",
         "xp": "Xp",
         "board": {
@@ -122,11 +122,11 @@
         "btn-back": "Vorherige",
         "btn-next": "Nächste",
         "btn-skip": "Gehe zu letzten",
-        "btn-print": "Drucken",
+        "btn-print": "Als .txt Drucken",
         "text-old-logs": "Alte Logs",
         "run-id": "run_id",
         "development": {
-            "description": "Im developer modus ist `/logs show` nicht möglich"
+            "description": "Bot is im developer modus ist `/logs show` nicht möglich"
         },
         "session-logs": {
             "title": "Aktuelle Logs [{totallogscount}]",
@@ -156,8 +156,8 @@
     },
     "mydata": {
         "your-data": {
-            "title": "Deine Daten sind bereit zum Download",
-            "description": "Diese JSON Datei beinhaltet alles was wir über dich gespeichert haben."
+            "title": "Deine Daten sind bereit.",
+            "description": "Diese JSON Datei beinhaltet alles was wir über `dich` gespeichert haben."
         }
     },
     "git": {
@@ -167,11 +167,11 @@
         "percentage": "Prozent",
         "usercommitssum": {
             "title": "Commits Count für {gituser}",
-            "description": "{table}\n\n`Insgesamte commits: {total}`\n`Timespan: {timestart} bis {timeend}`"
+            "description": "{table}\n\n`Insgesamte commits: {total}`\n`Zeitspanne: {timestart} bis {timeend}`"
         },
         "repocommitssum": {
             "title": "Commits Count für {repo}",
-            "description": "{table}\n\n`Insgesamte commits: {total}`\n`Timespan: {timestart} bis {timeend}`"
+            "description": "{table}\n\n`Insgesamte commits: {total}`\n`Zeitspanne: {timestart} bis {timeend}`"
         }
     },
     "settings": {
@@ -189,7 +189,7 @@
         },
         "settings-language-saved-success": {
             "title": "✅ Einstellungen Gespeichert",
-            "description": "Die Sprach wurde zu {role} aktualisiert.\n\nZukünftige Nachrichten werden in der Sprache angezeigt.\n\nPS: Einige Befehle und Nachrichten sind derzeit nur auf Englisch verfügbar."
+            "description": "Die Sprach wurde zu {role} aktualisiert.\n\nZukünftige Nachrichten werden in der Sprache angezeigt.\n\nPS: Einige Befehle und Nachrichten sind derzeit `nur` auf Englisch verfügbar."
         },
         "role-select-placeholder": "Wähle eine Sprache aus",
         "menu-text-language": "Sprache"
