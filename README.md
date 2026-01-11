@@ -44,6 +44,7 @@ CodeZero is a Discord bot developed in JavaScript, utilizing the discord.js clie
 | 4   | Channel Auto Slowmo                          | Finished     |      None |
 | 5   | Git rank + Chart everyday                    | Finished     |      None |
 | 6   | Invite Tracker                               | Finished     |      None |
+| 7   | Global Voice and Message count per channel   | Finished     |      None |
 
 ## Language
 
