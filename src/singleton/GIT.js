@@ -228,22 +228,4 @@ class GIT {
     }
 };
 
-const run = async () => {
-    const res = await GIT.simpleSort([
-        GIT_SETTINGS.USERS(['Taucher2003']),
-        GIT_SETTINGS.DAILY_PACKETS(true)
-    ]);
-
-    const res2 = await GIT.getAllUniqueNames([]);
-
-    const res3 = await GIT.getAllRepos([]);
-
-    console.dir(res);
-    console.dir(res2);
-    console.dir(res3);
-
-};
-
-// run();
-
 module.exports = { GIT, GIT_SETTINGS, GIT_AFTER_SORT };
