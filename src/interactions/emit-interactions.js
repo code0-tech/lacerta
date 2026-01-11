@@ -52,7 +52,7 @@ const handleInteraction = async (interaction, client, handler, handlerType) => {
             return;
         }
 
-        const user = await new MongoUser(interaction.user.id).init();
+        const user = await new MongoUser().userById(interaction.user.id)
         user.updateCommandUsage(finalCommandName, handlerType);
 
         await handler(interaction, client, guild, member, lang);
