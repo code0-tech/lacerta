@@ -9,6 +9,26 @@ class Mongo {
         return col;
     }
 
+    /**
+     * Renames fields
+     * @param {Object} where - e.g., ENUMS.DCB.USERS
+     * @param {string} oldName - e.g., "commandstats"
+     * @param {string} newName - e.g., "commandUsage"
+     */
+    async renameField(where, oldName, newName) {
+        try {
+            const col = await this._getWhere(where);
+            const result = await col.updateMany(
+                {},
+                { $rename: { [oldName]: newName } }
+            );
+            return result;
+        } catch (error) {
+            console.error(`Error renaming field from ${oldName} to ${newName}:`, error);
+            throw error;
+        }
+    }
+
     async find(where, query = {}) {
         try {
             const col = await this._getWhere(where);
