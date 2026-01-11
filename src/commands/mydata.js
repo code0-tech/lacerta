@@ -20,7 +20,7 @@ const execute = async (dcInteraction) => {
 
     await DC.defer(interaction);
 
-    const mongoUser = new MongoUser(member.user.id);
+    const mongoUser =await new MongoUser().userById(member.user.id);
 
     const jsonString = JSON.stringify(await mongoUser.getJson(), null, 2);
 

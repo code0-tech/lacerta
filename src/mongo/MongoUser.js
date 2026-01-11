@@ -1,16 +1,18 @@
+const Constants = require('../../data/constants');
 const { Mongo, ENUMS } = require('../models/Mongo');
 const MongoDb = new Mongo();
 
 class MongoUser {
 
-    constructor(id = null) {
-        this._userid = id;
+    constructor() {
+        this._userId = null;
     }
 
     /**
-     * Create new User in Db if not present.
+     * Load id for the user into the class.
      */
-    async init() {
+    async userById(userId) {
+        this._userId = userId;
         await this._loadUser();
 
         return this;
@@ -20,9 +22,10 @@ class MongoUser {
      * Create new User in Db if not present.
      */
     async _loadUser() {
-        const userData = await MongoDb.find(ENUMS.DCB.USERS, { id: this._userid });
+        const userData = await MongoDb.find(ENUMS.DCB.USERS, { id: this._userId });
 
         if (userData[0] == undefined) {
+            console.log('[MongoUser] User not found creating entries', Constants.CONSOLE.INFO);
             await this._createNewUser();
         }
     }
@@ -31,7 +34,7 @@ class MongoUser {
      * get User Packet
      */
     async _getUser() {
-        const userData = await MongoDb.find(ENUMS.DCB.USERS, { id: this._userid });
+        const userData = await MongoDb.find(ENUMS.DCB.USERS, { id: this._userId });
         return userData[0];
     }
 
@@ -40,7 +43,7 @@ class MongoUser {
      */
     async _createNewUser() {
         const userDocument = {
-            id: this._userid,
+            id: this._userId,
             rawxp: 0,
             flags: {},
             stats: {
@@ -122,21 +125,21 @@ class MongoUser {
      * update xp
      */
     async _updateXp(rawXp) {
-        return await MongoDb.update(ENUMS.DCB.USERS, { id: this._userid }, { $set: { rawxp: rawXp } });
+        return await MongoDb.update(ENUMS.DCB.USERS, { id: this._userId }, { $set: { rawxp: rawXp } });
     }
 
     /**
      * update xp by number like i++ or i+= 1
      */
     async updateXpBy(incrementXp) {
-        return await MongoDb.update(ENUMS.DCB.USERS, { id: this._userid }, { $inc: { ['rawxp']: incrementXp } });
+        return await MongoDb.update(ENUMS.DCB.USERS, { id: this._userId }, { $inc: { ['rawxp']: incrementXp } });
     }
 
     /**
      * get user id
      */
     async getId() {
-        return this._userid;
+        return this._userId;
     }
 
     /**
@@ -169,7 +172,7 @@ class MongoUser {
     async updateMessageStats(count = 0, word = 0, chars = 0) {
         return await MongoDb.update(
             ENUMS.DCB.USERS,
-            { id: this._userid },
+            { id: this._userId },
             {
                 $inc: {
                     'stats.messages.count': count,
@@ -186,7 +189,7 @@ class MongoUser {
     async updateVoiceStats(time = 0, joins = 0, switchs = 0) {
         return await MongoDb.update(
             ENUMS.DCB.USERS,
-            { id: this._userid },
+            { id: this._userId },
             {
                 $inc: {
                     'stats.voice.time': time,
@@ -203,7 +206,7 @@ class MongoUser {
     async updateCommandUsage(name, handlerType, inc = 1) {
         return await MongoDb.update(
             ENUMS.DCB.USERS,
-            { id: this._userid },
+            { id: this._userId },
             {
                 $inc: {
                     [`commandUsage.${name}.${handlerType}`]: inc
@@ -227,7 +230,7 @@ class MongoUser {
         if (!['total', 'real'].includes(type)) throw new Error("Type must be 'total' or 'real'");
         return await MongoDb.update(
             ENUMS.DCB.USERS,
-            { id: this._userid },
+            { id: this._userId },
             { $inc: { [`stats.invites.${type}`]: amount } }
         );
     }
@@ -243,7 +246,7 @@ class MongoUser {
 
         return await MongoDb.update(
             ENUMS.DCB.USERS,
-            { id: this._userid },
+            { id: this._userId },
             { $push: { 'stats.invites.usersInvited': inviteObject } }
         );
     }
@@ -254,7 +257,7 @@ class MongoUser {
     async removeInvitedMember(memberId) {
         return await MongoDb.update(
             ENUMS.DCB.USERS,
-            { id: this._userid },
+            { id: this._userId },
             { $pull: { 'stats.invites.usersInvited': { id: memberId } } }
         );
     }
@@ -284,7 +287,7 @@ class MongoUser {
     async setFlag(flagName, value) {
         return await MongoDb.update(
             ENUMS.DCB.USERS,
-            { id: this._userid },
+            { id: this._userId },
             { $set: { [`flags.${flagName}`]: value } }
         );
     }
@@ -295,7 +298,7 @@ class MongoUser {
     async removeFlag(flagName) {
         return await MongoDb.update(
             ENUMS.DCB.USERS,
-            { id: this._userid },
+            { id: this._userId },
             { $unset: { [`flags.${flagName}`]: "" } }
         );
     }

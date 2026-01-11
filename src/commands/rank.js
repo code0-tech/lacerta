@@ -64,7 +64,7 @@ const execute = async (dcInteraction) => {
     }
 
     const rankMember = await DC.memberById(userIdToCheck, guild);
-    const user = await new MongoUser(userIdToCheck).init();
+    const user = await new MongoUser().userById(userIdToCheck);
 
     loop(interaction, member, lang, embedMessage, rankMember, user);
 };

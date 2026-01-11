@@ -157,7 +157,7 @@ const start = (client) => {
         if (msg.author.bot == true) return;
         if (msg.author.system == true) return;
 
-        const mongoUser = await new MongoUser(msg.author.id).init();
+        const mongoUser = await new MongoUser().userById(msg.author.id);
 
         await saveMessageStats(msg, mongoUser);
 

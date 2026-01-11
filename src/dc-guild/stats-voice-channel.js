@@ -6,7 +6,7 @@ const DC = require('../singleton/DC');
 let voiceChatUser = {};
 
 const updateDb = async (client, userId, packet) => {
-    const user = await new MongoUser(userId).init();
+    const user =await new MongoUser().userById(userId);
 
     const timeInVoice = Date.now() - voiceChatUser[userId].since;
 

@@ -26,7 +26,7 @@ const checkForAction = (inviterMongo, inviterId, invitedId, client) => {
 
 const saveUserIfValidInvite = async (inviterId, invitedId, client) => {
     try {
-        const inviter = new MongoUser(inviterId);
+        const inviter = await new MongoUser().userById(inviterId);
         await inviter.init();
 
         const existingInviterDoc = await inviter.findOriginalInviter(invitedId);
