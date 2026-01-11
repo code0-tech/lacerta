@@ -36,7 +36,7 @@ const start = async (args = {}) => {
         ]
     });
 
-    client.setMaxListeners(0); // should be avoided, will redo the listeners
+    client.setMaxListeners(0); // hmm, should be avoided
 
     client.startDate = Date.now();
 
@@ -58,8 +58,9 @@ const start = async (args = {}) => {
 
         require('./src/dc-client/client-status').start(client);
 
-        require('./src/dc-guild/stats-message').start(client);
-        require('./src/dc-guild/stats-voice-channel').start(client);
+        require('./src/dc-guild/stats-message').start(client); // user message stats
+        require('./src/dc-guild/stats-voice-channel').start(client); // user voice stats
+        require('./src/dc-guild/guild-stats-tracker').start(client); // yearly review on Discord activity (Global)
 
         require('./src/dc-guild/webhook-commit-filter').start(client);
 
