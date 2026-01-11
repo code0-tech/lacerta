@@ -64,10 +64,10 @@ class Mongo {
         }
     }
 
-    async update(where, query = {}, update = {}) {
+    async update(where, query = {}, update = {}, options = {}) {
         try {
             const col = await this._getWhere(where);
-            const result = await col.updateOne(query, update);
+            const result = await col.updateOne(query, update, options);
             return result;
         } catch (error) {
             console.error('Error updating document:', error);
@@ -91,6 +91,7 @@ const ENUMS = {
     DCB: {
         USERS: { "db": "Code0", "t": "users" },
         LOGS: { "db": "Code0", "t": "logs" },
+        CHANNELS: { "db": "Code0", "t": "channels" },
         GITHUB_COMMITS: { "db": "Code0", "t": "githubcommits" },
         AUTO_SLOWMO_CHANNELS: { "db": "Code0", "t": "autoslowmochannels" }
     }
