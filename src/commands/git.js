@@ -125,7 +125,7 @@ const data = new SlashCommandBuilder()
                 de: 'Zeigt gesamte Git Aktivitäten für einen Nutzer als Graph an.',
             })
     ) */
-
+/* 
 const sendChart = async (description, attachment) => {
     return new Embed()
         .setColor(COLOR.INFO)
@@ -133,7 +133,7 @@ const sendChart = async (description, attachment) => {
         .setAttachment(attachment)
         .setFooter(`Stats over the last ${await totalDays()} days.`)
         .setImage(Constants.DISCORD.EMBED_IMAGE_NAME.EMBED.DEFAULT_PNG_01);
-};
+}; */
 
 const parseInteractionOptionInput = (input) => {
     return input ? input.split(',').map(user => user.trim()).filter(Boolean) : null;
@@ -175,6 +175,8 @@ const commands = {
         ]
 
         // const gitData = await GIT.simpleSort(settings);
+
+        // Lets see how long it will take me to finish this [11.01.2026] c:
 
         new Embed()
             .setTitle('Command in Progress, will be finished soon')
