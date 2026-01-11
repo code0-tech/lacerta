@@ -60,7 +60,7 @@ class MongoUser {
                     usersInvited: []
                 }
             },
-            commandstats: {}
+            commandUsage: {}
         };
 
         const mongoRes = await MongoDb.insertOne(ENUMS.DCB.USERS, userDocument);
@@ -158,9 +158,9 @@ class MongoUser {
     /**
      * returns all command stats
      */
-    async getCommandStats() {
+    async getCommandUsage() {
         const user = await this._getUser();
-        return user.commandstats;
+        return user.commandUsage;
     }
 
     /**
@@ -206,7 +206,7 @@ class MongoUser {
             { id: this._userid },
             {
                 $inc: {
-                    [`commandstats.${name}.${handlerType}`]: inc
+                    [`commandUsage.${name}.${handlerType}`]: inc
                 }
             }
         );

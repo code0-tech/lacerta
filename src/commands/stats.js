@@ -75,7 +75,7 @@ const buildCommandStatsString = (commandstats, lang) => {
 
 const loop = async (client, interaction, member, lang, embedMessage, rankMember, user, previousStats = null) => {
     const stats = await user.getStats();
-    const commandstats = await user.getCommandStats();
+    const commandstats = await user.getCommandUsage();
     const inviteStats = await user.getInviteStats();
 
     const commandStatsString = buildCommandStatsString(commandstats, lang);
