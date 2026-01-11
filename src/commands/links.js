@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Embed, COLOR } = require('./../models/Embed');
-const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
 
