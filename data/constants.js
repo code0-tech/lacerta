@@ -303,6 +303,23 @@ class Constants {
                         return -1;
                     }
                 }
+            },
+            get DEFINITIONS() {
+                return {
+                    get CHANNEL_TYPES() {
+                        return {
+                            get VOICE() {
+                                return 'voiceChannel';
+                            },
+                            get TEXT() {
+                                return 'textChannel';
+                            },
+                            get DM() {
+                                return 'dmTextChannel';
+                            }
+                        }
+                    }
+                }
             }
         }
     }
