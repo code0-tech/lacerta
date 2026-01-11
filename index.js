@@ -36,6 +36,8 @@ const start = async (args = {}) => {
         ]
     });
 
+    client.setMaxListeners(0); // should be avoided, will redo the listeners
+
     client.startDate = Date.now();
 
     require('./src/dc-client/load-languages').load(client);
