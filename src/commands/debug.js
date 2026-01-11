@@ -1,13 +1,13 @@
 const { ButtonBuilder, ButtonStyle, ActionRowBuilder, StringSelectMenuBuilder } = require("discord.js");
 const { msToHumanReadableTime, convertUnixToTimestamp, waitMs } = require('./../utils/time');
+const { Embed, progressBar, COLOR } = require('./../models/Embed');
 const { sendGitRankMessage } = require('../dc-guild/git-rank');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Embed, progressBar, COLOR } = require('./../models/Embed');
 const { PermissionFlagsBits } = require("discord.js");
 const { Mongo, ENUMS } = require('../models/Mongo');
+const DcButtons = require("../singleton/DcButtons");
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
-const DcButtons = require("../singleton/DcButtons");
 
 const MongoDb = new Mongo();
 
