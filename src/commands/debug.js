@@ -7,6 +7,7 @@ const { PermissionFlagsBits } = require("discord.js");
 const { Mongo, ENUMS } = require('../models/Mongo');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
+const DcButtons = require("../singleton/DcButtons");
 
 const MongoDb = new Mongo();
 
@@ -83,14 +84,14 @@ const debugs = {
         }));
 
         const selectMenu = new StringSelectMenuBuilder()
-            .setCustomId('debug*type=removefromdb')
+            .setCustomId(DcButtons.createString('debug', { type: 'removefromDB' }))
             .setPlaceholder(lang.getText('left-user-remove'))
             .addOptions(selectMenuOptions);
 
         const rowWithSelectMenu = new ActionRowBuilder().addComponents(selectMenu);
 
         const button = new ButtonBuilder()
-            .setCustomId(`debug*type=mongoLeftUsers`)
+            .setCustomId(DcButtons.createString('debug', { type: 'mongoLeftUsers' }))
             .setLabel(lang.getText('left-user-reload'))
             .setStyle(ButtonStyle.Primary);
 
@@ -166,7 +167,7 @@ const removeFromDB = async (interaction, client, guild, member, lang, componentD
     await MongoDb.deleteOne(ENUMS.DCB.USERS, { id: userId });
 
     const button = new ButtonBuilder()
-        .setCustomId(`debug*type=mongoLeftUsers`)
+        .setCustomId(DcButtons.createString('debug', { type: 'mongoLeftUsers' }))
         .setLabel(lang.getText('left-user-reload'))
         .setStyle(ButtonStyle.Primary);
 
@@ -195,7 +196,7 @@ const executeComponent = async (dcInteraction) => {
 
     await DC.defer(interaction);
 
-    if (componentData.type == 'removefromdb') {
+    if (componentData.type == 'removefromDB') {
         removeFromDB(interaction, client, guild, member, lang, componentData);
         return
     }
