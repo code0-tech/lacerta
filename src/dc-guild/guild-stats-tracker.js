@@ -15,7 +15,7 @@ async function updateStats(channelId, type, updateData) {
     } catch (error) {
         console.log(`[Guild-Stats] Error updating Mongo for ${channelId}`, Constants.CONSOLE.ERROR);
     }
-}
+};
 
 async function updateVoiceChannelMetadata(channel) {
     if (!channel) return;
@@ -38,7 +38,7 @@ async function updateVoiceChannelMetadata(channel) {
     };
 
     await updateStats(channel.id, Constants.MONGO.DEFINITIONS.CHANNEL_TYPES.VOICE, update);
-}
+};
 
 const start = (client) => {
     console.log(`[Guild-Stats] Build untracked channel`, Constants.CONSOLE.GOOD);
