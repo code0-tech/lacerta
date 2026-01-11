@@ -78,13 +78,13 @@ const start = async (client) => {
         const { state, userId } = DC.checkVoiceStateChange(oldState, newState);
 
         switch (state) {
-            case 'JOIN':
+            case Constants.DC_ENUMS.VOICE.CHANNEL_JOIN:
                 joinVoice(client, userId);
                 break;
-            case 'LEAVE':
+            case Constants.DC_ENUMS.VOICE.CHANNEL_LEAVE:
                 leaveVoice(client, userId);
                 break;
-            case 'SWITCH':
+            case Constants.DC_ENUMS.VOICE.CHANNEL_SWITCH:
                 switchVoice(client, userId);
                 break;
 

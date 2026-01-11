@@ -113,22 +113,43 @@ class Constants {
         }
     }
 
+    static get DC_ENUMS() {
+        return {
+            get VOICE() {
+                return {
+                    get CHANNEL_JOIN() {
+                        return 'voiceJoin';
+                    },
+                    get CHANNEL_LEAVE() {
+                        return 'voiceLeave';
+                    },
+                    get CHANNEL_SWITCH() {
+                        return 'voiceChannelSwitch';
+                    },
+                    get CHANNEL_UNCHANGED() {
+                        return 'voiceStateUnchanged';
+                    }
+                }
+            },
+        }
+    }
+
     static get NODE() {
         return {
             get PLATFROM() {
                 return {
                     get WINDOWS() {
-                        return 'win32'
+                        return 'win32';
                     }
                 }
             },
             get ENV() {
                 return {
                     get PRODUCTION() {
-                        return 'server.env'
+                        return 'server.env';
                     },
                     get DEVELOPMENT() {
-                        return '.env'
+                        return '.env';
                     }
                 }
             }
@@ -164,11 +185,11 @@ class Constants {
                 return '%';
             },
             get UNKOWN_01() {
-                return '---'
+                return '---';
 
             },
             get UNKOWN_02() {
-                return '??'
+                return '??';
             }
         }
     }
@@ -192,7 +213,7 @@ class Constants {
     static get GIT() {
         return {
             get GITHUB_SCOPES() {
-                return 'user:read read:org'
+                return 'user:read read:org';
             },
             get START_DAYS_BACK_FROM_TODAY() { // Git rank graph total days
                 return 30;

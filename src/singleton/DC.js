@@ -402,14 +402,14 @@ class DC {
 
         if (oldUserChannel === null && newUserChannel !== null) {
             return {
-                state: 'JOIN',
+                state: Constants.DC_ENUMS.VOICE.CHANNEL_JOIN,
                 userId,
                 newChannel: newUserChannel,
                 oldChannel: oldUserChannel
             };
         } else if (oldUserChannel !== null && newUserChannel === null) {
             return {
-                state: 'LEAVE',
+                state: Constants.DC_ENUMS.VOICE.CHANNEL_LEAVE,
                 userId,
                 newChannel: newUserChannel,
                 oldChannel: oldUserChannel
@@ -420,14 +420,14 @@ class DC {
             oldUserChannel.id != newUserChannel.id
         ) {
             return {
-                state: 'SWITCH',
+                state: Constants.DC_ENUMS.VOICE.CHANNEL_SWITCH,
                 userId,
                 newChannel: newUserChannel,
                 oldChannel: oldUserChannel
             };
         } else {
             return {
-                state: 'NO_CHANGE',
+                state: Constants.DC_ENUMS.VOICE.CHANNEL_UNCHANGED,
                 userId,
                 newChannel: newUserChannel,
                 oldChannel: oldUserChannel
