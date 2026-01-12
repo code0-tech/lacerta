@@ -110,7 +110,7 @@
         },
         "left-server": "Left the Server",
         "messages": "Messages",
-        "voice_time": "Voice Time",
+        "voice_time": "Active Voice Time",
         "invites": "Invites",
         "days": "d",
         "hours": "h",
