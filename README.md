@@ -74,9 +74,6 @@ For /open-contributer, OAuth URLs are not stored. This means authentication is r
 
 Real Example:
 ```json
-/** 
-* Paste one or more documents here
-*/
 {
   "id": "380808844093292555",
   "rawxp": 2389,
@@ -85,11 +82,6 @@ Real Example:
       "words": 6048,
       "chars": 32338,
       "count": 1180
-    },
-    "voice": {
-      "joins": 138,
-      "switchs": 21,
-      "time": 199578
     },
     "invites": {
       "total": 1,
@@ -102,6 +94,15 @@ Real Example:
           }
         }
       ]
+    },
+    "voice": {
+      "_totalCalculated": 55,
+      "activeTime": 5,
+      "joinCount": 2,
+      "channelSwitches": 1,
+      "selfMuteTime": 38,
+      "selfDeafTime": 38,
+      "streamingTime": 25
     }
   },
   "flags": {
@@ -110,17 +111,17 @@ Real Example:
   },
   "commandUsage": {
     "debug": {
-      "command": 90,
-      "button": 24,
+      "command": 92,
+      "button": 25,
       "selectmenu": 17
     },
     "leaderboard": {
-      "command": 50
+      "command": 53
     },
     "stats": {
-      "command": 96
+      "command": 104
     },
-    // ...
+    // more command ussage
   }
 }
 ```
