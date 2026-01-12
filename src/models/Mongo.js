@@ -29,6 +29,45 @@ class Mongo {
         }
     }
 
+    /**
+     * Removes a specific field from all documents in a collection
+     * @param {Object} where - e.g., ENUMS.DCB.USERS
+     * @param {string} fieldPath - The path to the field to remove (e.g., "stats.voice")
+     */
+    async unsetField(where, fieldPath) {
+        try {
+            const col = await this._getWhere(where);
+            const result = await col.updateMany(
+                {}, // Matches all documents
+                { $unset: { [fieldPath]: "" } } // "" is just a placeholder, MongoDB only cares about the key
+            );
+            return result;
+        } catch (error) {
+            console.error(`Error unsetting field ${fieldPath}:`, error);
+            throw error;
+        }
+    }
+
+    /**
+     * Sets a field or nested object for all documents in a collection
+     * @param {Object} where - e.g., ENUMS.DCB.USERS
+     * @param {string} fieldPath - The path (e.g., "stats.voice")
+     * @param {any} value - The data to set (e.g., { activeTime: 0, joinCount: 0 })
+     */
+    async setField(where, fieldPath, value) {
+        try {
+            const col = await this._getWhere(where);
+            const result = await col.updateMany(
+                {}, // Matches all users
+                { $set: { [fieldPath]: value } }
+            );
+            return result;
+        } catch (error) {
+            console.error(`Error setting field ${fieldPath}:`, error);
+            throw error;
+        }
+    }
+
     async find(where, query = {}) {
         try {
             const col = await this._getWhere(where);
