@@ -310,6 +310,13 @@ class Constants {
                         return 7;
                     }
                 }
+            },
+            get VOICE_STATS() {
+                return {
+                    get UPDATE_INTERVAL() {
+                        return 10000;
+                    }
+                }
             }
         }
     }
