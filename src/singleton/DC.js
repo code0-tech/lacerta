@@ -400,41 +400,53 @@ class DC {
         let newUserChannel = newState.channel;
         let oldUserChannel = oldState.channel;
 
+        // 1. Check for Channel Join
         if (oldUserChannel === null && newUserChannel !== null) {
-            return {
-                state: Constants.DC_ENUMS.VOICE.CHANNEL_JOIN,
-                userId,
-                newChannel: newUserChannel,
-                oldChannel: oldUserChannel
-            };
-        } else if (oldUserChannel !== null && newUserChannel === null) {
-            return {
-                state: Constants.DC_ENUMS.VOICE.CHANNEL_LEAVE,
-                userId,
-                newChannel: newUserChannel,
-                oldChannel: oldUserChannel
-            };
-        } else if (
-            oldUserChannel !== null &&
-            newUserChannel !== null &&
-            oldUserChannel.id != newUserChannel.id
-        ) {
-            return {
-                state: Constants.DC_ENUMS.VOICE.CHANNEL_SWITCH,
-                userId,
-                newChannel: newUserChannel,
-                oldChannel: oldUserChannel
-            };
-        } else {
-            return {
-                state: Constants.DC_ENUMS.VOICE.CHANNEL_UNCHANGED,
-                userId,
-                newChannel: newUserChannel,
-                oldChannel: oldUserChannel
+            return { state: Constants.DC_ENUMS.VOICE.CHANNEL_JOIN, userId, newChannel: newUserChannel, oldChannel: oldUserChannel };
+        }
 
+        // 2. Check for Channel Leave
+        if (oldUserChannel !== null && newUserChannel === null) {
+            return { state: Constants.DC_ENUMS.VOICE.CHANNEL_LEAVE, userId, newChannel: newUserChannel, oldChannel: oldUserChannel };
+        }
+
+        // 3. Check for Channel Switch
+        if (oldUserChannel !== null && newUserChannel !== null && oldUserChannel.id != newUserChannel.id) {
+            return { state: Constants.DC_ENUMS.VOICE.CHANNEL_SWITCH, userId, newChannel: newUserChannel, oldChannel: oldUserChannel };
+        }
+
+        // 4. Mute / Unmute
+        if (oldState.selfMute !== newState.selfMute) {
+            return {
+                state: newState.selfMute ? Constants.DC_ENUMS.VOICE.MUTE_ON : Constants.DC_ENUMS.VOICE.MUTE_OFF,
+                userId, newChannel: newUserChannel, oldChannel: oldUserChannel
             };
         }
-    };
+
+        // 5. Deaf / Undeaf
+        if (oldState.selfDeaf !== newState.selfDeaf) {
+            return {
+                state: newState.selfDeaf ? Constants.DC_ENUMS.VOICE.DEAF_ON : Constants.DC_ENUMS.VOICE.DEAF_OFF,
+                userId, newChannel: newUserChannel, oldChannel: oldUserChannel
+            };
+        }
+
+        // 6. Stream Start / Stop
+        if (oldState.streaming !== newState.streaming) {
+            return {
+                state: newState.streaming ? Constants.DC_ENUMS.VOICE.STREAM_ON : Constants.DC_ENUMS.VOICE.STREAM_OFF,
+                userId, newChannel: newUserChannel, oldChannel: oldUserChannel
+            };
+        }
+
+        // 7. No significant change (e.g., server mute, volume change)
+        return {
+            state: Constants.DC_ENUMS.VOICE.CHANNEL_UNCHANGED,
+            userId,
+            newChannel: newUserChannel,
+            oldChannel: oldUserChannel
+        };
+    }
 };
 
 module.exports = DC;
