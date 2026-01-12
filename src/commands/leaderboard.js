@@ -14,7 +14,7 @@ const MongoDb = new Mongo();
 const LEADERBOARD_TYPES = {
     xp: { field: 'rawxp', labelKey: 'xp' },
     messages: { field: 'stats.messages.count', labelKey: 'messages' },
-    voice: { field: 'stats.voice.time', labelKey: 'voice_time' },
+    voice: { field: 'stats.voice.activeTime', labelKey: 'voice_time' },
     invites: { field: 'stats.invites.real', labelKey: 'invites' }
 };
 
@@ -27,7 +27,7 @@ const data = new SlashCommandBuilder()
             .addChoices(
                 { name: 'XP', value: 'xp' },
                 { name: 'Messages', value: 'messages' },
-                { name: 'Voice Time', value: 'voice' },
+                { name: 'Active Voice Time', value: 'voice' },
                 { name: 'Invites', value: 'invites' }
             )
             .setRequired(false)
@@ -117,7 +117,7 @@ const execute = async (dcInteraction) => {
             level = rankData.level;
             displayValue = `[${humanizeNumber(rankData.xp)}|${humanizeNumber(rankData.neededXp)}]`;
         } else if (category === 'voice') {
-            const totalMs = (user.stats?.voice?.time || 0) * Constants.TIME_MULTIPLIER_MS.SECONDS;
+            const totalMs = (user.stats?.voice?.activeTime || 0) * Constants.TIME_MULTIPLIER_MS.SECONDS;
             const { d, h, m, s } = msToHumanReadableTime(totalMs);
 
             displayValue = `${d}${lang.getText('days')} ${h}${lang.getText('hours')} ${m}${lang.getText('minutes')} ${s}${lang.getText('seconds')}`;
