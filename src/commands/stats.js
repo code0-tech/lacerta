@@ -84,7 +84,7 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
     const statsChanged = !previousStats || JSON.stringify(normalizedStats) !== JSON.stringify(previousStats);
 
     if (statsChanged) {
-        const { s, m, h, d } = msToHumanReadableTime(normalizedStats.voice.time * Constants.TIME_MULTIPLIER_MS.SECONDS);
+        const { s, m, h, d } = msToHumanReadableTime(normalizedStats.voice.activeTime * Constants.TIME_MULTIPLIER_MS.SECONDS);
         const userChannel = await DC.memberVoiceChannel(rankMember, client);
 
         const embed = new Embed()
@@ -95,8 +95,8 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
                 count: humanizeNumber(normalizedStats.messages.count),
                 words: humanizeNumber(normalizedStats.messages.words),
                 chars: humanizeNumber(normalizedStats.messages.chars),
-                joins: humanizeNumber(normalizedStats.voice.joins),
-                switchs: humanizeNumber(normalizedStats.voice.switchs),
+                joins: humanizeNumber(normalizedStats.voice.joinCount),
+                switchs: humanizeNumber(normalizedStats.voice.channelSwitches),
                 voicedays: d,
                 voicehours: h,
                 voiceminutes: m,
