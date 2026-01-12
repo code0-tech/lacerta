@@ -88,10 +88,10 @@
         "selectmenu": "sm",
         "no-command-executed": "No Commands were executed.",
         "own-stats-response": {
-            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n### Invites\nReal: {invitesreal}\nTotal: {invitestotal}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to your message stats.\nVoice stat \"Join\" is only updated after you left an channel."
+            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nActive Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n### Invites\nReal: {invitesreal}\nTotal: {invitestotal}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to your message stats.\nVoice stat \"Join\" is only updated after you left an channel."
         },
         "other-stats-response": {
-            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nTotal Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n### Invites\nReal: {invitesreal}\nTotal: {invitestotal}\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to his/her message stats.\nVoice stat \"Join\" is only updated after he/she left an channel."
+            "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nActive Time: `{voicedays}` days, `{voicehours}` hours, `{voiceminutes}` minutes, `{voiceseconds}` seconds.\nIn Channel: {channelmention}\n### Invites\nReal: {invitesreal}\nTotal: {invitestotal}\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to his/her message stats.\nVoice stat \"Join\" is only updated after he/she left an channel."
         },
         "this-bot-stats": {
             "description": "### Well, I'm not really into collecting stats.\nMaybe try a real Codezero `Member`."
