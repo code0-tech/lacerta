@@ -53,9 +53,13 @@ class MongoUser {
                     count: 0
                 },
                 voice: {
-                    time: 0, // in seconds
-                    joins: 0,
-                    switchs: 0
+                    _totalCalculated: 0, // totalValue for optimized database indexing/searching
+                    activeTime: 0,
+                    joinCount: 0,
+                    channelSwitches: 0,
+                    selfMuteTime: 0,
+                    selfDeafTime: 0,
+                    streamingTime: 0
                 },
                 invites: {
                     total: 0,
@@ -185,19 +189,35 @@ class MongoUser {
 
     /**
      * update voice stats
+     * @param {Object} stats - Object containing the increments
      */
-    async updateVoiceStats(time = 0, joins = 0, switchs = 0) {
+    async updateVoiceStats({
+        activeTime = 0,
+        joins = 0,
+        switches = 0,
+        muteTime = 0,
+        deafTime = 0,
+        streamingTime = 0,
+        _totalCalculated = 0
+    } = {}) {
+
+        // We calculate the new total increment to keep the indexed field updated
+
         return await MongoDb.update(
             ENUMS.DCB.USERS,
             { id: this._userId },
             {
                 $inc: {
-                    'stats.voice.time': time,
-                    'stats.voice.joins': joins,
-                    'stats.voice.switchs': switchs
+                    'stats.voice.activeTime': activeTime,
+                    'stats.voice.joinCount': joins,
+                    'stats.voice.channelSwitches': switches,
+                    'stats.voice.selfMuteTime': muteTime,
+                    'stats.voice.selfDeafTime': deafTime,
+                    'stats.voice.streamingTime': streamingTime,
+                    'stats.voice._totalCalculated': _totalCalculated
                 }
             }
-        )
+        );
     }
 
     /**
