@@ -128,7 +128,25 @@ class Constants {
                     },
                     get CHANNEL_UNCHANGED() {
                         return 'voiceStateUnchanged';
-                    }
+                    },
+                    get MUTE_ON() {
+                        return 'voiceUserMuteOn';
+                    },
+                    get MUTE_OFF() {
+                        return 'voiceUserMuteOff';
+                    },
+                    get DEAF_ON() {
+                        return 'voiceUserDeafOn';
+                    },
+                    get DEAF_OFF() {
+                        return 'voiceUserDeafOff';
+                    },
+                    get STREAM_ON() {
+                        return 'voiceUserStreamOn';
+                    },
+                    get STREAM_OFF() {
+                        return 'voiceUserStreamOff';
+                    },
                 }
             },
         }
