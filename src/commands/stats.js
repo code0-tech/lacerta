@@ -84,8 +84,23 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
     const statsChanged = !previousStats || JSON.stringify(normalizedStats) !== JSON.stringify(previousStats);
 
     if (statsChanged) {
-        const { s, m, h, d } = msToHumanReadableTime(normalizedStats.voice.activeTime * Constants.TIME_MULTIPLIER_MS.SECONDS);
-        const userChannel = await DC.memberVoiceChannel(rankMember, client);
+
+        const activeVoiceTime = normalizedStats.voice.activeTime * Constants.TIME_MULTIPLIER_MS.SECONDS;
+        const inactiveVoiceTime = (normalizedStats.voice._totalCalculated - normalizedStats.voice.activeTime) * Constants.TIME_MULTIPLIER_MS.SECONDS;
+
+        const { s: voiceSecondsActive,
+            m: voiceMinutesActive,
+            h: voiceHoursActive,
+            d: voiceDaysActive
+        } = msToHumanReadableTime(activeVoiceTime);
+
+        const { s: voiceSecondsInactive,
+            m: voiceMinutesInactive,
+            h: voiceHoursInactive,
+            d: voiceDaysInactive
+        } = msToHumanReadableTime(inactiveVoiceTime);
+
+        const userChannel = await DC.memberVoiceChannel(rankMember);
 
         const embed = new Embed()
             .setColor(COLOR.INFO)
@@ -97,10 +112,14 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
                 chars: humanizeNumber(normalizedStats.messages.chars),
                 joins: humanizeNumber(normalizedStats.voice.joinCount),
                 switchs: humanizeNumber(normalizedStats.voice.channelSwitches),
-                voicedays: d,
-                voicehours: h,
-                voiceminutes: m,
-                voiceseconds: s,
+                voiceDaysActive,
+                voiceHoursActive,
+                voiceMinutesActive,
+                voiceSecondsActive,
+                voiceDaysInactive,
+                voiceHoursInactive,
+                voiceMinutesInactive,
+                voiceSecondsInactive,
                 commandstatsstring: commandStatsString,
                 invitesreal: inviteStats.real,
                 invitestotal: inviteStats.total
