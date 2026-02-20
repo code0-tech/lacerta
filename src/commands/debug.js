@@ -151,7 +151,7 @@ const debugs = {
         description += `\n${lang.getText('langroles')}\n\n`;
 
         for (const key in config.languageRoles) {
-            description += `${DC.mentionRole(key)}`;
+            description += `${DC.mentionRole(key)}\n`;
         }
 
         new Embed()
