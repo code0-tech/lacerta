@@ -165,19 +165,24 @@
                     60
                 ],
                 "embed": {
-                    "title": "{title} - in {minutesRemaining} minutes",
+                    "title": "{title} - in {minutesRemaining} minuten",
                     "descriptions": {
                         "5": [
-                            "Sry, leider wieder ein Meeting - Trefft eure letzten vorbereitungen",
-                            "Trefft eure letzten vorbereitungen fürs Sprint Review",
-                            "Meeting in kürze..."
+                            "Sry, leider wieder ein Meeting - Trefft eure letzten Vorbereitungen!",
+                            "In 5 Minuten startet die Show.",
+                            "Schnell noch die Bugs verstecken, in 5 Minuten geht's los!",
+                            "5 Minuten noch!!!",
+                            "Kaffee-Level checken! In 5 Minuten müssen wir glänzen."
                         ],
                         "60": [
                             "Sry, leider wieder ein Meeting, in so einer Stunde...",
-                            "Bereit in einer Stunde?"
+                            "In 60 Minuten heißt es wieder: 'Könnt ihr meinen Screen sehen?'",
+                            "Genießt die letzte Stunde in Freiheit, danach ist Sprint Review.",
+                            "In einer Stunde präsentieren wir...",
+                            "Mental Health Minute: In 60 Minuten müssen wir über unsere Arbeit reden."
                         ],
                         "default": [
-                            "Es beginnt in kürze..."
+                            "Es beginnt in Kürze... Flucht ist zwecklos."
                         ]
                     },
                     "mention": "team"
@@ -191,16 +196,22 @@
                     60
                 ],
                 "embed": {
-                    "title": "{title} - in {minutesRemaining} minutes",
+                    "title": "{title} - in {minutesRemaining} minuten",
                     "descriptions": {
                         "5": [
-                            "Wir sehen uns gleich im Talk."
+                            "Wir sehen uns gleich im Talk. Bringt starke Nerven mit.",
+                            "In 5 Minuten spielen wir wieder 'Wer hat dieses Issue erstellt und warum?'",
+                            "Gleich geht's los. Wer zuerst zuckt, kriegt das komplexeste Issue!",
+                            "5 Minuten bis zur Ticket-Therapie. Alle bereit?"
                         ],
                         "60": [
-                            "In einer Stunde im talk ok? Bisl issue management und so..."
+                            "In einer Stunde im Talk ok? Bisl Issue-Jonglage und so...",
+                            "In 60 Minuten schauen wir uns das mal hier an.",
+                            "In einer Stunde schauen wir uns wieder Issues an.",
+                            "Bereit für das Refinement in 60 Min?"
                         ],
                         "default": [
-                            "Es beginnt in kürze..."
+                            "Das Backlog wartet... und es hat Hunger."
                         ]
                     },
                     "mention": "team"
