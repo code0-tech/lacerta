@@ -158,6 +158,9 @@ class Constants {
                 return {
                     get WINDOWS() {
                         return 'win32';
+                    },
+                    get LINUX() {
+                        return 'linux';
                     }
                 }
             },
