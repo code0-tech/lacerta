@@ -161,7 +161,7 @@
                 "blackListTag": "[bot]"
             }
         },
-        "eventprereminder": [
+        "eventPreReminder": [
             {
                 "title": "Sprint Review",
                 "reminderBeforeInMinutes": [
