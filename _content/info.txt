@@ -1,1 +1,1 @@
-This folder is not Code, here are other utils or files that are used to setup DC
+This folder does not contain any Code, here are other utils or files like imagse that are used to setup the CodeZero DC
