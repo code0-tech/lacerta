@@ -2,10 +2,12 @@ const Constants = require('./../../data/constants');
 const { EmbedBuilder } = require("discord.js");
 const config = require('./../../config.json');
 
+const embedColors = config.server.embeds.colors;
+
 const replacePlaceHolders = (template, data) => {
     return template.replace(/{([^{}]*)}/g, (match, key) => {
         if (data[key.trim()] == undefined) {
-            console.log(`[PlaceHolder Replace] a Placeholder "${key}" was not found as an input.`, Constants.CONSOLE.ERROR)
+            console.log(`[Embed PlaceHolder Replace] a Placeholder "${key}" was not found as an input.`, Constants.CONSOLE.ERROR)
             return '';
         }
         return data[key.trim()];
@@ -313,34 +315,34 @@ class Embed {
 
 class COLOR {
     static get BACKGROUND() {
-        return config.embeds.colors.background;
+        return embedColors.background;
     }
     static get PRIMARY() {
-        return config.embeds.colors.primary;
+        return embedColors.primary;
     }
     static get SECONDARY() {
-        return config.embeds.colors.secondary;
+        return embedColors.secondary;
     }
     static get INFO() {
-        return config.embeds.colors.info;
+        return embedColors.info;
     }
     static get SUCCESS() {
-        return config.embeds.colors.success;
+        return embedColors.success;
     }
     static get WARNING() {
-        return config.embeds.colors.warning;
+        return embedColors.warning;
     }
     static get IN_PROGRESS() {
-        return config.embeds.colors.inprogress;
+        return embedColors.inprogress;
     }
     static get DANGER() {
-        return config.embeds.colors.danger;
+        return embedColors.danger;
     }
     static get BLACK() {
-        return config.embeds.colors.black;
+        return embedColors.black;
     }
     static get WHITE() {
-        return config.embeds.colors.white;
+        return embedColors.white;
     }
 }
 

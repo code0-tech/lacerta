@@ -26,7 +26,7 @@ class DC {
     */
     static async codeZeroMemberById(userId, client) {
         try {
-            const guild = await this.guildById(config.serverId, client);
+            const guild = await this.guildById(config.server.id, client);
             let member = guild.members.cache.get(userId);
 
             if (member) {

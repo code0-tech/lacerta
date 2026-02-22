@@ -91,7 +91,7 @@ const handleToggle = async (client, userId) => {
 };
 
 const start = async (client) => {
-    const guild = await DC.guildById(config.serverId, client);
+    const guild = await DC.guildById(config.server.id, client);
     if (guild) {
         const allChannels = await guild.channels.fetch();
 

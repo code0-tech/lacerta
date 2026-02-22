@@ -138,19 +138,19 @@ const debugs = {
     async pingAllDiscordServerConfigs(interaction, client, guild, member, lang) {
         let description = `${lang.getText('channels')}\n\n`;
 
-        for (const key in config.channels) {
-            description += `${DC.mentionChannel(config.channels[key])}\n`;
+        for (const key in config.server.channels) {
+            description += `${DC.mentionChannel(config.server.channels[key])}\n`;
         }
 
         description += `\n${lang.getText('roles')}\n\n`;
 
-        for (const key in config.roles) {
+        for (const key in config.server.roles) {
             description += `${DC.mentionRole(config.roles[key])}\n`;
         }
 
         description += `\n${lang.getText('langroles')}\n\n`;
 
-        for (const key in config.languageRoles) {
+        for (const key in config.server.languageRoles) {
             description += `${DC.mentionRole(key)}\n`;
         }
 

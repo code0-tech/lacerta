@@ -34,7 +34,7 @@ const setupTimer = (channelId, title, time, client, eventConfig) => {
 
                 const embedMessage = new Embed()
                     .setTitle(replacePlaceHolders(eventConfig.embed.title, placeholders))
-                    .setContent(`<@&${config.roles[eventConfig.embed.mention]}>`)
+                    .setContent(`<@&${config.server.roles[eventConfig.embed.mention]}>`)
                     .setDescription(replacePlaceHolders(descriptionString, placeholders))
                     .setColor(COLOR.INFO);
 
@@ -72,10 +72,10 @@ const buildTimer = async (client, guild) => {
 
         const timeRemaining = nextDateUnix - Date.now();
 
-        const eventConfig = config.modules.eventprereminder.find(cfg => cfg.title === event.name);
+        const eventConfig = config.modules.eventPreReminder.find(cfg => cfg.title === event.name);
 
         if (eventConfig) {
-            const channelId = config.channels[eventConfig.channelname];
+            const channelId = config.server.channels[eventConfig.channelname];
 
             console.log(`[PREREMINDER-EVENTS] Config found for "${event.name}"`, Constants.CONSOLE.GOOD);
             setupTimer(channelId, event.name, timeRemaining, client, eventConfig);
@@ -111,7 +111,7 @@ const setupChangeEventListener = (client, guild) => {
 };
 
 const setupEventMessages = async (client) => {
-    const guild = await guildById(config.serverId, client);
+    const guild = await guildById(config.server.id, client);
 
     await buildTimer(client, guild);
     setupChangeEventListener(client, guild);

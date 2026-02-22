@@ -1,7 +1,7 @@
 const Constants = require('./../../data/constants');
 const config = require('./../../config.json');
 
-const languageRoles = config.languageRoles;
+const languageRoles = config.server.languageRoles;
 
 const language = async (fullCommandName, interaction, guild, client) => {
     const { languages } = client;
@@ -60,11 +60,9 @@ const language = async (fullCommandName, interaction, guild, client) => {
     };
 };
 
-/* 
-Language Pack
+// What a prefix means
 
-"_" means that its not a command but maybe an button interaction.
-"#"" means that its only for one language as its used global for everyone on the server and not for normal commands.
-*/
+// "_" => its not a slash command, e.g button interaction.
+// "#"" => its only for one language as its used global for everyone on the server.
 
 module.exports = { language };

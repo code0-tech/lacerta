@@ -8,6 +8,8 @@ const Constants = require("../../data/constants");
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
+const dcServerRoles = config.server.roles;
+const dcCommands = config.commands;
 
 const data = new SlashCommandBuilder()
     .setName('open-contributor')
@@ -41,7 +43,7 @@ const execute = async (dcInteraction) => {
 
     await DC.defer(interaction);
 
-    if (await DC.memberHasRole(member, config.roles.opencontributor)) {
+    if (await DC.memberHasRole(member, dcServerRoles.opencontributor)) {
         failedMessage(interaction, client, member, lang, 'error-already-has-role');
         return;
     }
@@ -57,12 +59,12 @@ const execute = async (dcInteraction) => {
 
     await new Embed()
         .setColor(COLOR.INFO)
-        .addInputs({ neededcommits: config.commands.opencontributor.commits, neededpr: config.commands.opencontributor.pr })
+        .addInputs({ neededcommits: dcCommands.opencontributor.commits, neededpr: dcCommands.opencontributor.pr })
         .addContext(lang, member, 'initial-message')
         .setComponents([row])
         .interactionResponse(interaction);
 
-    const resolvedAwait = await AsyncManager.awaitAsyncAction(awaitCodeId, config.commands.opencontributor.authTimeout, data.reference, true);
+    const resolvedAwait = await AsyncManager.awaitAsyncAction(awaitCodeId, dcCommands.opencontributor.authTimeout, data.reference, true);
 
     if (!resolvedAwait) {
         failedMessage(interaction, client, member, lang, resolvedAwait === false ? 'error-timeout' : 'error-similar-inquiry');
@@ -90,9 +92,9 @@ const execute = async (dcInteraction) => {
             .addIndex(1)
     }
 
-    if (github.totalCommitContributions >= config.commands.opencontributor.commits && github.totalPullRequests >= config.commands.opencontributor.pr) {
+    if (github.totalCommitContributions >= dcCommands.opencontributor.commits && github.totalPullRequests >= dcCommands.opencontributor.pr) {
         messageType = 'results-complete';
-        DC.memberAddRoleId(member, config.roles.opencontributor);
+        DC.memberAddRoleId(member, dcServerRoles.opencontributor);
     } else {
         messageType = 'results-not-complete';
     }
@@ -102,13 +104,13 @@ const execute = async (dcInteraction) => {
         .addInputs({
             tablestring: table.build(),
             yourpr: github.totalPullRequests,
-            neededpr: config.commands.opencontributor.pr,
+            neededpr: dcCommands.opencontributor.pr,
 
-            pbpr: progressBar(github.totalPullRequests, config.commands.opencontributor.pr),
-            pbcm: progressBar(github.totalCommitContributions, config.commands.opencontributor.commits),
+            pbpr: progressBar(github.totalPullRequests, dcCommands.opencontributor.pr),
+            pbcm: progressBar(github.totalCommitContributions, dcCommands.opencontributor.commits),
 
             yourcommits: github.totalCommitContributions,
-            neededcommits: config.commands.opencontributor.commits,
+            neededcommits: dcCommands.opencontributor.commits,
 
             githubname: name
         })

@@ -122,7 +122,7 @@ const sendGitRankMessage = async (client) => {
         return embed; // for debug command
     }
 
-    embed.responseToChannel(config.channels.gitranks, client);
+    embed.responseToChannel(config.server.channels.gitranks, client);
 
     console.log(`[Git-ranks] sent message to channel.`, Constants.CONSOLE.WORKING);
 };

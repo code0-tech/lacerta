@@ -5,7 +5,7 @@ const { Events } = require('discord.js');
 
 const MongoDb = new Mongo();
 
-const gitRankConfig = config.modules.gitrank;
+const gitRankConfig = config.modules.gitRank;
 
 const handleGitHubCommitMessage = async (client, msg) => {
     try {

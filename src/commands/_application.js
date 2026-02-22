@@ -7,7 +7,7 @@ const DC = require('./../singleton/DC');
 
 
 const autoRun = async (client, lang) => {
-    const messages = await DC.messagesFromChannel(client, config.serverId, config.channels.application);
+    const messages = await DC.messagesFromChannel(client, config.server.id, config.server.channels.application);
     const messagesIds = keyArray(messages);
 
     messagesIds.forEach(async (messageId) => {
@@ -34,10 +34,10 @@ const autoRun = async (client, lang) => {
 
     new Embed()
         .setColor(COLOR.INFO)
-        .addInputs({ teamid: config.roles.team })
+        .addInputs({ teamid: config.server.roles.team })
         .addContext({ text: lang.english['_application'] }, null, '#init-message')
         .setComponents([row])
-        .responseToChannel(config.channels.application, client)
+        .responseToChannel(config.server.channels.application, client)
 };
 
 const handleApplicationApply = async (interaction, client, guild, member, lang, buttonData) => {
@@ -52,7 +52,7 @@ const handleApplicationApply = async (interaction, client, guild, member, lang, 
     const newThread = await new Thread()
         .setName(`${member.user.username} ${lang.getText(threadTitle)}`)
         .addMemberById(member.id)
-        .addRole(config.roles.team)
+        .addRole(config.server.roles.team)
         .createThread(interaction.channel);
 
     await new Embed()

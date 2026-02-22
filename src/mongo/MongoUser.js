@@ -1,5 +1,5 @@
-const Constants = require('../../data/constants');
 const { Mongo, ENUMS } = require('../models/Mongo');
+const Constants = require('../../data/constants');
 const MongoDb = new Mongo();
 
 class MongoUser {
