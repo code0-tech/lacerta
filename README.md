@@ -130,6 +130,10 @@ Last MongoDB structure update: 11.01.2026
 
 Tip: You can mention a Discord user by their ID using `<@user_id>`.
 
+## Database
+
+The MongoDb tables are defined in ./src/models/Mongo.js
+
 ## Missing Files
 This repository mirrors the live bot but excludes sensitive or unnecessary files:
 
@@ -162,7 +166,7 @@ The bot is fully functional with the following package versions:
 "mongo": "^0.1.0"                 // [08.01.2025]
 "node-fetch": "^2.6.12"           // [08.01.2025] (@latest 3.3.2)
 "node-schedule": "^2.1.1"         // [08.01.2025]
-"puppeteer": "^23.11.1"           // [08.01.2025] (@latest 24.34.0) - is currently not used and already outdated
+"puppeteer": "^23.11.1"           // [08.01.2025] (@latest 24.34.0) - unused and outdated
 ```
 
 Tips:
