@@ -1,4 +1,6 @@
 const start = async (args = {}) => {
+    const path = require('path');
+    const fs = require('fs');
 
     require('./src/start-up/update-console-log');
     require('./src/start-up/process-exit');
@@ -7,10 +9,8 @@ const start = async (args = {}) => {
 
     const { Client, Events, GatewayIntentBits, Partials } = require('discord.js');
     const dotenv = require('dotenv');
-    const os = require('os');
 
-    const isProductionServer = os.platform() !== Constants.NODE.PLATFROM.WINDOWS;
-    global.isDevelopment = !isProductionServer;
+    global.isDevelopment = fs.existsSync(path.join(__dirname, '.local'));
 
     dotenv.config({ path: global.isDevelopment ? Constants.NODE.ENV.DEVELOPMENT : Constants.NODE.ENV.PRODUCTION });
 
@@ -22,13 +22,13 @@ const start = async (args = {}) => {
             GatewayIntentBits.Guilds,
             GatewayIntentBits.GuildMembers,
             GatewayIntentBits.GuildInvites,
-            GatewayIntentBits.GuildVoiceStates,
-            GatewayIntentBits.GuildMessageReactions,
-            GatewayIntentBits.GuildModeration,
             GatewayIntentBits.GuildMessages,
             GatewayIntentBits.MessageContent,
+            GatewayIntentBits.GuildModeration,
+            GatewayIntentBits.GuildVoiceStates,
             GatewayIntentBits.GuildMessageTyping,
             GatewayIntentBits.GuildScheduledEvents,
+            GatewayIntentBits.GuildMessageReactions,
         ], partials: [
             Partials.Message,
             Partials.Channel,
@@ -36,7 +36,7 @@ const start = async (args = {}) => {
         ]
     });
 
-    client.setMaxListeners(0); // hmm, should be avoided
+    client.setMaxListeners(0);
 
     client.startDate = Date.now();
 
