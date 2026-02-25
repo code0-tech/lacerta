@@ -150,7 +150,7 @@
             "slowmodeInSeconds": 5,
             "slowmodeTime": 900000
         },
-        "gitrank": {
+        "gitRank": {
             "users": {
                 "blackList": [
                     "renovate[bot]",
