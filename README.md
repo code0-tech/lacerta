@@ -157,16 +157,17 @@ Files located in `./_app/*` are for Discord server setup (e.g., images).
 
 The bot is fully functional with the following package versions:
 ```json
-"@discordjs/voice": "^0.18.0"     // [08.01.2025]
-"chartjs-node-canvas": "^5.0.0"   // [08.01.2025]
-"discord-simpletable": "^1.1.6"   // [08.01.2025]
-"discord.js": "^14.25.1"          // [08.01.2025]
-"dotenv": "^17.2.3"               // [08.01.2025]
-"libsodium-wrappers": "^0.8.0"    // [08.01.2025]
-"mongo": "^0.1.0"                 // [08.01.2025]
-"node-fetch": "^2.6.12"           // [08.01.2025] (@latest 3.3.2)
-"node-schedule": "^2.1.1"         // [08.01.2025]
-"puppeteer": "^23.11.1"           // [08.01.2025] (@latest 24.34.0) - unused and outdated
+"@discordjs/voice": "^0.18.0",        // [25.02.2026]
+"chartjs-node-canvas": "^5.0.0",      // [25.02.2026]
+"chrome-remote-interface": "^0.33.3", // [25.02.2026]
+"discord-simpletable": "^1.1.6",      // [25.02.2026]
+"discord.js": "^14.25.1",             // [25.02.2026]
+"dotenv": "^17.2.3",                  // [25.02.2026]
+"libsodium-wrappers": "^0.8.0",       // [25.02.2026]
+"mongo": "^0.1.0",                    // [25.02.2026]
+"node-fetch": "2.6.12",               // [25.02.2026] (@latest 3.3.2)
+"node-schedule": "^2.1.1",            // [25.02.2026]
+"puppeteer": "^23.11.1"               // [25.02.2026] (@latest 24.37.5) - unused and outdated
 ```
 
 Tips:
