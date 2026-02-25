@@ -25,7 +25,7 @@ const execute = async (dcInteraction) => {
     const jsonString = JSON.stringify(await mongoUser.getJson(), null, 2);
 
     const buffer = Buffer.from(jsonString, Constants.SETTINGS.ENCODING.UTF8);
-    const attachment = new AttachmentBuilder(buffer, { name: 'sample.json' });
+    const attachment = new AttachmentBuilder(buffer, { name: 'user-data.json' });
 
     new Embed()
         .setColor(COLOR.INFO)
