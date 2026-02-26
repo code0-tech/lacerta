@@ -146,13 +146,15 @@ class Mongo {
     }
 };
 
+const dbDefaultName = "Code0";
 const ENUMS = {
     DCB: {
-        USERS: { "db": "Code0", "t": "users" },
-        LOGS: { "db": "Code0", "t": "logs" },
-        CHANNELS: { "db": "Code0", "t": "channels" },
-        GITHUB_COMMITS: { "db": "Code0", "t": "githubcommits" },
-        AUTO_SLOWMO_CHANNELS: { "db": "Code0", "t": "autoslowmochannels" }
+        TEMP: { "db": dbDefaultName, "t": "users" },
+        USERS: { "db": dbDefaultName, "t": "users" },
+        LOGS: { "db": dbDefaultName, "t": "logs" },
+        CHANNELS: { "db": dbDefaultName, "t": "channels" },
+        GITHUB_COMMITS: { "db": dbDefaultName, "t": "githubcommits" },
+        AUTO_SLOWMO_CHANNELS: { "db": dbDefaultName, "t": "autoslowmochannels" }
     }
 };
 
