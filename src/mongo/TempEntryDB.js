@@ -46,6 +46,26 @@ class TempEntryDB {
         return this;
     }
 
+    setValidTimeInSeconds(seconds = 1) {
+        this.validUntil = Date.now() + (1000 * seconds);
+        return this;
+    }
+
+    setValidTimeInMinutes(minutes = 1) {
+        this.validUntil = Date.now() + (1000 * 60 * minutes);
+        return this;
+    }
+
+    setValidTimeInHours(hours = 1) {
+        this.validUntil = Date.now() + (1000 * 60 * 60 * hours);
+        return this;
+    }
+
+    setValidTimeInDays(days = 1) {
+        this.validUntil = Date.now() + (1000 * 60 * 60 * 24 * days);
+        return this;
+    }
+
     async _performIncrement() {
         this._refreshClient();
         if (!this.identifier) throw new Error("Main identifier must be set first.");
