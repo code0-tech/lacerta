@@ -186,11 +186,11 @@
                     },
                     "mention": "team"
                 },
-                "invitationAcceptedButtons": {
+                "invitationAcceptButtons": {
                     "acceptText": "Yes I am in",
                     "unAcceptText": "No sry"
                 },
-                "channelname": "internalcommunicationchat"
+                "channelName": "internalcommunicationchat"
             },
             {
                 "title": "Backlog refinement and issue management",
@@ -213,11 +213,11 @@
                     },
                     "mention": "team"
                 },
-                "invitationAcceptedButtons": {
+                "invitationAcceptButtons": {
                     "acceptText": "Yes I am in",
                     "unAcceptText": "No sry"
                 },
-                "channelname": "internalcommunicationchat"
+                "channelName": "internalcommunicationchat"
             }
         ],
         "messageStats": {
