@@ -149,7 +149,7 @@ class Mongo {
 const dbDefaultName = "Code0";
 const ENUMS = {
     DCB: {
-        TEMP: { "db": dbDefaultName, "t": "users" },
+        TEMP: { "db": dbDefaultName, "t": "temp" },
         USERS: { "db": dbDefaultName, "t": "users" },
         LOGS: { "db": dbDefaultName, "t": "logs" },
         CHANNELS: { "db": dbDefaultName, "t": "channels" },
