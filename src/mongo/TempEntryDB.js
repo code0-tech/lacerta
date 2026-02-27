@@ -27,6 +27,10 @@ class TempEntryDB {
         return this;
     }
 
+    getData() {
+        return this.data;
+    }
+
     setData(newData = {}) {
         this.data = newData;
         return this;
@@ -34,6 +38,11 @@ class TempEntryDB {
 
     setValidTimeTo1Hour() {
         this.validUntil = Date.now() + (1000 * 60 * 60 * 1);
+        return this;
+    }
+
+    setValidTimeTo30Days() {
+        this.validUntil = Date.now() + (1000 * 60 * 60 * 24 * 30);
         return this;
     }
 
@@ -78,6 +87,32 @@ class TempEntryDB {
         };
 
         return await MongoDb.update(ENUMS.DCB.TEMP, query, update, { upsert: true });
+    }
+
+    /**
+     * @param {string} path - The internal path inside the data object (e.g., "messages")
+     * @param {any} value - The value to look for inside that array
+     */
+    async restoreFromFilterByArray(path, value) {
+        this._refreshClient();
+
+        const query = {
+            identifier: this.identifier,
+            [`data.${path}`]: value
+        };
+        console.dir(query);
+
+        const results = await MongoDb.find(ENUMS.DCB.TEMP, query);
+        console.dir(results);
+
+        if (results && results[0]) {
+            const doc = results[0];
+            this.identifierAddition = doc.identifierAddition;
+            this.data = doc.data;
+            this.validUntil = doc.validUntil;
+            return this;
+        }
+        return this;
     }
 
     async restore() {
