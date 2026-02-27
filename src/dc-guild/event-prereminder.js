@@ -1,4 +1,7 @@
+const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { Embed, COLOR, replacePlaceHolders } = require("../models/Embed");
+const TempEntryDB = require('../mongo/TempEntryDB');
+const DcButtons = require("../singleton/DcButtons");
 const Constants = require("../../data/constants");
 const { guildById } = require("../singleton/DC");
 const config = require('../../config.json');
@@ -14,7 +17,7 @@ const fetchUpcomingEvents = async (guild) => {
     return await guild.scheduledEvents.fetch();
 };
 
-const setupTimer = (channelId, title, time, client, eventConfig) => {
+const setupTimer = (channelId, title, time, client, eventConfig, eventId) => {
     eventConfig.reminderBeforeInMinutes.forEach(timeInMinutes => {
         const timeNew = time - (timeInMinutes * 1000 * 60);
 
@@ -24,7 +27,7 @@ const setupTimer = (channelId, title, time, client, eventConfig) => {
                 return;
             }
 
-            const timer = setTimeout(() => {
+            const timer = setTimeout(async () => {
                 console.log(`[PREREMINDER-EVENTS] Time remaining ${timeInMinutes} min for "${title}"`, Constants.CONSOLE.INFO);
 
                 const placeholders = { title, minutesRemaining: timeInMinutes };
@@ -34,13 +37,52 @@ const setupTimer = (channelId, title, time, client, eventConfig) => {
 
                 const embedMessage = new Embed()
                     .setTitle(replacePlaceHolders(eventConfig.embed.title, placeholders))
-                    .setContent(`<@&${config.server.roles[eventConfig.embed.mention]}>`)
                     .setDescription(replacePlaceHolders(descriptionString, placeholders))
                     .setColor(COLOR.INFO);
 
-                embedMessage.responseToChannel(channelId, client);
+                if (eventConfig.embed.mention) {
+                    embedMessage.setContent(`<@&${config.server.roles[eventConfig.embed.mention]}>`)
+                }
+
+                if (eventConfig.invitationAcceptedButtons) {
+                    const acceptInvite = new ButtonBuilder()
+                        .setCustomId(DcButtons.createString('eventPreReminderInviteButton', { acceptInvite: "1" }))
+                        .setLabel(eventConfig.invitationAcceptedButtons.acceptText)
+                        .setStyle(ButtonStyle.Primary);
+
+                    const unAcceptInvite = new ButtonBuilder()
+                        .setCustomId(DcButtons.createString('eventPreReminderInviteButton', { acceptInvite: "0" }))
+                        .setLabel(eventConfig.invitationAcceptedButtons.unAcceptText)
+                        .setStyle(ButtonStyle.Danger);
+
+                    embedMessage.setComponents([
+                        new ActionRowBuilder().addComponents(acceptInvite, unAcceptInvite)
+                    ])
+                }
 
                 eventTimers = eventTimers.filter(t => t.timer !== timer);
+
+                const messageId = (await embedMessage.responseToChannel(channelId, client)).id;
+
+                if (eventConfig.invitationAcceptedButtons) {
+                    const tempEntry = await new TempEntryDB().
+                        setIdentifiers('eventPreReminderInviteButtons', eventId)
+                        .restore();
+
+                    let messageEntry = tempEntry.getData();
+
+                    if (!messageEntry.messages) {
+                        messageEntry.messages = [];
+                        messageEntry.acceptedInvite = [];
+                        messageEntry.unAcceptedInvite = [];
+                    }
+
+                    messageEntry.messages.push(messageId)
+
+                    tempEntry.setData(messageEntry)
+                        .setValidTimeTo30Days() // make this less as event ids stay same so every event message will work :c
+                        .save();
+                }
             }, timeNew);
 
             eventTimers.push({ timer, title });
@@ -78,7 +120,7 @@ const buildTimer = async (client, guild) => {
             const channelId = config.server.channels[eventConfig.channelname];
 
             console.log(`[PREREMINDER-EVENTS] Config found for "${event.name}"`, Constants.CONSOLE.GOOD);
-            setupTimer(channelId, event.name, timeRemaining, client, eventConfig);
+            setupTimer(channelId, event.name, timeRemaining, client, eventConfig, event.id);
         } else {
             console.log(`[PREREMINDER-EVENTS] No config found for "${event.name}", skipping...`, Constants.CONSOLE.INFO);
         }
@@ -116,5 +158,8 @@ const setupEventMessages = async (client) => {
     await buildTimer(client, guild);
     setupChangeEventListener(client, guild);
 };
+
+// Entire code needs to be rewritten
+// Fix know upcoming issues
 
 module.exports = { setupEventMessages };
