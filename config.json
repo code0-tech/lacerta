@@ -14,7 +14,7 @@
             "application": "1242116368170745857",
             "rankupdates": "1255923654664126464",
             "gitranks": "1262813262660108348",
-            "test": "1338603231730991125"
+            "test": "1450132793307824260"
         },
         "languageRoles": {
             "1225861340686450799": "german",
@@ -186,6 +186,10 @@
                     },
                     "mention": "team"
                 },
+                "invitationAcceptedButtons": {
+                    "acceptText": "Yes I am in",
+                    "unAcceptText": "No sry"
+                },
                 "channelname": "internalcommunicationchat"
             },
             {
@@ -208,6 +212,10 @@
                         ]
                     },
                     "mention": "team"
+                },
+                "invitationAcceptedButtons": {
+                    "acceptText": "Yes I am in",
+                    "unAcceptText": "No sry"
                 },
                 "channelname": "internalcommunicationchat"
             }
