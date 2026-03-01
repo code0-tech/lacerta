@@ -193,5 +193,11 @@
         },
         "role-select-placeholder": "Selt en lang",
         "menu-text-language": "Languuge"
+    },
+    "git-issue-created": {
+        "info-embed": {
+            "title": "🛠️ Issue Tracked!",
+            "description": "Thank you for reporting this!\n\nWe've officially created a GitHub issue to track the fix.\nYou can follow the progress directly via the link below:\n\n**Link:** {link}"
+        }
     }
 }
