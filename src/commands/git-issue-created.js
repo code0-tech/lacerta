@@ -31,6 +31,11 @@ const execute = async (dcInteraction) => {
         .addInputs({ link: link })
         .addContext(lang, member, 'info-embed')
         .responseToChannelByInteraction(interaction)
+
+    new Embed()
+        .setColor(COLOR.INFO)
+        .addContext(lang, member, 'user-info-embed')
+        .interactionResponse(interaction)
 };
 
 module.exports = { execute, data };
