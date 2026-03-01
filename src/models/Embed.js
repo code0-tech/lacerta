@@ -282,34 +282,54 @@ class Embed {
     }
 
     /**
+    * Internal helper to handle the message sending and pinning logic.
+    * @private
+    */
+    async #sendAndPin(target, options) {
+        try {
+            const messageResponse = await target.send({
+                content: this._content,
+                embeds: [this.getEmbed()],
+                components: this._components,
+                files: this._files,
+                ephemeral: this._ephemeral
+            });
+
+            if (this._pin) {
+                await messageResponse.pin().catch(err =>
+                    console.warn(`Failed to pin message: ${err.message}`)
+                );
+            }
+
+            return messageResponse;
+        } catch (error) {
+            console.error(`Error sending message: ${error.message}`);
+            throw error;
+        }
+    }
+
+    /**
      * Send a message to a specific channel with optional components and pin the message.
     * @param {string} channelId - The ID of the channel (or Thread) to send the message to.
     * @param {Client} client - The client to send the message from.
     * @returns {Promise<void>} - A promise that resolves when the message is sent.
     */
     async responseToChannel(channelId, client) {
-        try {
-            const channel = await client.channels.fetch(channelId);
+        const channel = await client.channels.fetch(channelId);
+        if (!channel?.isTextBased()) console.log(`[Embed] Channel not found`, Constants.CONSOLE.ERROR);
 
-            const responseOptions = {
-                content: this._content,
-                embeds: [this.getEmbed()],
-                components: this._components,
-                files: this._files,
-                ephemeral: this._ephemeral
-            };
+        return this.#sendAndPin(channel);
+    }
 
-            const messageResponse = await channel.send(responseOptions);
+    /**
+    * Send a message to a specific channel with optional components and pin the message.
+    * @param {Interaction} interaction - The interaction object.
+    * @returns {Promise<void>} - A promise that resolves when the message is sent.
+    */
+    async responseToChannelByInteraction(interaction) {
+        if (!interaction.channel) throw console.log(`[Embed] Channel cannot be found by Interaction`, Constants.CONSOLE.ERROR);
 
-            if (this._pin) {
-                await messageResponse.pin();
-            }
-
-            return messageResponse;
-        } catch (error) {
-            console.error(`Error sending message to channel ${channelId}: ${error.message}`);
-            throw error;
-        }
+        return this.#sendAndPin(interaction.channel);
     }
 }
 
