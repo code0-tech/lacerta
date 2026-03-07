@@ -175,7 +175,7 @@ const removeFromDB = async (interaction, client, guild, member, lang, componentD
 
     new Embed()
         .setColor(COLOR.INFO)
-        .addInputs({ userid: userId })
+        .addInputs({ removedId: userId })
         .addContext(lang, member, 'mongo-removed-user')
         .setComponents([row])
         .interactionResponse(interaction);

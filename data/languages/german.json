@@ -12,7 +12,7 @@
             "description": "Geprüft: [{checked}|{totaluser}], gefunden: {found}."
         },
         "mongo-removed-user": {
-            "title": "Entfernt {userid}."
+            "title": "Entfernt {removedId}."
         },
         "left-user-reload": "Neuladen",
         "left-user-remove": "Entferne aus Mongo",
