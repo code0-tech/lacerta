@@ -5,7 +5,7 @@ class TempEntryDB {
     constructor() {
         this.identifier = null;
         this.identifierAddition = null;
-        this.validUntil = Date.now();
+        this.validUntil = new Date();
         this.data = {};
         this._shouldIncrement = false;
     }
@@ -37,32 +37,32 @@ class TempEntryDB {
     }
 
     setValidTimeTo1Hour() {
-        this.validUntil = Date.now() + (1000 * 60 * 60 * 1);
+        this.validUntil = new Date(Date.now() + (1000 * 60 * 60 * 1));
         return this;
     }
 
     setValidTimeTo30Days() {
-        this.validUntil = Date.now() + (1000 * 60 * 60 * 24 * 30);
+        this.validUntil = new Date(Date.now() + (1000 * 60 * 60 * 24 * 30));
         return this;
     }
 
     setValidTimeInSeconds(seconds = 1) {
-        this.validUntil = Date.now() + (1000 * seconds);
+        this.validUntil = new Date(Date.now() + (1000 * seconds));
         return this;
     }
 
     setValidTimeInMinutes(minutes = 1) {
-        this.validUntil = Date.now() + (1000 * 60 * minutes);
+        this.validUntil = new Date(Date.now() + (1000 * 60 * minutes));
         return this;
     }
 
     setValidTimeInHours(hours = 1) {
-        this.validUntil = Date.now() + (1000 * 60 * 60 * hours);
+        this.validUntil = new Date(Date.now() + (1000 * 60 * 60 * hours));
         return this;
     }
 
     setValidTimeInDays(days = 1) {
-        this.validUntil = Date.now() + (1000 * 60 * 60 * 24 * days);
+        this.validUntil = new Date(Date.now() + (1000 * 60 * 60 * 24 * days));
         return this;
     }
 
@@ -150,5 +150,13 @@ class TempEntryDB {
         return this;
     }
 }
+
+/* * DATABASE MAINTENANCE: validUntil
+ * * Document expiration is handled automatically via a MongoDB TTL (Time To Live) Index.
+ * * For reSetup Instructions (MongoDB GUI/Compass):
+ * 1. Navigate to the Indexes tab for this collection.
+ * 2. Create a new index on the field: { "validUntil": 1 }
+ * 3. Enable the "TTL" option and set "Expire after seconds" to 0.
+*/
 
 module.exports = TempEntryDB;
