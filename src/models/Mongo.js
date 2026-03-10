@@ -1,3 +1,5 @@
+const { CONSOLE } = require("../../data/constants");
+
 class Mongo {
     constructor() {
         this.client = global.mongoClient;
@@ -9,61 +11,48 @@ class Mongo {
         return col;
     }
 
-    /**
-     * Renames fields
-     * @param {Object} where - e.g., ENUMS.DCB.USERS
-     * @param {string} oldName - e.g., "commandstats"
-     * @param {string} newName - e.g., "commandUsage"
-     */
+    _shouldLog(where) {
+        return where.t !== ENUMS.DCB.LOGS.t;
+    }
+
     async renameField(where, oldName, newName) {
         try {
             const col = await this._getWhere(where);
-            const result = await col.updateMany(
-                {},
-                { $rename: { [oldName]: newName } }
-            );
+            const result = await col.updateMany({}, { $rename: { [oldName]: newName } });
+            if (this._shouldLog(where)) {
+                console.log(`[MongoDB] Rename Field: ${oldName} -> ${newName} @${where.db}.${where.t}`, CONSOLE.GOOD);
+            }
             return result;
         } catch (error) {
-            console.error(`Error renaming field from ${oldName} to ${newName}:`, error);
+            console.error(`Error renaming field:`, error);
             throw error;
         }
     }
 
-    /**
-     * Removes a specific field from all documents in a collection
-     * @param {Object} where - e.g., ENUMS.DCB.USERS
-     * @param {string} fieldPath - The path to the field to remove (e.g., "stats.voice")
-     */
     async unsetField(where, fieldPath) {
         try {
             const col = await this._getWhere(where);
-            const result = await col.updateMany(
-                {}, // Matches all documents
-                { $unset: { [fieldPath]: "" } } // "" is just a placeholder, MongoDB only cares about the key
-            );
+            const result = await col.updateMany({}, { $unset: { [fieldPath]: "" } });
+            if (this._shouldLog(where)) {
+                console.log(`[MongoDB] Unset Field: ${fieldPath} @${where.db}.${where.t}`, CONSOLE.GOOD);
+            }
             return result;
         } catch (error) {
-            console.error(`Error unsetting field ${fieldPath}:`, error);
+            console.error(`Error unsetting field:`, error);
             throw error;
         }
     }
 
-    /**
-     * Sets a field or nested object for all documents in a collection
-     * @param {Object} where - e.g., ENUMS.DCB.USERS
-     * @param {string} fieldPath - The path (e.g., "stats.voice")
-     * @param {any} value - The data to set (e.g., { activeTime: 0, joinCount: 0 })
-     */
     async setField(where, fieldPath, value) {
         try {
             const col = await this._getWhere(where);
-            const result = await col.updateMany(
-                {}, // Matches all users
-                { $set: { [fieldPath]: value } }
-            );
+            const result = await col.updateMany({}, { $set: { [fieldPath]: value } });
+            if (this._shouldLog(where)) {
+                console.log(`[MongoDB] Set Field: ${fieldPath} @${where.db}.${where.t}`, CONSOLE.GOOD);
+            }
             return result;
         } catch (error) {
-            console.error(`Error setting field ${fieldPath}:`, error);
+            console.error(`Error setting field:`, error);
             throw error;
         }
     }
@@ -72,6 +61,9 @@ class Mongo {
         try {
             const col = await this._getWhere(where);
             const result = await col.find(query).toArray();
+            if (this._shouldLog(where)) {
+                console.log(`[MongoDB] Find: ${JSON.stringify(query)} @${where.db}.${where.t} (${result.length} results)`, CONSOLE.GOOD);
+            }
             return result;
         } catch (error) {
             console.error('Error finding documents:', error);
@@ -83,6 +75,9 @@ class Mongo {
         try {
             const col = await this._getWhere(where);
             const result = await col.findOne(query);
+            if (this._shouldLog(where)) {
+                console.log(`[MongoDB] FindOne: ${JSON.stringify(query)} @${where.db}.${where.t} (${result ? 'Found' : 'Not Found'})`, CONSOLE.GOOD);
+            }
             return result;
         } catch (error) {
             console.error('Error findingOne document:', error);
@@ -94,6 +89,9 @@ class Mongo {
         try {
             const col = await this._getWhere(where);
             const result = await col.aggregate(input).toArray();
+            if (this._shouldLog(where)) {
+                console.log(`[MongoDB] Aggregate: ${input.length} stages @${where.db}.${where.t}`, CONSOLE.GOOD);
+            }
             return result;
         } catch (error) {
             console.error('Error aggregate documents:', error);
@@ -101,10 +99,13 @@ class Mongo {
         }
     }
 
-    async distinct(where, string = '') {
+    async distinct(where, field = '') {
         try {
             const col = await this._getWhere(where);
-            const result = await col.distinct(string);
+            const result = await col.distinct(field);
+            if (this._shouldLog(where)) {
+                console.log(`[MongoDB] Distinct: ${field} @${where.db}.${where.t}`, CONSOLE.GOOD);
+            }
             return result;
         } catch (error) {
             console.error('Error distinct documents:', error);
@@ -116,6 +117,9 @@ class Mongo {
         try {
             const col = await this._getWhere(where);
             const result = await col.insertOne(document);
+            if (this._shouldLog(where)) {
+                console.log(`[MongoDB] InsertOne @${where.db}.${where.t} (ID: ${result.insertedId})`, CONSOLE.GOOD);
+            }
             return result.insertedId;
         } catch (error) {
             console.error('Error inserting document:', error);
@@ -127,6 +131,9 @@ class Mongo {
         try {
             const col = await this._getWhere(where);
             const result = await col.updateOne(query, update, options);
+            if (this._shouldLog(where)) {
+                console.log(`[MongoDB] Update: ${JSON.stringify(query)} @${where.db}.${where.t} (Matched: ${result.matchedCount})`, CONSOLE.GOOD);
+            }
             return result;
         } catch (error) {
             console.error('Error updating document:', error);
@@ -138,13 +145,16 @@ class Mongo {
         try {
             const col = await this._getWhere(where);
             const result = await col.deleteOne(query);
+            if (this._shouldLog(where)) {
+                console.log(`[MongoDB] DeleteOne: ${JSON.stringify(query)} @${where.db}.${where.t} (Deleted: ${result.deletedCount})`, CONSOLE.GOOD);
+            }
             return result;
         } catch (error) {
             console.error('Error deleting document:', error);
             throw error;
         }
     }
-};
+}
 
 const dbDefaultName = "Code0";
 const ENUMS = {
