@@ -317,7 +317,7 @@ class Constants {
             get VOICE_STATS() {
                 return {
                     get UPDATE_INTERVAL() {
-                        return 10000;
+                        return 30000;
                     }
                 }
             }
