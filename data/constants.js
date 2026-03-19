@@ -260,6 +260,9 @@ class Constants {
                     },
                     get SCHEDULE() {
                         return '0 16 * * *';
+                    },
+                    get TARGET_X_SIZE(){
+                       return 30;
                     }
                 };
             },
