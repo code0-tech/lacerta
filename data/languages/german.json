@@ -172,6 +172,9 @@
         "repocommitssum": {
             "title": "Commits Count für {repo}",
             "description": "{table}\n\n`Insgesamte commits: {total}`\n`Zeitspanne: {timestart} bis {timeend}`"
+        },
+        "search-no-result": {
+            "title": "Wir konnten nicht entsprechen deiner Suche finden."
         }
     },
     "settings": {

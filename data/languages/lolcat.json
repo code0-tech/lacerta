@@ -172,6 +172,9 @@
         "repocommitssum": {
             "title": "Coitss Cnt tor {repo}",
             "description": "{table}\n\n`Totalz commits: {total}`\n`Timespanda: {timestart} untal {timeend}`"
+        },
+        "search-no-result": {
+            "title": "Notig find found fin srrry"
         }
     },
     "settings": {

@@ -199,6 +199,9 @@
         "repocommitssum": {
             "title": "Commits Count for {repo}",
             "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`"
+        },
+        "search-no-result": {
+            "title": "We couldn't find anything matching your search."
         }
     },
     "settings": {
