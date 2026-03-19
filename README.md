@@ -30,7 +30,7 @@ CodeZero is a Discord bot developed in JavaScript, utilizing the discord.js clie
 | 7   | `/stats` or `/stats @user` + uptodate15      | Finished     |      None |
 | 8   | `/logs show` or `/logs list`                 | Finished     |      None |
 | 9   | `/debug` for debugging                       | Finished     |      None |
-| 10  | `/git` display charts of Git activity        | 1/2 Finished |      None |
+| 10  | `/git` charts | tables for Git activity      | Finished     |      None |
 | 11  | `/mydata` return your current MongoDb entry  | Finished     |      None |
 | 12  | `/settings` change discord server settings   | Missing Func.|      None |
 
@@ -74,14 +74,17 @@ For /open-contributer, OAuth URLs are not stored. This means authentication is r
 
 Real Example:
 ```json
+/** 
+* Paste one or more documents here
+*/
 {
   "id": "380808844093292555",
-  "rawxp": 2389,
+  "rawxp": 3046,
   "stats": {
     "messages": {
-      "words": 6048,
-      "chars": 32338,
-      "count": 1180
+      "words": 7196,
+      "chars": 37905,
+      "count": 1272
     },
     "invites": {
       "total": 1,
@@ -96,37 +99,34 @@ Real Example:
       ]
     },
     "voice": {
-      "_totalCalculated": 55,
-      "activeTime": 5,
-      "joinCount": 2,
-      "channelSwitches": 1,
-      "selfMuteTime": 38,
-      "selfDeafTime": 38,
-      "streamingTime": 25
+      "_totalCalculated": 66771,
+      "activeTime": 57565,
+      "joinCount": 20,
+      "channelSwitches": 2,
+      "selfMuteTime": 5930,
+      "selfDeafTime": 55,
+      "streamingTime": 308
     }
   },
   "flags": {
     "invitesGiftReceived": false,
-    "emojiInfoForMessageXp": true
+    "emojiInfoForMessageXp": false
   },
   "commandUsage": {
     "debug": {
-      "command": 92,
-      "button": 25,
-      "selectmenu": 17
+      "command": 112,
+      "button": 26,
+      "selectmenu": 18
     },
     "leaderboard": {
-      "command": 53
-    },
-    "stats": {
-      "command": 104
-    },
+      "command": 97
+    }
     // more command ussage
   }
 }
 ```
 
-Last MongoDB structure update: 11.01.2026
+Last MongoDB structure update: 19.03.2026
 
 Tip: You can mention a Discord user by their ID using `<@user_id>`.
 
