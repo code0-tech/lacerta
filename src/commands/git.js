@@ -6,6 +6,8 @@ const { Embed, COLOR } = require('./../models/Embed');
 const Constants = require('../../data/constants');
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
+const { getColorByString } = require('../utils/color');
+const Chart = require('../models/Chart');
 
 
 const data = new SlashCommandBuilder()
@@ -28,20 +30,20 @@ const data = new SlashCommandBuilder()
             )
             .addStringOption(option =>
                 option.setName('time-start')
-                    .setDescription('Set start time, format: 13.11.2023 or pick "30 Days ago" etc')
+                    .setDescription('Set start time, format: 13.11.2026 or pick "30 Days ago",...')
                     .setAutocomplete(true)
                     .setRequired(false)
                     .setDescriptionLocalizations({
-                        de: 'Setze die Start Zeit, format: 13.11.2023 oder "30 Days ago" etc',
+                        de: 'Setze die Start Zeit, format: 13.11.2026 oder "30 Days ago" etc',
                     })
             )
             .addStringOption(option =>
                 option.setName('time-end')
-                    .setDescription('Set end time, format: 13.11.2023 or pick "30 Days ago" etc')
+                    .setDescription('Set end time, format: 13.11.2026 or pick "30 Days ago",...')
                     .setAutocomplete(true)
                     .setRequired(false)
                     .setDescriptionLocalizations({
-                        de: 'Setze die End Zeit, format: 13.11.2023 oder "30 Days ago" etc',
+                        de: 'Setze die End Zeit, format: 13.11.2026 oder "30 Days ago" etc',
                     })
             )
             .setDescriptionLocalizations({
@@ -62,26 +64,26 @@ const data = new SlashCommandBuilder()
             )
             .addStringOption(option =>
                 option.setName('time-start')
-                    .setDescription('Set start time, format: 13.11.2023 or pick "30 Days ago" etc')
+                    .setDescription('Set start time, format: 15.11.2026 or pick "30 Days ago",...')
                     .setAutocomplete(true)
                     .setRequired(false)
                     .setDescriptionLocalizations({
-                        de: 'Setze die Start Zeit, format: 13.11.2023 oder "30 Days ago" etc',
+                        de: 'Setze die Start Zeit, format: 15.11.2026 oder "30 Days ago" etc',
                     })
             )
             .addStringOption(option =>
                 option.setName('time-end')
-                    .setDescription('Set end time, format: 13.11.2023 or pick "30 Days ago" etc')
+                    .setDescription('Set end time, format: 15.11.2026 or pick "30 Days ago",...')
                     .setAutocomplete(true)
                     .setRequired(false)
                     .setDescriptionLocalizations({
-                        de: 'Setze die End Zeit, format: 13.11.2023 oder "30 Days ago" etc',
+                        de: 'Setze die End Zeit, format: 15.11.2026 oder "30 Days ago" etc',
                     })
             )
             .setDescriptionLocalizations({
                 de: 'Zeigt die Git Aktivität für ein Repo als Tabelle an',
             })
-    )/* 
+    )
     .addSubcommand(subcommand =>
         subcommand.setName('graph')
             .setDescription('Display Git activity as a graph.')
@@ -105,54 +107,56 @@ const data = new SlashCommandBuilder()
             )
             .addStringOption(option =>
                 option.setName('time-start')
-                    .setDescription('Set start time, format: 13.11.2023 or pick "30 Days ago" etc')
+                    .setDescription('Set start time, format: 15.11.2026 or pick "30 Days ago",...')
                     .setAutocomplete(true)
                     .setRequired(false)
                     .setDescriptionLocalizations({
-                        de: 'Setze die Start Zeit, format: 13.11.2023 oder "30 Days ago" etc',
+                        de: 'Setze die Start Zeit, format: 15.11.2026 oder "30 Days ago" etc',
                     })
             )
             .addStringOption(option =>
                 option.setName('time-end')
-                    .setDescription('Set end time, format: 13.11.2023 or pick "30 Days ago" etc')
+                    .setDescription('Set end time, format: 15.11.2026 or pick "30 Days ago",...')
                     .setAutocomplete(true)
                     .setRequired(false)
                     .setDescriptionLocalizations({
-                        de: 'Setze die End Zeit, format: 13.11.2023 oder "30 Days ago" etc',
+                        de: 'Setze die End Zeit, format: 15.11.2026 oder "30 Days ago" etc',
                     })
             )
             .setDescriptionLocalizations({
                 de: 'Zeigt gesamte Git Aktivitäten für einen Nutzer als Graph an.',
             })
-    ) */
-/* 
-const sendChart = async (description, attachment) => {
-    return new Embed()
-        .setColor(COLOR.INFO)
-        .setDescription(description)
-        .setAttachment(attachment)
-        .setFooter(`Stats over the last ${await totalDays()} days.`)
-        .setImage(Constants.DISCORD.EMBED_IMAGE_NAME.EMBED.DEFAULT_PNG_01);
-}; */
+    )
 
 const parseInteractionOptionInput = (input) => {
     return input ? input.split(',').map(user => user.trim()).filter(Boolean) : null;
 };
 
 const getFilters = async (interaction) => {
-    const usersArray = parseInteractionOptionInput(interaction.options.getString('users'))
-        || parseInteractionOptionInput(interaction.options.getString('user'))
-        || await GIT.getAllUniqueNames();
+    const userInput = parseInteractionOptionInput(interaction.options.getString('users'))
+        || parseInteractionOptionInput(interaction.options.getString('user'));
 
-    const reposArray = parseInteractionOptionInput(interaction.options.getString('repos'))
-        || parseInteractionOptionInput(interaction.options.getString('repo'))
-        || await GIT.getAllRepos();
+    const repoInput = parseInteractionOptionInput(interaction.options.getString('repos'))
+        || parseInteractionOptionInput(interaction.options.getString('repo'));
 
-    const timeStart = interaction.options.getString('time-start')?.split(".").join("-") || (await GIT.timeStartAndEnd()).startDate;
+    const givenUsersArray = userInput || [];
+    const givenReposArray = repoInput || [];
 
-    const timeEnd = interaction.options.getString('time-end')?.split(".").join("-") || (await GIT.timeStartAndEnd()).endDate;
+    const usersArray = userInput || await GIT.getAllUniqueNames();
+    const reposArray = repoInput || await GIT.getAllRepos();
 
-    return { usersArray, reposArray, timeStart, timeEnd };
+    const { startDate, endDate } = await GIT.timeStartAndEnd();
+    const timeStart = interaction.options.getString('time-start')?.split(".").join("-") || startDate;
+    const timeEnd = interaction.options.getString('time-end')?.split(".").join("-") || endDate;
+
+    return {
+        givenUsersArray,
+        givenReposArray,
+        usersArray,
+        reposArray,
+        timeStart,
+        timeEnd
+    };
 };
 
 const calculateCommitPercentages = (dataArray, totalCommits) => {
@@ -162,9 +166,73 @@ const calculateCommitPercentages = (dataArray, totalCommits) => {
     }));
 };
 
+const processStrictlyGroupedData = (rawGitData, givenUsers, givenRepos, targetPoints = 30) => {
+    const data = rawGitData.flat(Infinity);
+    if (data.length === 0) return { labels: [], datasets: [] };
+
+    const sorted = data.sort((a, b) => new Date(a.date) - new Date(b.date));
+    const start = new Date(sorted[0].date);
+    const end = new Date(sorted[sorted.length - 1].date);
+
+    const allDates = [];
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+        allDates.push(d.toISOString().split('T')[0]);
+    }
+
+    const bucketSize = Math.max(1, Math.floor(allDates.length / targetPoints));
+    const labels = allDates.filter((_, i) => (i + 1) % bucketSize === 0 || i === allDates.length - 1);
+
+    const datasets = [];
+
+    const generatePoints = (filterFn) => {
+        let runningTotal = 0;
+        let currentBucketSum = 0;
+        const binnedValues = [];
+
+        const filteredItems = data.filter(filterFn);
+
+        const groupDataMap = new Map();
+        filteredItems.forEach(item => {
+            groupDataMap.set(item.date, (groupDataMap.get(item.date) || 0) + item.dailyCommits);
+        });
+
+        allDates.forEach((date, index) => {
+            currentBucketSum += (groupDataMap.get(date) || 0);
+            if ((index + 1) % bucketSize === 0 || index === allDates.length - 1) {
+                runningTotal += currentBucketSum;
+                binnedValues.push(runningTotal);
+                currentBucketSum = 0;
+            }
+        });
+        return binnedValues;
+    };
+
+    givenUsers.flat().forEach(userLabel => {
+        datasets.push({
+            label: userLabel,
+            data: generatePoints(item => item.name === userLabel),
+            borderColor: getColorByString(userLabel, Constants.SEEDS.GITCHART),
+            fill: false,
+            tension: 0.3
+        });
+    });
+
+    givenRepos.flat().forEach(repoLabel => {
+        datasets.push({
+            label: repoLabel,
+            data: generatePoints(item => item.reponames.includes(repoLabel)),
+            borderColor: getColorByString(repoLabel, Constants.SEEDS.GITCHART),
+            fill: false,
+            tension: 0.3
+        });
+    });
+
+    return { labels, datasets };
+};
+
 const commands = {
     async graph(interaction, client, guild, member, lang) {
-        const { usersArray, reposArray, timeStart, timeEnd } = await getFilters(interaction);
+        const { usersArray, givenUsersArray, reposArray, givenReposArray, timeStart, timeEnd } = await getFilters(interaction);
 
         const settings = [
             GIT_SETTINGS.USERS(usersArray),
@@ -174,14 +242,29 @@ const commands = {
             GIT_SETTINGS.DAILY_PACKETS()
         ]
 
-        // const gitData = await GIT.simpleSort(settings);
+        const gitData = await GIT.simpleSort(settings);
 
-        // Lets see how long it will take me to finish this [11.01.2026] c:
+        const { labels, datasets } = processStrictlyGroupedData(gitData, givenUsersArray, givenReposArray, Constants.GIT.GRAPH.TARGET_X_SIZE);
 
-        new Embed()
-            .setTitle('Command in Progress, will be finished soon')
-            .setColor(COLOR.IN_PROGRESS)
-            .interactionResponse(interaction)
+        if (labels.length == 0) {
+            new Embed()
+                .setColor(COLOR.WARNING)
+                .addContext(lang, member, 'search-no-result')
+                .interactionResponse(interaction);
+            return;
+        }
+
+        const chart = new Chart(Constants.GIT.GRAPH.SIZEX, Constants.GIT.GRAPH.SIZEY)
+            .setType('line')
+            .setLabels(labels);
+
+        chart.configuration.data.datasets = [];
+
+        datasets.forEach(ds => {
+            chart.addDataset(ds.label, ds.data, ds.borderColor, ds.fill, ds.tension);
+        });
+
+        chart.interactionResponse(interaction, [], true);
     },
     async user_activity_table(interaction, client, guild, member, lang) {
         const { usersArray, reposArray, timeStart, timeEnd } = await getFilters(interaction);
