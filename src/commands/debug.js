@@ -19,16 +19,16 @@ const data = new SlashCommandBuilder()
     })
     .addStringOption(option =>
         option.setName('action')
-            .setDescription('Select a Debug command.')
+            .setDescription('Select a command.')
             .setDescriptionLocalizations({
-                de: 'Wähl ein Debug Befehl aus.',
+                de: 'Wähl ein Befehl aus.',
             })
             .setRequired(true)
             .addChoices(
-                { name: '[Client] => This session time', value: 'clientSessionTime' },
-                { name: '[MongoDB] => Check left users', value: 'mongoLeftUsers' },
-                { name: '[MongoDB] => githubcommits -> new Chart', value: 'chartFromGithubTotalCommits' },
-                { name: '[DC.Server] => ping all discord server configs', value: 'pingAllDiscordServerConfigs' }
+                { name: '[Client] => Display current session time', value: 'clientSessionTime' },
+                { name: '[MongoDB] => Compare MongoDb users with Discord Members', value: 'mongoLeftUsers' },
+                { name: '[MongoDB] => Create todays githubcommits Chart', value: 'chartFromGithubTotalCommits' },
+                { name: '[DC.Server] => Show Bots roles/channels config', value: 'pingAllDiscordServerConfigs' }
             ))
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
@@ -157,7 +157,7 @@ const debugs = {
         new Embed()
             .setColor(COLOR.INFO)
             .setDescription(description)
-            .interactionResponse(interaction)
+            .interactionResponse(interaction);
     }
 };
 
@@ -198,7 +198,7 @@ const executeComponent = async (dcInteraction) => {
 
     if (componentData.type == 'removefromDB') {
         removeFromDB(interaction, client, guild, member, lang, componentData);
-        return
+        return;
     }
 
     if (debugs[componentData.type]) {
