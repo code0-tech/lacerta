@@ -30,7 +30,7 @@ CodeZero is a Discord bot developed in JavaScript, utilizing the discord.js clie
 | 7   | `/stats` or `/stats @user` + uptodate15      | Finished     |      None |
 | 8   | `/logs show` or `/logs list`                 | Finished     |      None |
 | 9   | `/debug` for debugging                       | Finished     |      None |
-| 10  | `/git` charts | tables for Git activity      | Finished     |      None |
+| 10  | `/git` charts / tables for Git activity      | Finished     |      None |
 | 11  | `/mydata` return your current MongoDb entry  | Finished     |      None |
 | 12  | `/settings` change discord server settings   | Missing Func.|      None |
 
