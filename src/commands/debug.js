@@ -145,7 +145,7 @@ const debugs = {
         description += `\n${lang.getText('roles')}\n\n`;
 
         for (const key in config.server.roles) {
-            description += `${DC.mentionRole(config.roles[key])}\n`;
+            description += `${DC.mentionRole(config.server.roles[key])}\n`;
         }
 
         description += `\n${lang.getText('langroles')}\n\n`;
