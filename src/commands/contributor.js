@@ -13,15 +13,17 @@ const data = new SlashCommandBuilder()
 
 
 const execute = async (dcInteraction) => {
-    const { interaction, client, member, guild, lang } = dcInteraction;
+    const { interaction, member, lang } = dcInteraction;
 
     await DC.defer(interaction);
+
+    const opencontributorInfo = config.commands.opencontributor;
 
     new Embed()
         .setColor(COLOR.INFO)
         .addInputs({
-            neededpr: config.commands.opencontributor.pr,
-            neededcommits: config.commands.opencontributor.commits
+            neededpr: opencontributorInfo.pr,
+            neededcommits: opencontributorInfo.commits
         })
         .addContext(lang, member, 'info')
         .interactionResponse(interaction);
