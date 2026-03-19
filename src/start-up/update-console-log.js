@@ -67,6 +67,11 @@ const colors = {
 const customLog = (...args) => {
     let color = colors.reset;
 
+    if (args.length === 1) {
+        console.dir(args, { depth: null });
+        return;
+    }
+
     if (args.length > 1) {
         const colorCode = args.pop();
         const index = parseInt(colorCode.replace('#', ''));
