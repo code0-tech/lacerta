@@ -36,7 +36,7 @@ const start = async (args = {}) => {
         ]
     });
 
-    client.setMaxListeners(0);
+    client.setMaxListeners(Constants.NODE.DC_CLIENT.EVENTS.UNLIMITED_LISTENERS);
 
     client.startDate = Date.now();
 

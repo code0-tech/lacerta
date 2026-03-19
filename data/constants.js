@@ -173,6 +173,17 @@ class Constants {
                         return '.env';
                     }
                 }
+            },
+            get DC_CLIENT() {
+                return {
+                    get EVENTS() {
+                        return {
+                            get UNLIMITED_LISTENERS() {
+                                return 0;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
