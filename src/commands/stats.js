@@ -87,6 +87,7 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
 
         const activeVoiceTime = normalizedStats.voice.activeTime * Constants.TIME_MULTIPLIER_MS.SECONDS;
         const inactiveVoiceTime = (normalizedStats.voice._totalCalculated - normalizedStats.voice.activeTime) * Constants.TIME_MULTIPLIER_MS.SECONDS;
+        const streamingTime = (normalizedStats.voice.streamingTime) * Constants.TIME_MULTIPLIER_MS.SECONDS;
 
         const { s: voiceSecondsActive,
             m: voiceMinutesActive,
@@ -99,6 +100,12 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
             h: voiceHoursInactive,
             d: voiceDaysInactive
         } = msToHumanReadableTime(inactiveVoiceTime);
+
+        const { s: streamingSeconds,
+            m: streamingMinutes,
+            h: streamingHours,
+            d: streamingDays
+        } = msToHumanReadableTime(streamingTime);
 
         const userChannel = await DC.memberVoiceChannel(rankMember);
 
@@ -120,6 +127,10 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
                 voiceHoursInactive,
                 voiceMinutesInactive,
                 voiceSecondsInactive,
+                streamingDays,
+                streamingHours,
+                streamingMinutes,
+                streamingSeconds,
                 commandstatsstring: commandStatsString,
                 invitesreal: inviteStats.real,
                 invitestotal: inviteStats.total
