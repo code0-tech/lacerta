@@ -139,19 +139,19 @@ const debugs = {
         let description = `${lang.getText('channels')}\n\n`;
 
         for (const key in config.server.channels) {
-            description += `${DC.mentionChannel(config.server.channels[key])}\n`;
+            description += `${key} | ${DC.mentionChannel(config.server.channels[key])}\n`;
         }
 
         description += `\n${lang.getText('roles')}\n\n`;
 
         for (const key in config.server.roles) {
-            description += `${DC.mentionRole(config.server.roles[key])}\n`;
+            description += `${key} | ${DC.mentionRole(config.server.roles[key])}\n`;
         }
 
         description += `\n${lang.getText('langroles')}\n\n`;
 
         for (const key in config.server.languageRoles) {
-            description += `${DC.mentionRole(key)}\n`;
+            description += `${key} | ${DC.mentionRole(key)}\n`;
         }
 
         new Embed()
