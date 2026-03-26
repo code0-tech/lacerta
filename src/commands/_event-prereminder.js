@@ -46,7 +46,7 @@ const executeComponent = async (dcInteraction) => {
         : '_None_';
 
     const attendanceText = [
-        `**Total participants:** ${data.acceptedInvite.length}`,
+        `**Total participants:** ${data.acceptedInvite.length + data.unAcceptedInvite.length}`,
         `✅ **Accepted (${data.acceptedInvite.length}):**`,
         acceptedMentions,
         '',
@@ -74,7 +74,7 @@ const executeComponent = async (dcInteraction) => {
     }
 
     await interaction.editReply({
-        content: componentData.acceptInvite ? "Status updated!" : "Preference saved.",
+        content: componentData.acceptInvite ? "You have accepted the invite" : "You have declined the Invite",
         ephemeral: true
     });
 };
