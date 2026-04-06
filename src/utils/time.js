@@ -35,9 +35,20 @@ const convertUnixToTimestamp = (unixTimestamp, includeSeconds = true) => {
     }
 };
 
-const getNextDayByDateString = (dateString) => {
+
+// Has issues with our Timezone "Daylight Saving Time (DST)" etc.
+// Can behave unexpectedly because the local time and UTC time are fighting each other.
+/* const getNextDayByDateString = (dateString) => {
     const date = new Date(dateString);
     date.setDate(date.getDate() + 1);
+    return date.toISOString().slice(0, 10);
+}; */
+
+// Parse the parts manually to avoid timezone shifts!!!
+const getNextDayByDateString = (dateString) => {
+    const [year, month, day] = dateString.split('-').map(Number);
+    const date = new Date(Date.UTC(year, month - 1, day));
+    date.setUTCDate(date.getUTCDate() + 1);
     return date.toISOString().slice(0, 10);
 };
 
