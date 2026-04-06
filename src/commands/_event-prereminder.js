@@ -89,4 +89,4 @@ const componentIds = [
     'eventPreReminderInviteButton'
 ];
 
-module.exports = { executeComponent, componentIds, };
+module.exports = { executeComponent, componentIds };
