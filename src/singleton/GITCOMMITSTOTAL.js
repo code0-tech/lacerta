@@ -44,68 +44,47 @@ class GITCOMMITSTOTAL {
     }
 
     static formatGitData = async (dbData) => {
-        const firstDate = dbData[0]._id.date;
-        const lastDate = new Date().toISOString().slice(0, 10);
-
-        const cumulativeCommits = {};
-
-        dbData.forEach(entry => {
-            const { name, date } = entry._id;
-            const dailyCommits = entry.dailyCommits;
-
-            if (!cumulativeCommits[name]) {
-                cumulativeCommits[name] = [];
-            }
-
-            cumulativeCommits[name].push({ date, commits: dailyCommits });
-        });
-
-        let userCommitsTotal = {};
-
-        for (const name in cumulativeCommits) {
-            const userData = cumulativeCommits[name];
-
-            userCommitsTotal[name] = { count: 0 };
-
-            const allDates = userData.map(entry => entry.date);
-
-            const filledData = [];
-            let currentDate = firstDate;
-            let currentIndex = 0;
-            let currentCumulative = 0;
-
-            for (
-                let date = currentDate;
-                date <= lastDate;
-                date = getNextDayByDateString(date)
-            ) {
-                if (currentIndex < userData.length && allDates[currentIndex] === date) {
-                    currentCumulative += userData[currentIndex].commits;
-                    userCommitsTotal[name].count += userData[currentIndex].commits;
-                    filledData.push({ date, commits: currentCumulative });
-                    currentIndex++;
-                } else {
-                    filledData.push({ date, commits: currentCumulative });
-                }
-            }
-
-            cumulativeCommits[name] = filledData;
+        if (!dbData || dbData.length === 0) {
+            return { datasets: [], labels: [] };
         }
 
-        const labels = Object.values(cumulativeCommits).flatMap(user => user.map(entry => entry.date)).filter((value, index, self) => self.indexOf(value) === index);
+        const firstDate = dbData[0]._id.date;
+        const lastDate = new Date().toISOString().slice(0, 10);
+        const labels = [];
+
+        for (let d = firstDate; d <= lastDate; d = getNextDayByDateString(d)) {
+            labels.push(d);
+        }
+
+        const userRawData = new Map();
+        dbData.forEach(entry => {
+            const { name, date } = entry._id;
+            if (!userRawData.has(name)) {
+                userRawData.set(name, new Map());
+            }
+            userRawData.get(name).set(date, entry.dailyCommits);
+        });
+
         const datasets = [];
 
-        for (const [name, data] of Object.entries(cumulativeCommits)) {
+        for (const [name, dateMap] of userRawData.entries()) {
+            const dataPoints = [];
+            let runningTotal = 0;
+            let userLifetimeTotal = 0;
 
-            const totalCommits = userCommitsTotal[name].count;
-            const label = name + ` [${totalCommits}]`;
+            for (const date of labels) {
+                const dayCommits = dateMap.get(date) || 0;
+                runningTotal += dayCommits;
+                userLifetimeTotal += dayCommits;
+                dataPoints.push(runningTotal);
+            }
 
             datasets.push({
-                label,
-                data: data.map(entry => entry.commits),
+                label: `${name} [${userLifetimeTotal}]`,
+                data: dataPoints,
                 borderColor: getColorByString(name, Constants.SEEDS.GITCHART),
                 fill: false,
-                _totalCommits: totalCommits
+                _totalCommits: userLifetimeTotal
             });
         }
 
@@ -130,7 +109,6 @@ class GITCOMMITSTOTAL {
         const dbData = await this.getCommitsMongo();
         const { datasets, labels } = await this.formatGitData(dbData);
         const chart = this.makeChartByDataset(datasets, labels);
-
         return await chart.getAttachment();
     }
 };
