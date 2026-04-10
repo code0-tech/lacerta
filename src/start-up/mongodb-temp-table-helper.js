@@ -1,6 +1,5 @@
 const { Mongo, ENUMS } = require('../models/Mongo');
 const Constants = require('../../data/constants');
-const TempEntryDB = require('../mongo/TempEntryDB');
 const MongoDb = new Mongo();
 
 
@@ -28,10 +27,6 @@ const start = async () => {
 
 setInterval(() => {
     start();
-}, 1000);
-
-
-new TempEntryDB().setIdentifiers("lool").setValidTimeInSeconds(10).save()
-
+}, Constants.MONGO.TABLES.TEMP.CHECK_TIME_MS);
 
 module.exports = { start };
