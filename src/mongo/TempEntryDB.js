@@ -120,10 +120,8 @@ class TempEntryDB {
             identifier: this.identifier,
             [`data.${path}`]: value
         };
-        console.dir(query);
 
         const results = await MongoDb.find(ENUMS.DCB.TEMP, query);
-        console.dir(results);
 
         if (results && results[0]) {
             const doc = results[0];
