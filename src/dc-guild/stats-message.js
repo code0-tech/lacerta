@@ -56,7 +56,7 @@ const checkIfValid = async (msg) => {
 
     userList[userId] = newPacket(msg);
 
-    console.log(`[LEVEL SYSTEM] user ${msg.author.id} got: ${info}`, Constants.CONSOLE.INFO); // remove in the future (spam)
+    console.log(`[Stats::UserXp] user ${msg.author.id} got: ${info}`, Constants.CONSOLE.INFO);
 
     return { inValid, info: info };
 };
@@ -127,13 +127,13 @@ const saveUserXp = async (msg, mongoUser, client) => {
         xp = 1;
     }
 
-    console.log(`[LEVEL SYSTEM] added ${xp} xp for ${msg.author.id}`, Constants.CONSOLE.GOOD);
+    console.log(`[Stats::UserXp] added ${xp} xp for ${msg.author.id}`, Constants.CONSOLE.GOOD);
 
     await mongoUser.updateXpBy(xp);
 
     if ((await mongoUser.getFlag(MongoUserConsts.FLAGS.EMOJI_INFO_FOR_MESSAGE_XP)) !== true) return;
 
-    console.log(`[LEVEL SYSTEM] show xp with emojis for ${msg.author.id}`, Constants.CONSOLE.GOOD);
+    console.log(`[Stats::DebugEmojis] show xp with emojis for ${msg.author.id}`, Constants.CONSOLE.GOOD);
 
     if (xp > 0) {
         const xpString = xp.toString();

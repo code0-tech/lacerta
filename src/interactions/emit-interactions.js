@@ -37,18 +37,18 @@ const handleInteraction = async (interaction, client, handler, handlerType) => {
         }
 
         if (!commandName) {
-            console.log(`[Emit] Command name is undefined`, Constants.CONSOLE.ERROR);
+            console.log(`[InteractionHandler::Command] Command name is undefined`, Constants.CONSOLE.ERROR);
             return;
         }
 
         finalCommandName = commandName;
 
-        console.log(`[Emit] Handling interaction for command: ${commandName}`, Constants.CONSOLE.WORKING);
+        console.log(`[InteractionHandler::Handle] Handling interaction for command: ${commandName}`, Constants.CONSOLE.WORKING);
 
         const lang = await language(commandName, interaction, guild, client);
 
         if (!lang) {
-            console.log(`[Emit] Specified language context was not given`, Constants.CONSOLE.ERROR);
+            console.log(`[InteractionHandler::LangContext] Specified language context was not given`, Constants.CONSOLE.ERROR);
             return;
         }
 
@@ -57,7 +57,7 @@ const handleInteraction = async (interaction, client, handler, handlerType) => {
 
         await handler(interaction, client, guild, member, lang);
     } catch (error) {
-        console.log(`[Emit] Command ${finalCommandName} failed, because command internal failed`, Constants.CONSOLE.ERROR);
+        console.log(`[InteractionHandler::CommandExecution] Command ${finalCommandName} failed, because command internal failed`, Constants.CONSOLE.ERROR);
         console.dir(error);
         const id = interaction.commandName || interaction.customId.split('*')[0];
         executionError(interaction, `${id} failed`);

@@ -23,7 +23,7 @@ class AsyncManager {
      */
     static awaitAsyncAction(id, timeout = null, reference = null, referenceKill = false) {
         if (this.#actions[id]) {
-            console.log(`[AsyncManager] Action with ID "${id}" already exists`, Constants.CONSOLE.ERROR);
+            console.log(`[AsyncManager::Actions] Action with ID "${id}" already exists`, Constants.CONSOLE.ERROR);
             throw new Error(`Action with ID "${id}" already exists.`);
         }
 
@@ -59,7 +59,7 @@ class AsyncManager {
         const action = this.#actions[id];
 
         if (!action) {
-            console.log(`[AsyncManager] No action found with ID "${id}"`, Constants.CONSOLE.ERROR);
+            console.log(`[AsyncManager::Actions] No action found with ID "${id}"`, Constants.CONSOLE.ERROR);
             return;
         }
 

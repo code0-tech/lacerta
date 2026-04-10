@@ -32,12 +32,12 @@ const language = async (fullCommandName, interaction, guild, client) => {
             return template.replace(/{([^{}]*)}/g, (match, key) => {
 
                 if (data == null) {
-                    console.log(`[Lang Error] no inputs where given at all. Missing Placeholder replace for "${key}".`, Constants.CONSOLE.ERROR);
+                    console.log(`[LanguageCheck::Inputs] no inputs where given at all. Missing Placeholder replace for "${key}".`, Constants.CONSOLE.ERROR);
                     return '';
                 }
 
                 if (data[key.trim()] == undefined) {
-                    console.log(`[Lang Error] a Placeholder "${key}" was not found as an input.`, Constants.CONSOLE.ERROR);
+                    console.log(`[LanguageCheck::Placeholder] a Placeholder "${key}" was not found as an input.`, Constants.CONSOLE.ERROR);
                     return '';
                 }
                 return data[key.trim()];
@@ -47,7 +47,7 @@ const language = async (fullCommandName, interaction, guild, client) => {
             const text = commandText;
 
             if (text[key] == undefined) {
-                console.log(`[Lang Error] language key "${key}" for the "${commandName}" command was not found in the user language.`, Constants.CONSOLE.ERROR);
+                console.log(`[LanguageCheck::Keys] language key "${key}" for the "${commandName}" command was not found in the user language.`, Constants.CONSOLE.ERROR);
                 return '';
             }
 

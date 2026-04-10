@@ -124,7 +124,7 @@ const sendGitRankMessage = async (client) => {
 
     embed.responseToChannel(config.server.channels.gitranks, client);
 
-    console.log(`[Git-ranks] sent message to channel.`, Constants.CONSOLE.WORKING);
+    console.log(`[Git::Ranks] sent message to channel.`, Constants.CONSOLE.WORKING);
 };
 
 const setup = (client) => {

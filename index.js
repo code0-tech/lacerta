@@ -74,7 +74,7 @@ const start = async (args = {}) => {
 
         require('./src/start-up/mongodb-temp-table-helper').start();
 
-        console.log(`\nCodeZero Discord Client ready => ${readyClient.user.tag}`, Constants.CONSOLE.GOOD);
+        console.log(`[Discord::Client] CodeZero Discord Client ready => ${readyClient.user.tag}`, Constants.CONSOLE.GOOD);
     });
 
     require('./src/dc-client/debug-log').setup(client);

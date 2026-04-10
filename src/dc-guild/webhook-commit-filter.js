@@ -18,7 +18,7 @@ const handleGitHubCommitMessage = async (client, msg) => {
         if (!matches) return;
 
         if (gitRankConfig.users.blackList.includes(embedData.author.name) || embedData.author.name.endsWith(gitRankConfig.users.blackListTag)) {
-            console.log(`[Webhook Commit Filter] cant save commits for blackList user: ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
+            console.log(`[Git::WebhookCommitFilter] cant save commits for blackList user: ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
             return;
         }
 
@@ -42,7 +42,7 @@ const handleGitHubCommitMessage = async (client, msg) => {
 
         await MongoDb.insertOne(ENUMS.DCB.GITHUB_COMMITS, doc);
 
-        console.log(`[Webhook Commit Filter] ${commitCount} commits for ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
+        console.log(`[Git::WebhookCommitFilter] ${commitCount} commits for ${embedData.author.name}.`, Constants.CONSOLE.WORKING);
     } catch (error) {
         console.error('Error handling GitHub commit message:', error);
     }

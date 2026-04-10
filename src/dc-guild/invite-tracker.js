@@ -17,7 +17,7 @@ const checkForInvitesGift = async (inviterMongo, inviterId, invitedId, client) =
 
     inviterMongo.setFlag(MongoUserConsts.FLAGS.INVITE_GIFT_RECEIVED, true);
 
-    console.log(`[INVITE-TRACKER] Member ${inviterId} was gifted "INVITE_GIFT".`, Constants.CONSOLE.GOOD);
+    console.log(`[InviteTracker::InviteCheck] Member ${inviterId} was gifted "INVITE_GIFT".`, Constants.CONSOLE.GOOD);
 };
 
 const checkForAction = (inviterMongo, inviterId, invitedId, client) => {
@@ -32,11 +32,11 @@ const saveUserIfValidInvite = async (inviterId, invitedId, client) => {
         const existingInviterDoc = await inviter.findOriginalInviter(invitedId);
 
         if (existingInviterDoc) {
-            console.log(`[INVITE-TRACKER] Member ${invitedId} rejoined. Already credited to ${existingInviterDoc.id}.`, Constants.CONSOLE.INFO);
+            console.log(`[InviteTracker::Join] Member ${invitedId} rejoined. Already credited to ${existingInviterDoc.id}.`, Constants.CONSOLE.INFO);
 
             await inviter.updateInvitesBy(MongoUserConsts.INVITES.TYPES.TOTAL, 1);
         } else {
-            console.log(`[INVITE-TRACKER] Crediting ${inviterId} for inviting ${invitedId}.`, Constants.CONSOLE.INFO);
+            console.log(`[InviteTracker::JoinCredits] Crediting ${inviterId} for inviting ${invitedId}.`, Constants.CONSOLE.INFO);
 
             await inviter.updateInvitesBy(MongoUserConsts.INVITES.TYPES.TOTAL, 1);
             await inviter.updateInvitesBy(MongoUserConsts.INVITES.TYPES.REAL, 1);
@@ -45,19 +45,19 @@ const saveUserIfValidInvite = async (inviterId, invitedId, client) => {
 
         checkForAction(inviter, inviterId, invitedId, client);
     } catch (err) {
-        console.log(`[INVITE-TRACKER] Error in saveUserIfValidInvite`, Constants.CONSOLE.ERROR);
+        console.log(`[InviteTracker::ErrorInfo] Error in saveUserIfValidInvite`, Constants.CONSOLE.ERROR);
     }
 };
 
 const start = async (client) => {
-    console.log(`[INVITE-TRACKER] Starting...`, Constants.CONSOLE.GOOD);
+    console.log(`[InviteTracker::StartInfo] Starting...`, Constants.CONSOLE.GOOD);
 
     for (const [guildId, guild] of client.guilds.cache) {
         try {
             const invites = await guild.invites.fetch();
             inviteCache.set(guildId, new Collection(invites.map(i => [i.code, i.uses])));
         } catch (err) {
-            console.log(`[INVITE-TRACKER] ${member.user.tag} Could not cache invites for guild ${guildId}.`, Constants.CONSOLE.ERROR);
+            console.log(`[InviteTracker::ErrorInfo] ${member.user.tag} Could not cache invites for guild ${guildId}.`, Constants.CONSOLE.ERROR);
         }
     }
 
@@ -74,14 +74,14 @@ const start = async (client) => {
 
             if (usedInvite) {
                 const inviter = usedInvite.inviter;
-                console.log(`[INVITE-TRACKER] ${member.user.tag} joined using code ${usedInvite.code} from ${inviter.id} ${inviter?.tag || 'Unknown'}`, Constants.CONSOLE.WORKING);
+                console.log(`[InviteTracker::MemberAdd] ${member.user.tag} joined using code ${usedInvite.code} from ${inviter.id} ${inviter?.tag || 'Unknown'}`, Constants.CONSOLE.WORKING);
 
                 saveUserIfValidInvite(inviter.id, member.id, client);
             } else {
-                console.log(`[INVITE-TRACKER] ${member.user.tag} joined, but no invite match found (Vanity URL or OAuth2 likely).`, Constants.CONSOLE.ERROR);
+                console.log(`[InviteTracker::MemberAdd] ${member.user.tag} joined, but no invite match found (Vanity URL or OAuth2 likely).`, Constants.CONSOLE.ERROR);
             }
         } catch (e) {
-            console.log(`[INVITE-TRACKER] ${member.user.tag} Error handling guildMemberAdd invite tracking.`, Constants.CONSOLE.ERROR);
+            console.log(`[InviteTracker::MemberAdd] ${member.user.tag} Error handling guildMemberAdd invite tracking.`, Constants.CONSOLE.ERROR);
         }
     });
 

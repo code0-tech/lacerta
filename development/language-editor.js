@@ -350,12 +350,12 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-    console.log(`\n✅ Language Editor running at http://localhost:${PORT}`);
-    console.log(`Edit your language files in the browser and save!`);
+    console.log(`[Editor::Service] Language Editor running at http://localhost:${PORT}`);
+    console.log(`[Editor::Service] Edit your language files in the browser and save!`);
 });
 
 const quit = () => {
-    console.log('Exiting Web Editor gracefully...');
+    console.log('[Editor::Service] Exiting Web Editor gracefully...');
     process.exit(0);
 };
 

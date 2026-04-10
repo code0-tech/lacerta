@@ -17,12 +17,12 @@ class Ollama {
 
     static async request(prompt = null, model = this.AI_MODELS.LLAMA.V_3_2) {
         if (prompt == null) {
-            console.log('[Ollama] no prompt defined', Constants.CONSOLE.ERROR);
+            console.log('[OllamaService::Parameters] no prompt defined', Constants.CONSOLE.ERROR);
             return null;
         }
 
         try {
-            console.log('[Ollama] New Prompt', Constants.CONSOLE.WORKING);
+            console.log('[OllamaService::Info] New Prompt', Constants.CONSOLE.WORKING);
 
             const response = await fetch(this.SERVER_URL, {
                 method: 'POST',
@@ -38,13 +38,13 @@ class Ollama {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            console.log('[Ollama] New Prompt finished', Constants.CONSOLE.GOOD);
+            console.log('[OllamaService::Info] New Prompt finished', Constants.CONSOLE.GOOD);
 
             const data = await response.json();
             return data.response;
 
         } catch (error) {
-            console.error('[Ollama] Request failed:', error);
+            console.error('[OllamaService::ErrorInfo] Request failed:', error);
             return null;
         }
     }

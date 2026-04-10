@@ -25,7 +25,7 @@ class MongoUser {
         const userData = await MongoDb.find(ENUMS.DCB.USERS, { id: this._userId });
 
         if (userData[0] == undefined) {
-            console.log('[MongoUser] User not found creating entries', Constants.CONSOLE.INFO);
+            console.log('[MongoDB::Users] User not found creating entries', Constants.CONSOLE.INFO);
             await this._createNewUser();
         }
     }

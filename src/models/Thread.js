@@ -77,7 +77,7 @@ class Thread {
                 try {
                     await thread.members.add(userId);
                 } catch (e) {
-                    console.log(`[Discord Thread] Failed to silently add user ${userId}`, Constants.CONSOLE.ERROR);
+                    console.log(`[Discord::Thread] Failed to silently add user ${userId}`, Constants.CONSOLE.ERROR);
                 }
             }
         }
@@ -88,7 +88,7 @@ class Thread {
             await msg.delete();
         }
 
-        console.log(`[Discord Thread] Created new thread "${thread.name}" in #${channel.name}`, Constants.CONSOLE.GOOD);
+        console.log(`[Discord::Thread] Created new thread "${thread.name}" in #${channel.name}`, Constants.CONSOLE.GOOD);
         return thread;
     }
 }

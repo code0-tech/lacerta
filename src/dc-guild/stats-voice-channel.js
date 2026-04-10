@@ -99,7 +99,7 @@ const start = async (client) => {
             if (channel.type === ChannelType.GuildVoice) {
                 channel.members.forEach(member => {
                     if (!voiceChatUser[member.id]) {
-                        console.log(`[Voice Stats] Pre-booting tracker for: ${member.user.tag}`, Constants.CONSOLE.FOUND);
+                        console.log(`[VoiceStats::Tracking] Pre-booting tracker for: ${member.user.tag}`, Constants.CONSOLE.FOUND);
                         joinVoice(client, member.id);
                     }
                 });

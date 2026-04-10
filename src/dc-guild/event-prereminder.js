@@ -18,7 +18,7 @@ const fetchUpcomingEvents = async (guild) => {
 };
 
 const runEventInfo = async (channelId, title, time, client, eventConfig, eventId, timer, timeInMinutes) => {
-    console.log(`[PREREMINDER-EVENTS] Time remaining ${timeInMinutes} min for "${title}"`, Constants.CONSOLE.INFO);
+    console.log(`[Prereminder::Events] Time remaining ${timeInMinutes} min for "${title}"`, Constants.CONSOLE.INFO);
 
     const placeholders = { title, minutesRemaining: timeInMinutes };
 
@@ -71,7 +71,7 @@ const runEventInfo = async (channelId, title, time, client, eventConfig, eventId
 
     tempEntryForEvent.messages.push(messageId);
 
-    console.log(`[PREREMINDER-EVENTS] Event "${title}" contains inviteButtons, current added messages are ${tempEntryForEvent.messages.length}`, Constants.CONSOLE.INFO);
+    console.log(`[Prereminder::Events] Event "${title}" contains inviteButtons, current added messages are ${tempEntryForEvent.messages.length}`, Constants.CONSOLE.INFO);
 
     tempEntry.setData(tempEntryForEvent)
         .setValidTimeInDays(1)
@@ -84,7 +84,7 @@ const setupTimers = (channelId, title, time, client, eventConfig, eventId) => {
 
         if (timeNew > 0 && timeNew < MAX_TIMER_WINDOW_MS) {
             if (eventTimers.length >= MAX_TIMERS) {
-                console.log(`[PREREMINDER-EVENTS] Too many active timers (${eventTimers.length}), skipping timer for "${title}" at ${timeInMinutes} minutes`);
+                console.log(`[Prereminder::Events] Too many active timers (${eventTimers.length}), skipping timer for "${title}" at ${timeInMinutes} minutes`);
                 return;
             }
 
@@ -95,7 +95,7 @@ const setupTimers = (channelId, title, time, client, eventConfig, eventId) => {
             eventTimers.push({ timer, title });
 
         } else {
-            console.log(`[PREREMINDER-EVENTS] "${title}" invalid timeout: ${timeNew} ${timeNew > MAX_TIMER_WINDOW_MS ? `not within ${Constants.SETTINGS.PREREMINDER_EVENTS.MAX_TIMER_WINDOW_DAYS} days` : ''}${timeNew < 0 ? 'timer is already in the past' : ''}, on call ${timeInMinutes} min before event`, Constants.CONSOLE.ERROR);
+            console.log(`[Prereminder::Events] "${title}" invalid timeout: ${timeNew} ${timeNew > MAX_TIMER_WINDOW_MS ? `not within ${Constants.SETTINGS.PREREMINDER_EVENTS.MAX_TIMER_WINDOW_DAYS} days` : ''}${timeNew < 0 ? 'timer is already in the past' : ''}, on call ${timeInMinutes} min before event`, Constants.CONSOLE.ERROR);
         }
     });
 };
@@ -106,27 +106,27 @@ const deleteAllRunningTimers = () => {
     }
 
     eventTimers = [];
-    console.log(`[PREREMINDER-EVENTS] Cleared all existing timers`, Constants.CONSOLE.INFO);
+    console.log(`[Prereminder::Events] Cleared all existing timers`, Constants.CONSOLE.INFO);
 };
 
 const buildNewTimer = (client, event) => {
     const nextDateUnix = event.scheduledStartTimestamp;
 
     const dateInHumanFormat = new Date(nextDateUnix).toLocaleString();
-    console.log(`[PREREMINDER-EVENTS] "${event.name}" next occurrence (Readable): ${dateInHumanFormat}`, Constants.CONSOLE.INFO);
+    console.log(`[Prereminder::Events] "${event.name}" next occurrence (Readable): ${dateInHumanFormat}`, Constants.CONSOLE.INFO);
 
     const timeUntilEvent = nextDateUnix - Date.now();
 
     const eventConfig = config.modules.eventPreReminder.find(cfg => cfg.title === event.name);
 
     if (!eventConfig) {
-        console.log(`[PREREMINDER-EVENTS] No config found for "${event.name}", skipping...`, Constants.CONSOLE.INFO);
+        console.log(`[Prereminder::Events] No config found for "${event.name}", skipping...`, Constants.CONSOLE.INFO);
         return;
     }
 
     const eventMessageChannelId = config.server.channels[eventConfig.channelName];
 
-    console.log(`[PREREMINDER-EVENTS] Config found for "${event.name}"`, Constants.CONSOLE.GOOD);
+    console.log(`[Prereminder::Events] Config found for "${event.name}"`, Constants.CONSOLE.GOOD);
     setupTimers(eventMessageChannelId, event.name, timeUntilEvent, client, eventConfig, event.id);
 }
 
@@ -141,7 +141,7 @@ const reBuildTimer = async (client, guild) => {
 };
 
 const timerUpdate = (client, guild) => {
-    console.log(`[PREREMINDER-EVENTS] Timer update, rebuilding all timers...`, Constants.CONSOLE.INFO);
+    console.log(`[Prereminder::Events] Timer update, rebuilding all timers...`, Constants.CONSOLE.INFO);
     reBuildTimer(client, guild);
 };
 
@@ -150,17 +150,17 @@ const setupEventListener = (client, guild) => {
     listenerIsSetup = true;
 
     client.on(Events.GuildScheduledEventUpdate, () => {
-        console.log(`[PREREMINDER-EVENTS] Event updated, rebuilding timers...`, Constants.CONSOLE.INFO);
+        console.log(`[Prereminder::Events] Event updated, rebuilding timers...`, Constants.CONSOLE.INFO);
         timerUpdate(client, guild);
     });
 
     client.on(Events.GuildScheduledEventDelete, () => {
-        console.log(`[PREREMINDER-EVENTS] Event deleted, rebuilding timers...`, Constants.CONSOLE.INFO);
+        console.log(`[Prereminder::Events] Event deleted, rebuilding timers...`, Constants.CONSOLE.INFO);
         timerUpdate(client, guild);
     });
 
     client.on(Events.GuildScheduledEventCreate, () => {
-        console.log(`[PREREMINDER-EVENTS] Event created, rebuilding timers...`, Constants.CONSOLE.INFO);
+        console.log(`[Prereminder::Events] Event created, rebuilding timers...`, Constants.CONSOLE.INFO);
         timerUpdate(client, guild);
     });
 };

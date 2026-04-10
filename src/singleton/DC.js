@@ -10,7 +10,7 @@ class DC {
     */
     static async defer(interaction, ephemeral = true) {
         if (interaction == undefined) {
-            console.log(`[DC.defer] Interaction was not defined`, Constants.CONSOLE.ERROR);
+            console.log(`[DC:::defer] Interaction was not defined`, Constants.CONSOLE.ERROR);
             return;
         }
 
@@ -30,15 +30,15 @@ class DC {
             let member = guild.members.cache.get(userId);
 
             if (member) {
-                console.log(`[DC.memberById] UserId ${userId} found in cache`, Constants.CONSOLE.FOUND);
+                console.log(`[DC:::memberById] UserId ${userId} found in cache`, Constants.CONSOLE.FOUND);
             } else {
                 member = await guild.members.fetch(userId);
-                console.log(`[DC.memberById] UserId ${userId} fetched from API`, Constants.CONSOLE.FOUND);
+                console.log(`[DC:::memberById] UserId ${userId} fetched from API`, Constants.CONSOLE.FOUND);
             }
 
             return member;
         } catch (err) {
-            console.log(`[DC.memberById] Cannot find userId ${userId}`, Constants.CONSOLE.ERROR);
+            console.log(`[DC:::memberById] Cannot find userId ${userId}`, Constants.CONSOLE.ERROR);
             return undefined;
         }
     }
@@ -51,15 +51,15 @@ class DC {
             let member = guild.members.cache.get(userId);
 
             if (member) {
-                console.log(`[DC.memberById] UserId ${userId} found in cache`, Constants.CONSOLE.FOUND);
+                console.log(`[DC::memberById] UserId ${userId} found in cache`, Constants.CONSOLE.FOUND);
             } else {
                 member = await guild.members.fetch(userId);
-                console.log(`[DC.memberById] UserId ${userId} fetched from API`, Constants.CONSOLE.FOUND);
+                console.log(`[DC::memberById] UserId ${userId} fetched from API`, Constants.CONSOLE.FOUND);
             }
 
             return member;
         } catch (err) {
-            console.log(`[DC.memberById] Cannot find userId ${userId}`, Constants.CONSOLE.ERROR);
+            console.log(`[DC::memberById] Cannot find userId ${userId}`, Constants.CONSOLE.ERROR);
             return undefined;
         }
     }
@@ -76,7 +76,7 @@ class DC {
             }
             return user;
         } catch (err) {
-            console.log(`[DC.userById] Cannot find userId ${userId}`, Constants.CONSOLE.ERROR);
+            console.log(`[DC::userById] Cannot find userId ${userId}`, Constants.CONSOLE.ERROR);
             return undefined;
         }
     }
@@ -135,23 +135,20 @@ class DC {
             let channel = client.channels.cache.get(channelId);
 
             if (channel) {
-                console.log(
-                    `[DC.channelByIdOnly] ChannelId ${channelId} found in cache`,
+                console.log(`[DC::channelByIdOnly] ChannelId ${channelId} found in cache`,
                     Constants.CONSOLE.FOUND
                 );
                 return channel;
             }
 
             channel = await client.channels.fetch(channelId);
-            console.log(
-                `[DC.channelByIdOnly] ChannelId ${channelId} fetched from API`,
+            console.log(`[DC::channelByIdOnly] ChannelId ${channelId} fetched from API`,
                 Constants.CONSOLE.FOUND
             );
 
             return channel;
         } catch (err) {
-            console.log(
-                `[DC.channelByIdOnly] Cannot find channel ${channelId}`,
+            console.log(`[DC::channelByIdOnly] Cannot find channel ${channelId}`,
                 Constants.CONSOLE.ERROR
             );
             return undefined;
@@ -173,10 +170,10 @@ class DC {
         try {
             const allChannels = guild.channels.cache;
             const channelsInCategory = allChannels.filter(channel => channel.parentId === parentId);
-            console.log(`[DC.channelsByParentId] Channels for parentId ${parentId} found in cache`, Constants.CONSOLE.FOUND);
+            console.log(`[DC::channelsByParentId] Channels for parentId ${parentId} found in cache`, Constants.CONSOLE.FOUND);
             return channelsInCategory;
         } catch (err) {
-            console.log(`[DC.channelsByParentId] Cannot find channels for parentId ${parentId}`, Constants.CONSOLE.ERROR);
+            console.log(`[DC::channelsByParentId] Cannot find channels for parentId ${parentId}`, Constants.CONSOLE.ERROR);
             return undefined;
         }
     }
@@ -189,15 +186,15 @@ class DC {
             let channel = guild.channels.cache.get(channelId);
 
             if (channel) {
-                console.log(`[DC.channelById] ChannelId ${channelId} found in cache`, Constants.CONSOLE.FOUND);
+                console.log(`[DC::channelById] ChannelId ${channelId} found in cache`, Constants.CONSOLE.FOUND);
             } else {
                 channel = await guild.channels.fetch(channelId);
-                console.log(`[DC.channelById] ChannelId ${channelId} fetched from API`, Constants.CONSOLE.FOUND);
+                console.log(`[DC::channelById] ChannelId ${channelId} fetched from API`, Constants.CONSOLE.FOUND);
             }
 
             return channel;
         } catch (err) {
-            console.log(`[DC.channelById] Cannot find channelId ${channelId}`, Constants.CONSOLE.ERROR);
+            console.log(`[DC::channelById] Cannot find channelId ${channelId}`, Constants.CONSOLE.ERROR);
             return undefined;
         }
     }
@@ -233,14 +230,14 @@ class DC {
 
         let removedIds = [];
 
-        console.log(`[DC.channelPerms] User Perms removing from "${channel.name}"`, Constants.CONSOLE.WORKING);
+        console.log(`[DC::channelPerms] User Perms removing from "${channel.name}"`, Constants.CONSOLE.WORKING);
 
         [...type1Overwrites.keys()].forEach(userId => {
             removedIds.push(userId);
             channel.permissionOverwrites.delete(userId);
         });
 
-        console.log(`[DC.channelPerms] User Perms removed from "${channel.name}"`, Constants.CONSOLE.GOOD);
+        console.log(`[DC::channelPerms] User Perms removed from "${channel.name}"`, Constants.CONSOLE.GOOD);
         return { removedIds };
     }
 
@@ -344,9 +341,9 @@ class DC {
                 await message.react(emoji);
                 applied.push(emoji);
             }
-            console.log(`[DC] added emojis`, Constants.CONSOLE.GOOD);
+            console.log(`[DC::addEmojiSequence] added emojis`, Constants.CONSOLE.GOOD);
         } catch (err) {
-            console.log(`[DC.addEmojiSequence] Error adding: ${err.message}`, Constants.CONSOLE.ERROR);
+            console.log(`[DC::addEmojiSequence] Error adding: ${err.message}`, Constants.CONSOLE.ERROR);
         }
         return applied;
     }
@@ -361,7 +358,7 @@ class DC {
 
             if (reaction) {
                 await reaction.users.remove(message.client.user.id);
-                console.log(`[DC] remove emoji from message`, Constants.CONSOLE.GOOD);
+                console.log(`[DC::removeBotReaction] remove emoji from message`, Constants.CONSOLE.GOOD);
                 return true;
             }
         } catch (err) {
@@ -375,7 +372,7 @@ class DC {
      * Check if a message has a specific emoji reaction
      */
     static hasReaction(message, emoji) {
-        console.log(`[DC] check emoji on message`, Constants.CONSOLE.GOOD);
+        console.log(`[DC::hasReaction] check emoji on message`, Constants.CONSOLE.GOOD);
         return message.reactions.cache.has(emoji);
     }
 

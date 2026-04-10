@@ -19,7 +19,7 @@ const load = (client) => {
         // Load Slash-Command
         if (command.data) {
             client.commands.set(command.data.name, command);
-            console.log(`[Loader] Loaded command: ${command.data.name}`, Constants.CONSOLE.LOADING);
+            console.log(`[InteractionLoader::SlashCommand] Loaded command: ${command.data.name}`, Constants.CONSOLE.LOADING);
         } else {
             command.data = { name: commandName };
         }
@@ -27,18 +27,18 @@ const load = (client) => {
         // Load Components
         if (command.executeComponent && command.componentIds) {
             if (command.componentIds.length == 0) {
-                console.log(`[Loader] Tip: Remove unused componentIds array for: ${command.data.name}`, Constants.CONSOLE.LOADING);
+                console.log(`[InteractionLoader::Components] Tip: Remove unused componentIds array for: ${command.data.name}`, Constants.CONSOLE.LOADING);
             }
             for (const buttonId of command.componentIds) {
                 client.components.set(buttonId, command);
             }
-            console.log(`[Loader] Loaded component: ${command.componentIds.length ? command.componentIds : '[]'} for: ${command.data.name}`, Constants.CONSOLE.LOADING);
+            console.log(`[InteractionLoader::Components] Loaded component: ${command.componentIds.length ? command.componentIds : '[]'} for: ${command.data.name}`, Constants.CONSOLE.LOADING);
         }
 
         // Run autoRun functions
         if (command.autoRun) {
             command.autoRun(client, client.languages);
-            console.log(`[Loader] Run autoRun() function for ${commandFile}`, Constants.CONSOLE.LOADING);
+            console.log(`[InteractionLoader::AutoRun] Run autoRun() function for ${commandFile}`, Constants.CONSOLE.LOADING);
         }
     }
 

@@ -20,7 +20,7 @@ class Mongo {
             const col = await this._getWhere(where);
             const result = await col.updateMany({}, { $rename: { [oldName]: newName } });
             if (this._shouldLog(where)) {
-                console.log(`[MongoDB] Rename Field: ${oldName} -> ${newName} @${where.db}.${where.t}`, CONSOLE.GOOD);
+                console.log(`[MongoDB::Main] Rename Field: ${oldName} -> ${newName} @${where.db}.${where.t}`, CONSOLE.GOOD);
             }
             return result;
         } catch (error) {
@@ -34,7 +34,7 @@ class Mongo {
             const col = await this._getWhere(where);
             const result = await col.updateMany({}, { $unset: { [fieldPath]: "" } });
             if (this._shouldLog(where)) {
-                console.log(`[MongoDB] Unset Field: ${fieldPath} @${where.db}.${where.t}`, CONSOLE.GOOD);
+                console.log(`[MongoDB::Main] Unset Field: ${fieldPath} @${where.db}.${where.t}`, CONSOLE.GOOD);
             }
             return result;
         } catch (error) {
@@ -48,7 +48,7 @@ class Mongo {
             const col = await this._getWhere(where);
             const result = await col.updateMany({}, { $set: { [fieldPath]: value } });
             if (this._shouldLog(where)) {
-                console.log(`[MongoDB] Set Field: ${fieldPath} @${where.db}.${where.t}`, CONSOLE.GOOD);
+                console.log(`[MongoDB::Main] Set Field: ${fieldPath} @${where.db}.${where.t}`, CONSOLE.GOOD);
             }
             return result;
         } catch (error) {
@@ -62,7 +62,7 @@ class Mongo {
             const col = await this._getWhere(where);
             const result = await col.find(query).toArray();
             if (this._shouldLog(where)) {
-                console.log(`[MongoDB] Find: ${JSON.stringify(query)} @${where.db}.${where.t} (${result.length} results)`, CONSOLE.GOOD);
+                console.log(`[MongoDB::Main] Find: ${JSON.stringify(query)} @${where.db}.${where.t} (${result.length} results)`, CONSOLE.GOOD);
             }
             return result;
         } catch (error) {
@@ -76,7 +76,7 @@ class Mongo {
             const col = await this._getWhere(where);
             const result = await col.findOne(query);
             if (this._shouldLog(where)) {
-                console.log(`[MongoDB] FindOne: ${JSON.stringify(query)} @${where.db}.${where.t} (${result ? 'Found' : 'Not Found'})`, CONSOLE.GOOD);
+                console.log(`[MongoDB::Main] FindOne: ${JSON.stringify(query)} @${where.db}.${where.t} (${result ? 'Found' : 'Not Found'})`, CONSOLE.GOOD);
             }
             return result;
         } catch (error) {
@@ -90,7 +90,7 @@ class Mongo {
             const col = await this._getWhere(where);
             const result = await col.aggregate(input).toArray();
             if (this._shouldLog(where)) {
-                console.log(`[MongoDB] Aggregate: ${input.length} stages @${where.db}.${where.t}`, CONSOLE.GOOD);
+                console.log(`[MongoDB::Main] Aggregate: ${input.length} stages @${where.db}.${where.t}`, CONSOLE.GOOD);
             }
             return result;
         } catch (error) {
@@ -104,7 +104,7 @@ class Mongo {
             const col = await this._getWhere(where);
             const result = await col.distinct(field);
             if (this._shouldLog(where)) {
-                console.log(`[MongoDB] Distinct: ${field} @${where.db}.${where.t}`, CONSOLE.GOOD);
+                console.log(`[MongoDB::Main] Distinct: ${field} @${where.db}.${where.t}`, CONSOLE.GOOD);
             }
             return result;
         } catch (error) {
@@ -118,7 +118,7 @@ class Mongo {
             const col = await this._getWhere(where);
             const result = await col.insertOne(document);
             if (this._shouldLog(where)) {
-                console.log(`[MongoDB] InsertOne @${where.db}.${where.t} (ID: ${result.insertedId})`, CONSOLE.GOOD);
+                console.log(`[MongoDB::Main] InsertOne @${where.db}.${where.t} (ID: ${result.insertedId})`, CONSOLE.GOOD);
             }
             return result.insertedId;
         } catch (error) {
@@ -132,7 +132,7 @@ class Mongo {
             const col = await this._getWhere(where);
             const result = await col.updateOne(query, update, options);
             if (this._shouldLog(where)) {
-                console.log(`[MongoDB] Update: ${JSON.stringify(query)} @${where.db}.${where.t} (Matched: ${result.matchedCount})`, CONSOLE.GOOD);
+                console.log(`[MongoDB::Main] Update: ${JSON.stringify(query)} @${where.db}.${where.t} (Matched: ${result.matchedCount})`, CONSOLE.GOOD);
             }
             return result;
         } catch (error) {
@@ -146,7 +146,7 @@ class Mongo {
             const col = await this._getWhere(where);
             const result = await col.deleteOne(query);
             if (this._shouldLog(where)) {
-                console.log(`[MongoDB] DeleteOne: ${JSON.stringify(query)} @${where.db}.${where.t} (Deleted: ${result.deletedCount})`, CONSOLE.GOOD);
+                console.log(`[MongoDB::Main] DeleteOne: ${JSON.stringify(query)} @${where.db}.${where.t} (Deleted: ${result.deletedCount})`, CONSOLE.GOOD);
             }
             return result;
         } catch (error) {

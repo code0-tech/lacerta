@@ -16,14 +16,14 @@ const mongoClient = new MongoClient(process.env.MONGO_URL, {
 const connect = async () => {
     try {
         await mongoClient.connect();
-        console.log('[MongoDb] Connected to MongoDB', Constants.CONSOLE.GOOD);
+        console.log('[MongoDB::Connections] Connected to MongoDB', Constants.CONSOLE.GOOD);
 
         mongoClient.on('error', (err) => {
-            console.log(`[MongoDb] Connection lost!: ${err}`, Constants.CONSOLE.ERROR);
+            console.log(`[MongoDB::Connections] Connection lost!: ${err}`, Constants.CONSOLE.ERROR);
         });
 
     } catch (err) {
-        console.error('[MongoDb] Fatal Error during initial connect:', err);
+        console.error('[MongoDB::Connections] Fatal Error during initial connect:', err);
         process.exit(1);
     }
 };

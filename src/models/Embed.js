@@ -7,7 +7,7 @@ const embedColors = config.server.embeds.colors;
 const replacePlaceHolders = (template, data) => {
     return template.replace(/{([^{}]*)}/g, (match, key) => {
         if (data[key.trim()] == undefined) {
-            console.log(`[Embed PlaceHolder Replace] a Placeholder "${key}" was not found as an input.`, Constants.CONSOLE.ERROR)
+            console.log(`[EmbedBuilder::Placeholders] a Placeholder "${key}" was not found as an input.`, Constants.CONSOLE.ERROR)
             return '';
         }
         return data[key.trim()];
@@ -175,7 +175,7 @@ class Embed {
         const embedContext = lang.text[contextId];
 
         if (embedContext == undefined) {
-            console.log(`[Embed Error] Given contextId: ${contextId} is not part of this command.`, Constants.CONSOLE.ERROR);
+            console.log(`[EmbedBuilder::Context] Given contextId: ${contextId} is not part of this command.`, Constants.CONSOLE.ERROR);
             return this;
         }
 
@@ -259,16 +259,16 @@ class Embed {
             } catch (error) {
                 if (error.code === 50027) {
                     interactionReply = null;
-                    console.log(`[Embed] Error "${error.code}", invalid Token [possible reason: +15update message]`, Constants.CONSOLE.ERROR);
+                    console.log(`[EmbedBuilder::MessageToken] Error "${error.code}", invalid Token [possible reason: +15update message]`, Constants.CONSOLE.ERROR);
                 } else {
-                    console.log(`[Embed] Error while sending Embed`, Constants.CONSOLE.ERROR);
+                    console.log(`[EmbedBuilder::SendMessage] Error while sending Embed`, Constants.CONSOLE.ERROR);
                     throw error;
                 }
             }
 
             return interactionReply;
         } catch (error) {
-            console.log(`[Embed] Error while sending Embed`, Constants.CONSOLE.ERROR);
+            console.log(`[EmbedBuilder::GlobalSentError] Error while sending Embed`, Constants.CONSOLE.ERROR);
             throw error;
         }
     }
@@ -316,7 +316,7 @@ class Embed {
     */
     async responseToChannel(channelId, client) {
         const channel = await client.channels.fetch(channelId);
-        if (!channel?.isTextBased()) console.log(`[Embed] Channel not found`, Constants.CONSOLE.ERROR);
+        if (!channel?.isTextBased()) console.log(`[EmbedBuilder::Channels] Channel not found`, Constants.CONSOLE.ERROR);
 
         return this.#sendAndPin(channel);
     }
@@ -327,7 +327,7 @@ class Embed {
     * @returns {Promise<void>} - A promise that resolves when the message is sent.
     */
     async responseToChannelByInteraction(interaction) {
-        if (!interaction.channel) throw console.log(`[Embed] Channel cannot be found by Interaction`, Constants.CONSOLE.ERROR);
+        if (!interaction.channel) throw console.log(`[EmbedBuilder::Channels] Channel cannot be found by Interaction`, Constants.CONSOLE.ERROR);
 
         return this.#sendAndPin(interaction.channel);
     }

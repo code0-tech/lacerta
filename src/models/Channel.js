@@ -64,7 +64,7 @@ class Channel {
     */
     async createChannel(guild) {
         const channel = await guild.channels.create(this._channelObj);
-        console.log(`[Channel] Created new channel "${channel.name}"`, Constants.CONSOLE.WORKING);
+        console.log(`[Discord::Channels] Created new channel "${channel.name}"`, Constants.CONSOLE.WORKING);
         return channel;
     }
 };

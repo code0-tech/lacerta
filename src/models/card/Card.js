@@ -49,7 +49,7 @@ class Card {
 
         const attachment = new AttachmentBuilder(bufferData, { name: Constants.DISCORD.EMBED_IMAGE_NAME.BUILDER.DEFAULT_PNG_01 });
 
-        console.log(`[Puppeteer: Card] created a new card.`, Constants.CONSOLE.WORKING);
+        console.log(`[Puppeteer::Card] created a new card.`, Constants.CONSOLE.WORKING);
 
         return attachment;
     }

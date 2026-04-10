@@ -13,7 +13,7 @@ async function updateStats(channelId, type, updateData) {
     try {
         await mongo.update(where, query, updateData, { upsert: true });
     } catch (error) {
-        console.log(`[Guild-Stats] Error updating Mongo for ${channelId}`, Constants.CONSOLE.ERROR);
+        console.log(`[GuildStatsTracker::Mongo] Error updating Mongo for ${channelId}`, Constants.CONSOLE.ERROR);
     }
 };
 
@@ -41,7 +41,7 @@ async function updateVoiceChannelMetadata(channel) {
 };
 
 const start = (client) => {
-    console.log(`[Guild-Stats] Build untracked channel`, Constants.CONSOLE.GOOD);
+    console.log(`[GuildStatsTracker::ChannelTracking] Build untracked channel`, Constants.CONSOLE.GOOD);
 
     client.guilds.cache.forEach(async (guild) => {
         const channels = await DC.channelsByGuild(guild);

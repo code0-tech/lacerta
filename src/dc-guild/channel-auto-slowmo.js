@@ -79,7 +79,6 @@ const checkSlowmoDecay = async (client) => {
         if (now - doc.lastSlipAt >= channelSLIPConfig.slowmodeTime) {
             await disableSlowmo(doc.channelId, client);
         }
-        console.log(now - doc.lastSlipAt)
     }
 };
 
