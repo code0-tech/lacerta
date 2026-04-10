@@ -72,6 +72,8 @@ const start = async (args = {}) => {
 
         require('./src/dc-guild/event-prereminder').setupEventMessages(client);
 
+        require('./src/start-up/mongodb-temp-table-helper').start();
+
         console.log(`\nCodeZero Discord Client ready => ${readyClient.user.tag}`, Constants.CONSOLE.GOOD);
     });
 
