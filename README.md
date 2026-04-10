@@ -15,6 +15,11 @@ CodeZero is a Discord bot developed in JavaScript, utilizing the discord.js clie
   - Message count statistics
   - Command usage data
   - Flags
+  - Temp Entries
+  - Channel Stats
+  - Slowed Channels
+  - Git Commits
+  - Logs
 #
 
 ## Main Interactions
@@ -74,17 +79,17 @@ For /open-contributer, OAuth URLs are not stored. This means authentication is r
 
 Real Example:
 ```json
-/** 
-* Paste one or more documents here
-*/
 {
+  "_id": {
+    "$oid": "6644f92497346d3e063052fe"
+  },
   "id": "380808844093292555",
-  "rawxp": 3046,
+  "rawxp": 3146,
   "stats": {
     "messages": {
-      "words": 7196,
-      "chars": 37905,
-      "count": 1272
+      "words": 7313,
+      "chars": 38581,
+      "count": 1284
     },
     "invites": {
       "total": 1,
@@ -99,11 +104,11 @@ Real Example:
       ]
     },
     "voice": {
-      "_totalCalculated": 66771,
-      "activeTime": 57565,
-      "joinCount": 20,
+      "_totalCalculated": 70897,
+      "activeTime": 61430,
+      "joinCount": 22,
       "channelSwitches": 2,
-      "selfMuteTime": 5930,
+      "selfMuteTime": 6164,
       "selfDeafTime": 55,
       "streamingTime": 308
     }
@@ -114,19 +119,22 @@ Real Example:
   },
   "commandUsage": {
     "debug": {
-      "command": 112,
-      "button": 26,
+      "command": 116,
+      "button": 27,
       "selectmenu": 18
     },
     "leaderboard": {
-      "command": 97
+      "command": 98
+    },
+    "stats": {
+      "command": 152
     }
-    // more command ussage
+    // More...
   }
 }
 ```
 
-Last MongoDB structure update: 19.03.2026
+Last MongoDB structure update: 10.04.2026
 
 Tip: You can mention a Discord user by their ID using `<@user_id>`.
 
