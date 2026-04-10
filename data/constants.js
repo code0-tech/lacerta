@@ -261,8 +261,8 @@ class Constants {
                     get SCHEDULE() {
                         return '0 16 * * *';
                     },
-                    get TARGET_X_SIZE(){
-                       return 30;
+                    get TARGET_X_SIZE() {
+                        return 30;
                     }
                 };
             },
@@ -379,6 +379,17 @@ class Constants {
                             },
                             get DM() {
                                 return 'dmTextChannel';
+                            }
+                        }
+                    }
+                }
+            },
+            get TABLES() {
+                return {
+                    get TEMP() {
+                        return {
+                            get CHECK_TIME_MS() {
+                                return Constants.TIME_MULTIPLIER_MS.MINUTE * 60;
                             }
                         }
                     }
