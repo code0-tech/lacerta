@@ -1,4 +1,5 @@
 const { Mongo, ENUMS } = require('../models/Mongo');
+const Constants = require('../../data/constants');
 
 let logDocument = null;
 let logBuffer = [];
@@ -36,13 +37,28 @@ const processNextLog = async () => {
     }
 };
 
+
 setInterval(processNextLog, 500);
 
 const logToMongoDb = async (log) => {
     if (global.mongoClient == null) return;
 
+    const logString = log instanceof Error ? log.message : String(log);
+
+    const typeMatch = logString.match(Constants.REGEX.LOGS.LOG_ORIGIN);
+
+    let type = null;
+
+    if (typeMatch) {
+        type = {
+            "origin": typeMatch[1],
+            "subInfo": typeMatch[2]
+        };
+    }
+
     const logData = {
-        "msg": log instanceof Error ? log.message : log,
+        "msg": logString,
+        "type": type,
         "error": log instanceof Error ? log.stack : null,
         "time": Date.now()
     };
