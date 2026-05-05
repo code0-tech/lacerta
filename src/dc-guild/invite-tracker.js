@@ -6,43 +6,39 @@ const DC = require('../singleton/DC');
 
 const inviteCache = new Collection();
 
-const checkForInvitesGift = async (inviterMongo, inviterId, invitedId, client) => {
-    if ((await inviterMongo.getInviteStats()).real < config.modules.invites.actions.gift.realInvites) return;
+const checkForInvitesGift = async (inviterMongoUser, inviterId, invitedId, client) => {
+    if ((await inviterMongoUser.getInviteStats()).real < config.modules.invites.actions.gift.realInvites) return;
 
-    if (await inviterMongo.getFlag(MongoUserConsts.FLAGS.INVITE_GIFT_RECEIVED) == true) return;
+    if (await inviterMongoUser.getFlag(MongoUserConsts.FLAGS.INVITE_GIFT_RECEIVED) == true) return;
 
     const member = await DC.codeZeroMemberById(inviterId, client);
 
     DC.memberAddRoleId(member, config.modules.invites.actions.gift.roleId);
 
-    inviterMongo.setFlag(MongoUserConsts.FLAGS.INVITE_GIFT_RECEIVED, true);
+    inviterMongoUser.setFlag(MongoUserConsts.FLAGS.INVITE_GIFT_RECEIVED, true);
 
     console.log(`[InviteTracker::InviteCheck] Member ${inviterId} was gifted "INVITE_GIFT".`, Constants.CONSOLE.GOOD);
 };
 
-const checkForAction = (inviterMongo, inviterId, invitedId, client) => {
-    checkForInvitesGift(inviterMongo, inviterId, invitedId, client);
-};
-
 const saveUserIfValidInvite = async (inviterId, invitedId, client) => {
     try {
-        const inviter = await new MongoUser().userById(inviterId);
+        const inviterMongoUser = await new MongoUser().userById(inviterId);
 
-        const existingInviterDoc = await inviter.findOriginalInviter(invitedId);
+        const existingInviterDoc = await inviterMongoUser.findOriginalInviter(invitedId);
 
         if (existingInviterDoc) {
             console.log(`[InviteTracker::Join] Member ${invitedId} rejoined. Already credited to ${existingInviterDoc.id}.`, Constants.CONSOLE.INFO);
 
-            await inviter.updateInvitesBy(MongoUserConsts.INVITES.TYPES.TOTAL, 1);
+            await inviterMongoUser.updateInvitesBy(MongoUserConsts.INVITES.TYPES.TOTAL, 1);
         } else {
             console.log(`[InviteTracker::JoinCredits] Crediting ${inviterId} for inviting ${invitedId}.`, Constants.CONSOLE.INFO);
 
-            await inviter.updateInvitesBy(MongoUserConsts.INVITES.TYPES.TOTAL, 1);
-            await inviter.updateInvitesBy(MongoUserConsts.INVITES.TYPES.REAL, 1);
-            await inviter.addInvitedMember(invitedId);
+            await inviterMongoUser.updateInvitesBy(MongoUserConsts.INVITES.TYPES.TOTAL, 1);
+            await inviterMongoUser.updateInvitesBy(MongoUserConsts.INVITES.TYPES.REAL, 1);
+            await inviterMongoUser.addInvitedMember(invitedId);
         }
 
-        checkForAction(inviter, inviterId, invitedId, client);
+        checkForInvitesGift(inviterMongoUser, inviterId, invitedId, client);
     } catch (err) {
         console.log(err);
         console.log(`[InviteTracker::ErrorInfo] Error in saveUserIfValidInvite`, Constants.CONSOLE.ERROR);
