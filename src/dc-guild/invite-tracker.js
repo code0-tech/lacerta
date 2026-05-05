@@ -27,7 +27,6 @@ const checkForAction = (inviterMongo, inviterId, invitedId, client) => {
 const saveUserIfValidInvite = async (inviterId, invitedId, client) => {
     try {
         const inviter = await new MongoUser().userById(inviterId);
-        await inviter.init();
 
         const existingInviterDoc = await inviter.findOriginalInviter(invitedId);
 
@@ -45,6 +44,7 @@ const saveUserIfValidInvite = async (inviterId, invitedId, client) => {
 
         checkForAction(inviter, inviterId, invitedId, client);
     } catch (err) {
+        console.log(err);
         console.log(`[InviteTracker::ErrorInfo] Error in saveUserIfValidInvite`, Constants.CONSOLE.ERROR);
     }
 };
