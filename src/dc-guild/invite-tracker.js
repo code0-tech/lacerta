@@ -27,9 +27,8 @@ const saveUserIfValidInvite = async (inviterId, invitedId, client) => {
         const existingInviterDoc = await inviterMongoUser.findOriginalInviter(invitedId);
 
         if (existingInviterDoc) {
-            console.log(`[InviteTracker::Join] Member ${invitedId} rejoined. Already credited to ${existingInviterDoc.id}.`, Constants.CONSOLE.INFO);
-
             await inviterMongoUser.updateInvitesBy(MongoUserConsts.INVITES.TYPES.TOTAL, 1);
+            console.log(`[InviteTracker::Join] Member ${invitedId} rejoined. Already credited to ${existingInviterDoc.id}. Updated total count only.`, Constants.CONSOLE.INFO);
         } else {
             console.log(`[InviteTracker::JoinCredits] Crediting ${inviterId} for inviting ${invitedId}.`, Constants.CONSOLE.INFO);
 
