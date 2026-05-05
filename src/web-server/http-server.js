@@ -28,6 +28,6 @@ module.exports.setup = (client) => {
     });
 
     server.listen(httpConfig.port, () => {
-        console.log(`[Git Http Server] Http Server => http://*:${httpConfig.port}`, Constants.CONSOLE.GOOD);
+        console.log(`[HTTPServer::Git] Http Server => http://*:${httpConfig.port}`, Constants.CONSOLE.GOOD);
     });
 };
