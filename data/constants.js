@@ -454,6 +454,13 @@ class Constants {
                         return /latency of (\d+)ms/;
                     }
                 }
+            },
+            get LOGS() {
+                return {
+                    get LOG_ORIGIN() {
+                        return /^\[(.*?)::(.*?)\]/;
+                    }
+                }
             }
         }
     }
