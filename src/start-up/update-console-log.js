@@ -37,7 +37,6 @@ const processNextLog = async () => {
     }
 };
 
-
 setInterval(processNextLog, 500);
 
 const logToMongoDb = async (log) => {
@@ -104,7 +103,7 @@ const customLog = (...args) => {
         logToMongoDb(log);
     } else {
         process['dclogger'] = {
-            runid: 999999999
+            runid: Date.now()
         };
     }
 
