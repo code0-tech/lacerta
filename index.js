@@ -10,7 +10,7 @@ const start = async (args = {}) => {
     const { Client, Events, GatewayIntentBits, Partials } = require('discord.js');
     const dotenv = require('dotenv');
 
-    global.isDevelopment = fs.existsSync(path.join(__dirname, '.local'));
+    global.isDevelopment = fs.existsSync(path.join(__dirname, '.dev'));
 
     dotenv.config({ path: global.isDevelopment ? Constants.NODE.ENV.DEVELOPMENT : Constants.NODE.ENV.PRODUCTION });
 
