@@ -84,15 +84,15 @@ Real Example:
     "$oid": "6644f92497346d3e063052fe"
   },
   "id": "380808844093292555",
-  "rawxp": 3146,
+  "rawxp": 3672,
   "stats": {
     "messages": {
-      "words": 7313,
-      "chars": 38581,
-      "count": 1284
+      "words": 7904,
+      "chars": 44117,
+      "count": 1359
     },
     "invites": {
-      "total": 1,
+      "total": 5,
       "real": 1,
       "usersInvited": [
         {
@@ -104,12 +104,12 @@ Real Example:
       ]
     },
     "voice": {
-      "_totalCalculated": 70897,
-      "activeTime": 61430,
-      "joinCount": 22,
+      "_totalCalculated": 134127,
+      "activeTime": 117091,
+      "joinCount": 44,
       "channelSwitches": 2,
-      "selfMuteTime": 6164,
-      "selfDeafTime": 55,
+      "selfMuteTime": 10431,
+      "selfDeafTime": 73,
       "streamingTime": 308
     }
   },
@@ -119,22 +119,18 @@ Real Example:
   },
   "commandUsage": {
     "debug": {
-      "command": 116,
-      "button": 27,
+      "command": 123,
+      "button": 29,
       "selectmenu": 18
     },
     "leaderboard": {
-      "command": 98
-    },
-    "stats": {
-      "command": 152
-    }
-    // More...
+      "command": 106
+    }// More
   }
 }
 ```
 
-Last MongoDB structure update: 10.04.2026
+Last MongoDB structure update: 18.06.2026
 
 Tip: You can mention a Discord user by their ID using `<@user_id>`.
 
@@ -165,17 +161,17 @@ Files located in `./_app/*` are for Discord server setup (e.g., images).
 
 The bot is fully functional with the following package versions:
 ```json
-"@discordjs/voice": "^0.18.0",        // [25.02.2026]
-"chartjs-node-canvas": "^5.0.0",      // [25.02.2026]
-"chrome-remote-interface": "^0.33.3", // [25.02.2026]
-"discord-simpletable": "^1.1.6",      // [25.02.2026]
-"discord.js": "^14.25.1",             // [25.02.2026]
-"dotenv": "^17.2.3",                  // [25.02.2026]
-"libsodium-wrappers": "^0.8.0",       // [25.02.2026]
-"mongo": "^0.1.0",                    // [25.02.2026]
-"node-fetch": "2.6.12",               // [25.02.2026] (@latest 3.3.2)
-"node-schedule": "^2.1.1",            // [25.02.2026]
-"puppeteer": "^23.11.1"               // [25.02.2026] (@latest 24.37.5) - unused and outdated
+"@discordjs/voice": "^0.19.2",          // [18.06.2026]
+"chartjs-node-canvas": "^5.0.0",        // [18.06.2026]
+"chrome-remote-interface": "^0.34.0",   // [18.06.2026]
+"discord-simpletable": "^1.1.6",        // [18.06.2026]
+"discord.js": "^14.26.4",               // [18.06.2026]
+"dotenv": "^17.2.3",                    // [18.06.2026]
+"libsodium-wrappers": "^0.8.0",         // [18.06.2026]
+"mongo": "^0.1.0",                      // [18.06.2026]
+"node-fetch": "2.6.12",                 // [18.06.2026] (@latest 3.3.2)
+"node-schedule": "^2.1.1",              // [18.06.2026]
+"puppeteer": "^23.11.1"                 // [18.06.2026] (@latest 25.1.0) - unused and outdated
 ```
 
 Tips:
