@@ -1,8 +1,5 @@
 node_modules/
-a-old
+.gitignore
 server.env
 .env
-unused-temp.js
-.gitignore
-new-config.json
-.local
+.dev
