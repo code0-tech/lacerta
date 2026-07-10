@@ -1,0 +1,1094 @@
+{
+    "meta": {
+        "language": "english",
+        "languageShort": "en",
+        "locale": "en-US",
+        "version": "1.0.0",
+        "contributors": [
+            "Nicolas Morawietz"
+        ]
+    },
+    "global": {
+        "_type_": "collection"
+    },
+    "commands": {
+        "_type_": "collection",
+        "debug": {
+            "_type_": "collection",
+            "channels": {
+                "_type_": "string",
+                "string": "Channels"
+            },
+            "roles": {
+                "_type_": "string",
+                "string": "Roles"
+            },
+            "langroles": {
+                "_type_": "string",
+                "string": "Languageroles"
+            },
+            "mongo-left-users": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "userstring": {
+                        "description": "List of discovered ghost users.",
+                        "mock": "GhostUser#1234\nGhostUser#5678"
+                    },
+                    "progressbar": {
+                        "description": "Visual status indicator bar.",
+                        "mock": "▰▰▰▰▱▱▱▱▱▱ 40%"
+                    }
+                },
+                "title": "MongoDB User Ghosts",
+                "description": "Found:\n{userstring}\n\nFake Users:\n{progressbar}",
+                "footer": null,
+                "color": null
+            },
+            "mongo-left-users-loading": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "checked": {
+                        "description": "Number of users scanned so far.",
+                        "mock": "150"
+                    },
+                    "totaluser": {
+                        "description": "Total target users to evaluate.",
+                        "mock": "500"
+                    },
+                    "found": {
+                        "description": "Total ghost items discovered.",
+                        "mock": "12"
+                    }
+                },
+                "title": "MongoDB Left User",
+                "description": "Checked: [{checked}|{totaluser}], found: {found}.",
+                "footer": null,
+                "color": null
+            },
+            "mongo-removed-user": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "removedId": {
+                        "description": "The unique database ID cleaned from the cluster.",
+                        "mock": "64b1f480c9e12"
+                    }
+                },
+                "title": "Removed {removedId}.",
+                "description": null,
+                "footer": null,
+                "color": null
+            },
+            "left-user-reload": {
+                "_type_": "string",
+                "string": "Reload"
+            },
+            "left-user-remove": {
+                "_type_": "string",
+                "string": "Remove from MongoDB"
+            },
+            "found-none": {
+                "_type_": "string",
+                "string": "None"
+            },
+            "remove": {
+                "_type_": "string",
+                "string": "Remove"
+            },
+            "client-session-time": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "upsince": {
+                        "description": "Formatted timestamp indicating when the instance launched.",
+                        "mock": "2026-07-05 12:00:00"
+                    },
+                    "days": {
+                        "description": "Elapsed days counter.",
+                        "mock": "3"
+                    },
+                    "hours": {
+                        "description": "Elapsed hours counter.",
+                        "mock": "14"
+                    },
+                    "minutes": {
+                        "description": "Elapsed minutes counter.",
+                        "mock": "22"
+                    },
+                    "seconds": {
+                        "description": "Elapsed seconds counter.",
+                        "mock": "45"
+                    }
+                },
+                "title": "Client Session Time",
+                "description": "Up Since: {upsince}\n\n`{days}` days, `{hours}` hours, `{minutes}` minutes, `{seconds}` seconds.",
+                "footer": null,
+                "color": null
+            }
+        },
+        "open-contributor": {
+            "_type_": "collection",
+            "repo": {
+                "_type_": "string",
+                "string": "Repo"
+            },
+            "commits": {
+                "_type_": "string",
+                "string": "Commits"
+            },
+            "prs": {
+                "_type_": "string",
+                "string": "PRs"
+            },
+            "button-link": {
+                "_type_": "string",
+                "string": "Github OAuth Link"
+            },
+            "error-timeout": {
+                "_type_": "discordEmbed",
+                "title": "Code expired",
+                "description": "This code is expired. Use /open-contributor to get a new one.",
+                "footer": null,
+                "color": null
+            },
+            "error-similar-inquiry": {
+                "_type_": "discordEmbed",
+                "title": "Request canceled",
+                "description": "It appears that a similar inquiry or request has already been submitted elsewhere, as a result, the current request has been canceled.",
+                "footer": null,
+                "color": null
+            },
+            "error-already-has-role": {
+                "_type_": "discordEmbed",
+                "title": "Well... you are an Open Contributor",
+                "description": "There is no need to use this command.",
+                "footer": null,
+                "color": null
+            },
+            "initial-message": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "neededcommits": {
+                        "description": "Target benchmark commit requirement.",
+                        "mock": "5"
+                    },
+                    "neededpr": {
+                        "description": "Target benchmark pull request requirement.",
+                        "mock": "2"
+                    }
+                },
+                "title": "How to become an Open Contributor",
+                "description": "For becoming an Open Contributor and its roles you must fulfill the following things:\n\n1. Have {neededcommits} or more commits\n2. Have {neededpr} or more pull requests\n\nClick the link button and check if you can become an Open Contributor.",
+                "footer": null,
+                "color": null
+            },
+            "results-complete": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "githubname": {
+                        "description": "The linked user account profile alias.",
+                        "mock": "Octocat"
+                    },
+                    "pbpr": {
+                        "description": "Pull Request completion progress loading element.",
+                        "mock": "▰▰▰▰▰▰▰▰▰▰ 100%"
+                    },
+                    "yourpr": {
+                        "description": "Total user submitted pull requests.",
+                        "mock": "3"
+                    },
+                    "neededpr": {
+                        "description": "Required tier qualification limit for PRs.",
+                        "mock": "2"
+                    },
+                    "pbcm": {
+                        "description": "Commit progression chart visualization component.",
+                        "mock": "▰▰▰▰▰▰▰▰▰▰ 100%"
+                    },
+                    "yourcommits": {
+                        "description": "The current valid project contributions log total.",
+                        "mock": "14"
+                    },
+                    "neededcommits": {
+                        "description": "Required entry threshold baseline for commits.",
+                        "mock": "5"
+                    },
+                    "tablestring": {
+                        "description": "Tabular visualization rendering specific repository telemetry lines.",
+                        "mock": "│ Repo A │ 10 commits │\n│ Repo B │ 4 commits  │"
+                    }
+                },
+                "title": "Github Results",
+                "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nWe have added you to our Open Contributor",
+                "footer": null,
+                "color": null
+            },
+            "results-not-complete": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "githubname": {
+                        "description": "The linked user account profile alias.",
+                        "mock": "DevLearner"
+                    },
+                    "pbpr": {
+                        "description": "Pull Request completion progress loading element.",
+                        "mock": "▰▰▰▱▱▱▱▱▱▱ 30%"
+                    },
+                    "yourpr": {
+                        "description": "Total user submitted pull requests.",
+                        "mock": "0"
+                    },
+                    "neededpr": {
+                        "description": "Required tier qualification limit for PRs.",
+                        "mock": "2"
+                    },
+                    "pbcm": {
+                        "description": "Commit progression chart visualization component.",
+                        "mock": "▰▰▰▰▰▰▰▱▱▱ 70%"
+                    },
+                    "yourcommits": {
+                        "description": "The current valid project contributions log total.",
+                        "mock": "4"
+                    },
+                    "neededcommits": {
+                        "description": "Required entry threshold baseline for commits.",
+                        "mock": "5"
+                    },
+                    "tablestring": {
+                        "description": "Tabular visualization rendering specific repository telemetry lines.",
+                        "mock": "│ Repo A │ 4 commits │"
+                    }
+                },
+                "title": "Github Results",
+                "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nFulfill all requirements to become an Open Contributor.",
+                "footer": null,
+                "color": null
+            },
+            "results-no-data": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "githubname": {
+                        "description": "The target identifier alias evaluated.",
+                        "mock": "GhostCoder"
+                    }
+                },
+                "title": "Github Results for {githubname}",
+                "description": "You got no commits nor pull request's.",
+                "footer": null,
+                "color": null
+            }
+        },
+        "links": {
+            "_type_": "collection",
+            "list": {
+                "_type_": "discordEmbed",
+                "title": "These links might interest you!",
+                "description": "Our Github: [CodeZero Github](https://github.com/code0-tech)\n\nOur Website: [CodeZero Website](https://code0.tech)",
+                "footer": null,
+                "color": null
+            }
+        },
+        "contributor": {
+            "_type_": "collection",
+            "info": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "neededcommits": {
+                        "description": "Target baseline code commit parameters required.",
+                        "mock": "5"
+                    },
+                    "neededpr": {
+                        "description": "Target baseline pull requests configuration required.",
+                        "mock": "2"
+                    }
+                },
+                "title": "How to become an Open Contributor",
+                "description": "To be an Open Contributor, meet these criteria:\n\n1. Have {neededcommits} or more commits.\n2. Have {neededpr} or more pull requests.\n\nYou can check or get the role by using `/open-contributer` command.",
+                "footer": null,
+                "color": null
+            }
+        },
+        "rank": {
+            "_type_": "collection",
+            "own-rank-response": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "level": {
+                        "description": "Current numerical level layer.",
+                        "mock": "24"
+                    },
+                    "progressbar": {
+                        "description": "Visual horizontal progression bar widget asset.",
+                        "mock": "▰▰▰▰▰▰▱▱▱▱"
+                    },
+                    "xp": {
+                        "description": "Current raw accumulated points inventory score.",
+                        "mock": "1240"
+                    },
+                    "neededXp": {
+                        "description": "Ceiling requirement parameter for target level advancement.",
+                        "mock": "2000"
+                    },
+                    "rankuserid": {
+                        "description": "Unique user SnowFlake address tag.",
+                        "mock": "123456789012345678"
+                    },
+                    "position": {
+                        "description": "Server leaderboard ranking ordinal placement value.",
+                        "mock": "4th"
+                    }
+                },
+                "title": null,
+                "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nYou <@{rankuserid}> are currently on the {position} place.\nEarn XP by interacting on this server with others.",
+                "footer": null,
+                "color": null
+            },
+            "other-rank-response": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "level": {
+                        "description": "Current numerical level layer.",
+                        "mock": "12"
+                    },
+                    "progressbar": {
+                        "description": "Visual horizontal progression bar widget asset.",
+                        "mock": "▰▰▱▱▱▱▱▱▱▱"
+                    },
+                    "xp": {
+                        "description": "Current raw accumulated points inventory score.",
+                        "mock": "310"
+                    },
+                    "neededXp": {
+                        "description": "Ceiling requirement parameter for target level advancement.",
+                        "mock": "1000"
+                    },
+                    "rankuserid": {
+                        "description": "Unique user SnowFlake address tag.",
+                        "mock": "987654321098765432"
+                    },
+                    "position": {
+                        "description": "Server leaderboard ranking ordinal placement value.",
+                        "mock": "42nd"
+                    }
+                },
+                "title": null,
+                "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nCurrently <@{rankuserid}> is on the {position} place.",
+                "footer": null,
+                "color": null
+            },
+            "this-bot-rank": {
+                "_type_": "discordEmbed",
+                "title": null,
+                "description": "### Well, I'm not really into collecting XP.\nMaybe try a real `user`",
+                "footer": null,
+                "color": null
+            }
+        },
+        "stats": {
+            "_type_": "collection",
+            "command": {
+                "_type_": "string",
+                "string": "Command"
+            },
+            "executed": {
+                "_type_": "string",
+                "string": "Executed"
+            },
+            "button": {
+                "_type_": "string",
+                "string": "btn"
+            },
+            "autocomplete": {
+                "_type_": "string",
+                "string": "ac"
+            },
+            "selectmenu": {
+                "_type_": "string",
+                "string": "sm"
+            },
+            "no-command-executed": {
+                "_type_": "string",
+                "string": "No Commands were executed."
+            },
+            "own-stats-response": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "count": {
+                        "description": "Total text messages cataloged.",
+                        "mock": "1,245"
+                    },
+                    "words": {
+                        "description": "Accumulated individual tokens parsed.",
+                        "mock": "14,850"
+                    },
+                    "chars": {
+                        "description": "Raw string character layout storage volume.",
+                        "mock": "72,400"
+                    },
+                    "joins": {
+                        "description": "Voice audio stream session connectivity index.",
+                        "mock": "84"
+                    },
+                    "switchs": {
+                        "description": "Channel transition frequency logging trace.",
+                        "mock": "29"
+                    },
+                    "voiceDaysActive": {
+                        "description": "Active audio transmission time metric (Days).",
+                        "mock": "1"
+                    },
+                    "voiceHoursActive": {
+                        "description": "Active audio transmission time metric (Hours).",
+                        "mock": "4"
+                    },
+                    "voiceMinutesActive": {
+                        "description": "Active audio transmission time metric (Minutes).",
+                        "mock": "12"
+                    },
+                    "voiceSecondsActive": {
+                        "description": "Active audio transmission time metric (Seconds).",
+                        "mock": "30"
+                    },
+                    "voiceDaysInactive": {
+                        "description": "Muted/Deafened passive channel footprint metric (Days).",
+                        "mock": "0"
+                    },
+                    "voiceHoursInactive": {
+                        "description": "Muted/Deafened passive channel footprint metric (Hours).",
+                        "mock": "8"
+                    },
+                    "voiceMinutesInactive": {
+                        "description": "Muted/Deafened passive channel footprint metric (Minutes).",
+                        "mock": "55"
+                    },
+                    "voiceSecondsInactive": {
+                        "description": "Muted/Deafened passive channel footprint metric (Seconds).",
+                        "mock": "14"
+                    },
+                    "streamingDays": {
+                        "description": "Active Go-Live video capture runtime data (Days).",
+                        "mock": "0"
+                    },
+                    "streamingHours": {
+                        "description": "Active Go-Live video capture runtime data (Hours).",
+                        "mock": "2"
+                    },
+                    "streamingMinutes": {
+                        "description": "Active Go-Live video capture runtime data (Minutes).",
+                        "mock": "15"
+                    },
+                    "streamingSeconds": {
+                        "description": "Active Go-Live video capture runtime data (Seconds).",
+                        "mock": "0"
+                    },
+                    "channelmention": {
+                        "description": "Active structural target anchor reference string.",
+                        "mock": "<#112233445566778899>"
+                    },
+                    "invitesreal": {
+                        "description": "Authenticated unique guest account source records successfully tracked.",
+                        "mock": "5"
+                    },
+                    "invitestotal": {
+                        "description": "Gross invitation raw tracking log footprints.",
+                        "mock": "8"
+                    },
+                    "commandstatsstring": {
+                        "description": "Formatted map breakdown tracking runtime command system requests.",
+                        "mock": "`/rank`: 45\n`/stats`: 12"
+                    }
+                },
+                "title": null,
+                "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nActive Time: `{voiceDaysActive}` days, `{voiceHoursActive}` hours, `{voiceMinutesActive}` minutes, `{voiceSecondsActive}` seconds.\nIn Active Time: `{voiceDaysInactive}` days, `{voiceHoursInactive}` hours, `{voiceMinutesInactive}` minutes, `{voiceSecondsInactive}` seconds.\nStreaming Time: `{streamingDays}` days, `{streamingHours}` hours, `{streamingMinutes}` minutes, `{streamingSeconds}` seconds.\nIn Channel: {channelmention}\n### Invites\nReal: {invitesreal}\nTotal: {invitestotal}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to your message stats.\nVoice stat \"Join\" is only updated after you left an channel.",
+                "footer": null,
+                "color": null
+            },
+            "other-stats-response": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "count": {
+                        "description": "Total text messages cataloged.",
+                        "mock": "840"
+                    },
+                    "words": {
+                        "description": "Accumulated individual tokens parsed.",
+                        "mock": "9,320"
+                    },
+                    "chars": {
+                        "description": "Raw string character layout storage volume.",
+                        "mock": "41,110"
+                    },
+                    "joins": {
+                        "description": "Voice audio stream session connectivity index.",
+                        "mock": "31"
+                    },
+                    "switchs": {
+                        "description": "Channel transition frequency logging trace.",
+                        "mock": "14"
+                    },
+                    "voiceDaysActive": {
+                        "description": "Active audio transmission time metric (Days).",
+                        "mock": "0"
+                    },
+                    "voiceHoursActive": {
+                        "description": "Active audio transmission time metric (Hours).",
+                        "mock": "18"
+                    },
+                    "voiceMinutesActive": {
+                        "description": "Active audio transmission time metric (Minutes).",
+                        "mock": "40"
+                    },
+                    "voiceSecondsActive": {
+                        "description": "Active audio transmission time metric (Seconds).",
+                        "mock": "12"
+                    },
+                    "voiceDaysInactive": {
+                        "description": "Muted/Deafened passive channel footprint metric (Days).",
+                        "mock": "2"
+                    },
+                    "voiceHoursInactive": {
+                        "description": "Muted/Deafened passive channel footprint metric (Hours).",
+                        "mock": "1"
+                    },
+                    "voiceMinutesInactive": {
+                        "description": "Muted/Deafened passive channel footprint metric (Minutes).",
+                        "mock": "5"
+                    },
+                    "voiceSecondsInactive": {
+                        "description": "Muted/Deafened passive channel footprint metric (Seconds).",
+                        "mock": "22"
+                    },
+                    "streamingDays": {
+                        "description": "Active Go-Live video capture runtime data (Days).",
+                        "mock": "0"
+                    },
+                    "streamingHours": {
+                        "description": "Active Go-Live video capture runtime data (Hours).",
+                        "mock": "0"
+                    },
+                    "streamingMinutes": {
+                        "description": "Active Go-Live video capture runtime data (Minutes).",
+                        "mock": "45"
+                    },
+                    "streamingSeconds": {
+                        "description": "Active Go-Live video capture runtime data (Seconds).",
+                        "mock": "10"
+                    },
+                    "channelmention": {
+                        "description": "Active structural target anchor reference string.",
+                        "mock": "<#112233445566778899>"
+                    },
+                    "invitesreal": {
+                        "description": "Authenticated unique guest account source records successfully tracked.",
+                        "mock": "1"
+                    },
+                    "invitestotal": {
+                        "description": "Gross invitation raw tracking log footprints.",
+                        "mock": "2"
+                    },
+                    "commandstatsstring": {
+                        "description": "Formatted map breakdown tracking runtime command system requests.",
+                        "mock": "`/rank`: 14\n`/stats`: 2"
+                    }
+                },
+                "title": null,
+                "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nActive Time: `{voiceDaysActive}` days, `{voiceHoursActive}` hours, `{voiceMinutesActive}` minutes, `{voiceSecondsActive}` seconds.\nIn Active Time: `{voiceDaysInactive}` days, `{voiceHoursInactive}` hours, `{voiceMinutesInactive}` minutes, `{voiceSecondsInactive}` seconds.\nStreaming Time: `{streamingDays}` days, `{streamingHours}` hours, `{streamingMinutes}` minutes, `{streamingSeconds}` seconds.\nIn Channel: {channelmention}\n### Invites\nReal: {invitesreal}\nTotal: {invitestotal}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to his/her message stats.\nVoice stat \"Join\" is only updated after he/she left an channel.",
+                "footer": null,
+                "color": null
+            },
+            "this-bot-stats": {
+                "_type_": "discordEmbed",
+                "title": null,
+                "description": "### Well, I'm not really into collecting stats.\nMaybe try a real Codezero `Member`.",
+                "footer": null,
+                "color": null
+            }
+        },
+        "leaderboard": {
+            "_type_": "collection",
+            "username": {
+                "_type_": "string",
+                "string": "Username"
+            },
+            "level": {
+                "_type_": "string",
+                "string": "Lvl."
+            },
+            "xp": {
+                "_type_": "string",
+                "string": "Xp"
+            },
+            "board": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "stringlist": {
+                        "description": "Formatted scoreboard block representation data layer.",
+                        "mock": "1. UserA - Lvl 50 (12,500 XP)\n2. UserB - Lvl 48 (11,200 XP)"
+                    }
+                },
+                "title": "Leaderboard",
+                "description": "{stringlist}",
+                "footer": null,
+                "color": null
+            },
+            "loading": {
+                "_type_": "discordEmbed",
+                "title": "Leaderboard is loading...",
+                "description": null,
+                "footer": null,
+                "color": null
+            },
+            "left-server": {
+                "_type_": "string",
+                "string": "Left the Server"
+            },
+            "messages": {
+                "_type_": "string",
+                "string": "Messages"
+            },
+            "voice_time": {
+                "_type_": "string",
+                "string": "Active Voice Time"
+            },
+            "invites": {
+                "_type_": "string",
+                "string": "Invites"
+            },
+            "days": {
+                "_type_": "string",
+                "string": "d"
+            },
+            "hours": {
+                "_type_": "string",
+                "string": "h"
+            },
+            "minutes": {
+                "_type_": "string",
+                "string": "m"
+            },
+            "seconds": {
+                "_type_": "string",
+                "string": "s"
+            }
+        },
+        "_application": {
+            "_type_": "collection",
+            "#btn-closed-team": {
+                "_type_": "string",
+                "string": "Apply as Closed Team"
+            },
+            "#btn-open-contributer": {
+                "_type_": "string",
+                "string": "Apply as Open Contributor"
+            },
+            "#init-message": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "teamid": {
+                        "description": "The target identity group reference parameter.",
+                        "mock": "8833994455667788"
+                    }
+                },
+                "title": "Application Channel",
+                "description": "This is where you can start your application process.\n\nYou now have the opportunity to become a part of our <@&{teamid}>.\nClick the button below to create a new thread.\nWe're excited to have you join CodeZero.\n\nIf you already have an active application thread for your Closed Team / Open Contributor, please use that to continue your application.\n\nCodeZero",
+                "footer": null,
+                "color": null
+            },
+            "#thread-title-open-contributor": {
+                "_type_": "string",
+                "string": "as Open Contributor?"
+            },
+            "#thread-title-closed-team": {
+                "_type_": "string",
+                "string": "as Closed Team?"
+            },
+            "#new-application-thread": {
+                "_type_": "discordEmbed",
+                "title": "Application Thread Created",
+                "description": "A new application Thread has been created for you!",
+                "footer": null,
+                "color": null
+            },
+            "#apply-message-open-contributor": {
+                "_type_": "discordEmbed",
+                "title": "Apply as Open Contributor",
+                "description": "Go ahead and tells us why you want to become a Open Contributor",
+                "footer": null,
+                "color": null
+            },
+            "#apply-message-closed-team": {
+                "_type_": "discordEmbed",
+                "title": "Apply as Closed Team",
+                "description": "Go ahead and tell us why you want to become a part of our Closed Team",
+                "footer": null,
+                "color": null
+            }
+        },
+        "logs": {
+            "_type_": "collection",
+            "select-menu-placholder": {
+                "_type_": "string",
+                "string": "Logs"
+            },
+            "btn-back": {
+                "_type_": "string",
+                "string": "Previous"
+            },
+            "btn-next": {
+                "_type_": "string",
+                "string": "Next"
+            },
+            "btn-skip": {
+                "_type_": "string",
+                "string": "Go to last"
+            },
+            "btn-print": {
+                "_type_": "string",
+                "string": "Print as .txt"
+            },
+            "text-old-logs": {
+                "_type_": "string",
+                "string": "Old Logs"
+            },
+            "run-id": {
+                "_type_": "string",
+                "string": "run_id"
+            },
+            "development": {
+                "_type_": "discordEmbed",
+                "title": null,
+                "description": "Bot is in development mode `/logs show` is not available",
+                "footer": null,
+                "color": null
+            },
+            "session-logs": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "totallogscount": {
+                        "description": "Gross number of logged data elements.",
+                        "mock": "1,450"
+                    },
+                    "createdat": {
+                        "description": "Instance tracking creation anchor point.",
+                        "mock": "2026-07-05 16:00:00"
+                    },
+                    "logstring": {
+                        "description": "Active console payload content visualization.",
+                        "mock": "[INFO] Operational metrics verification completed.\n[WARN] High socket pooling context active."
+                    },
+                    "currentstart": {
+                        "description": "Window viewing range lower boundary item pointer.",
+                        "1": "1"
+                    },
+                    "currentend": {
+                        "description": "Window viewing range upper boundary item pointer.",
+                        "mock": "10"
+                    }
+                },
+                "title": "Current logs [{totallogscount}]",
+                "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})",
+                "footer": null,
+                "color": null
+            },
+            "old-session-logs": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "runid": {
+                        "description": "Historical execution tracking hash code.",
+                        "mock": "run_99bf38c"
+                    },
+                    "totallogscount": {
+                        "description": "Gross historical logging elements records size.",
+                        "mock": "890"
+                    },
+                    "createdat": {
+                        "description": "Historical capture timestamp database entry.",
+                        "mock": "2026-06-14 08:30:15"
+                    },
+                    "logstring": {
+                        "description": "Legacy system logging file buffer contents.",
+                        "mock": "[DEBUG] Process environment init.\n[INFO] Termination script processed."
+                    },
+                    "currentstart": {
+                        "description": "Window pagination lower boundary pointer index.",
+                        "mock": "1"
+                    },
+                    "currentend": {
+                        "description": "Window pagination upper boundary pointer index.",
+                        "mock": "10"
+                    }
+                },
+                "title": "{runid} [{totallogscount}]",
+                "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})",
+                "footer": null,
+                "color": null
+            },
+            "text-createdat": {
+                "_type_": "string",
+                "string": "Created at"
+            },
+            "text-size": {
+                "_type_": "string",
+                "string": "Size"
+            },
+            "text-time": {
+                "_type_": "string",
+                "string": "Time"
+            },
+            "list-logs": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "list": {
+                        "description": "String listing discovered filesystem tracking log references.",
+                        "mock": "• run_abc123.txt (45 KB)\n• run_xyz789.txt (120 KB)"
+                    }
+                },
+                "title": "Log files",
+                "description": "{list}",
+                "footer": null,
+                "color": null
+            },
+            "list-logs-empty": {
+                "_type_": "discordEmbed",
+                "title": "No logs available",
+                "description": null,
+                "footer": null,
+                "color": null
+            },
+            "not-found": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "runid": {
+                        "description": "Target query transaction parameter execution link ID.",
+                        "mock": "run_invalid_id"
+                    }
+                },
+                "title": "Cannot find any logs for runId: {runid}.",
+                "description": null,
+                "footer": null,
+                "color": null
+            },
+            "print-out": {
+                "_type_": "discordEmbed",
+                "title": "Print Out",
+                "description": "Here is an .txt which contains the full log.",
+                "footer": null,
+                "color": null
+            }
+        },
+        "mydata": {
+            "_type_": "collection",
+            "your-data": {
+                "_type_": "discordEmbed",
+                "title": "We got your Data",
+                "description": "This JSON file contains all the information we have saved about `you` in our DB.",
+                "footer": null,
+                "color": null
+            }
+        },
+        "git": {
+            "_type_": "collection",
+            "repo": {
+                "_type_": "string",
+                "string": "Repo"
+            },
+            "name": {
+                "_type_": "string",
+                "string": "Name"
+            },
+            "commits": {
+                "_type_": "string",
+                "string": "Commits"
+            },
+            "percentage": {
+                "_type_": "string",
+                "string": "Percentage"
+            },
+            "usercommitssum": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "gituser": {
+                        "description": "Target profile contributor profile identity.",
+                        "mock": "LinusTorvalds"
+                    },
+                    "table": {
+                        "description": "Tabular visualization layout sorting commit contribution weight records across branches.",
+                        "mock": "│ main │ 122 commits │\n│ dev  │ 40 commits  │"
+                    },
+                    "total": {
+                        "description": "Aggregated absolute code tracking check-ins balance summary value.",
+                        "mock": "162"
+                    },
+                    "timestart": {
+                        "description": "Evaluation collection frame lower milestone timeline boundary.",
+                        "mock": "2026-01-01"
+                    },
+                    "timeend": {
+                        "description": "Evaluation collection frame upper milestone timeline boundary.",
+                        "mock": "2026-07-01"
+                    }
+                },
+                "title": "Commits Count for {gituser}",
+                "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`",
+                "footer": null,
+                "color": null
+            },
+            "repocommitssum": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "repo": {
+                        "description": "Target public/private repository directory project path mapping location identifier.",
+                        "mock": "code0-core"
+                    },
+                    "table": {
+                        "description": "Tabular layout displaying user distributions metadata properties metric grids.",
+                        "mock": "│ UserA │ 80 commits │\n│ UserB │ 45 commits │"
+                    },
+                    "total": {
+                        "description": "Combined aggregate repository submission metrics count balance summary value.",
+                        "mock": "125"
+                    },
+                    "timestart": {
+                        "description": "Analytics data stream logging history collection lower limit stamp parameter.",
+                        "mock": "2026-05-01"
+                    },
+                    "timeend": {
+                        "description": "Analytics data stream logging history collection upper limit stamp parameter.",
+                        "mock": "2026-07-01"
+                    }
+                },
+                "title": "Commits Count for {repo}",
+                "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`",
+                "footer": null,
+                "color": null
+            },
+            "search-no-result": {
+                "_type_": "discordEmbed",
+                "title": "We couldn't find anything matching your search.",
+                "description": null,
+                "footer": null,
+                "color": null
+            }
+        },
+        "settings": {
+            "_type_": "collection",
+            "select-menu-placeholder": {
+                "_type_": "string",
+                "string": "Setting Categories"
+            },
+            "btn-back": {
+                "_type_": "string",
+                "string": "Back to Main Menu"
+            },
+            "text-current-language": {
+                "_type_": "string",
+                "string": "Your current Language"
+            },
+            "text-current-language-none": {
+                "_type_": "string",
+                "string": "None"
+            },
+            "menu-text-language": {
+                "_type_": "string",
+                "string": "Language"
+            },
+            "main-page": {
+                "_type_": "discordEmbed",
+                "title": "⚙️ CodeZero Discord Server System Settings",
+                "description": "Select the setting you want to change via the Dropdown menu.",
+                "footer": null,
+                "color": null
+            },
+            "settings-language-setup": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "currentRole": {
+                        "description": "The active language profile parsing setting descriptor assigned.",
+                        "mock": "German (de)"
+                    }
+                },
+                "title": "🌐 Language Role Configuration",
+                "description": "Please select the language that should be recognized as the primary language.\n\n**Current language:** {currentRole}",
+                "footer": null,
+                "color": null
+            },
+            "settings-language-saved-success": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "role": {
+                        "description": "The newly committed localization target structural identity flag value.",
+                        "mock": "English (en)"
+                    }
+                },
+                "title": "✅ Settings Saved",
+                "description": "The language role has been successfully updated to: {role}\n\nFuture messages will be shown in your new language.\n\nNotice: Not all commands support multiple languages yet; English is the default for missing translations.",
+                "footer": null,
+                "color": null
+            },
+            "role-select-placeholder": {
+                "_type_": "string",
+                "string": "Select a language"
+            }
+        },
+        "git-issue-created": {
+            "_type_": "collection",
+            "info-embed": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "link": {
+                        "description": "The newly spawned tracker tracking link target address address location path.",
+                        "mock": "https://github.com/code0-tech/core/issues/101"
+                    }
+                },
+                "title": "🛠️ Issue Tracked!",
+                "description": "Thank you for reporting this!\n\nWe've officially created a GitHub issue to track the fix.\nYou can follow the progress directly via the link below:\n\n**Link:** {link}",
+                "footer": null,
+                "color": null
+            },
+            "user-info-embed": {
+                "_type_": "discordEmbed",
+                "title": "✅ Message sent!",
+                "description": null,
+                "footer": null,
+                "color": null
+            }
+        }
+    },
+    "events": {
+        "_type_": "collection",
+        "_rankupdate": {
+            "_type_": "collection",
+            "#update-msg": {
+                "_type_": "discordEmbed",
+                "_variables": {
+                    "level": {
+                        "description": "The reached status checkpoint tier rank count level.",
+                        "mock": "5"
+                    },
+                    "progressbar": {
+                        "description": "Horizontal status gauge display template state matrix element layout.",
+                        "mock": "▰▰▰▰▰▱▱▱▱▱"
+                    },
+                    "xp": {
+                        "description": "Current score context metric calculation pool volume counter.",
+                        "mock": "520"
+                    },
+                    "neededXp": {
+                        "description": "Target tier baseline threshold configuration parameter scale bound limit.",
+                        "mock": "1000"
+                    },
+                    "rankuserid": {
+                        "description": "Unique user SnowFlake identification code index element.",
+                        "mock": "112233445566778899"
+                    },
+                    "position": {
+                        "description": "Leaderboard alignment structural grid assignment calculation tracking reference index placement.",
+                        "mock": "12th"
+                    }
+                },
+                "title": null,
+                "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\n<@{rankuserid}> is now level {level} and in {position} place.",
+                "footer": null,
+                "color": null
+            }
+        }
+    }
+}

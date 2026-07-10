@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Load the Discord components library -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@skyra/discord-components-core@1.0.1/dist/index.js"></script>
+</head>
+<body>
+
+  <!-- Wrap messages in a standard Discord chat container -->
+  <discord-messages>
+    <discord-message author="Your Bot Name" avatar="https://i.imgur.com/06o2z2w.png" bot="true" role-color="#5865F2">
+      Here is a live preview of your language pack embed:
+
+      <!-- The Embed Component -->
+      <discord-embed slot="embeds" color="#3498db" embed-title="Dynamic Title From Language Pack">
+        This is where your language pack description text goes. You can update this dynamically using JavaScript.
+
+        <!-- Embed Fields Wrapper -->
+        <discord-embed-fields slot="fields">
+          <discord-embed-field field-title="Field Title" inline="true">
+            Field content here...
+          </discord-embed-field>
+          <discord-embed-field field-title="Another Field" inline="true">
+            More content...
+          </discord-embed-field>
+        </discord-embed-fields>
+
+        <!-- Footer -->
+        <span slot="footer">Language Pack Previewer • Today</span>
+      </discord-embed>
+    </discord-message>
+  </discord-messages>
+
+  <script>
+    // To make it interactive, you can simply grab the elements 
+    // and update their attributes or innerHTML whenever your text input changes!
+    const embed = document.querySelector('discord-embed');
+    // Example: embed.setAttribute('embed-title', 'New Title from Input');
+  </script>
+</body>
+</html>

@@ -13,20 +13,33 @@ const data = new SlashCommandBuilder()
 
 
 const execute = async (dcInteraction) => {
-    const { interaction, member, lang } = dcInteraction;
+    const { interaction, member, Lang } = dcInteraction;
 
     await DC.defer(interaction);
 
     const opencontributorInfo = config.commands.opencontributor;
 
+
+    console.log(Lang)
+
     new Embed()
         .setColor(COLOR.INFO)
-        .addInputs({
+        .addLangContext(Lang.embed("info", {
             neededpr: opencontributorInfo.pr,
             neededcommits: opencontributorInfo.commits
-        })
-        .addContext(lang, member, 'info')
+        }, member))
         .interactionResponse(interaction);
+
+
+
+    /* new Embed()
+    .setColor(COLOR.INFO)
+    .addInputs({
+        neededpr: opencontributorInfo.pr,
+        neededcommits: opencontributorInfo.commits
+    })
+    .addContext(Lang, member, 'info')
+    .interactionResponse(interaction); */
 };
 
 module.exports = { execute, data };

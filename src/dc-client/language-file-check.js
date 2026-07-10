@@ -41,4 +41,5 @@ const check = async () => {
     }
 };
 
-check();
+// check();
+// Dont execute

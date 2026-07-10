@@ -1,8 +1,8 @@
+const { LanguageHelper } = require('./language-helper');
 const { Embed, COLOR } = require('./../models/Embed');
 const Constants = require('./../../data/constants');
 const { MongoUser } = require('../mongo/MongoUser');
 const DcButtons = require('../singleton/DcButtons');
-const { language } = require('./language-check');
 const { Events } = require('discord.js');
 const DC = require('./../singleton/DC');
 
@@ -45,9 +45,16 @@ const handleInteraction = async (interaction, client, handler, handlerType) => {
 
         console.log(`[InteractionHandler::Handle] Handling interaction for command: ${commandName}`, Constants.CONSOLE.WORKING);
 
-        const lang = await language(commandName, interaction, guild, client);
+        const Lang = await new LanguageHelper(client)
+            .setCommandName(commandName)
+            .setHandlerType(handlerType)
+            .setInteraction(interaction)
+            .setGuild(guild)
+            .create();
 
-        if (!lang) {
+        console.log(Lang)
+
+        if (!Lang) {
             console.log(`[InteractionHandler::LangContext] Specified language context was not given`, Constants.CONSOLE.ERROR);
             return;
         }
@@ -55,7 +62,7 @@ const handleInteraction = async (interaction, client, handler, handlerType) => {
         const user = await new MongoUser().userById(interaction.user.id)
         user.updateCommandUsage(finalCommandName, handlerType);
 
-        await handler(interaction, client, guild, member, lang);
+        await handler(interaction, client, guild, member, Lang);
     } catch (error) {
         console.log(`[InteractionHandler::CommandExecution] Command ${finalCommandName} failed, because command internal failed`, Constants.CONSOLE.ERROR);
         console.dir(error);
@@ -64,7 +71,7 @@ const handleInteraction = async (interaction, client, handler, handlerType) => {
     }
 };
 
-const commandHandler = async (interaction, client, guild, member, lang) => {
+const commandHandler = async (interaction, client, guild, member, Lang) => {
     const command = client.commands.get(interaction.commandName);
     if (!command) return;
 
@@ -73,13 +80,13 @@ const commandHandler = async (interaction, client, guild, member, lang) => {
         client,
         guild,
         member,
-        lang
+        Lang
     }
 
     await command.execute(dcInteraction);
 };
 
-const buttonHandler = async (interaction, client, guild, member, lang) => {
+const buttonHandler = async (interaction, client, guild, member, Lang) => {
     const buttonData = DcButtons.decodeString(interaction.customId);
     const buttonCommand = client.components.get(buttonData.id);
     if (!buttonCommand) return;
@@ -89,7 +96,7 @@ const buttonHandler = async (interaction, client, guild, member, lang) => {
         client,
         guild,
         member,
-        lang,
+        Lang,
         buttonData,
         componentData: buttonData
     }
@@ -97,7 +104,7 @@ const buttonHandler = async (interaction, client, guild, member, lang) => {
     await buttonCommand.executeComponent(dcInteraction);
 };
 
-const selectMenuHandler = async (interaction, client, guild, member, lang) => {
+const selectMenuHandler = async (interaction, client, guild, member, Lang) => {
     const selectMenuData = DcButtons.decodeString(interaction.customId);
     selectMenuData.selected = interaction.values[0];
     const selectMenuCommand = client.components.get(selectMenuData.id);
@@ -108,14 +115,14 @@ const selectMenuHandler = async (interaction, client, guild, member, lang) => {
         client,
         guild,
         member,
-        lang,
+        Lang,
         componentData: selectMenuData
     }
 
     await selectMenuCommand.executeComponent(dcInteraction);
 };
 
-const autoCompleteHandler = async (interaction, client, guild, member, lang) => {
+const autoCompleteHandler = async (interaction, client, guild, member, Lang) => {
     const command = interaction.client.commands.get(interaction.commandName);
     if (!command || !command.autoComplete) return;
 
@@ -124,7 +131,7 @@ const autoCompleteHandler = async (interaction, client, guild, member, lang) => 
         client,
         guild,
         member,
-        lang
+        Lang
     }
 
     await command.autoComplete(dcInteraction);

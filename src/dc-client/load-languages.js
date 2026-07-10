@@ -5,7 +5,7 @@ const load = (client) => {
     const folderPath = path.resolve(global.mainDir, 'data', 'languages');
     loadJSONFilesFromFolder(folderPath)
         .then(jsonData => {
-            client.languages = jsonData;
+            client.languagePack = jsonData;
         })
         .catch(error => {
             console.error('Error:', error);

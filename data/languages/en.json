@@ -1,0 +1,39 @@
+{
+    "meta": {
+        "language": "english",
+        "languageShort": "en",
+        "locale": "en-US",
+        "version": "1.0.0",
+        "contributors": [
+            "Nicolas Morawietz"
+        ]
+    },
+    "global": {
+        "_type_": "collection"
+    },
+    "interaction": {},
+    "command": {
+        "_type_": "collection",
+        "contributor": {
+            "_type_": "collection",
+            "infoMessage": {
+                "_variables": {
+                    "neededPullRequests": {
+                        "description": "Pull request to fullfill the open contributor role",
+                        "mock": "30"
+                    },
+                    "neededCommits": {
+                        "description": "Commits to fullfill the open contributor role",
+                        "mock": "30"
+                    }
+                },
+                "_type_": "discordEmbed",
+                "title": "How to become an Open Contributor",
+                "description": "To be an Open Contributor, meet these criteria:\n\n1. Have {neededcommits} or more commits.\n2. Have {neededpr} or more pull requests.\n\nYou can check or get the role by using `/open-contributer` command."
+            }
+        }
+    },
+    "button": {},
+    "autocomplete": {},
+    "selectmenu": {}
+}
