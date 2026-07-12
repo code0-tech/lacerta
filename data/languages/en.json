@@ -6,18 +6,32 @@
         "version": "1.0.0",
         "contributors": [
             "Nicolas Morawietz"
-        ]
+        ],
+        "autoFillVariables": {
+            "memberName": {
+                "description": "Name of a Member",
+                "mock": "Nixkuchen"
+            },
+            "memberUserName": {
+                "description": "Name of a Member",
+                "mock": "Nixkuchen"
+            },
+            "memberNickname": {
+                "description": "Name of a Member",
+                "mock": "Nixkuchen"
+            }
+        }
     },
     "global": {
-        "_type_": "collection"
+        "__type__": "collection"
     },
     "interaction": {},
     "command": {
-        "_type_": "collection",
+        "__type__": "collection",
         "contributor": {
-            "_type_": "collection",
+            "__type__": "collection",
             "infoMessage": {
-                "_variables": {
+                "__variables__": {
                     "neededPullRequests": {
                         "description": "Pull request to fullfill the open contributor role",
                         "mock": "30"
@@ -27,13 +41,134 @@
                         "mock": "30"
                     }
                 },
-                "_type_": "discordEmbed",
+                "__type__": "discordEmbed",
                 "title": "How to become an Open Contributor",
-                "description": "To be an Open Contributor, meet these criteria:\n\n1. Have {neededcommits} or more commits.\n2. Have {neededpr} or more pull requests.\n\nYou can check or get the role by using `/open-contributer` command."
+                "description": "To be an Open Contributor, meet these criteria:\n\n1. Have {neededCommits} or more commits.\n2. Have {neededPullRequests} or more pull requests.\n\nYou can check or get the role by using `/open-contributer` command."
+            }
+        },
+        "open-contributor": {
+            "__type__": "collection",
+            "texts": {
+                "__type__": "collection",
+                "repo": {
+                    "__type__": "string",
+                    "string": "Repo"
+                },
+                "commits": {
+                    "__type__": "string",
+                    "string": "Commits"
+                },
+                "prs": {
+                    "__type__": "string",
+                    "string": "PRs"
+                },
+                "buttonLink": {
+                    "__type__": "string",
+                    "string": "Github OAuth Link"
+                }
+            },
+            "errors": {
+                "__type__": "collection",
+                "timeout": {
+                    "__type__": "discordEmbed",
+                    "title": "Code expired",
+                    "description": "This code is expired. Use /open-contributor to get a new one."
+                },
+                "similarInquiry": {
+                    "__type__": "discordEmbed",
+                    "title": "Request canceled",
+                    "description": "It appears that a similar inquiry or request has already been submitted elsewhere, as a result, the current request has been canceled."
+                },
+                "roleAlreadyAdded": {
+                    "__type__": "discordEmbed",
+                    "title": "Well... you are an Open Contributor",
+                    "description": "There is no need to use this command."
+                }
+            },
+            "initialMessage": {
+                "__type__": "discordEmbed",
+                "title": "How to become an Open Contributor",
+                "description": "For becoming an Open Contributor and its roles you must fulfill the following things:\n\n1. Have {neededcommits} or more commits\n2. Have {neededpr} or more pull requests\n\nClick the link button and check if you can become an Open Contributor."
+            },
+            "results": {
+                "__type__": "collection",
+                "complete": {
+                    "title": "Github Results",
+                    "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nWe have added you to our Open Contributor"
+                },
+                "missingPullOrCommits": {
+                    "__type__": "discordEmbed",
+                    "title": "Github Results",
+                    "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nFulfill all requirements to become an Open Contributor."
+                },
+                "noData": {
+                    "__type__": "discordEmbed",
+                    "title": "Github Results for {githubname}",
+                    "description": "You got no commits nor pull request's."
+                }
             }
         }
     },
-    "button": {},
+    "button": {
+        "__type__": "collection",
+        "_application": {
+            "__type__": "collection",
+            "threadTitle": {
+                "__type__": "collection",
+                "openContributor": {
+                    "__type__": "string",
+                    "string": "{memberName} as Open Contributor?"
+                },
+                "closedTeam": {
+                    "__type__": "string",
+                    "string": "{memberName} as Closed Team?"
+                }
+            },
+            "applyMessages": {
+                "__type__": "collection",
+                "openContributor": {
+                    "__type__": "discordEmbed",
+                    "title": "Apply as Open Contributor",
+                    "description": "Go ahead and tells us why you want to become a Open Contributor"
+                },
+                "closedTeam": {
+                    "__type__": "discordEmbed",
+                    "title": "Apply as Closed Team",
+                    "description": "Go ahead and tell us why you want to become a part of our Closed Team"
+                }
+            },
+            "applicationTheadCreated": {
+                "__type__": "discordEmbed",
+                "title": "Application Thread Created",
+                "description": "A new application Thread has been created for you!"
+            }
+        }
+    },
     "autocomplete": {},
-    "selectmenu": {}
+    "selectmenu": {},
+    "automatic": {
+        "__type__": "collection",
+        "application": {
+            "__type__": "collection",
+            "buttonClosedTeam": {
+                "__type__": "string",
+                "string": "Apply as Closed Team"
+            },
+            "buttonOpenContributor": {
+                "__type__": "string",
+                "string": "Apply as Open Contributor"
+            },
+            "channelMessage": {
+                "__type__": "discordEmbed",
+                "__variables__": {
+                    "teamId": {
+                        "description": "Id of the team role",
+                        "mock": "88831985180301"
+                    }
+                },
+                "title": "Application Channel",
+                "description": "This is where you can start your application process.\n\nYou now have the opportunity to become a part of our <@&{teamId}>.\nClick the button below to create a new thread.\nWe're excited to have you join CodeZero.\n\nIf you already have an active application thread for your Closed Team / Open Contributor, please use that to continue your application.\n\nCodeZero"
+            }
+        }
+    }
 }
