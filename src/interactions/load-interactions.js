@@ -1,3 +1,4 @@
+const { LanguageHelper } = require('./language-helper');
 const Constants = require('./../../data/constants');
 const { Collection } = require('discord.js');
 const path = require('path');
@@ -37,7 +38,7 @@ const load = (client) => {
 
         // Run autoRun functions
         if (command.autoRun) {
-            command.autoRun(client, client.languages);
+            command.autoRun(client, new LanguageHelper(client).createStandalonePack());
             console.log(`[InteractionLoader::AutoRun] Run autoRun() function for ${commandFile}`, Constants.CONSOLE.LOADING);
         }
     }
