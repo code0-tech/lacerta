@@ -52,8 +52,6 @@ const handleInteraction = async (interaction, client, handler, handlerType) => {
             .setGuild(guild)
             .create();
 
-        console.log(Lang)
-
         if (!Lang) {
             console.log(`[InteractionHandler::LangContext] Specified language context was not given`, Constants.CONSOLE.ERROR);
             return;
