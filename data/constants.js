@@ -292,6 +292,71 @@ class Constants {
         }
     }
 
+    static get LANGUAGE_SYSTEM() {
+        return {
+            get HANDLER_TYPES() {
+                return {
+                    get INTERACTION() {
+                        return 'interaction';
+                    },
+                    get COMMAND() {
+                        return 'command';
+                    },
+                    get BUTTON() {
+                        return 'button';
+                    },
+                    get AUTOCOMPLETE() {
+                        return 'autocomplete';
+                    },
+                    get SELECTMENU() {
+                        return 'selectmenu';
+                    },
+                    get AUTOMATIC() {
+                        return 'automatic';
+                    }
+                }
+
+            },
+            get DEFAULTS() {
+                return {
+                    get LOCAL() {
+                        return 'en';
+                    }
+                }
+            },
+            get VALID_EMBED_KEYS() {
+                return new Set([
+                    'title',
+                    'description',
+                    'url',
+                    'timestamp',
+                    'color',
+                    'footer',
+                    'image',
+                    'thumbnail',
+                    'author',
+                    'fields'
+                ]);
+            },
+            get DATA_TYPES() {
+                return {
+                    get TYPE_KEY() {
+                        return '__type__';
+                    },
+                    get VARIABLES_KEY() {
+                        return '__variables__';
+                    },
+                    get DISCORD_EMBED() {
+                        return 'discordEmbed';
+                    },
+                    get STRING() {
+                        return 'string';
+                    }
+                }
+            }
+        }
+    }
+
     static get SETTINGS() {
         return {
             get DATE() {
