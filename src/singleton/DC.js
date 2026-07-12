@@ -4,10 +4,12 @@ const { ChannelType } = require('discord.js');
 const config = require('./../../config.json');
 
 class DC {
-    // Interactions options
     /**
-    * Defer the reply
-    */
+     * Defer the reply
+     * @param {Interaction} interaction 
+     * @param {boolean} [ephemeral=true] 
+     * @returns {Promise<Message|InteractionResponse|undefined>}
+     */
     static async defer(interaction, ephemeral = true) {
         if (interaction == undefined) {
             console.log(`[DC:::defer] Interaction was not defined`, Constants.CONSOLE.ERROR);
@@ -19,11 +21,12 @@ class DC {
         return await interaction.deferReply(options);
     }
 
-    // Member
-
     /**
-    * Get Member only by UserId
-    */
+     * Get Member only by UserId
+     * @param {string} userId 
+     * @param {Client} client 
+     * @returns {Promise<GuildMember|undefined>}
+     */
     static async codeZeroMemberById(userId, client) {
         try {
             const guild = await this.guildById(config.server.id, client);
@@ -44,8 +47,11 @@ class DC {
     }
 
     /**
-    * Get Member by UserId
-    */
+     * Get Member by UserId
+     * @param {string} userId 
+     * @param {Guild} guild 
+     * @returns {Promise<GuildMember|undefined>}
+     */
     static async memberById(userId, guild) {
         try {
             let member = guild.members.cache.get(userId);
@@ -64,9 +70,41 @@ class DC {
         }
     }
 
-    // User
+    /**
+     * Get the display name of a member (Nickname if set, otherwise Global Name / Username)
+     * @param {GuildMember} member 
+     * @returns {string|null}
+     */
+    static getMemberName(member) {
+        if (!member) return null;
+        return member.displayName;
+    }
+
+    /**
+     * Get the account username of a member (e.g., "john_doe")
+     * @param {GuildMember} member 
+     * @returns {string|null}
+     */
+    static getMemberUsername(member) {
+        if (!member || !member.user) return null;
+        return member.user.username;
+    }
+
+    /**
+     * Get the server-specific nickname of a member (returns null if no nickname set)
+     * @param {GuildMember} member 
+     * @returns {string|null}
+     */
+    static getMemberNickname(member) {
+        if (!member) return null;
+        return member.nickname;
+    }
+
     /**
      * Get User by UserId from the client.
+     * @param {string} userId 
+     * @param {Client} client 
+     * @returns {Promise<User|undefined>}
      */
     static async userById(userId, client) {
         try {
@@ -82,22 +120,29 @@ class DC {
     }
 
     /**
-    * Check if the Member has the Team role
-    */
+     * Check if the Member has the Team role
+     * @param {GuildMember} member 
+     * @returns {Promise<boolean>}
+     */
     static async isTeamMember(member) {
         return await member.roles.cache.has(config.roles.team);
     }
 
     /**
-    * Check if the Member has a roleId
-    */
+     * Check if the Member has a roleId
+     * @param {GuildMember} member 
+     * @param {string} roleId 
+     * @returns {Promise<boolean>}
+     */
     static async memberHasRole(member, roleId) {
         return await member.roles.cache.has(roleId);
     }
 
     /**
-    * Check if the Member is in a voice channel
-    */
+     * Check if the Member is in a voice channel
+     * @param {GuildMember} member 
+     * @returns {Promise<VoiceBasedChannel|null>}
+     */
     static async memberVoiceChannel(member) {
         if (member.voice.channel) {
             return member.voice.channel;
@@ -107,29 +152,41 @@ class DC {
     }
 
     /**
-    * Add a role to a Member by the roleId
-    */
+     * Add a role to a Member by the roleId
+     * @param {GuildMember} member 
+     * @param {string} roleId 
+     * @returns {Promise<GuildMember>}
+     */
     static async memberAddRoleId(member, roleId) {
         return member.roles.add(roleId);
     }
 
     /**
-    * Check if a Member has a role by roleId
-    */
+     * Check if a Member has a role by roleId
+     * @param {GuildMember} member 
+     * @param {string} roleId 
+     * @returns {boolean}
+     */
     static memberHasRoleId(member, roleId) {
         return member.roles.cache.has(roleId);
     }
 
     /**
-    * Remove a Members role by roleId
-    */
+     * Remove a Members role by roleId
+     * @param {GuildMember} member 
+     * @param {string} roleId 
+     * @returns {Promise<GuildMember>}
+     */
     static async memberRemoveRoleId(member, roleId) {
         return member.roles.remove(roleId);
     }
 
     /**
-    * Get channel by id only
-    */
+     * Get channel by id only
+     * @param {string} channelId 
+     * @param {Client} client 
+     * @returns {Promise<Channel|undefined>}
+     */
     static async channelByIdOnly(channelId, client) {
         try {
             let channel = client.channels.cache.get(channelId);
@@ -155,17 +212,21 @@ class DC {
         }
     }
 
-    // Channel
     /**
-    * Get all channels inside a guild
-    */
+     * Get all channels inside a guild
+     * @param {Guild} guild 
+     * @returns {Promise<Collection<string, GuildBasedChannel>>}
+     */
     static async channelsByGuild(guild) {
         return await guild.channels.fetch();
     }
 
     /**
-    * Get a channels under a parent id
-    */
+     * Get channels under a parent id
+     * @param {string} parentId 
+     * @param {Guild} guild 
+     * @returns {Promise<Collection<string, GuildBasedChannel>|undefined>}
+     */
     static async channelsByParentId(parentId, guild) {
         try {
             const allChannels = guild.channels.cache;
@@ -179,8 +240,11 @@ class DC {
     }
 
     /**
-    * Get a channel by its id
-    */
+     * Get a channel by its id
+     * @param {string} channelId 
+     * @param {Guild} guild 
+     * @returns {Promise<GuildBasedChannel|undefined>}
+     */
     static async channelById(channelId, guild) {
         try {
             let channel = guild.channels.cache.get(channelId);
@@ -200,8 +264,11 @@ class DC {
     }
 
     /**
-    * Get the channel in which the interaction takes place
-    */
+     * Get the channel in which the interaction takes place
+     * @param {Interaction} interaction 
+     * @param {Guild} guild 
+     * @returns {GuildBasedChannel|undefined}
+     */
     static channelByInteraction(interaction, guild) {
         const channel = guild.channels.cache.get(interaction.message.channelId);
         return channel;
@@ -209,6 +276,8 @@ class DC {
 
     /**
      * Check if a channel is a Text Channel.
+     * @param {Channel} channel 
+     * @returns {boolean}
      */
     static isTextChannel(channel) {
         return channel.type === ChannelType.GuildText;
@@ -216,14 +285,18 @@ class DC {
 
     /**
      * Check if a channel is a Voice Channel.
+     * @param {Channel} channel 
+     * @returns {boolean}
      */
     static isVoiceChannel(channel) {
         return channel.type === ChannelType.GuildVoice;
     }
 
     /**
-    * Remove all perm overrides
-    */
+     * Remove all perm overrides
+     * @param {GuildBasedChannel} channel 
+     * @returns {Promise<{removedIds: string[]}>}
+     */
     static async removeChannelUserOverrides(channel) {
         const permissionOverwrites = channel.permissionOverwrites.cache;
         const type1Overwrites = permissionOverwrites.filter(overwrite => overwrite.type === Constants.DISCORD.PERMS.USER_OVERRIDE);
@@ -241,17 +314,24 @@ class DC {
         return { removedIds };
     }
 
-    // Messages
     /**
-    * Get all messages by Channel (hard limit to 100)
-    */
+     * Get all messages by Channel (hard limit to 100)
+     * @param {TextBasedChannel} channel 
+     * @param {number} [fetchLimit=100] 
+     * @returns {Promise<Collection<string, Message>>}
+     */
     static async messagesByChannel(channel, fetchLimit = 100) {
         return await channel.messages.fetch({ limit: fetchLimit });
     }
 
     /**
-    * Get messages from channel
-    */
+     * Get messages from channel
+     * @param {Client} client 
+     * @param {string} serverid 
+     * @param {string} channelid 
+     * @param {number} [fetchLimit=100] 
+     * @returns {Promise<Collection<string, Message>>}
+     */
     static async messagesFromChannel(client, serverid, channelid, fetchLimit = 100) {
         const guild = await this.guildById(serverid, client);
         const channel = await this.channelById(channelid, guild);
@@ -262,36 +342,47 @@ class DC {
 
     // Guild
     /**
-    * Get guild by id
-    */
+     * Get guild by id
+     * @param {string} guildId 
+     * @param {Client} client 
+     * @returns {Promise<Guild>}
+     */
     static async guildById(guildId, client) {
         return await client.guilds.fetch(guildId);
     }
 
     /**
-    * Mention a User by id
-    */
+     * Mention a User by id
+     * @param {string} userId 
+     * @returns {string}
+     */
     static mentionUser(userId) {
         return `<@${userId}>`;
     }
 
     /**
-    * Mention a Role by id
-    */
+     * Mention a Role by id
+     * @param {string} roleId 
+     * @returns {string}
+     */
     static mentionRole(roleId) {
         return `<@&${roleId}>`;
     }
 
     /**
-    * Mention a Channel by id
-    */
+     * Mention a Channel by id
+     * @param {string} channelId 
+     * @returns {string}
+     */
     static mentionChannel(channelId) {
         return `<#${channelId}>`;
     }
 
     /**
-    * Can @everyone send messages in this channel
-    */
+     * Can @everyone send messages in this channel
+     * @param {GuildBasedChannel} channel 
+     * @returns {boolean}
+     */
     static canEveryoneWriteInChannel(channel) {
         try {
             if (!channel || !channel.guild) return false;
@@ -311,6 +402,8 @@ class DC {
 
     /**
      * Scans a channel and returns ALL threads a specific user belongs to.
+     * @param {ForumChannel|TextChannel} parentChannel 
+     * @param {string} userId 
      * @returns {Promise<ThreadChannel[]>} - An array of thread objects.
      */
     static async findAllThreadsByUserMembershipInsideAParentChannel(parentChannel, userId) {
@@ -330,9 +423,11 @@ class DC {
         return userThreads;
     }
 
-    // Emojis & Reactions
     /**
      * React to a message with a sequence of emojis (waits for each to maintain order)
+     * @param {Message} message 
+     * @param {string[]} emojis 
+     * @returns {Promise<string[]>}
      */
     static async addEmojiSequence(message, emojis) {
         const applied = [];
@@ -350,6 +445,9 @@ class DC {
 
     /**
      * Remove the bot's specific reaction from a message
+     * @param {Message} message 
+     * @param {string} emoji 
+     * @returns {Promise<boolean>}
      */
     static async removeBotReaction(message, emoji) {
         try {
@@ -370,6 +468,9 @@ class DC {
 
     /**
      * Check if a message has a specific emoji reaction
+     * @param {Message} message 
+     * @param {string} emoji 
+     * @returns {boolean}
      */
     static hasReaction(message, emoji) {
         console.log(`[DC::hasReaction] check emoji on message`, Constants.CONSOLE.GOOD);
@@ -378,6 +479,10 @@ class DC {
 
     /**
      * Combined logic: React and then auto-remove after XXXX ms
+     * @param {Message} message 
+     * @param {string[]} emojis 
+     * @param {number} [delay=5000] 
+     * @returns {Promise<void>}
      */
     static async reactAndAutoRemove(message, emojis, delay = 5000) {
         const applied = await this.addEmojiSequence(message, emojis);
@@ -391,6 +496,9 @@ class DC {
 
     /**
      * Check voice state by dif of oldState and newState
+     * @param {VoiceState} oldState 
+     * @param {VoiceState} newState 
+     * @returns {{state: string, userId: string, newChannel: VoiceBasedChannel|null, oldChannel: VoiceBasedChannel|null}}
      */
     static checkVoiceStateChange(oldState, newState) {
         let userId = newState.member ? newState.member.id : oldState.member.id;
