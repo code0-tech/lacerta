@@ -331,6 +331,28 @@ function generateHtml() {
             return 'string';
         }
 
+        function extractVariables(obj) {
+            const vars = new Set();
+            const regex = /\\{([^\\}]+)\\}/g;
+
+            const parseText = (text) => {
+                if (typeof text !== 'string') return;
+                let match;
+                while ((match = regex.exec(text)) !== null) {
+                    vars.add(match[1]);
+                }
+            };
+
+            if (typeof obj === 'string') {
+                parseText(obj);
+            } else if (typeof obj === 'object' && obj !== null) {
+                if (obj.string) parseText(obj.string);
+                if (obj.title) parseText(obj.title);
+                if (obj.description) parseText(obj.description);
+            }
+            return Array.from(vars);
+        }
+
         function renderTree() {
             const root = languagesData[currentLang] || {};
             const treeContainer = document.getElementById('explorerTree');
@@ -462,7 +484,10 @@ function generateHtml() {
                     <div style="margin-top:25px;">
                         <div class="section-title" style="font-size: 0.95rem;">
                             <span>Variables Meta</span>
-                            <button onclick="addVariableRow('\${pathStr}')" class="btn-secondary">+ Add Variable</button>
+                            <div style="display: flex; gap: 6px;">
+                                <button onclick="autoDetectVariables('\${pathStr}')" class="btn-secondary" style="background:#0e639c;">⚡ Auto-Detect Variables</button>
+                                <button onclick="addVariableRow('\${pathStr}')" class="btn-secondary">+ Add Variable</button>
+                            </div>
                         </div>
                         <table class="var-table">
                             <thead>
@@ -498,6 +523,46 @@ function generateHtml() {
             editorPane.innerHTML = html;
             renderPreview(pathStr);
             renderAvailableVariables(pathStr);
+        }
+
+        function autoDetectVariables(pathStr) {
+            let item = getByPath(languagesData[currentLang], pathStr);
+            if (!item) return;
+
+            if (typeof item === 'string') {
+                item = {
+                    "__type__": "string",
+                    "string": item
+                };
+                setByPath(languagesData[currentLang], pathStr, item);
+            }
+
+            const foundVars = extractVariables(item);
+            if (foundVars.length === 0) {
+                alert('No variables in {varName} format were found in this entry.');
+                return;
+            }
+
+            if (!item.__variables__) item.__variables__ = {};
+
+            let addedCount = 0;
+            foundVars.forEach(v => {
+                if (!item.__variables__[v]) {
+                    item.__variables__[v] = {
+                        description: 'Auto-detected variable',
+                        mock: '[' + v + ']'
+                    };
+                    addedCount++;
+                }
+            });
+
+            loadPathEditor(pathStr);
+
+            if (addedCount > 0) {
+                alert('Successfully added ' + addedCount + ' variable(s) to metadata.');
+            } else {
+                alert('All detected variables are already registered in the variables meta.');
+            }
         }
 
         function updateStringValue(pathStr, val) {
