@@ -155,25 +155,54 @@ class Embed {
         return replacePlaceHolders(template, data);
     }
 
-
     /**
          * Set the Context of the Embed based on Inputs and Lang.
          * @param {languageHelperEmbed} languageHelperEmbed - language helper embed function results with filled out inputs and context.
          * @param {member} member - Member from the Interaction.
          */
     addLangContext(languageHelperEmbed) {
+        if (!languageHelperEmbed) return this;
 
+        const validEmbedKeys = Constants.LANGUAGE_SYSTEM.VALID_EMBED_KEYS;
 
-        contextKeys.forEach((inputType) => {
-            const inputTypeText = embedContext[inputType];
-            const finalText = this._replacePlaceholders(inputTypeText, this._inputs);
+        Object.keys(languageHelperEmbed).forEach((key) => {
+            if (!validEmbedKeys.has(key)) return;
 
-            switch (inputType) {
-                case 'description':
-                    this.setDescription(finalText);
-                    break;
+            const value = languageHelperEmbed[key];
+            if (value === undefined || value === null) return;
+
+            switch (key) {
                 case 'title':
-                    this.setTitle(finalText);
+                    this.setTitle(value);
+                    break;
+                case 'description':
+                    this.setDescription(value);
+                    break;
+                case 'url':
+                    this.setURL(value);
+                    break;
+                case 'color':
+                    this.setColor(value);
+                    break;
+                case 'timestamp':
+                    this.setTimestamp(value);
+                    break;
+                case 'footer':
+                    this.setFooter(value);
+                    break;
+                case 'image':
+                    this.setImage(typeof value === 'string' ? { url: value } : value);
+                    break;
+                case 'thumbnail':
+                    this.setThumbnail(typeof value === 'string' ? { url: value } : value);
+                    break;
+                case 'author':
+                    this.setAuthor(value);
+                    break;
+                case 'fields':
+                    if (Array.isArray(value)) {
+                        this.addFields(value);
+                    }
                     break;
                 default:
                     break;
