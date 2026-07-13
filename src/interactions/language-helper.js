@@ -1,21 +1,67 @@
 const Constants = require('../../data/constants');
 const config = require('../../config.json');
+const DC = require('../singleton/DC');
 
 const languageRoles = config.server.languageRoles;
-const defaultLangLocal = "en";
 
 class LanguageHelper {
     constructor(client) {
-        this.languages = client?.languages || {};
+        this.setLanguages(client?.languages || {});
 
-        this.userlang = defaultLangLocal;
-        this.userLanguageRoleId = null;
-        this.member = null;
-        this.commandName = null;
-        this.handlerType = null;
-        this.interaction = null;
-        this.guild = null;
-        this.languageCommandPack = {};
+        console.log(this.getLanguages());
+
+        this.defaultLangLocal = Constants.LANGUAGE_SYSTEM.DEFAULTS.LOCAL
+
+        this.setUserlang(this.defaultLangLocal);
+        this.setUserLanguageRoleId(null);
+        this.setMember(null);
+        this.setCommandName(null);
+        this.setHandlerType(null);
+        this.setInteraction(null);
+        this.setGuild(null);
+        this.setInteractionLanguagePack({});
+        this.setStandAlone(false);
+    }
+
+    // Getters & Setters
+    getLanguages() {
+        return this.languages;
+    }
+
+    setLanguages(languages) {
+        this.languages = languages;
+        return this;
+    }
+
+    getUserlang() {
+        return this.userlang;
+    }
+
+    setUserlang(userlang) {
+        this.userlang = userlang;
+        return this;
+    }
+
+    getLanguageRoleId() {
+        return this.userLanguageRoleId;
+    }
+
+    setUserLanguageRoleId(userLanguageRoleId) {
+        this.userLanguageRoleId = userLanguageRoleId;
+        return this;
+    }
+
+    getMember() {
+        return this.member;
+    }
+
+    setMember(member) {
+        this.member = member;
+        return this;
+    }
+
+    getCommandName() {
+        return this.commandName;
     }
 
     setCommandName(fullCommandName) {
@@ -23,9 +69,17 @@ class LanguageHelper {
         return this;
     }
 
+    getHandlerType() {
+        return this.handlerType;
+    }
+
     setHandlerType(handlerType) {
         this.handlerType = handlerType;
         return this;
+    }
+
+    getInteraction() {
+        return this.interaction;
     }
 
     setInteraction(interaction) {
@@ -33,35 +87,83 @@ class LanguageHelper {
         return this;
     }
 
+    getGuild() {
+        return this.guild;
+    }
+
     setGuild(guild) {
         this.guild = guild;
         return this;
     }
 
+    getInteractionLanguagePack() {
+        return this.interactionLanguagePack;
+    }
+
+    setInteractionLanguagePack(interactionLanguagePack) {
+        this.interactionLanguagePack = interactionLanguagePack;
+        return this;
+    }
+
+    setPackCommandPath(commandPath) {
+        this.setCommandName(commandPath);
+        return this;
+    }
+
+    getStandAloneStatus() {
+        return this.standAlone || false;
+    }
+
+    setStandAlone(boolean) {
+        this.standAlone = boolean;
+        return this;
+    }
+
+    createStandalonePack() {
+        this.setStandAlone();
+        return this;
+    }
+
+    buildPack() {
+        const commandName = this.getCommandName();
+        if (!commandName) return this;
+
+        const languages = this.getLanguages();
+        const userlang = this.getUserlang();
+        const handlerType = this.getHandlerType();
+
+        let interactionLanguagePack = languages[userlang]?.[handlerType]?.[commandName];
+
+        if (!interactionLanguagePack) {
+            interactionLanguagePack = languages[this.defaultLangLocal]?.[handlerType]?.[commandName] || {};
+        }
+        this.setInteractionLanguagePack(interactionLanguagePack);
+
+        return this;
+    }
+
     async create() {
-        if (this.guild && this.interaction) {
+        const guild = this.getGuild();
+        const interaction = this.getInteraction();
+
+        if (guild && interaction) {
             try {
-                this.member = await this.guild.members.fetch(this.interaction.user.id);
+                const member = await guild.members.fetch(interaction.user.id);
+                this.setMember(member);
 
                 for (const languageRoleId of Object.keys(languageRoles)) {
-                    if (this.member.roles.cache.has(languageRoleId)) {
-                        this.userlang = languageRoles[languageRoleId];
-                        this.userLanguageRoleId = languageRoleId;
+                    if (member.roles.cache.has(languageRoleId)) {
+                        this.setUserlang(languageRoles[languageRoleId]);
+                        this.setUserLanguageRoleId(languageRoleId);
                     }
                 }
-                console.log(`[LanguageHelper::Create] Found language Role using "${this.userlang}" local for member`, Constants.CONSOLE.GOOD);
+                console.log(`[LanguageHelper::Create] Found language Role using "${this.getUserlang()}" local for member`, Constants.CONSOLE.GOOD);
             } catch (error) {
                 console.log(`[LanguageHelper::Create] Couldn't fetch member details. Defaulting to "${defaultLangLocal}".`, Constants.CONSOLE.ERROR);
             }
         }
 
-        if (this.commandName) {
-            let userLocalCommandPack = this.languages[this.userlang]?.[this.commandName];
-            if (!userLocalCommandPack) {
-                userLocalCommandPack = this.languages[defaultLangLocal]?.[this.commandName] || {};
-            }
-            this.languageCommandPack = userLocalCommandPack;
-        }
+        this.buildPack();
 
         return this;
     }
@@ -71,19 +173,138 @@ class LanguageHelper {
         return template.replace(/{([^{}]*)}/g, (match, key) => {
             const trimmedKey = key.trim();
             if (data == null) return '';
-            if (data[trimmedKey] === undefined) return '';
-            return data[trimmedKey];
+
+            const targetKey = Object.keys(data).find(k => k.toLowerCase() === trimmedKey.toLowerCase()) || trimmedKey;
+
+            if (data[targetKey] === undefined) return match;
+            return data[targetKey];
         });
     }
 
-    embed(contextPath, variables) {
-        if (!contextPath) return null;
+    _processPlaceholdersInObject(obj, variables) {
+        if (typeof obj === 'string') {
+            const processed = this._replacePlaceholders(obj, variables);
+            return processed;
+        }
 
+        if (Array.isArray(obj)) {
+            return obj.map((item, index) => {
+                return this._processPlaceholdersInObject(item, variables);
+            });
+        }
 
+        if (typeof obj === 'object' && obj !== null) {
+            console.log('[LanguageSystem] Processing object properties:', Object.keys(obj));
+            const result = {};
+
+            for (const [key, value] of Object.entries(obj)) {
+                if (
+                    key === Constants.LANGUAGE_SYSTEM.DATA_TYPES.VARIABLES_KEY ||
+                    key === Constants.LANGUAGE_SYSTEM.DATA_TYPES.TYPE_KEY
+                ) {
+                    result[key] = value;
+                    continue;
+                }
+
+                result[key] = this._processPlaceholdersInObject(value, variables);
+            }
+
+            return result;
+        }
+
+        return obj;
     }
 
-    getLanguageRoleId() {
-        return this.userLanguageRoleId;
+    /**
+    * Resolves an object path using dot notation or a single key.
+    * @param {Object} obj 
+    * @param {string} path - e.g. "command.contributor.infoMessage" OR "infoMessage"
+    * @returns {any}
+    */
+    _getNestedValue(obj, path) {
+        if (!obj || !path) return null;
+
+        return path.split('.').reduce((acc, part) => {
+            return (acc && acc[part] !== undefined) ? acc[part] : null;
+        }, obj);
+    }
+
+    embed(contextPath, variables = {}) {
+        if (!contextPath) return null;
+
+        const interactionLanguagePack = this.getInteractionLanguagePack();
+
+        const embedLanguagePack = this._getNestedValue(interactionLanguagePack, contextPath) || null;
+
+        if (!embedLanguagePack) {
+            console.log(`[LanguageHelper::embed] Context path "${contextPath}" not found.`, Constants.CONSOLE.ERROR);
+            return null;
+        }
+
+        if (embedLanguagePack[Constants.LANGUAGE_SYSTEM.DATA_TYPES.TYPE_KEY] !== Constants.LANGUAGE_SYSTEM.DATA_TYPES.DISCORD_EMBED) {
+            console.log(`[LanguageHelper::embed] interactionLanguagePack with contextPath: ${contextPath} has no embed type`, Constants.CONSOLE.ERROR);
+            return {};
+        }
+
+        const member = this.getMember();
+
+        const memberVariables = {
+            memberName: DC.getMemberName(member) || '',
+            memberUserName: DC.getMemberUsername(member) || '',
+            memberNickname: DC.getMemberNickname(member) || ''
+        };
+
+        const combinedVariables = {
+            ...memberVariables,
+            ...variables
+        };
+
+        const formattedEmbedPack = this._processPlaceholdersInObject(embedLanguagePack, combinedVariables);
+
+        return {
+            ...formattedEmbedPack,
+            member
+        };
+    }
+
+    string(contextPath, variables = {}) {
+        if (!contextPath) return null;
+
+        const interactionLanguagePack = this.getInteractionLanguagePack();
+
+        const stringPack = this._getNestedValue(interactionLanguagePack, contextPath) || null;
+
+        // what if the context path is like "application.title"
+        // this means i need to get to that json object but how?
+
+        if (!stringPack) {
+            console.log(`[LanguageHelper::string] Context path "${contextPath}" not found.`, Constants.CONSOLE.ERROR);
+            return null;
+        }
+
+        if (stringPack[Constants.LANGUAGE_SYSTEM.DATA_TYPES.TYPE_KEY] !== Constants.LANGUAGE_SYSTEM.DATA_TYPES.STRING) {
+            console.log(`[LanguageHelper::string] interactionLanguagePack with contextPath: ${contextPath} has no string type`, Constants.CONSOLE.ERROR);
+            return {};
+        }
+
+        const singleString = stringPack.string;
+
+        const member = this.getMember();
+
+        const memberVariables = {
+            memberName: DC.getMemberName(member) || '',
+            memberUserName: DC.getMemberUsername(member) || '',
+            memberNickname: DC.getMemberNickname(member) || ''
+        };
+
+        const combinedVariables = {
+            ...memberVariables,
+            ...variables
+        };
+
+        const formattedString = this._replacePlaceholders(singleString, combinedVariables);
+
+        return formattedString;
     }
 }
 
