@@ -19,27 +19,13 @@ const execute = async (dcInteraction) => {
 
     const opencontributorInfo = config.commands.opencontributor;
 
-
-    console.log(Lang)
-
     new Embed()
         .setColor(COLOR.INFO)
-        .addLangContext(Lang.embed("info", {
-            neededpr: opencontributorInfo.pr,
-            neededcommits: opencontributorInfo.commits
-        }, member))
+        .addLangContext(Lang.embed("infoMessage", {
+            neededPullRequests: opencontributorInfo.pr,
+            neededCommits: opencontributorInfo.commits
+        }))
         .interactionResponse(interaction);
-
-
-
-    /* new Embed()
-    .setColor(COLOR.INFO)
-    .addInputs({
-        neededpr: opencontributorInfo.pr,
-        neededcommits: opencontributorInfo.commits
-    })
-    .addContext(Lang, member, 'info')
-    .interactionResponse(interaction); */
 };
 
 module.exports = { execute, data };

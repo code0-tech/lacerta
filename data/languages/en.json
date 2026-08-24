@@ -88,24 +88,186 @@
             "initialMessage": {
                 "__type__": "discordEmbed",
                 "title": "How to become an Open Contributor",
-                "description": "For becoming an Open Contributor and its roles you must fulfill the following things:\n\n1. Have {neededcommits} or more commits\n2. Have {neededpr} or more pull requests\n\nClick the link button and check if you can become an Open Contributor."
+                "description": "For becoming an Open Contributor and its roles you must fulfill the following things:\n\n1. Have {neededCommits} or more commits\n2. Have {neededPr} or more pull requests\n\nClick the link button and check if you can become an Open Contributor.",
+                "__variables__": {
+                    "neededPr": {
+                        "description": "The Pull request the user needs",
+                        "mock": "10"
+                    },
+                    "neededCommits": {
+                        "description": "The Commits a user needs",
+                        "mock": "10"
+                    }
+                }
             },
             "results": {
                 "__type__": "collection",
                 "complete": {
                     "title": "Github Results",
-                    "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nWe have added you to our Open Contributor"
+                    "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nWe have added you to our Open Contributor",
+                    "__variables__": {
+                        "githubname": {
+                            "description": "githubname",
+                            "mock": "Nicuschgifthub"
+                        },
+                        "pbpr": {
+                            "description": "progress bar pull requests",
+                            "mock": "[#####0000]"
+                        },
+                        "yourpr": {
+                            "description": "your pull requests",
+                            "mock": "1"
+                        },
+                        "neededpr": {
+                            "description": "the pull request you need",
+                            "mock": "10"
+                        },
+                        "pbcm": {
+                            "description": "progress bar commits",
+                            "mock": "[#####0000]"
+                        },
+                        "yourcommits": {
+                            "description": "your current commits",
+                            "mock": "1"
+                        },
+                        "neededcommits": {
+                            "description": "commits a user needs",
+                            "mock": "10"
+                        },
+                        "tablestring": {
+                            "description": "table string of github results",
+                            "mock": "[this is a table]"
+                        }
+                    }
                 },
                 "missingPullOrCommits": {
                     "__type__": "discordEmbed",
                     "title": "Github Results",
-                    "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nFulfill all requirements to become an Open Contributor."
+                    "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nFulfill all requirements to become an Open Contributor.",
+                    "__variables__": {
+                        "githubname": {
+                            "description": "githubname",
+                            "mock": "Nicuschgifthub"
+                        },
+                        "pbpr": {
+                            "description": "progress bar pull requests",
+                            "mock": "[#####0000]"
+                        },
+                        "yourpr": {
+                            "description": "your pull requests",
+                            "mock": "1"
+                        },
+                        "neededpr": {
+                            "description": "the pull request you need",
+                            "mock": "10"
+                        },
+                        "pbcm": {
+                            "description": "progress bar commits",
+                            "mock": "[#####0000]"
+                        },
+                        "yourcommits": {
+                            "description": "your current commits",
+                            "mock": "1"
+                        },
+                        "neededcommits": {
+                            "description": "commits a user needs",
+                            "mock": "10"
+                        },
+                        "tablestring": {
+                            "description": "table string of github results",
+                            "mock": "[this is a table]"
+                        }
+                    }
                 },
                 "noData": {
                     "__type__": "discordEmbed",
                     "title": "Github Results for {githubname}",
-                    "description": "You got no commits nor pull request's."
+                    "description": "You got no commits nor pull request's.",
+                    "__variables__": {
+                        "githubname": {
+                            "description": "Name of the user",
+                            "mock": "Nicuschgifthub"
+                        }
+                    }
                 }
+            }
+        },
+        "mydata": {
+            "__type__": "collection",
+            "infoMessage": {
+                "__type__": "discordEmbed",
+                "title": "We got your Data",
+                "description": "This JSON file contains all the information we have saved about `you` in our DB."
+            }
+        },
+        "rank": {
+            "__type__": "collection",
+            "ownRank": {
+                "__type__": "discordEmbed",
+                "title": "Level: {level}",
+                "description": "{progressbar} [{xp} xp|{neededXp} xp]\n\nYou <@{rankuserid}> are currently on the {position} place.\nEarn XP by interacting on this server with others.",
+                "__variables__": {
+                    "level": {
+                        "description": "level",
+                        "mock": "12"
+                    },
+                    "progressbar": {
+                        "description": "progressbar",
+                        "mock": "[####000]"
+                    },
+                    "xp": {
+                        "description": "xp you have",
+                        "mock": "200"
+                    },
+                    "neededXp": {
+                        "description": "xp you need",
+                        "mock": "300"
+                    },
+                    "rankuserid": {
+                        "description": "rank user id",
+                        "mock": "366173301"
+                    },
+                    "position": {
+                        "description": "position / place",
+                        "mock": "4"
+                    }
+                }
+            },
+            "otherRank": {
+                "__type__": "discordEmbed",
+                "title": "Level: {level}",
+                "description": "{progressbar} [{xp} xp|{neededXp} xp]\n\nCurrently <@{rankuserid}> is on the {position} place.",
+                "__variables__": {
+                    "level": {
+                        "description": "level",
+                        "mock": "12"
+                    },
+                    "progressbar": {
+                        "description": "progressbar",
+                        "mock": "[####000]"
+                    },
+                    "xp": {
+                        "description": "other xp",
+                        "mock": "200"
+                    },
+                    "neededXp": {
+                        "description": "other xp for next level",
+                        "mock": "300"
+                    },
+                    "rankuserid": {
+                        "description": "rank user id",
+                        "mock": "366173301"
+                    },
+                    "position": {
+                        "description": "position / place",
+                        "mock": "4"
+                    }
+                }
+            },
+            "botRank": {
+                "__type__": "discordEmbed",
+                "title": "Sorry",
+                "description": "I'm not really into collecting XP.\nMaybe try a real `user`"
             }
         }
     },
@@ -163,7 +325,7 @@
                 "__variables__": {
                     "teamId": {
                         "description": "Id of the team role",
-                        "mock": "88831985180301"
+                        "mock": "13131888319"
                     }
                 },
                 "title": "Application Channel",

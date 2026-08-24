@@ -16,7 +16,7 @@ const data = new SlashCommandBuilder()
 
 
 const execute = async (dcInteraction) => {
-    const { interaction, client, member, guild, lang } = dcInteraction;
+    const { interaction, client, member, guild, Lang } = dcInteraction;
 
     await DC.defer(interaction);
 
@@ -29,7 +29,7 @@ const execute = async (dcInteraction) => {
 
     new Embed()
         .setColor(COLOR.INFO)
-        .addContext(lang, member, 'your-data')
+        .addLangContext(Lang.embed("infoMessage"))
         .setAttachment(attachment)
         .interactionResponse(interaction);
 };

@@ -658,10 +658,10 @@ function generateHtml() {
                 const rawStr = typeof item === 'object' ? (item.string || '') : item;
                 previewContainer.innerHTML = \`
                     <div class="discord-message-container">
-                        <div class="discord-avatar">BOT</div>
+                        <div class="discord-avatar">CZ</div>
                         <div class="discord-message-body">
                             <div class="discord-header">
-                                <span class="discord-bot-name">System Bot</span>
+                                <span class="discord-bot-name">CodeZero</span>
                                 <span class="discord-bot-tag">APP</span>
                                 <span class="discord-timestamp">Today at 12:00 PM</span>
                             </div>

@@ -23,50 +23,10 @@
             "description": "Up Since: {upsince}\n\n`{days}` days, `{hours}` hours, `{minutes}` minutes, `{seconds}` seconds."
         }
     },
-    "open-contributor": {
-        "repo": "Repo",
-        "commits": "Commits",
-        "prs": "PRs",
-        "button-link": "Github OAuth Link",
-        "error-timeout": {
-            "title": "Code expired",
-            "description": "This code is expired. Use /open-contributor to get a new one."
-        },
-        "error-similar-inquiry": {
-            "title": "Request canceled",
-            "description": "It appears that a similar inquiry or request has already been submitted elsewhere, as a result, the current request has been canceled."
-        },
-        "error-already-has-role": {
-            "title": "Well... you are an Open Contributor",
-            "description": "There is no need to use this command."
-        },
-        "initial-message": {
-            "title": "How to become an Open Contributor",
-            "description": "For becoming an Open Contributor and its roles you must fulfill the following things:\n\n1. Have {neededcommits} or more commits\n2. Have {neededpr} or more pull requests\n\nClick the link button and check if you can become an Open Contributor."
-        },
-        "results-complete": {
-            "title": "Github Results",
-            "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nWe have added you to our Open Contributor"
-        },
-        "results-not-complete": {
-            "title": "Github Results",
-            "description": "Account: `{githubname}`\n\n{pbpr}\nYou got {yourpr} of {neededpr} pull requests.\n\n{pbcm}\nYou got {yourcommits} of {neededcommits} commits.\n\n{tablestring}\n\nFulfill all requirements to become an Open Contributor."
-        },
-        "results-no-data": {
-            "title": "Github Results for {githubname}",
-            "description": "You got no commits nor pull request's."
-        }
-    },
     "links": {
         "list": {
             "title": "These links might interest you!",
             "description": "Our Github: [CodeZero Github](https://github.com/code0-tech)\n\nOur Website: [CodeZero Website](https://code0.tech)"
-        }
-    },
-    "contributor": {
-        "info": {
-            "title": "How to become an Open Contributor",
-            "description": "To be an Open Contributor, meet these criteria:\n\n1. Have {neededcommits} or more commits.\n2. Have {neededpr} or more pull requests.\n\nYou can check or get the role by using `/open-contributer` command."
         }
     },
     "rank": {
@@ -117,28 +77,6 @@
         "minutes": "m",
         "seconds": "s"
     },
-    "_application": {
-        "#btn-closed-team": "Apply as Closed Team",
-        "#btn-open-contributer": "Apply as Open Contributor",
-        "#init-message": {
-            "title": "Application Channel",
-            "description": "This is where you can start your application process.\n\nYou now have the opportunity to become a part of our <@&{teamid}>.\nClick the button below to create a new thread.\nWe're excited to have you join CodeZero.\n\nIf you already have an active application thread for your Closed Team / Open Contributor, please use that to continue your application.\n\nCodeZero"
-        },
-        "#thread-title-open-contributor": "as Open Contributor?",
-        "#thread-title-closed-team": "as Closed Team?",
-        "#new-application-thread": {
-            "title": "Application Thread Created",
-            "description": "A new application Thread has been created for you!"
-        },
-        "#apply-message-open-contributor": {
-            "title": "Apply as Open Contributor",
-            "description": "Go ahead and tells us why you want to become a Open Contributor"
-        },
-        "#apply-message-closed-team": {
-            "title": "Apply as Closed Team",
-            "description": "Go ahead and tell us why you want to become a part of our Closed Team"
-        }
-    },
     "logs": {
         "select-menu-placholder": "Logs",
         "btn-back": "Previous",
@@ -179,12 +117,6 @@
     "#_rankupdate": {
         "#update-msg": {
             "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\n<@{rankuserid}> is now level {level} and in {position} place."
-        }
-    },
-    "mydata": {
-        "your-data": {
-            "title": "We got your Data",
-            "description": "This JSON file contains all the information we have saved about `you` in our DB."
         }
     },
     "git": {

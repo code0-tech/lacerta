@@ -1,14 +1,20 @@
 const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const { Embed, COLOR } = require('./../models/Embed');
 const { keyArray } = require('./../utils/helper');
+const Constants = require('../../data/constants');
 const { Thread } = require("../models/Thread");
 const config = require('./../../config.json');
 const DC = require('./../singleton/DC');
 
 
-const autoRun = async (client, lang) => {
+const autoRun = async (client, Lang) => {
     const messages = await DC.messagesFromChannel(client, config.server.id, config.server.channels.application);
     const messagesIds = keyArray(messages);
+
+    const LanguagePack = Lang
+        .setHandlerType(Constants.LANGUAGE_SYSTEM.HANDLER_TYPES.AUTOMATIC)
+        .setPackCommandPath('application')
+        .buildPack()
 
     messagesIds.forEach(async (messageId) => {
         const message = messages.get(messageId);
@@ -21,12 +27,12 @@ const autoRun = async (client, lang) => {
 
     const applyButtonClosedTeam = new ButtonBuilder()
         .setCustomId('application-apply-closed-team')
-        .setLabel(lang.english['_application']['#btn-closed-team'])
+        .setLabel(LanguagePack.string("buttonClosedTeam"))
         .setStyle(ButtonStyle.Primary);
 
     const applyButtonOpenContributor = new ButtonBuilder()
         .setCustomId('application-apply-open-contributor')
-        .setLabel(lang.english['_application']['#btn-open-contributer'])
+        .setLabel(LanguagePack.string("buttonOpenContributor"))
         .setStyle(ButtonStyle.Primary);
 
     const row = new ActionRowBuilder()
@@ -34,46 +40,48 @@ const autoRun = async (client, lang) => {
 
     new Embed()
         .setColor(COLOR.INFO)
-        .addInputs({ teamid: config.server.roles.team })
-        .addContext({ text: lang.english['_application'] }, null, '#init-message')
+        .addLangContext(LanguagePack.embed("channelMessage", {
+            teamId: config.server.roles.team
+        }))
         .setComponents([row])
         .responseToChannel(config.server.channels.application, client)
 };
 
-const handleApplicationApply = async (interaction, client, guild, member, lang, buttonData) => {
-    let applicationTypeTextVar = '#apply-message-open-contributor';
-    let threadTitle = '#thread-title-open-contributor';
+const handleApplicationApply = async (interaction, client, guild, member, Lang, buttonData) => {
+
+    let applicationTypeTextVar = 'applyMessages.openContributor';
+    let threadTitle = 'threadTitle.openContributor';
 
     if (buttonData.id === 'application-apply-closed-team') {
-        applicationTypeTextVar = '#apply-message-closed-team';
-        threadTitle = '#thread-title-closed-team';
+        applicationTypeTextVar = 'applyMessages.closedTeam';
+        threadTitle = 'threadTitle.closedTeam';
     }
 
     const newThread = await new Thread()
-        .setName(`${member.user.username} ${lang.getText(threadTitle)}`)
+        .setName(Lang.string(threadTitle))
         .addMemberById(member.id)
         .addRole(config.server.roles.team)
         .createThread(interaction.channel);
 
     await new Embed()
         .setColor(COLOR.INFO)
-        .addContext(lang, member, applicationTypeTextVar)
+        .addLangContext(Lang.embed(applicationTypeTextVar))
         .responseToChannel(newThread.id, client);
 
     new Embed()
         .setColor(COLOR.INFO)
-        .addContext(lang, member, '#new-application-thread')
+        .addLangContext(Lang.embed("applicationTheadCreated"))
         .interactionResponse(interaction);
 };
 
 const executeComponent = async (dcInteraction) => {
-    const { interaction, client, guild, member, lang, componentData } = dcInteraction;
+    const { interaction, client, guild, member, Lang, componentData } = dcInteraction;
 
     await DC.defer(interaction);
 
     if (componentData.id !== 'application-apply-closed-team' && componentData.id !== 'application-apply-open-contributor') return;
 
-    handleApplicationApply(interaction, client, guild, member, lang, componentData);
+    handleApplicationApply(interaction, client, guild, member, Lang, componentData);
 };
 
 const componentIds = [

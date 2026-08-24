@@ -23,7 +23,7 @@ const data = new SlashCommandBuilder()
     );
 
 
-const loop = async (interaction, member, lang, embedMessage, rankMember, user, previousXp = null) => {
+const loop = async (interaction, member, Lang, embedMessage, rankMember, user, previousXp = null) => {
     const { level, neededXp, xp } = await user.getRank();
     const position = await user.getXpGlobalPosition();
 
@@ -31,15 +31,14 @@ const loop = async (interaction, member, lang, embedMessage, rankMember, user, p
         const embed = new Embed()
             .setColor(COLOR.INFO)
             .setPbThumbnail(rankMember)
-            .addInputs({
+            .addLangContext(Lang.embed(embedMessage, {
                 rankuserid: rankMember.id,
                 level,
                 neededXp,
                 xp,
                 progressbar: progressBar(xp, neededXp),
                 position
-            })
-            .addContext(lang, member, embedMessage);
+            }))
 
         const response = await embed.interactionResponse(interaction);
         if (response == null) return;
@@ -47,26 +46,26 @@ const loop = async (interaction, member, lang, embedMessage, rankMember, user, p
 
     if (embedMessage !== 'this-bot-rank' && config.commands.rank.upToDate15m) {
         await waitMs(config.commands.rank.updateMessageDelay);
-        loop(interaction, member, lang, embedMessage, rankMember, user, xp);
+        loop(interaction, member, Lang, embedMessage, rankMember, user, xp);
     }
 };
 
 const execute = async (dcInteraction) => {
-    const { interaction, client, member, guild, lang } = dcInteraction;
+    const { interaction, client, member, guild, Lang } = dcInteraction;
 
     await DC.defer(interaction);
 
     const userIdToCheck = interaction.options.getMember('user')?.user?.id ?? member.user.id;
-    let embedMessage = userIdToCheck == member.user.id ? 'own-rank-response' : 'other-rank-response';
+    let embedMessage = userIdToCheck == member.user.id ? 'ownRank' : 'otherRank';
 
     if (client.user.id === userIdToCheck) {
-        embedMessage = 'this-bot-rank';
+        embedMessage = 'botRank';
     }
 
     const rankMember = await DC.memberById(userIdToCheck, guild);
     const user = await new MongoUser().userById(userIdToCheck);
 
-    loop(interaction, member, lang, embedMessage, rankMember, user);
+    loop(interaction, member, Lang, embedMessage, rankMember, user);
 };
 
 module.exports = { execute, data };

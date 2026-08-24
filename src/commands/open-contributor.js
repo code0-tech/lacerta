@@ -19,19 +19,19 @@ const data = new SlashCommandBuilder()
     })
 
 
-const failedMessage = async (interaction, client, member, lang, type) => {
+const failedMessage = async (interaction, client, member, Lang, type) => {
     await new Embed()
         .setColor(COLOR.DANGER)
-        .addContext(lang, member, type)
+        .addLangContext(Lang.embed(type))
         .interactionResponse(interaction);
 };
 
-const createButtonRow = (data, lang) => {
+const createButtonRow = (data, Lang) => {
     const userIdEncrypted = encryptString(JSON.stringify(data));
     const oAuthLink = Constants.GIT.URL.OAUTH_LINK(userIdEncrypted, Constants.GIT.GITHUB_SCOPES);
 
     const oAuthLinkButton = new ButtonBuilder()
-        .setLabel(lang.getText('button-link'))
+        .setLabel(Lang.string("texts.buttonLink"))
         .setURL(oAuthLink)
         .setStyle(ButtonStyle.Link);
 
@@ -39,12 +39,12 @@ const createButtonRow = (data, lang) => {
 };
 
 const execute = async (dcInteraction) => {
-    const { interaction, client, member, guild, lang } = dcInteraction;
+    const { interaction, client, member, guild, Lang } = dcInteraction;
 
     await DC.defer(interaction);
 
     if (await DC.memberHasRole(member, dcServerRoles.opencontributor)) {
-        failedMessage(interaction, client, member, lang, 'error-already-has-role');
+        failedMessage(interaction, client, member, Lang, "errors.roleAlreadyAdded");
         return;
     }
 
@@ -55,12 +55,14 @@ const execute = async (dcInteraction) => {
         reference: `${interaction.user.id}-open-contributor`
     };
 
-    const row = createButtonRow(data, lang);
+    const row = createButtonRow(data, Lang);
 
     await new Embed()
         .setColor(COLOR.INFO)
-        .addInputs({ neededcommits: dcCommands.opencontributor.commits, neededpr: dcCommands.opencontributor.pr })
-        .addContext(lang, member, 'initial-message')
+        .addLangContext(Lang.embed("initialMessage", {
+            neededCommits: dcCommands.opencontributor.commits,
+            neededPr: dcCommands.opencontributor.pr
+        }))
         .setComponents([row])
         .interactionResponse(interaction);
 
@@ -77,12 +79,12 @@ const execute = async (dcInteraction) => {
     let messageType = '';
 
     if (github.contributions.length === 0) {
-        messageType = 'results-no-data';
+        messageType = 'results.noData';
     } else {
         const columns = [
-            { label: lang.getText('repo'), key: 'repository' },
-            { label: lang.getText('commits'), key: 'commitCount' },
-            { label: lang.getText('prs'), key: 'pullRequestCount' }
+            { label: Lang.string('texts.repo'), key: 'repository' },
+            { label: Lang.string('texts.commits'), key: 'commitCount' },
+            { label: Lang.string('texts.prs'), key: 'pullRequestCount' }
         ];
 
         table = new DiscordSimpleTable(columns)
@@ -93,15 +95,15 @@ const execute = async (dcInteraction) => {
     }
 
     if (github.totalCommitContributions >= dcCommands.opencontributor.commits && github.totalPullRequests >= dcCommands.opencontributor.pr) {
-        messageType = 'results-complete';
+        messageType = 'results.complete';
         DC.memberAddRoleId(member, dcServerRoles.opencontributor);
     } else {
-        messageType = 'results-not-complete';
+        messageType = 'results.missingPullOrCommits';
     }
 
     await new Embed()
         .setColor(COLOR.INFO)
-        .addInputs({
+        .addLangContext(Lang.embed(messageType, {
             tablestring: table.build(),
             yourpr: github.totalPullRequests,
             neededpr: dcCommands.opencontributor.pr,
@@ -113,8 +115,7 @@ const execute = async (dcInteraction) => {
             neededcommits: dcCommands.opencontributor.commits,
 
             githubname: name
-        })
-        .addContext(lang, member, messageType)
+        }))
         .setComponents([])
         .interactionResponse(interaction);
 };
