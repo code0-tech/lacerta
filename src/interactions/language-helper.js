@@ -8,8 +8,6 @@ class LanguageHelper {
     constructor(client) {
         this.setLanguages(client?.languages || {});
 
-        console.log(this.getLanguages());
-
         this.defaultLangLocal = Constants.LANGUAGE_SYSTEM.DEFAULTS.LOCAL
 
         this.setUserlang(this.defaultLangLocal);
@@ -194,7 +192,7 @@ class LanguageHelper {
         }
 
         if (typeof obj === 'object' && obj !== null) {
-            console.log('[LanguageSystem] Processing object properties:', Object.keys(obj));
+            console.log('[LanguageHelper::Replace] Processing object properties', Constants.CONSOLE.GOOD);
             const result = {};
 
             for (const [key, value] of Object.entries(obj)) {
