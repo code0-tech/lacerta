@@ -3,3 +3,4 @@ node_modules/
 server.env
 .env
 .dev
+help-for-language.txt
