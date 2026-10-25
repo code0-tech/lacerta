@@ -43,7 +43,7 @@ const handleInteraction = async (interaction, client, handler, handlerType) => {
 
         finalCommandName = commandName;
 
-        console.log(`[InteractionHandler::Handle] Handling interaction for command: ${commandName}`, Constants.CONSOLE.WORKING);
+        console.log(`[InteractionHandler::Handle] Handling interaction for command: ${commandName}; with type ${handlerType}`, Constants.CONSOLE.WORKING);
 
         const Lang = await new LanguageHelper(client)
             .setCommandName(commandName)
