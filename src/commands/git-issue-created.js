@@ -20,7 +20,7 @@ const data = new SlashCommandBuilder()
 
 
 const execute = async (dcInteraction) => {
-    const { interaction, member, lang } = dcInteraction;
+    const { interaction, member, Lang } = dcInteraction;
 
     await DC.defer(interaction);
 
@@ -28,14 +28,13 @@ const execute = async (dcInteraction) => {
 
     new Embed()
         .setColor(COLOR.INFO)
-        .addInputs({ link: link })
-        .addContext(lang, member, 'info-embed')
-        .responseToChannelByInteraction(interaction)
+        .addLangContext(Lang.embed('info-embed', { link: link }))
+        .responseToChannelByInteraction(interaction);
 
     new Embed()
         .setColor(COLOR.INFO)
-        .addContext(lang, member, 'user-info-embed')
-        .interactionResponse(interaction)
+        .addLangContext(Lang.embed('user-info-embed'))
+        .interactionResponse(interaction);
 };
 
 module.exports = { execute, data };

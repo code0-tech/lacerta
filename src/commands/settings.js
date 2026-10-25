@@ -14,31 +14,31 @@ const data = new SlashCommandBuilder()
     .setDefaultMemberPermissions()
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 
-const backButtonActionRow = (lang) => {
+const backButtonActionRow = (Lang) => {
     const backBtn = new ButtonBuilder()
         .setCustomId(DcButtons.createString('settings', { type: 'main' }))
-        .setLabel(lang.getText('btn-back'))
+        .setLabel(Lang.string('texts.btn-back'))
         .setStyle(ButtonStyle.Secondary);
 
     return new ActionRowBuilder().addComponents(backBtn)
 };
 
-const renderMainMenu = async (interaction, member, lang) => {
+const renderMainMenu = async (interaction, member, Lang) => {
     const selectMenu = new StringSelectMenuBuilder()
         .setCustomId(DcButtons.createString('settings', { type: 'menu' }))
-        .setPlaceholder(lang.getText('select-menu-placeholder'))
+        .setPlaceholder(Lang.string('texts.select-menu-placeholder'))
         .addOptions([
-            { label: lang.getText('menu-text-language'), value: 'language_role', emoji: Constants.DISCORD.EMOJIS.GLOBE }
+            { label: Lang.string('texts.menu-text-language'), value: 'language_role', emoji: Constants.DISCORD.EMOJIS.GLOBE }
         ]);
 
     await new Embed()
         .setColor(COLOR.INFO)
-        .addContext(lang, member, 'main-page')
+        .addLangContext(Lang.embed('main-page'))
         .setComponents([new ActionRowBuilder().addComponents(selectMenu)])
         .interactionResponse(interaction);
 };
 
-const renderLanguageRoleSettings = async (interaction, member, lang) => {
+const renderLanguageRoleSettings = async (interaction, member, Lang) => {
     const currentRoleId = Object.keys(dcLanguageRoles).find(id => DC.memberHasRoleId(member, id));
 
     const roleOptions = Object.entries(dcLanguageRoles).map(([roleId, name]) => {
@@ -47,35 +47,35 @@ const renderLanguageRoleSettings = async (interaction, member, lang) => {
         return {
             label: name.charAt(0).toUpperCase() + name.slice(1),
             value: roleId,
-            description: isCurrent ? lang.getText('text-current-language') : Constants.SYMBOLS.UNKOWN_01
+            description: isCurrent ? Lang.string('texts.current-language') : Constants.SYMBOLS.UNKOWN_01
         };
     });
 
     const roleSelect = new StringSelectMenuBuilder()
         .setCustomId(DcButtons.createString('settings', { type: 'language_saveRole' }))
-        .setPlaceholder(lang.getText('role-select-placeholder'))
+        .setPlaceholder(Lang.string('texts.role-select-placeholder'))
         .addOptions(roleOptions);
 
-    const currentRoleName = currentRoleId ? dcLanguageRoles[currentRoleId] : lang.getText('text-current-language-none');
+
+    const currentRoleName = currentRoleId ? dcLanguageRoles[currentRoleId] : Lang.string('texts.current-language-none');
 
     await new Embed()
         .setColor(COLOR.IN_PROGRESS)
-        .addInputs({ currentRole: currentRoleName })
-        .addContext(lang, member, 'settings-language-setup')
+        .addLangContext(Lang.embed('language-setup', { currentRole: currentRoleName }))
         .setComponents([
             new ActionRowBuilder().addComponents(roleSelect),
-            backButtonActionRow(lang)
+            backButtonActionRow(Lang)
         ])
         .interactionResponse(interaction);
 };
 
 const componentHandlers = {
     main: renderMainMenu,
-    menu: async (interaction, member, lang) => {
+    menu: async (interaction, member, Lang) => {
         const selection = interaction.values[0];
-        if (selection === 'language_role') await renderLanguageRoleSettings(interaction, member, lang);
+        if (selection === 'language_role') await renderLanguageRoleSettings(interaction, member, Lang);
     },
-    language_saveRole: async (interaction, member, lang) => {
+    language_saveRole: async (interaction, member, Lang) => {
         const newRoleId = interaction.values[0];
 
         const langRoleIds = Object.keys(dcLanguageRoles);
@@ -89,28 +89,27 @@ const componentHandlers = {
 
         await new Embed()
             .setColor(COLOR.SUCCESS)
-            .addInputs({ role: DC.mentionRole(newRoleId) })
-            .addContext(lang, member, 'settings-language-saved-success')
+            .addLangContext(Lang.embed('language-saved-success', { role: DC.mentionRole(newRoleId) }))
             .setComponents([
-                backButtonActionRow(lang)
+                backButtonActionRow(Lang)
             ])
             .interactionResponse(interaction);
     }
 };
 
 const execute = async (dcInteraction) => {
-    const { interaction, client, member, guild, lang } = dcInteraction;
+    const { interaction, client, member, guild, Lang } = dcInteraction;
 
     await DC.defer(interaction);
-    await renderMainMenu(interaction, member, lang);
+    await renderMainMenu(interaction, member, Lang);
 };
 
 const executeComponent = async (dcInteraction) => {
-    const { interaction, client, guild, member, lang, componentData } = dcInteraction;
+    const { interaction, client, guild, member, Lang, componentData } = dcInteraction;
 
     await DC.defer(interaction);
     const handler = componentHandlers[componentData.type];
-    if (handler) await handler(interaction, member, lang);
+    if (handler) await handler(interaction, member, Lang);
 };
 
 const componentIds = ['settings'];

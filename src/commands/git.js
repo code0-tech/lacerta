@@ -231,7 +231,7 @@ const processStrictlyGroupedData = (rawGitData, givenUsers, givenRepos, targetPo
 };
 
 const commands = {
-    async graph(interaction, client, guild, member, lang) {
+    async graph(interaction, client, guild, member, Lang) {
         const { usersArray, givenUsersArray, reposArray, givenReposArray, timeStart, timeEnd } = await getFilters(interaction);
 
         const settings = [
@@ -249,7 +249,7 @@ const commands = {
         if (labels.length == 0) {
             new Embed()
                 .setColor(COLOR.WARNING)
-                .addContext(lang, member, 'search-no-result')
+                .addLangContext(Lang.embed('search-no-result'))
                 .interactionResponse(interaction);
             return;
         }
@@ -266,7 +266,7 @@ const commands = {
 
         chart.interactionResponse(interaction, [], true);
     },
-    async user_activity_table(interaction, client, guild, member, lang) {
+    async user_activity_table(interaction, client, guild, member, Lang) {
         const { usersArray, reposArray, timeStart, timeEnd } = await getFilters(interaction);
 
         const settings = [
@@ -290,9 +290,9 @@ const commands = {
         )
 
         const columns = [
-            { label: lang.getText('repo'), key: 'repo' },
-            { label: lang.getText('commits'), key: 'commitscount' },
-            { label: lang.getText('percentage'), key: 'percentage' }
+            { label: Lang.string('texts.repo'), key: 'repo' },
+            { label: Lang.string('texts.commitscount'), key: 'commitscount' },
+            { label: Lang.string('texts.percentage'), key: 'percentage' }
         ]
 
         const table = new DiscordSimpleTable(columns)
@@ -303,18 +303,17 @@ const commands = {
             .build();
 
         new Embed()
-            .addInputs({
+            .addLangContext(Lang.embed('user-commits-sum', {
                 table,
                 gituser: usersArray[0],
                 timestart: timeStart,
                 timeend: timeEnd,
                 total: totalCommits
-            })
-            .addContext(lang, member, 'usercommitssum')
+            }))
             .setColor(COLOR.INFO)
             .interactionResponse(interaction);
     },
-    async repo_activity_table(interaction, client, guild, member, lang) {
+    async repo_activity_table(interaction, client, guild, member, Lang) {
         const { usersArray, reposArray, timeStart, timeEnd } = await getFilters(interaction);
 
         const settings = [
@@ -336,10 +335,12 @@ const commands = {
         )
 
         const columns = [
-            { label: lang.getText('name'), key: 'name' },
-            { label: lang.getText('commits'), key: 'commitscount' },
-            { label: lang.getText('percentage'), key: 'percentage' }
+            { label: Lang.string('texts.name'), key: 'name' },
+            { label: Lang.string('texts.commitscount'), key: 'commitscount' },
+            { label: Lang.string('texts.percentage'), key: 'percentage' }
         ]
+
+console.log(columns)
 
         const table = new DiscordSimpleTable(columns)
             .setJsonArrayInputs(sortedDataArray)
@@ -349,14 +350,13 @@ const commands = {
             .build();
 
         new Embed()
-            .addInputs({
+            .addLangContext(Lang.embed('repo-commits-sum', {
                 table,
                 repo: reposArray[0],
                 timestart: timeStart,
                 timeend: timeEnd,
                 total: totalCommits
-            })
-            .addContext(lang, member, 'repocommitssum')
+            }))
             .setColor(COLOR.INFO)
             .interactionResponse(interaction);
     }
@@ -458,7 +458,7 @@ const autoCompleteDates = async (focusedValue) => {
 };
 
 const autoComplete = async (dcInteraction) => {
-    const { interaction, client, guild, member, lang, componentData } = dcInteraction;
+    const { interaction, client, guild, member, componentData } = dcInteraction;
 
     const optionName = interaction.options.getFocused(true).name;
     const focusedValue = interaction.options.getFocused();
@@ -480,14 +480,14 @@ const autoComplete = async (dcInteraction) => {
 };
 
 const execute = async (dcInteraction) => {
-    const { interaction, client, member, guild, lang } = dcInteraction;
+    const { interaction, client, member, guild, Lang } = dcInteraction;
 
     await DC.defer(interaction);
 
     const subCommand = interaction.options.getSubcommand();
 
     if (commands[subCommand]) {
-        commands[subCommand](interaction, client, guild, member, lang);
+        commands[subCommand](interaction, client, guild, member, Lang);
     }
 };
 
