@@ -29,17 +29,6 @@
             "description": "Our Github: [CodeZero Github](https://github.com/code0-tech)\n\nOur Website: [CodeZero Website](https://code0.tech)"
         }
     },
-    "rank": {
-        "own-rank-response": {
-            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nYou <@{rankuserid}> are currently on the {position} place.\nEarn XP by interacting on this server with others."
-        },
-        "other-rank-response": {
-            "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\nCurrently <@{rankuserid}> is on the {position} place."
-        },
-        "this-bot-rank": {
-            "description": "### Well, I'm not really into collecting XP.\nMaybe try a real `user`"
-        }
-    },
     "stats": {
         "command": "Command",
         "executed": "Executed",
@@ -117,52 +106,6 @@
     "#_rankupdate": {
         "#update-msg": {
             "description": "### Level: {level}\n{progressbar} [{xp} xp|{neededXp} xp]\n\n<@{rankuserid}> is now level {level} and in {position} place."
-        }
-    },
-    "git": {
-        "repo": "Repo",
-        "name": "Name",
-        "commits": "Commits",
-        "percentage": "Percentage",
-        "usercommitssum": {
-            "title": "Commits Count for {gituser}",
-            "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`"
-        },
-        "repocommitssum": {
-            "title": "Commits Count for {repo}",
-            "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`"
-        },
-        "search-no-result": {
-            "title": "We couldn't find anything matching your search."
-        }
-    },
-    "settings": {
-        "select-menu-placeholder": "Setting Categories",
-        "btn-back": "Back to Main Menu",
-        "text-current-language": "Your current Language",
-        "text-current-language-none": "None",
-        "menu-text-language": "Language",
-        "main-page": {
-            "title": "⚙️ CodeZero Discord Server System Settings",
-            "description": "Select the setting you want to change via the Dropdown menu."
-        },
-        "settings-language-setup": {
-            "title": "🌐 Language Role Configuration",
-            "description": "Please select the language that should be recognized as the primary language.\n\n**Current language:** {currentRole}"
-        },
-        "settings-language-saved-success": {
-            "title": "✅ Settings Saved",
-            "description": "The language role has been successfully updated to: {role}\n\nFuture messages will be shown in your new language.\n\nNotice: Not all commands support multiple languages yet; English is the default for missing translations."
-        },
-        "role-select-placeholder": "Select a language"
-    },
-    "git-issue-created": {
-        "info-embed": {
-            "title": "🛠️ Issue Tracked!",
-            "description": "Thank you for reporting this!\n\nWe've officially created a GitHub issue to track the fix.\nYou can follow the progress directly via the link below:\n\n**Link:** {link}"
-        },
-        "user-info-embed": {
-            "title": "✅ Message sent!"
         }
     }
 }
