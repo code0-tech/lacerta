@@ -269,6 +269,163 @@
                 "title": "Sorry",
                 "description": "I'm not really into collecting XP.\nMaybe try a real `user`"
             }
+        },
+        "git-issue-created": {
+            "__type__": "collection",
+            "info-embed": {
+                "__type__": "discordEmbed",
+                "title": "✅ Message sent!",
+                "description": "",
+                "__variables__": {
+                    "link": {
+                        "description": "Contains the Link to the Github issue",
+                        "mock": "https://github.com/issue"
+                    }
+                }
+            },
+            "user-info-embed": {
+                "__type__": "discordEmbed",
+                "title": "New Title",
+                "description": "New Description"
+            }
+        },
+        "git": {
+            "__type__": "collection",
+            "search-no-result": {
+                "__type__": "discordEmbed",
+                "title": "We couldn't find anything matching your search.",
+                "description": ""
+            },
+            "texts": {
+                "__type__": "collection",
+                "repo": {
+                    "__type__": "string",
+                    "string": "Repo"
+                },
+                "commitscount": {
+                    "__type__": "string",
+                    "string": "Commits"
+                },
+                "percentage": {
+                    "__type__": "string",
+                    "string": "Percentage"
+                },
+                "name": {
+                    "__type__": "string",
+                    "string": "Name"
+                }
+            },
+            "user-commits-sum": {
+                "__type__": "discordEmbed",
+                "title": "Commits Count for {gituser}",
+                "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`",
+                "__variables__": {
+                    "table": {
+                        "description": "Table value",
+                        "mock": "Table Here"
+                    },
+                    "gituser": {
+                        "description": "Git User",
+                        "mock": "NicuschGiftHub"
+                    },
+                    "timestart": {
+                        "description": "Timestamp Start",
+                        "mock": "25-10-2026"
+                    },
+                    "timeend": {
+                        "description": "Timestamp End",
+                        "mock": "25-10-2026"
+                    },
+                    "total": {
+                        "description": "Total Commits",
+                        "mock": "8714"
+                    }
+                }
+            },
+            "repo-commits-sum": {
+                "__type__": "discordEmbed",
+                "title": "Commits Count for {repo}",
+                "description": "{table}\n\n`Total commits: {total}`\n`Timespan: {timestart} until {timeend}`",
+                "__variables__": {
+                    "table": {
+                        "description": "",
+                        "mock": "Sample"
+                    },
+                    "repo": {
+                        "description": "",
+                        "mock": "Sample"
+                    },
+                    "timestart": {
+                        "description": "",
+                        "mock": "25-10-2026"
+                    },
+                    "timeend": {
+                        "description": "",
+                        "mock": "25-10-2026"
+                    },
+                    "total": {
+                        "description": "",
+                        "mock": "Sample"
+                    }
+                }
+            }
+        },
+        "settings": {
+            "__type__": "collection",
+            "texts": {
+                "__type__": "collection",
+                "role-select-placeholder": {
+                    "__type__": "string",
+                    "string": "Select a language"
+                },
+                "menu-text-language": {
+                    "__type__": "string",
+                    "string": "Language"
+                },
+                "current-language": {
+                    "__type__": "string",
+                    "string": "Your current Language"
+                },
+                "current-language-none": {
+                    "__type__": "string",
+                    "string": "None"
+                },
+                "select-menu-placeholder": {
+                    "__type__": "string",
+                    "string": "Setting Categories"
+                },
+                "btn-back": {
+                    "__type__": "string",
+                    "string": "Back to Main Menu"
+                }
+            },
+            "main-page": {
+                "__type__": "discordEmbed",
+                "title": "⚙️ CodeZero Discord Server System Settings",
+                "description": "Select the setting you want to change via the Dropdown menu."
+            },
+            "language-setup": {
+                "__type__": "discordEmbed",
+                "title": "🌐 Language Role Configuration",
+                "description": "Please select the language that should be recognized as the primary language.\n\n**Current language:** {currentRole}",
+                "__variables__": {
+                    "currentRole": {
+                        "description": "Auto-detected variable",
+                        "mock": "[currentRole]"
+                    }
+                }
+            },
+            "language-saved-success": {
+                "__type__": "discordEmbed",
+                "title": "✅ Settings Saved",
+                "description": "The language role has been successfully updated to: {role}\nFuture messages will be shown in your new language.\n\nNotice: Not all commands support multiple languages yet; English is the default for missing translations.",
+                "__variables__": {
+                    "role": {
+                        "description": "Auto-detected variable",
+                        "mock": "[role]"
+                    }
+                }
+            }
         }
     },
     "button": {
@@ -304,10 +461,125 @@
                 "title": "Application Thread Created",
                 "description": "A new application Thread has been created for you!"
             }
+        },
+        "settings": {
+            "__type__": "collection",
+            "texts": {
+                "__type__": "collection",
+                "role-select-placeholder": {
+                    "__type__": "string",
+                    "string": "Select a language"
+                },
+                "menu-text-language": {
+                    "__type__": "string",
+                    "string": "Language"
+                },
+                "current-language": {
+                    "__type__": "string",
+                    "string": "Your current Language"
+                },
+                "current-language-none": {
+                    "__type__": "string",
+                    "string": "None"
+                },
+                "select-menu-placeholder": {
+                    "__type__": "string",
+                    "string": "Setting Categories"
+                },
+                "btn-back": {
+                    "__type__": "string",
+                    "string": "Back to Main Menu"
+                }
+            },
+            "main-page": {
+                "__type__": "discordEmbed",
+                "title": "⚙️ CodeZero Discord Server System Settings",
+                "description": "Select the setting you want to change via the Dropdown menu."
+            },
+            "language-setup": {
+                "__type__": "discordEmbed",
+                "title": "🌐 Language Role Configuration",
+                "description": "Please select the language that should be recognized as the primary language.\n\n**Current language:** {currentRole}",
+                "__variables__": {
+                    "currentRole": {
+                        "description": "Auto-detected variable",
+                        "mock": "[currentRole]"
+                    }
+                }
+            },
+            "language-saved-success": {
+                "__type__": "discordEmbed",
+                "title": "✅ Settings Saved",
+                "description": "The language role has been successfully updated to: {role}\nFuture messages will be shown in your new language.\n\nNotice: Not all commands support multiple languages yet; English is the default for missing translations.",
+                "__variables__": {
+                    "role": {
+                        "description": "Auto-detected variable",
+                        "mock": "[role]"
+                    }
+                }
+            }
         }
     },
     "autocomplete": {},
-    "selectmenu": {},
+    "selectmenu": {
+        "settings": {
+            "__type__": "collection",
+            "texts": {
+                "__type__": "collection",
+                "role-select-placeholder": {
+                    "__type__": "string",
+                    "string": "Select a language"
+                },
+                "menu-text-language": {
+                    "__type__": "string",
+                    "string": "Language"
+                },
+                "current-language": {
+                    "__type__": "string",
+                    "string": "Your current Language"
+                },
+                "current-language-none": {
+                    "__type__": "string",
+                    "string": "None"
+                },
+                "select-menu-placeholder": {
+                    "__type__": "string",
+                    "string": "Setting Categories"
+                },
+                "btn-back": {
+                    "__type__": "string",
+                    "string": "Back to Main Menu"
+                }
+            },
+            "main-page": {
+                "__type__": "discordEmbed",
+                "title": "⚙️ CodeZero Discord Server System Settings",
+                "description": "Select the setting you want to change via the Dropdown menu."
+            },
+            "language-setup": {
+                "__type__": "discordEmbed",
+                "title": "🌐 Language Role Configuration",
+                "description": "Please select the language that should be recognized as the primary language.\n\n**Current language:** {currentRole}",
+                "__variables__": {
+                    "currentRole": {
+                        "description": "Auto-detected variable",
+                        "mock": "[currentRole]"
+                    }
+                }
+            },
+            "language-saved-success": {
+                "__type__": "discordEmbed",
+                "title": "✅ Settings Saved",
+                "description": "The language role has been successfully updated to: {role}\nFuture messages will be shown in your new language.\n\nNotice: Not all commands support multiple languages yet; English is the default for missing translations.",
+                "__variables__": {
+                    "role": {
+                        "description": "Auto-detected variable",
+                        "mock": "[role]"
+                    }
+                }
+            }
+        }
+    },
     "automatic": {
         "__type__": "collection",
         "application": {
