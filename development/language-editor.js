@@ -353,6 +353,9 @@ function generateHtml() {
             return Array.from(vars);
         }
 
+        // Keep track of which folder paths are currently expanded/open
+        let expandedPaths = new Set();
+
         function renderTree() {
             const root = languagesData[currentLang] || {};
             const treeContainer = document.getElementById('explorerTree');
@@ -361,77 +364,91 @@ function generateHtml() {
             let totalKeys = 0;
             
             function buildBranch(obj, parentPath = '', depth = 0) {
-                const fragment = document.createDocumentFragment();
+            const fragment = document.createDocumentFragment();
+            
+            for (const key in obj) {
+                if (key.startsWith('__')) continue;
                 
-                for (const key in obj) {
-                    if (key.startsWith('__')) continue;
+                const fullPath = parentPath ? (parentPath + '.' + key) : key;
+                const val = obj[key];
+                const type = getNodeType(val);
+
+                totalKeys++;
+
+                const node = document.createElement('div');
+                node.className = 'tree-node';
+
+                const row = document.createElement('div');
+                row.className = 'node-row ' + (selectedPath === fullPath ? 'active' : '');
+                row.style.paddingLeft = ((depth * 16) + 12) + 'px';
+                
+                const icon = document.createElement('span');
+                icon.className = 'node-icon';
+                
+                const label = document.createElement('span');
+                label.className = 'node-label';
+                label.textContent = key;
+
+                const badge = document.createElement('span');
+                badge.className = 'type-badge ' + (type === 'discordEmbed' ? 'embed' : (type === 'string' ? 'string' : ''));
+                badge.textContent = type === 'discordEmbed' ? 'EMBED' : (type === 'string' ? 'STR' : 'DIR');
+
+                row.appendChild(icon);
+                row.appendChild(label);
+                row.appendChild(badge);
+                node.appendChild(row);
+
+                if (type === 'collection') {
+                    const childrenContainer = document.createElement('div');
+                    childrenContainer.className = 'node-children';
                     
-                    const fullPath = parentPath ? \`\${parentPath}.\${key}\` : key;
-                    const val = obj[key];
-                    const type = getNodeType(val);
-
-                    totalKeys++;
-
-                    const node = document.createElement('div');
-                    node.className = 'tree-node';
-
-                    const row = document.createElement('div');
-                    row.className = \`node-row \${selectedPath === fullPath ? 'active' : ''}\`;
-                    row.style.paddingLeft = \`\${depth * 16 + 12}px\`;
-                    
-                    const icon = document.createElement('span');
-                    icon.className = 'node-icon';
-                    icon.textContent = (type === 'collection') ? '📁' : (type === 'discordEmbed' ? '🖼️' : '🔤');
-
-                    const label = document.createElement('span');
-                    label.className = 'node-label';
-                    label.textContent = key;
-
-                    const badge = document.createElement('span');
-                    badge.className = \`type-badge \${type === 'discordEmbed' ? 'embed' : (type === 'string' ? 'string' : '')}\`;
-                    badge.textContent = type === 'discordEmbed' ? 'EMBED' : (type === 'string' ? 'STR' : 'DIR');
-
-                    row.appendChild(icon);
-                    row.appendChild(label);
-                    row.appendChild(badge);
-                    node.appendChild(row);
-
-                    if (type === 'collection') {
-                        const childrenContainer = document.createElement('div');
-                        childrenContainer.className = 'node-children';
-                        
-                        row.onclick = (e) => {
-                            e.stopPropagation();
-                            document.querySelectorAll('.node-row').forEach(r => r.classList.remove('active'));
-                            row.classList.add('active');
-                            selectedPath = fullPath;
-                            
-                            childrenContainer.classList.toggle('open');
-                            icon.textContent = childrenContainer.classList.contains('open') ? '📂' : '📁';
-                            loadPathEditor(fullPath);
-                        };
-
-                        childrenContainer.appendChild(buildBranch(val, fullPath, depth + 1));
-                        node.appendChild(childrenContainer);
+                    const isOpen = expandedPaths.has(fullPath);
+                    if (isOpen) {
+                        childrenContainer.classList.add('open');
+                        icon.textContent = '📂';
                     } else {
-                        row.onclick = (e) => {
-                            e.stopPropagation();
-                            document.querySelectorAll('.node-row').forEach(r => r.classList.remove('active'));
-                            row.classList.add('active');
-                            selectedPath = fullPath;
-                            loadPathEditor(fullPath);
-                        };
+                        icon.textContent = '📁';
                     }
+                    
+                    row.onclick = (e) => {
+                        e.stopPropagation();
+                        document.querySelectorAll('.node-row').forEach(r => r.classList.remove('active'));
+                        row.classList.add('active');
+                        selectedPath = fullPath;
+                        
+                        childrenContainer.classList.toggle('open');
+                        if (childrenContainer.classList.contains('open')) {
+                            expandedPaths.add(fullPath);
+                            icon.textContent = '📂';
+                        } else {
+                            expandedPaths.delete(fullPath);
+                            icon.textContent = '📁';
+                        }
+                        loadPathEditor(fullPath);
+                    };
 
-                    fragment.appendChild(node);
+                    childrenContainer.appendChild(buildBranch(val, fullPath, depth + 1));
+                    node.appendChild(childrenContainer);
+                } else {
+                    icon.textContent = (type === 'discordEmbed') ? '🖼️' : '🔤';
+                    row.onclick = (e) => {
+                        e.stopPropagation();
+                        document.querySelectorAll('.node-row').forEach(r => r.classList.remove('active'));
+                        row.classList.add('active');
+                        selectedPath = fullPath;
+                        loadPathEditor(fullPath);
+                    };
                 }
-                return fragment;
-            }
 
-            treeContainer.appendChild(buildBranch(root));
-            document.getElementById('entryCount').textContent = \`\${totalKeys} items\`;
+                fragment.appendChild(node);
+            }
+            return fragment;
         }
 
+            treeContainer.appendChild(buildBranch(root));
+            document.getElementById('entryCount').textContent = totalKeys + 'items';
+        }
+            
         function loadPathEditor(pathStr) {
             const item = getByPath(languagesData[currentLang], pathStr);
             const editorPane = document.getElementById('editorPane');
@@ -778,12 +795,12 @@ const server = http.createServer((req, res) => {
         if (req.method === 'GET' && req.url === '/') {
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.end(generateHtml());
-        } 
+        }
         else if (req.method === 'GET' && req.url === '/api/languages') {
             const data = loadAllLanguageData();
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(data));
-        } 
+        }
         else if (req.method === 'POST' && req.url === '/api/languages') {
             let body = '';
             req.on('data', chunk => { body += chunk.toString(); });
@@ -796,7 +813,7 @@ const server = http.createServer((req, res) => {
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ status: 'ok' }));
             });
-        } 
+        }
         else {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
             res.end('Not Found');
