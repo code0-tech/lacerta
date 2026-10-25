@@ -643,9 +643,9 @@ function generateHtml() {
                         <div class="discord-avatar">BOT</div>
                         <div class="discord-message-body">
                             <div class="discord-header">
-                                <span class="discord-bot-name">System Bot</span>
+                                <span class="discord-bot-name">Code Zero</span>
                                 <span class="discord-bot-tag">APP</span>
-                                <span class="discord-timestamp">Today at 12:00 PM</span>
+                                <span class="discord-timestamp">Today at 12:00</span>
                             </div>
                             <div class="discord-embed-card">
                                 \${title ? \`<div class="discord-embed-title">\${title}</div>\` : ''}
@@ -663,7 +663,7 @@ function generateHtml() {
                             <div class="discord-header">
                                 <span class="discord-bot-name">CodeZero</span>
                                 <span class="discord-bot-tag">APP</span>
-                                <span class="discord-timestamp">Today at 12:00 PM</span>
+                                <span class="discord-timestamp">Today at 12:00</span>
                             </div>
                             <div style="font-size: 0.9rem; line-height: 1.375; color: #dbdee1; margin-top: 2px;">
                                 \${applyPlaceholders(rawStr)}
