@@ -315,12 +315,14 @@ class Constants {
                         return 'automatic';
                     }
                 }
-
             },
             get DEFAULTS() {
                 return {
                     get LOCAL() {
                         return 'en';
+                    },
+                    get JSON_DATA_MAIN_KEY(){
+                        return 'interaction';
                     }
                 }
             },

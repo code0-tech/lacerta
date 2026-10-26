@@ -25,8 +25,7 @@
     "global": {
         "__type__": "collection"
     },
-    "interaction": {},
-    "command": {
+    "interaction": {
         "__type__": "collection",
         "contributor": {
             "__type__": "collection",
@@ -370,66 +369,6 @@
                 }
             }
         },
-        "settings": {
-            "__type__": "collection",
-            "texts": {
-                "__type__": "collection",
-                "role-select-placeholder": {
-                    "__type__": "string",
-                    "string": "Select a language"
-                },
-                "menu-text-language": {
-                    "__type__": "string",
-                    "string": "Language"
-                },
-                "current-language": {
-                    "__type__": "string",
-                    "string": "Your current Language"
-                },
-                "current-language-none": {
-                    "__type__": "string",
-                    "string": "None"
-                },
-                "select-menu-placeholder": {
-                    "__type__": "string",
-                    "string": "Setting Categories"
-                },
-                "btn-back": {
-                    "__type__": "string",
-                    "string": "Back to Main Menu"
-                }
-            },
-            "main-page": {
-                "__type__": "discordEmbed",
-                "title": "⚙️ CodeZero Discord Server System Settings",
-                "description": "Select the setting you want to change via the Dropdown menu."
-            },
-            "language-setup": {
-                "__type__": "discordEmbed",
-                "title": "🌐 Language Role Configuration",
-                "description": "Please select the language that should be recognized as the primary language.\n\n**Current language:** {currentRole}",
-                "__variables__": {
-                    "currentRole": {
-                        "description": "Auto-detected variable",
-                        "mock": "[currentRole]"
-                    }
-                }
-            },
-            "language-saved-success": {
-                "__type__": "discordEmbed",
-                "title": "✅ Settings Saved",
-                "description": "The language role has been successfully updated to: {role}\nFuture messages will be shown in your new language.\n\nNotice: Not all commands support multiple languages yet; English is the default for missing translations.",
-                "__variables__": {
-                    "role": {
-                        "description": "Auto-detected variable",
-                        "mock": "[role]"
-                    }
-                }
-            }
-        }
-    },
-    "button": {
-        "__type__": "collection",
         "_application": {
             "__type__": "collection",
             "threadTitle": {
@@ -518,70 +457,7 @@
                     }
                 }
             }
-        }
-    },
-    "autocomplete": {},
-    "selectmenu": {
-        "settings": {
-            "__type__": "collection",
-            "texts": {
-                "__type__": "collection",
-                "role-select-placeholder": {
-                    "__type__": "string",
-                    "string": "Select a language"
-                },
-                "menu-text-language": {
-                    "__type__": "string",
-                    "string": "Language"
-                },
-                "current-language": {
-                    "__type__": "string",
-                    "string": "Your current Language"
-                },
-                "current-language-none": {
-                    "__type__": "string",
-                    "string": "None"
-                },
-                "select-menu-placeholder": {
-                    "__type__": "string",
-                    "string": "Setting Categories"
-                },
-                "btn-back": {
-                    "__type__": "string",
-                    "string": "Back to Main Menu"
-                }
-            },
-            "main-page": {
-                "__type__": "discordEmbed",
-                "title": "⚙️ CodeZero Discord Server System Settings",
-                "description": "Select the setting you want to change via the Dropdown menu."
-            },
-            "language-setup": {
-                "__type__": "discordEmbed",
-                "title": "🌐 Language Role Configuration",
-                "description": "Please select the language that should be recognized as the primary language.\n\n**Current language:** {currentRole}",
-                "__variables__": {
-                    "currentRole": {
-                        "description": "Auto-detected variable",
-                        "mock": "[currentRole]"
-                    }
-                }
-            },
-            "language-saved-success": {
-                "__type__": "discordEmbed",
-                "title": "✅ Settings Saved",
-                "description": "The language role has been successfully updated to: {role}\nFuture messages will be shown in your new language.\n\nNotice: Not all commands support multiple languages yet; English is the default for missing translations.",
-                "__variables__": {
-                    "role": {
-                        "description": "Auto-detected variable",
-                        "mock": "[role]"
-                    }
-                }
-            }
-        }
-    },
-    "automatic": {
-        "__type__": "collection",
+        },
         "application": {
             "__type__": "collection",
             "buttonClosedTeam": {

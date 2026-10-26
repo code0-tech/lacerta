@@ -128,12 +128,12 @@ class LanguageHelper {
 
         const languages = this.getLanguages();
         const userlang = this.getUserlang();
-        const handlerType = this.getHandlerType();
+        const handlerType = this.getHandlerType(); // was changed could be used for something else later
 
-        let interactionLanguagePack = languages[userlang]?.[handlerType]?.[commandName];
+        let interactionLanguagePack = languages[userlang]?.[Constants.LANGUAGE_SYSTEM.DEFAULTS.JSON_DATA_MAIN_KEY]?.[commandName];
 
         if (!interactionLanguagePack) {
-            interactionLanguagePack = languages[this.defaultLangLocal]?.[handlerType]?.[commandName] || {};
+            interactionLanguagePack = languages[this.defaultLangLocal]?.[Constants.LANGUAGE_SYSTEM.DEFAULTS.JSON_DATA_MAIN_KEY]?.[commandName] || {};
         }
         this.setInteractionLanguagePack(interactionLanguagePack);
 
