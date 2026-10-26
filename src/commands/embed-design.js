@@ -23,14 +23,14 @@ const data = new SlashCommandBuilder()
 
 
 const execute = async (dcInteraction) => {
-  const { interaction, client, member, guild, lang } = dcInteraction;
+  const { interaction, client, member, guild, Lang } = dcInteraction;
 
   await DC.defer(interaction);
 
 };
 
 const executeComponent = async (dcInteraction) => {
-  const { interaction, client, guild, member, lang, componentData } = dcInteraction;
+  const { interaction, client, guild, member, Lang, componentData } = dcInteraction;
 
   await DC.defer(interaction);
 

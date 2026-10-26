@@ -34,12 +34,11 @@ const data = new SlashCommandBuilder()
 
 
 const debugs = {
-    async mongoLeftUsers(interaction, client, guild, member, lang) {
+    async mongoLeftUsers(interaction, client, guild, member, Lang) {
         const updateSearchingEmbed = (totaluser = 0, checked = 0, found = 0) => {
             new Embed()
                 .setColor(COLOR.INFO)
-                .addInputs({ totaluser, checked, found })
-                .addContext(lang, member, 'mongo-left-users-loading')
+                .addLangContext(Lang.embed('mongo-left-users-loading', { totaluser, checked, found }))
                 .interactionResponse(interaction);
         }
 
@@ -79,76 +78,74 @@ const debugs = {
 
         const selectMenuOptions = usersLeft.map((userId, index) => ({
             label: `${userId}`,
-            description: `${lang.getText('remove')} ${userId}`,
+            description: `${Lang.string('texts.remove')} ${userId}`,
             value: `${userId}`
         }));
 
         const selectMenu = new StringSelectMenuBuilder()
             .setCustomId(DcButtons.createString('debug', { type: 'removefromDB' }))
-            .setPlaceholder(lang.getText('left-user-remove'))
+            .setPlaceholder(Lang.string('texts.left-user-remove'))
             .addOptions(selectMenuOptions);
 
         const rowWithSelectMenu = new ActionRowBuilder().addComponents(selectMenu);
 
         const button = new ButtonBuilder()
             .setCustomId(DcButtons.createString('debug', { type: 'mongoLeftUsers' }))
-            .setLabel(lang.getText('left-user-reload'))
+            .setLabel(Lang.string('texts.left-user-reload'))
             .setStyle(ButtonStyle.Primary);
 
         const rowWithReloadButton = new ActionRowBuilder().addComponents(button);
 
         new Embed()
             .setColor(COLOR.INFO)
-            .addInputs({
-                userstring: (usersLeft.length == 0 ? `${lang.getText("found-none")}` : usersLeft.join("\n")),
+            .addLangContext(Lang.embed('mongo-left-users', {
+                userstring: (usersLeft.length == 0 ? `${Lang.string('texts.found-none')}` : usersLeft.join("\n")),
                 progressbar: progressBar(usersLeft.length, userIds.length) + ` [${usersLeft.length}|${userIds.length}]`
-            })
-            .addContext(lang, member, 'mongo-left-users')
+            }))
             .setComponents((usersLeft.length !== 0 ? [rowWithSelectMenu] : [rowWithReloadButton]))
             .interactionResponse(interaction);
     },
 
-    async clientSessionTime(interaction, client, guild, member, lang) {
+    async clientSessionTime(interaction, client, guild, member, Lang) {
         const { d, h, m, s } = msToHumanReadableTime(Date.now() - client.startDate);
 
         const embed = new Embed()
             .setColor(COLOR.INFO)
-            .addInputs({
+            .addLangContext(Lang.embed('client-session-time', {
                 upsince: convertUnixToTimestamp(client.startDate),
                 days: d,
                 hours: h,
                 minutes: m,
                 seconds: s
-            })
-            .addContext(lang, member, 'client-session-time');
+            }));
 
         const response = await embed.interactionResponse(interaction);
         if (response == null) return;
 
         await waitMs(5000);
 
-        this.clientSessionTime(interaction, client, guild, member, lang);
+        this.clientSessionTime(interaction, client, guild, member, Lang);
     },
 
-    async chartFromGithubTotalCommits(interaction, client, guild, member, lang) {
+    async chartFromGithubTotalCommits(interaction, client, guild, member, Lang) {
         const embed = await sendGitRankMessage(null);
         embed.interactionResponse(interaction);
     },
 
-    async pingAllDiscordServerConfigs(interaction, client, guild, member, lang) {
-        let description = `${lang.getText('channels')}\n\n`;
+    async pingAllDiscordServerConfigs(interaction, client, guild, member, Lang) {
+        let description = `${Lang.string('texts.channels')}\n\n`;
 
         for (const key in config.server.channels) {
             description += `${key} | ${DC.mentionChannel(config.server.channels[key])}\n`;
         }
 
-        description += `\n${lang.getText('roles')}\n\n`;
+        description += `\n${Lang.string('texts.roles')}\n\n`;
 
         for (const key in config.server.roles) {
             description += `${key} | ${DC.mentionRole(config.server.roles[key])}\n`;
         }
 
-        description += `\n${lang.getText('langroles')}\n\n`;
+        description += `\n${Lang.string('texts.langroles')}\n\n`;
 
         for (const key in config.server.languageRoles) {
             description += `${key} | ${DC.mentionRole(key)}\n`;
@@ -161,48 +158,47 @@ const debugs = {
     }
 };
 
-const removeFromDB = async (interaction, client, guild, member, lang, componentData) => {
+const removeFromDB = async (interaction, client, guild, member, Lang, componentData) => {
     const userId = componentData.selected;
 
     await MongoDb.deleteOne(ENUMS.DCB.USERS, { id: userId });
 
     const button = new ButtonBuilder()
         .setCustomId(DcButtons.createString('debug', { type: 'mongoLeftUsers' }))
-        .setLabel(lang.getText('left-user-reload'))
+        .setLabel(Lang.string('texts.left-user-reload'))
         .setStyle(ButtonStyle.Primary);
 
     const row = new ActionRowBuilder().addComponents(button);
 
     new Embed()
         .setColor(COLOR.INFO)
-        .addInputs({ removedId: userId })
-        .addContext(lang, member, 'mongo-removed-user')
+        .addLangContext(Lang.embed('mongo-removed-user', { removedId: userId }))
         .setComponents([row])
         .interactionResponse(interaction);
 };
 
 const execute = async (dcInteraction) => {
-    const { interaction, client, member, guild, lang } = dcInteraction;
+    const { interaction, client, member, guild, Lang } = dcInteraction;
 
     await DC.defer(interaction);
 
     const type = interaction.options.getString('action');
 
-    debugs[type](interaction, client, guild, member, lang);
+    debugs[type](interaction, client, guild, member, Lang);
 };
 
 const executeComponent = async (dcInteraction) => {
-    const { interaction, client, guild, member, lang, componentData } = dcInteraction;
+    const { interaction, client, guild, member, Lang, componentData } = dcInteraction;
 
     await DC.defer(interaction);
 
     if (componentData.type == 'removefromDB') {
-        removeFromDB(interaction, client, guild, member, lang, componentData);
+        removeFromDB(interaction, client, guild, member, Lang, componentData);
         return;
     }
 
     if (debugs[componentData.type]) {
-        debugs[componentData.type](interaction, client, guild, member, lang, componentData);
+        debugs[componentData.type](interaction, client, guild, member, Lang, componentData);
     }
 };
 

@@ -46,7 +46,7 @@ const formatLog = (log) => {
     return `${timestamp}\n\`\`\`${log.msg}\`\`\`${log.error ? `\n\`\`\`Error:\n${log.error}\`\`\`` : ''}\n`;
 };
 
-const printSessionToTxt = async (interaction, member, lang, componentData) => {
+const printSessionToTxt = async (interaction, member, Lang, componentData) => {
     const runId = componentData.s;
 
     const totalLog = await getLogs(runId);
@@ -62,7 +62,7 @@ const printSessionToTxt = async (interaction, member, lang, componentData) => {
 
     new Embed()
         .setColor(COLOR.INFO)
-        .addContext(lang, member, 'print-out')
+        .addLangContext(Lang.embed('print-out'))
         .setAttachment(attachment)
         .interactionResponse(interaction);
 };
@@ -95,7 +95,7 @@ const getLogsWithRange = async (runId, action, currentStart, currentEnd) => {
     return { createdAt, logString, totalLength, rangeStart, rangeEnd };
 };
 
-const sendLog = async (interaction, member, lang, componentData, runId = null, type) => {
+const sendLog = async (interaction, member, Lang, componentData, runId = null, type) => {
     const sessionId = runId || componentData.s;
     const action = componentData?.action || 'init';
     const currentStart = componentData?.currentstart || 0;
@@ -109,8 +109,7 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
     if (!createdAt) {
         return new Embed()
             .setColor(COLOR.DANGER)
-            .addInputs({ runid: sessionId })
-            .addContext(lang, member, 'not-found')
+            .addLangContext(Lang.embed('not-found', { runid: sessionId }))
             .interactionResponse(interaction);
     }
 
@@ -123,22 +122,22 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
     const buttons = [
         new ButtonBuilder()
             .setCustomId(DcButtons.createString('logs', { type, action: 'back', ...commonData }))
-            .setLabel(lang.getText('btn-back'))
+            .setLabel(Lang.string('texts.btn-back'))
             .setStyle(ButtonStyle.Primary),
 
         new ButtonBuilder()
             .setCustomId(DcButtons.createString('logs', { type, action: 'next', ...commonData }))
-            .setLabel(lang.getText('btn-next'))
+            .setLabel(Lang.string('texts.btn-next'))
             .setStyle(ButtonStyle.Primary),
 
         new ButtonBuilder()
             .setCustomId(DcButtons.createString('logs', { type, action: 'last', ...commonData }))
-            .setLabel(lang.getText('btn-skip'))
+            .setLabel(Lang.string('texts.btn-skip'))
             .setStyle(ButtonStyle.Danger),
 
         new ButtonBuilder()
             .setCustomId(DcButtons.createString('logs', { type: 'print', action: 'print', ...commonData }))
-            .setLabel(lang.getText('btn-print'))
+            .setLabel(Lang.string('texts.btn-print'))
             .setStyle(ButtonStyle.Success),
     ];
 
@@ -146,35 +145,34 @@ const sendLog = async (interaction, member, lang, componentData, runId = null, t
 
     new Embed()
         .setColor(type === 'show' ? COLOR.INFO : COLOR.IN_PROGRESS)
-        .addInputs({
+        .addLangContext(Lang.embed(type === 'show' ? 'session-logs' : 'old-session-logs', {
             runid: sessionId,
             createdat: createdAt,
             logstring: logString,
             totallogscount: totalLength,
             currentstart: rangeStart,
             currentend: rangeEnd
-        })
-        .addContext(lang, member, type === 'show' ? 'session-logs' : 'old-session-logs')
+        }))
         .setComponents([row])
         .interactionResponse(interaction);
 };
 
-const showCurrentSessionLogs = async (interaction, member, lang, componentData) => {
+const showCurrentSessionLogs = async (interaction, member, Lang, componentData) => {
     if (global.isDevelopment) {
         return new Embed()
             .setColor(COLOR.DANGER)
-            .addContext(lang, member, 'development')
+            .addLangContext(Lang.embed('development'))
             .interactionResponse(interaction);
     }
-    sendLog(interaction, member, lang, componentData, getCurrentSessionRunId(), 'show');
+    sendLog(interaction, member, Lang, componentData, getCurrentSessionRunId(), 'show');
 };
 
-const viewDbLogs = (interaction, member, lang, componentData) => {
+const viewDbLogs = (interaction, member, Lang, componentData) => {
     const runId = componentData.selected || null;
-    sendLog(interaction, member, lang, componentData, runId, 'view');
+    sendLog(interaction, member, Lang, componentData, runId, 'view');
 };
 
-const listDbLogs = async (interaction, member, lang, componentData) => {
+const listDbLogs = async (interaction, member, Lang, componentData) => {
     const results = await MongoDb.aggregate(ENUMS.DCB.LOGS, [
         { $project: { _id: 0, run_id: 1, logs_length: { $size: "$logs" }, created_at: 1 } },
         { $sort: { created_at: Constants.MONGO.SORT.DESC } },
@@ -194,9 +192,9 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
     }));
 
     const columns = [
-        { label: lang.getText('run-id'), key: 'run_id' },
-        { label: lang.getText('text-createdat'), key: 'created_at' },
-        { label: lang.getText('text-size'), key: 'logs_length' }
+        { label: Lang.string('texts.run-id'), key: 'run_id' },
+        { label: Lang.string('texts.text-createdat'), key: 'created_at' },
+        { label: Lang.string('texts.text-size'), key: 'logs_length' }
     ];
 
     const buildTable = new DiscordSimpleTable(columns)
@@ -208,15 +206,14 @@ const listDbLogs = async (interaction, member, lang, componentData) => {
 
     const selectMenu = new StringSelectMenuBuilder()
         .setCustomId(DcButtons.createString('logs', { type: 'view' }))
-        .setPlaceholder(lang.getText('select-menu-placholder'))
+        .setPlaceholder(Lang.string('texts.select-menu-placholder'))
         .addOptions(selectMenuOptions);
 
     const row = new ActionRowBuilder().addComponents(selectMenu);
 
     new Embed()
         .setColor(COLOR.INFO)
-        .addInputs({ list: buildTable })
-        .addContext(lang, member, 'list-logs')
+        .addLangContext(Lang.embed('list-logs', { list: buildTable }))
         .setComponents([row])
         .interactionResponse(interaction);
 };
@@ -235,7 +232,7 @@ const findAndExecuteSubCommand = (subCommand, ...args) => {
 };
 
 const execute = async (dcInteraction) => {
-    const { interaction, client, member, guild, lang } = dcInteraction;
+    const { interaction, client, member, guild, Lang } = dcInteraction;
 
     await DC.defer(interaction);
 
@@ -253,21 +250,21 @@ const execute = async (dcInteraction) => {
     if (totalCount == 0) {
         new Embed()
             .setColor(COLOR.INFO)
-            .addContext(lang, member, 'list-logs-empty')
+            .addLangContext(Lang.embed('list-logs-empty'))
             .interactionResponse(interaction);
         return;
     }
 
     const subCommand = interaction.options.getSubcommand();
     const componentData = null;
-    findAndExecuteSubCommand(subCommand, interaction, member, lang, componentData);
+    findAndExecuteSubCommand(subCommand, interaction, member, Lang, componentData);
 };
 
 const executeComponent = async (dcInteraction) => {
-    const { interaction, client, guild, member, lang, componentData } = dcInteraction;
+    const { interaction, client, guild, member, Lang, componentData } = dcInteraction;
 
     await DC.defer(interaction);
-    findAndExecuteSubCommand(componentData.type, interaction, member, lang, componentData);
+    findAndExecuteSubCommand(componentData.type, interaction, member, Lang, componentData);
 };
 
 const componentIds = ['logs'];

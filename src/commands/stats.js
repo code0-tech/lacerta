@@ -40,15 +40,15 @@ const normalizeData = (data) => {
     return data;
 };
 
-const buildCommandStatsString = (commandstats, lang) => {
-    if (Object.keys(commandstats).length == 0) return lang.getText('no-command-executed');
+const buildCommandStatsString = (commandstats, Lang) => {
+    if (Object.keys(commandstats).length == 0) return Lang.string('texts.no-command-executed');
 
     const columns = [
-        { label: lang.getText('command'), key: 'command' },
-        { label: lang.getText('executed'), key: 'executed' },
-        { label: lang.getText('button'), key: 'button' },
-        { label: lang.getText('autocomplete'), key: 'autocomplete' },
-        { label: lang.getText('selectmenu'), key: 'selectmenu' }
+        { label: Lang.string('texts.command'), key: 'command' },
+        { label: Lang.string('texts.executed'), key: 'executed' },
+        { label: Lang.string('texts.button'), key: 'button' },
+        { label: Lang.string('texts.autocomplete'), key: 'autocomplete' },
+        { label: Lang.string('texts.selectmenu'), key: 'selectmenu' }
     ];
 
     const data = Object.entries(commandstats).map(([key, value]) => {
@@ -73,12 +73,12 @@ const buildCommandStatsString = (commandstats, lang) => {
     return buildTable;
 };
 
-const loop = async (client, interaction, member, lang, embedMessage, rankMember, user, previousStats = null) => {
+const loop = async (client, interaction, member, Lang, embedMessage, rankMember, user, previousStats = null) => {
     const stats = await user.getStats();
     const commandstats = await user.getCommandUsage();
     const inviteStats = await user.getInviteStats();
 
-    const commandStatsString = buildCommandStatsString(commandstats, lang);
+    const commandStatsString = buildCommandStatsString(commandstats, Lang);
     const normalizedStats = normalizeData(stats);
 
     const statsChanged = !previousStats || JSON.stringify(normalizedStats) !== JSON.stringify(previousStats);
@@ -112,7 +112,7 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
         const embed = new Embed()
             .setColor(COLOR.INFO)
             .setPbThumbnail(rankMember)
-            .addInputs({
+            .addLangContext(Lang.embed(embedMessage, {
                 channelmention: (userChannel == null ? Constants.SYMBOLS.UNKOWN_01 : `${DC.mentionChannel(userChannel.id)}`),
                 count: humanizeNumber(normalizedStats.messages.count),
                 words: humanizeNumber(normalizedStats.messages.words),
@@ -134,8 +134,7 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
                 commandstatsstring: commandStatsString,
                 invitesreal: inviteStats.real,
                 invitestotal: inviteStats.total
-            })
-            .addContext(lang, member, embedMessage);
+            }));
 
         const response = await embed.interactionResponse(interaction);
         if (response == null) return;
@@ -143,12 +142,12 @@ const loop = async (client, interaction, member, lang, embedMessage, rankMember,
 
     if (embedMessage !== 'this-bot-stats' && config.commands.stats.upToDate15m) {
         await waitMs(config.commands.stats.updateMessageDelay);
-        loop(client, interaction, member, lang, embedMessage, rankMember, user, normalizedStats);
+        loop(client, interaction, member, Lang, embedMessage, rankMember, user, normalizedStats);
     }
 };
 
 const execute = async (dcInteraction) => {
-    const { interaction, client, member, guild, lang } = dcInteraction;
+    const { interaction, client, member, guild, Lang } = dcInteraction;
 
     await DC.defer(interaction);
 
@@ -162,7 +161,7 @@ const execute = async (dcInteraction) => {
     const rankMember = await DC.memberById(userIdToCheck, guild);
     const user = await new MongoUser().userById(userIdToCheck)
 
-    loop(client, interaction, member, lang, embedMessage, rankMember, user);
+    loop(client, interaction, member, Lang, embedMessage, rankMember, user);
 };
 
 module.exports = { execute, data };

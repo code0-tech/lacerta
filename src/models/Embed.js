@@ -212,48 +212,6 @@ class Embed {
         return this;
     }
 
-
-    /* 
-        addInputs(inputs) {
-            this._inputs = inputs;
-    
-            return this;
-        }
-    
-            addContext(lang, member, contextId) {
-            const embedContext = lang.text[contextId];
-    
-            if (embedContext == undefined) {
-                console.log(`[EmbedBuilder::Context] Given contextId: ${contextId} is not part of this command.`, Constants.CONSOLE.ERROR);
-                return this;
-            }
-    
-            const contextKey = Object.keys(embedContext);
-    
-            if (member !== null) {
-                this._inputs['username'] = member.user.username;
-                this._inputs['userid'] = member.user.id;
-            }
-    
-            contextKey.forEach((inputType) => {
-                const inputTypeText = embedContext[inputType];
-                const finalText = this._replacePlaceholders(inputTypeText, this._inputs);
-    
-                switch (inputType) {
-                    case 'description':
-                        this.setDescription(finalText);
-                        break;
-                    case 'title':
-                        this.setTitle(finalText);
-                        break;
-                    default:
-                        break;
-                }
-            });
-    
-            return this;
-        } */
-
     /** 
     * @param {boolean} [ephemeral=true] - Whether the response should be ephemeral. 
     */

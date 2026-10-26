@@ -54,14 +54,14 @@ const listUser = async (limit, sortField) => {
     return list;
 };
 
-const sendMessage = async (interaction, member, lang, data, category) => {
-    const columns = [{ label: lang.getText('username'), key: 'name' }];
+const sendMessage = async (interaction, member, Lang, data, category) => {
+    const columns = [{ label: Lang.string('texts.username'), key: 'name' }];
 
     if (category === 'xp') {
-        columns.push({ label: lang.getText('level'), key: 'lvl' });
-        columns.push({ label: lang.getText('xp'), key: 'val' });
+        columns.push({ label: Lang.string('texts.level'), key: 'lvl' });
+        columns.push({ label: Lang.string('texts.xp'), key: 'val' });
     } else {
-        columns.push({ label: lang.getText(LEADERBOARD_TYPES[category].labelKey), key: 'val' });
+        columns.push({ label: Lang.string(`texts.${LEADERBOARD_TYPES[category].labelKey}`), key: 'val' });
     }
 
     const buildTable = new DiscordSimpleTable(columns)
@@ -73,19 +73,18 @@ const sendMessage = async (interaction, member, lang, data, category) => {
 
     await new Embed()
         .setColor(COLOR.INFO)
-        .addInputs({ stringlist: buildTable })
-        .addContext(lang, member, 'board')
+        .addLangContext(Lang.embed('board', { stringlist: buildTable }))
         .interactionResponse(interaction);
 };
 
 const execute = async (dcInteraction) => {
-    const { interaction, member, guild, lang } = dcInteraction;
+    const { interaction, member, guild, Lang } = dcInteraction;
 
     await DC.defer(interaction);
 
     await new Embed()
         .setColor(COLOR.IN_PROGRESS)
-        .addContext(lang, member, 'loading')
+        .addLangContext(Lang.embed('loading'))
         .interactionResponse(interaction);
 
     const category = interaction.options.getString('category') ?? 'xp';
@@ -103,7 +102,7 @@ const execute = async (dcInteraction) => {
 
         let username = leadboardMember
             ? (leadboardMember.nickname || leadboardMember.user.username)
-            : `[${lang.getText('left-server')}]`;
+            : `[${Lang.string('texts.left-server')}]`;
 
         if (username.length > config.commands.leaderboard.maxNameLength) {
             username = username.substring(0, (config.commands.leaderboard.maxNameLength - 3)) + "...";
@@ -120,7 +119,7 @@ const execute = async (dcInteraction) => {
             const totalMs = (user.stats?.voice?.activeTime || 0) * Constants.TIME_MULTIPLIER_MS.SECONDS;
             const { d, h, m, s } = msToHumanReadableTime(totalMs);
 
-            displayValue = `${d}${lang.getText('days')} ${h}${lang.getText('hours')} ${m}${lang.getText('minutes')} ${s}${lang.getText('seconds')}`;
+            displayValue = `${d}${Lang.string('texts.days')} ${h}${Lang.string('texts.hours')} ${m}${Lang.string('texts.minutes')} ${s}${Lang.string('texts.seconds')}`;
         } else if (category === 'messages') {
             displayValue = humanizeNumber(user.stats?.messages?.count || 0);
         } else if (category === 'invites') {
@@ -134,7 +133,7 @@ const execute = async (dcInteraction) => {
         });
     }
 
-    await sendMessage(interaction, member, lang, tableData, category);
+    await sendMessage(interaction, member, Lang, tableData, category);
 };
 
 module.exports = { execute, data };
