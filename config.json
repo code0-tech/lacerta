@@ -163,6 +163,50 @@
         },
         "eventPreReminder": [
             {
+                "title": "Test",
+                "reminderBeforeInMinutes": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15
+                ],
+                "embed": {
+                    "title": "{title} - Test {minutesRemaining} Test",
+                    "descriptions": {
+                        "5": [
+                            "Test 5/1",
+                            "Test 5/2",
+                            "Test 5/3"
+                        ],
+                        "60": [
+                            "Test 60/1",
+                            "Test 60/2"
+                        ],
+                        "default": [
+                            "Test #/"
+                        ]
+                    },
+                    "mention": "test"
+                },
+                "invitationAcceptButtons": {
+                    "acceptText": "Accept",
+                    "acceptButComeLaterText": "Coming later",
+                    "unAcceptText": "Decline"
+                },
+                "channelName": "test"
+            },
+            {
                 "title": "Sprint Review",
                 "reminderBeforeInMinutes": [
                     5,
@@ -187,8 +231,9 @@
                     "mention": "team"
                 },
                 "invitationAcceptButtons": {
-                    "acceptText": "Yes I am in",
-                    "unAcceptText": "No sry"
+                    "acceptText": "Accept",
+                    "acceptButComeLaterText": "Coming later",
+                    "unAcceptText": "Decline"
                 },
                 "channelName": "internalcommunicationchat"
             },
@@ -214,8 +259,9 @@
                     "mention": "team"
                 },
                 "invitationAcceptButtons": {
-                    "acceptText": "Yes I am in",
-                    "unAcceptText": "No sry"
+                    "acceptText": "Accept",
+                    "acceptButComeLaterText": "Coming later",
+                    "unAcceptText": "Decline"
                 },
                 "channelName": "internalcommunicationchat"
             }
