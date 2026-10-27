@@ -1,7 +1,8 @@
 const { Mongo, ENUMS } = require('../models/Mongo');
+const Constants = require("../../data/constants");
+const config = require('./../../config.json');
 const { Events } = require('discord.js');
 const DC = require('./../singleton/DC');
-const config = require('./../../config.json');
 
 const mongoDb = new Mongo();
 
@@ -28,6 +29,7 @@ const activateSlowmo = async (channelId, client) => {
                 timesSlowed: 1
             }
         );
+        console.log(`[ChannelSlowmo::Info] Channel ${channelId} slowmode activated (New record created)`, Constants.CONSOLE.INFO);
     } else if (!doc.slowmode) {
         await mongoDb.update(
             ENUMS.DCB.AUTO_SLOWMO_CHANNELS,
@@ -41,6 +43,7 @@ const activateSlowmo = async (channelId, client) => {
                 $inc: { timesSlowed: 1 }
             }
         );
+        console.log(`[ChannelSlowmo::Info] Channel ${channelId} slowmode activated (Existing record updated)`, Constants.CONSOLE.INFO);
     } else {
         // already slowed => refresh decay timer
         await mongoDb.update(
@@ -48,12 +51,14 @@ const activateSlowmo = async (channelId, client) => {
             { channelId },
             { $set: { lastSlipAt: now } }
         );
+        console.log(`[ChannelSlowmo::Info] Channel ${channelId} already slowed, refreshed decay timer`, Constants.CONSOLE.INFO);
     }
 
     const channel = await DC.channelByIdOnly(channelId, client);
-    DC.channelByChannelId
     if (channel) {
-        await channel.setRateLimitPerUser(channelSLIPConfig.slowmodeInSeconds).catch(() => { });
+        await channel.setRateLimitPerUser(channelSLIPConfig.slowmodeInSeconds).catch((err) => {
+            console.log(`[ChannelSlowmo::RateLimit] Failed to set rate limit on channel ${channelId}: ${err.message}`, Constants.CONSOLE.ERROR);
+        });
     }
 };
 
@@ -66,8 +71,11 @@ const disableSlowmo = async (channelId, client) => {
 
     const channel = await DC.channelByIdOnly(channelId, client);
     if (channel) {
-        await channel.setRateLimitPerUser(0).catch(() => { });
+        await channel.setRateLimitPerUser(0).catch((err) => {
+            console.log(`[ChannelSlowmo::RateLimit] Failed to reset rate limit on channel ${channelId}: ${err.message}`, Constants.CONSOLE.ERROR);
+        });
     }
+    console.log(`[ChannelSlowmo::Channel-Info] Channel ${channelId} slowmode disabled (decay reached)`, Constants.CONSOLE.INFO);
 };
 
 const checkSlowmoDecay = async (client) => {
@@ -84,11 +92,14 @@ const checkSlowmoDecay = async (client) => {
 
 const loadSlowedChannels = async (client) => {
     const slowed = await mongoDb.find(ENUMS.DCB.AUTO_SLOWMO_CHANNELS, { slowmode: true });
+    console.log(`[ChannelSlowmo::Channels] Loading ${slowed.length} active slowmode channels from database...`, Constants.CONSOLE.INFO);
 
     for (const doc of slowed) {
         const channel = await DC.channelByIdOnly(doc.channelId, client);
         if (channel) {
-            await channel.setRateLimitPerUser(channelSLIPConfig.slowmodeInSeconds).catch(() => { });
+            await channel.setRateLimitPerUser(channelSLIPConfig.slowmodeInSeconds).catch((err) => {
+                console.log(`[ChannelSlowmo::RateLimit] Failed to apply rate limit on load for ${doc.channelId}: ${err.message}`, Constants.CONSOLE.ERROR);
+            });
         }
     }
 };
@@ -130,12 +141,14 @@ const updateSlip = (channelId, timeNow, client) => {
     stats.newMsg = 0;
 
     if (stats.SLIP >= channelSLIPConfig.slowmoAtSlip) {
+        console.log(`[ChannelSlowmo::SLIP-Info] SLIP threshold reached (${stats.SLIP.toFixed(2)} >= ${channelSLIPConfig.slowmoAtSlip}) for channel ${channelId}`, Constants.CONSOLE.GOOD);
         activateSlowmo(channelId, client);
         stats.SLIP = 0;
     }
 };
 
 const start = (client) => {
+    console.log(`[ChannelSlowmo::Starting] Starting auto-slowmo module...`, Constants.CONSOLE.INFO);
     loadSlowedChannels(client);
     checkSlowmoDecay(client);
 
