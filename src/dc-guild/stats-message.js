@@ -1,3 +1,4 @@
+const { LanguageHelper } = require('../interactions/language-helper');
 const { MongoUser, MongoUserConsts } = require('../mongo/MongoUser');
 const { Embed, COLOR, progressBar } = require('../models/Embed');
 const { levenshteinDistance } = require('../utils/helper');
@@ -89,19 +90,22 @@ const channelRankUpdateMessage = async (client, user) => {
 
     const xp = 0;
 
+    const Lang = new LanguageHelper(client).createStandalonePack()
+        .setPackCommandPath('rank-updates')
+        .buildPack()
+
     new Embed()
         .setColor(COLOR.INFO)
         .setPbThumbnail(rankMember)
-        .addInputs({
+        .addLangContext(Lang.embed('update-embed', {
             rankuserid: await user.getId(),
             level,
             neededXp,
             xp,
             progressbar: progressBar(xp, neededXp),
             position
-        })
-        .addContext({ text: client.languages.english['#_rankupdate'] }, null, '#update-msg')
-        .responseToChannel(config.channels.rankupdates, client)
+        }))
+        .responseToChannel(config.server.channels.rankupdates, client)
 };
 
 const saveMessageStats = async (msg, mongoUser) => {

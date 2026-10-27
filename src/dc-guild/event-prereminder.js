@@ -25,9 +25,12 @@ const runEventInfo = async (channelId, title, time, client, eventConfig, eventId
     const descriptionArray = (eventConfig.embed.descriptions[timeInMinutes] ?? eventConfig.embed.descriptions.default);
     const descriptionString = descriptionArray.at(Math.floor(Math.random() * descriptionArray.length));
 
+    const embedTitle = replacePlaceHolders(eventConfig.embed.title, placeholders);
+    const embedDescription = replacePlaceHolders(descriptionString, placeholders)
+
     const embedMessage = new Embed()
-        .setTitle(replacePlaceHolders(eventConfig.embed.title, placeholders))
-        .setDescription(replacePlaceHolders(descriptionString, placeholders))
+        .setTitle(embedTitle)
+        .setDescription(embedDescription)
         .setColor(COLOR.INFO);
 
     if (eventConfig.embed.mention) {
@@ -36,17 +39,22 @@ const runEventInfo = async (channelId, title, time, client, eventConfig, eventId
 
     if (eventConfig.invitationAcceptButtons) {
         const acceptInvite = new ButtonBuilder()
-            .setCustomId(DcButtons.createString('eventPreReminderInviteButton', { acceptInvite: "1" }))
+            .setCustomId(DcButtons.createString('eventPreReminderInviteButton', { acceptInvite: "0" }))
             .setLabel(eventConfig.invitationAcceptButtons.acceptText)
+            .setStyle(ButtonStyle.Success);
+
+        const acceptInviteButComeLater = new ButtonBuilder()
+            .setCustomId(DcButtons.createString('eventPreReminderInviteButton', { acceptInvite: "1" }))
+            .setLabel(eventConfig.invitationAcceptButtons.acceptButComeLaterText)
             .setStyle(ButtonStyle.Primary);
 
         const unAcceptInvite = new ButtonBuilder()
-            .setCustomId(DcButtons.createString('eventPreReminderInviteButton', { acceptInvite: "0" }))
+            .setCustomId(DcButtons.createString('eventPreReminderInviteButton', { acceptInvite: "2" }))
             .setLabel(eventConfig.invitationAcceptButtons.unAcceptText)
             .setStyle(ButtonStyle.Danger);
 
         embedMessage.setComponents([
-            new ActionRowBuilder().addComponents(acceptInvite, unAcceptInvite)
+            new ActionRowBuilder().addComponents(acceptInvite, acceptInviteButComeLater, unAcceptInvite)
         ])
     }
 
@@ -64,9 +72,16 @@ const runEventInfo = async (channelId, title, time, client, eventConfig, eventId
 
     if (!tempEntryForEvent.messages) {
         tempEntryForEvent.messages = [];
+        tempEntryForEvent.messageContents = {};
         tempEntryForEvent.acceptedInvite = [];
+        tempEntryForEvent.acceptedInviteButComeLater = [];
         tempEntryForEvent.unAcceptedInvite = [];
         tempEntryForEvent.eventTitle = title;
+    }
+
+    tempEntryForEvent.messageContents[messageId] = {
+        title: embedTitle,
+        description: embedDescription
     }
 
     tempEntryForEvent.messages.push(messageId);

@@ -12,7 +12,6 @@ const autoRun = async (client, Lang) => {
     const messagesIds = keyArray(messages);
 
     const LanguagePack = Lang
-        .setHandlerType(Constants.LANGUAGE_SYSTEM.HANDLER_TYPES.AUTOMATIC)
         .setPackCommandPath('application')
         .buildPack()
 
