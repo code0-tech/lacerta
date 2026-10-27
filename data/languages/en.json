@@ -10,7 +10,7 @@
         "autoFillVariables": {
             "memberName": {
                 "description": "Name of a Member",
-                "mock": "Nixkuchen"
+                "mock": "Nicolas Morawietz"
             },
             "memberUserName": {
                 "description": "Name of a Member",
@@ -18,7 +18,7 @@
             },
             "memberNickname": {
                 "description": "Name of a Member",
-                "mock": "Nixkuchen"
+                "mock": "Nicusch"
             }
         }
     },
@@ -479,6 +479,590 @@
                 "title": "Application Channel",
                 "description": "This is where you can start your application process.\n\nYou now have the opportunity to become a part of our <@&{teamId}>.\nClick the button below to create a new thread.\nWe're excited to have you join CodeZero.\n\nIf you already have an active application thread for your Closed Team / Open Contributor, please use that to continue your application.\n\nCodeZero"
             }
+        },
+        "links": {
+            "__type__": "collection",
+            "list": {
+                "__type__": "discordEmbed",
+                "title": "These links might interest you!",
+                "description": "Our Github: [CodeZero Github](https://github.com/code0-tech)\nOur Website: [CodeZero Website](https://code0.tech)"
+            }
+        },
+        "debug": {
+            "__type__": "collection",
+            "mongo-left-users-loading": {
+                "__type__": "discordEmbed",
+                "title": "MongoDB Left User",
+                "description": "Checked: [{checked}|{totaluser}], found: {found}.",
+                "__variables__": {
+                    "checked": {
+                        "description": "Auto-detected variable",
+                        "mock": "[checked]"
+                    },
+                    "totaluser": {
+                        "description": "Auto-detected variable",
+                        "mock": "[totaluser]"
+                    },
+                    "found": {
+                        "description": "Auto-detected variable",
+                        "mock": "[found]"
+                    }
+                }
+            },
+            "texts": {
+                "remove": {
+                    "__type__": "string",
+                    "string": "Remove"
+                },
+                "left-user-remove": {
+                    "__type__": "string",
+                    "string": "Remove from MongoDB"
+                },
+                "left-user-reload": {
+                    "__type__": "string",
+                    "string": "Reload"
+                },
+                "found-none": {
+                    "__type__": "string",
+                    "string": "New String Value"
+                },
+                "roles": {
+                    "__type__": "string",
+                    "string": "Roles"
+                },
+                "langroles": {
+                    "__type__": "string",
+                    "string": "Languageroles"
+                },
+                "channels": {
+                    "__type__": "string",
+                    "string": "Channels"
+                }
+            },
+            "client-session-time": {
+                "__type__": "discordEmbed",
+                "title": "Client Session Time",
+                "description": "Up Since: {upsince}\n\n`{days}` days, `{hours}` hours, `{minutes}` minutes, `{seconds}` seconds.",
+                "__variables__": {
+                    "upsince": {
+                        "description": "Auto-detected variable",
+                        "mock": "[upsince]"
+                    },
+                    "days": {
+                        "description": "Auto-detected variable",
+                        "mock": "[days]"
+                    },
+                    "hours": {
+                        "description": "Auto-detected variable",
+                        "mock": "[hours]"
+                    },
+                    "minutes": {
+                        "description": "Auto-detected variable",
+                        "mock": "[minutes]"
+                    },
+                    "seconds": {
+                        "description": "Auto-detected variable",
+                        "mock": "[seconds]"
+                    }
+                }
+            },
+            "mongo-removed-user": {
+                "__type__": "discordEmbed",
+                "title": "Removed {removedId}.",
+                "description": "Up Since: {upsince}\n\n`{days}` days, `{hours}` hours, `{minutes}` minutes, `{seconds}` seconds.",
+                "__variables__": {
+                    "removedId": {
+                        "description": "Auto-detected variable",
+                        "mock": "[removedId]"
+                    },
+                    "upsince": {
+                        "description": "Auto-detected variable",
+                        "mock": "[upsince]"
+                    },
+                    "days": {
+                        "description": "Auto-detected variable",
+                        "mock": "[days]"
+                    },
+                    "hours": {
+                        "description": "Auto-detected variable",
+                        "mock": "[hours]"
+                    },
+                    "minutes": {
+                        "description": "Auto-detected variable",
+                        "mock": "[minutes]"
+                    },
+                    "seconds": {
+                        "description": "Auto-detected variable",
+                        "mock": "[seconds]"
+                    }
+                }
+            },
+            "mongo-left-users": {
+                "__type__": "discordEmbed",
+                "title": "MongoDB User Ghosts",
+                "description": "Found:\n{userstring}\n\nFake Users:\n{progressbar}",
+                "__variables__": {
+                    "userstring": {
+                        "description": "Auto-detected variable",
+                        "mock": "[userstring]"
+                    },
+                    "progressbar": {
+                        "description": "Auto-detected variable",
+                        "mock": "[progressbar]"
+                    }
+                }
+            }
+        },
+        "leaderboard": {
+            "__type__": "collection",
+            "texts": {
+                "username": {
+                    "__type__": "string",
+                    "string": "Username"
+                },
+                "level": {
+                    "__type__": "string",
+                    "string": "Lvl."
+                },
+                "xp": {
+                    "__type__": "string",
+                    "string": "Xp"
+                },
+                "left-server": {
+                    "__type__": "string",
+                    "string": "Left the Server"
+                },
+                "messages": {
+                    "__type__": "string",
+                    "string": "Messages"
+                },
+                "voice_time": {
+                    "__type__": "string",
+                    "string": "Active Voice Time"
+                },
+                "invites": {
+                    "__type__": "string",
+                    "string": "Invites"
+                },
+                "days": {
+                    "__type__": "string",
+                    "string": "d"
+                },
+                "hours": {
+                    "__type__": "string",
+                    "string": "h"
+                },
+                "minutes": {
+                    "__type__": "string",
+                    "string": "m"
+                },
+                "seconds": {
+                    "__type__": "string",
+                    "string": "s"
+                }
+            },
+            "board": {
+                "__type__": "discordEmbed",
+                "title": "Leaderboard",
+                "description": "{stringlist}",
+                "__variables__": {
+                    "stringlist": {
+                        "description": "Auto-detected variable",
+                        "mock": "[stringlist]"
+                    }
+                }
+            },
+            "loading": {
+                "__type__": "discordEmbed",
+                "title": "Leaderboard is loading..."
+            }
+        },
+        "stats": {
+            "__type__": "collection",
+            "texts": {
+                "command": {
+                    "__type__": "string",
+                    "string": "Command"
+                },
+                "executed": {
+                    "__type__": "string",
+                    "string": "Executed"
+                },
+                "button": {
+                    "__type__": "string",
+                    "string": "btn"
+                },
+                "autocomplete": {
+                    "__type__": "string",
+                    "string": "ac"
+                },
+                "selectmenu": {
+                    "__type__": "string",
+                    "string": "sm"
+                },
+                "no-command-executed": {
+                    "__type__": "string",
+                    "string": "No Commands were executed."
+                }
+            },
+            "own-stats-response": {
+                "__type__": "discordEmbed",
+                "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nActive Time: `{voiceDaysActive}` days, `{voiceHoursActive}` hours, `{voiceMinutesActive}` minutes, `{voiceSecondsActive}` seconds.\nIn Active Time: `{voiceDaysInactive}` days, `{voiceHoursInactive}` hours, `{voiceMinutesInactive}` minutes, `{voiceSecondsInactive}` seconds.\nStreaming Time: `{streamingDays}` days, `{streamingHours}` hours, `{streamingMinutes}` minutes, `{streamingSeconds}` seconds.\nIn Channel: {channelmention}\n### Invites\nReal: {invitesreal}\nTotal: {invitestotal}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to your message stats.\nVoice stat \"Join\" is only updated after you left an channel.",
+                "__variables__": {
+                    "count": {
+                        "description": "Auto-detected variable",
+                        "mock": "[count]"
+                    },
+                    "words": {
+                        "description": "Auto-detected variable",
+                        "mock": "[words]"
+                    },
+                    "chars": {
+                        "description": "Auto-detected variable",
+                        "mock": "[chars]"
+                    },
+                    "joins": {
+                        "description": "Auto-detected variable",
+                        "mock": "[joins]"
+                    },
+                    "switchs": {
+                        "description": "Auto-detected variable",
+                        "mock": "[switchs]"
+                    },
+                    "voiceDaysActive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceDaysActive]"
+                    },
+                    "voiceHoursActive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceHoursActive]"
+                    },
+                    "voiceMinutesActive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceMinutesActive]"
+                    },
+                    "voiceSecondsActive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceSecondsActive]"
+                    },
+                    "voiceDaysInactive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceDaysInactive]"
+                    },
+                    "voiceHoursInactive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceHoursInactive]"
+                    },
+                    "voiceMinutesInactive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceMinutesInactive]"
+                    },
+                    "voiceSecondsInactive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceSecondsInactive]"
+                    },
+                    "streamingDays": {
+                        "description": "Auto-detected variable",
+                        "mock": "[streamingDays]"
+                    },
+                    "streamingHours": {
+                        "description": "Auto-detected variable",
+                        "mock": "[streamingHours]"
+                    },
+                    "streamingMinutes": {
+                        "description": "Auto-detected variable",
+                        "mock": "[streamingMinutes]"
+                    },
+                    "streamingSeconds": {
+                        "description": "Auto-detected variable",
+                        "mock": "[streamingSeconds]"
+                    },
+                    "channelmention": {
+                        "description": "Auto-detected variable",
+                        "mock": "[channelmention]"
+                    },
+                    "invitesreal": {
+                        "description": "Auto-detected variable",
+                        "mock": "[invitesreal]"
+                    },
+                    "invitestotal": {
+                        "description": "Auto-detected variable",
+                        "mock": "[invitestotal]"
+                    },
+                    "commandstatsstring": {
+                        "description": "Auto-detected variable",
+                        "mock": "[commandstatsstring]"
+                    }
+                }
+            },
+            "other-stats-response": {
+                "__type__": "discordEmbed",
+                "description": "### Message:\nCount: `{count}`\nWords: `{words}`\nChars: `{chars}`\n### Voice:\nJoins: `{joins}`\nSwitchs: `{switchs}`\nActive Time: `{voiceDaysActive}` days, `{voiceHoursActive}` hours, `{voiceMinutesActive}` minutes, `{voiceSecondsActive}` seconds.\nIn Active Time: `{voiceDaysInactive}` days, `{voiceHoursInactive}` hours, `{voiceMinutesInactive}` minutes, `{voiceSecondsInactive}` seconds.\nStreaming Time: `{streamingDays}` days, `{streamingHours}` hours, `{streamingMinutes}` minutes, `{streamingSeconds}` seconds.\nIn Channel: {channelmention}\n### Invites\nReal: {invitesreal}\nTotal: {invitestotal}\n\n### Command Stats\n\n{commandstatsstring}\n\nNote:\nXP is never equal to his/her message stats.\nVoice stat \"Join\" is only updated after he/she left an channel.",
+                "__variables__": {
+                    "count": {
+                        "description": "Auto-detected variable",
+                        "mock": "[count]"
+                    },
+                    "words": {
+                        "description": "Auto-detected variable",
+                        "mock": "[words]"
+                    },
+                    "chars": {
+                        "description": "Auto-detected variable",
+                        "mock": "[chars]"
+                    },
+                    "joins": {
+                        "description": "Auto-detected variable",
+                        "mock": "[joins]"
+                    },
+                    "switchs": {
+                        "description": "Auto-detected variable",
+                        "mock": "[switchs]"
+                    },
+                    "voiceDaysActive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceDaysActive]"
+                    },
+                    "voiceHoursActive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceHoursActive]"
+                    },
+                    "voiceMinutesActive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceMinutesActive]"
+                    },
+                    "voiceSecondsActive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceSecondsActive]"
+                    },
+                    "voiceDaysInactive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceDaysInactive]"
+                    },
+                    "voiceHoursInactive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceHoursInactive]"
+                    },
+                    "voiceMinutesInactive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceMinutesInactive]"
+                    },
+                    "voiceSecondsInactive": {
+                        "description": "Auto-detected variable",
+                        "mock": "[voiceSecondsInactive]"
+                    },
+                    "streamingDays": {
+                        "description": "Auto-detected variable",
+                        "mock": "[streamingDays]"
+                    },
+                    "streamingHours": {
+                        "description": "Auto-detected variable",
+                        "mock": "[streamingHours]"
+                    },
+                    "streamingMinutes": {
+                        "description": "Auto-detected variable",
+                        "mock": "[streamingMinutes]"
+                    },
+                    "streamingSeconds": {
+                        "description": "Auto-detected variable",
+                        "mock": "[streamingSeconds]"
+                    },
+                    "channelmention": {
+                        "description": "Auto-detected variable",
+                        "mock": "[channelmention]"
+                    },
+                    "invitesreal": {
+                        "description": "Auto-detected variable",
+                        "mock": "[invitesreal]"
+                    },
+                    "invitestotal": {
+                        "description": "Auto-detected variable",
+                        "mock": "[invitestotal]"
+                    },
+                    "commandstatsstring": {
+                        "description": "Auto-detected variable",
+                        "mock": "[commandstatsstring]"
+                    }
+                }
+            },
+            "this-bot-stats": {
+                "__type__": "discordEmbed",
+                "description": "### Well, I'm not really into collecting stats.\nMaybe try a real Codezero `Member`."
+            }
+        },
+        "logs": {
+            "__type__": "collection",
+            "texts": {
+                "select-menu-placholder": {
+                    "__type__": "string",
+                    "string": "Logs"
+                },
+                "btn-back": {
+                    "__type__": "string",
+                    "string": "Previous"
+                },
+                "btn-next": {
+                    "__type__": "string",
+                    "string": "Next"
+                },
+                "btn-skip": {
+                    "__type__": "string",
+                    "string": "Go to last"
+                },
+                "btn-print": {
+                    "__type__": "string",
+                    "string": "Print as .txt"
+                },
+                "text-old-logs": {
+                    "__type__": "string",
+                    "string": "Old Logs"
+                },
+                "run-id": {
+                    "__type__": "string",
+                    "string": "run_id"
+                },
+                "text-createdat": {
+                    "__type__": "string",
+                    "string": "Created at"
+                },
+                "text-size": {
+                    "__type__": "string",
+                    "string": "Size"
+                },
+                "text-time": {
+                    "__type__": "string",
+                    "string": "Time"
+                }
+            },
+            "development": {
+                "__type__": "discordEmbed",
+                "description": "Bot is in development mode `/logs show` is not available"
+            },
+            "session-logs": {
+                "__type__": "discordEmbed",
+                "title": "Current logs [{totallogscount}]",
+                "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})",
+                "__variables__": {
+                    "totallogscount": {
+                        "description": "Auto-detected variable",
+                        "mock": "[totallogscount]"
+                    },
+                    "createdat": {
+                        "description": "Auto-detected variable",
+                        "mock": "[createdat]"
+                    },
+                    "logstring": {
+                        "description": "Auto-detected variable",
+                        "mock": "[logstring]"
+                    },
+                    "currentstart": {
+                        "description": "Auto-detected variable",
+                        "mock": "[currentstart]"
+                    },
+                    "currentend": {
+                        "description": "Auto-detected variable",
+                        "mock": "[currentend]"
+                    }
+                }
+            },
+            "old-session-logs": {
+                "__type__": "discordEmbed",
+                "title": "{runid} [{totallogscount}]",
+                "description": "Created at: {createdat}\n\n{logstring}\nLogs [{currentstart}-{currentend}] of ({totallogscount})",
+                "__variables__": {
+                    "runid": {
+                        "description": "Auto-detected variable",
+                        "mock": "[runid]"
+                    },
+                    "totallogscount": {
+                        "description": "Auto-detected variable",
+                        "mock": "[totallogscount]"
+                    },
+                    "createdat": {
+                        "description": "Auto-detected variable",
+                        "mock": "[createdat]"
+                    },
+                    "logstring": {
+                        "description": "Auto-detected variable",
+                        "mock": "[logstring]"
+                    },
+                    "currentstart": {
+                        "description": "Auto-detected variable",
+                        "mock": "[currentstart]"
+                    },
+                    "currentend": {
+                        "description": "Auto-detected variable",
+                        "mock": "[currentend]"
+                    }
+                }
+            },
+            "list-logs": {
+                "__type__": "discordEmbed",
+                "title": "Log files",
+                "description": "{list}",
+                "__variables__": {
+                    "list": {
+                        "description": "Auto-detected variable",
+                        "mock": "[list]"
+                    }
+                }
+            },
+            "list-logs-empty": {
+                "__type__": "discordEmbed",
+                "title": "No logs available"
+            },
+            "not-found": {
+                "__type__": "discordEmbed",
+                "title": "Cannot find any logs for runId: {runid}.",
+                "__variables__": {
+                    "runid": {
+                        "description": "Auto-detected variable",
+                        "mock": "[runid]"
+                    }
+                }
+            },
+            "print-out": {
+                "__type__": "discordEmbed",
+                "title": "Print Out",
+                "description": "Here is an .txt which contains the full log."
+            }
+        },
+        "rank-updates": {
+            "__type__": "collection",
+            "update-embed": {
+                "__type__": "discordEmbed",
+                "title": "",
+                "description": "### Level: {level}\n\n{progressbar} [{xp} xp|{neededXp} xp]\n\n<@{rankuserid}> is now level {level} and in {position} place.",
+                "__variables__": {
+                    "level": {
+                        "description": "Auto-detected variable",
+                        "mock": "[level]"
+                    },
+                    "progressbar": {
+                        "description": "Auto-detected variable",
+                        "mock": "[progressbar]"
+                    },
+                    "xp": {
+                        "description": "Auto-detected variable",
+                        "mock": "[xp]"
+                    },
+                    "neededXp": {
+                        "description": "Auto-detected variable",
+                        "mock": "[neededXp]"
+                    },
+                    "rankuserid": {
+                        "description": "Auto-detected variable",
+                        "mock": "[rankuserid]"
+                    },
+                    "position": {
+                        "description": "Auto-detected variable",
+                        "mock": "[position]"
+                    }
+                }
+            }
+        },
+        "event-prereminder": {
+            "__type__": "collection"
         }
     }
 }
