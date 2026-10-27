@@ -80,16 +80,13 @@ For /open-contributer, OAuth URLs are not stored. This means authentication is r
 Real Example:
 ```json
 {
-  "_id": {
-    "$oid": "6644f92497346d3e063052fe"
-  },
   "id": "380808844093292555",
-  "rawxp": 3672,
+  "rawxp": 4321,
   "stats": {
     "messages": {
-      "words": 7904,
-      "chars": 44117,
-      "count": 1359
+      "words": 9380,
+      "chars": 52074,
+      "count": 1499
     },
     "invites": {
       "total": 5,
@@ -104,13 +101,13 @@ Real Example:
       ]
     },
     "voice": {
-      "_totalCalculated": 134127,
-      "activeTime": 117091,
-      "joinCount": 44,
+      "_totalCalculated": 269009,
+      "activeTime": 240876,
+      "joinCount": 65,
       "channelSwitches": 2,
-      "selfMuteTime": 10431,
-      "selfDeafTime": 73,
-      "streamingTime": 308
+      "selfMuteTime": 15953,
+      "selfDeafTime": 3100,
+      "streamingTime": 3320
     }
   },
   "flags": {
@@ -119,18 +116,22 @@ Real Example:
   },
   "commandUsage": {
     "debug": {
-      "command": 123,
-      "button": 29,
-      "selectmenu": 18
+      "command": 132,
+      "button": 32,
+      "selectmenu": 23
     },
     "leaderboard": {
-      "command": 106
-    }// More
+      "command": 115
+    },
+    "stats": {
+      "command": 162
+    }
+    // More
   }
 }
 ```
 
-Last MongoDB structure update: 18.06.2026
+Last MongoDB structure update: 27.10.2026
 
 Tip: You can mention a Discord user by their ID using `<@user_id>`.
 
