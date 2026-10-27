@@ -1062,7 +1062,46 @@
             }
         },
         "event-prereminder": {
-            "__type__": "collection"
+            "__type__": "collection",
+            "texts": {
+                "__type__": "collection",
+                "none": {
+                    "__type__": "string",
+                    "string": "_None_"
+                },
+                "accepted": {
+                    "__type__": "string",
+                    "string": "Accepted"
+                },
+                "declined": {
+                    "__type__": "string",
+                    "string": "Declined"
+                },
+                "invite-accepted": {
+                    "__type__": "string",
+                    "string": "You have accepted the invite."
+                },
+                "invite-declined": {
+                    "__type__": "string",
+                    "string": "You have declined the Invite."
+                },
+                "total-participants": {
+                    "__type__": "string",
+                    "string": "Total participants"
+                },
+                "event-no-longer-valid": {
+                    "__type__": "string",
+                    "string": "Sorry, no longer valid."
+                },
+                "accepted-but-come-later": {
+                    "__type__": "string",
+                    "string": "Comes later"
+                },
+                "invite-comes-later": {
+                    "__type__": "string",
+                    "string": "You have accepted the invite, but will come later."
+                }
+            }
         }
     }
 }
