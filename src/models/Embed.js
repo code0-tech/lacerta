@@ -173,9 +173,11 @@ class Embed {
 
             switch (key) {
                 case 'title':
+                    if (value.length == 0) return;
                     this.setTitle(value);
                     break;
                 case 'description':
+                    if (value.length == 0) return;
                     this.setDescription(value);
                     break;
                 case 'url':
