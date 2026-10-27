@@ -1102,6 +1102,24 @@
                     "string": "You have accepted the invite, but will come later."
                 }
             }
+        },
+        "year-review": {
+            "__type__": "collection",
+            "thank-you": {
+                "__type__": "discordEmbed",
+                "title": "New Title",
+                "description": "New Description"
+            },
+            "github-stats": {
+                "__type__": "discordEmbed",
+                "title": "New Title",
+                "description": "New Description"
+            },
+            "discord-stats": {
+                "__type__": "discordEmbed",
+                "title": "New Title",
+                "description": "New Description"
+            }
         }
     }
 }
